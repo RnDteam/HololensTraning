@@ -75,13 +75,11 @@
     <Compile Include="Assets\AnimationControl.cs" />
     <Compile Include="Assets\CursorManager.cs" />
     <Compile Include="Assets\GazeManager.cs" />
-    <Compile Include="Assets\GestureManager.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\BasicCursor.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\CursorManager.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\GazeManager.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\GazeStabilizer.cs" />
-    <Compile Include="Assets\HoloToolkit\Input\Scripts\GestureManagerCopy.cs" />
-    <Compile Include="Assets\HoloToolkit\Input\Scripts\GestureManger.cs" />
+    <Compile Include="Assets\HoloToolkit\Input\Scripts\GestureManager.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\HandsManager.cs" />
     <Compile Include="Assets\HoloToolkit\SpatialMapping\Scripts\ObjectSurfaceObserver.cs" />
     <Compile Include="Assets\HoloToolkit\SpatialMapping\Scripts\PlaneFinding.cs" />

@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FighterPlane", "FighterPlan
 		{FBA57953-C0C3-F9D8-E86A-9F7C063B5FDE} = {FBA57953-C0C3-F9D8-E86A-9F7C063B5FDE}
 		{194D914D-0664-444E-B663-4D0F1C80AF68} = {194D914D-0664-444E-B663-4D0F1C80AF68}
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "C:\Users\User\Documents\Unity\FighterPlane\UWP\Assembly-CSharp\Assembly-CSharp.csproj", "{FBA57953-C0C3-F9D8-E86A-9F7C063B5FDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp\Assembly-CSharp.csproj", "{FBA57953-C0C3-F9D8-E86A-9F7C063B5FDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "C:\Users\User\Documents\Unity\FighterPlane\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj", "{194D914D-0664-444E-B663-4D0F1C80AF68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj", "{194D914D-0664-444E-B663-4D0F1C80AF68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,6 +13,7 @@ public class PlaneManager : MonoBehaviour {
     public GameObject distanceLine;
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
+    private bool easterEnabled = false;
 
     private float rotationFactor;
 
@@ -93,7 +94,6 @@ public class PlaneManager : MonoBehaviour {
         {
             plane.GetComponent<AudioSource>().Pause();
         }
-
         planes[selectedPlaneIndex].GetComponent<AudioSource>().Play();
     }
 
@@ -176,5 +176,10 @@ public class PlaneManager : MonoBehaviour {
     {
         planesDistance.SetActive(false);
         distanceLine.SetActive(false);
+    }
+
+    public void ToggleEasterEgg()
+    {
+        easterEnabled = !easterEnabled;
     }
 }
