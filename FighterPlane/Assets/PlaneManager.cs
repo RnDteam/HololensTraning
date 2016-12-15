@@ -6,20 +6,21 @@ using HoloToolkit.Unity;
 public class PlaneManager : MonoBehaviour {
 
     private int selectedPlaneIndex;
-    private bool isDistanceShown;
-    public TextMesh planesDistance;
+    public GameObject planesDistance;
     public GameObject[] planes;
     private bool[] isTextDisplayed;// True means displayed, false - hidden.
-
+    public Color lineColor;
+    public GameObject distanceLine;
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
 
     private float rotationFactor;
 
     void Start () {
-        isDistanceShown = false;
         selectedPlaneIndex = 0;
         isTextDisplayed = new bool[planes.Length];
+
+        InitializeDistanceLine();
 
         foreach (GameObject plane in planes)
         {
@@ -30,12 +31,34 @@ public class PlaneManager : MonoBehaviour {
             }
         }
     }
-	
-	void Update () {
-        CalculateDistance();
-        PerformRotation();
 
-        for(int i=0; i < isTextDisplayed.Length; i++)
+    private void InitializeDistanceLine()
+    {
+        LineRenderer lr = distanceLine.GetComponent<LineRenderer>();
+        lr.SetColors(lineColor, lineColor);
+        SetLinePosition(lr, planesDistance);
+        lr.SetWidth(0.01f, 0.01f);
+
+        HideDistance();
+    }
+
+    private void SetLinePosition(LineRenderer lr, GameObject distance)
+    {
+        lr.SetPosition(0, planes[0].transform.position);
+        lr.SetPosition(1, planes[1].transform.position);
+
+        Vector3 middlePoint = (planes[0].transform.position + planes[1].transform.position) / 2;
+        distance.transform.position = middlePoint;
+
+        TextMesh text = distance.GetComponent<TextMesh>();
+        text.text = Math.Round((planes[0].transform.position - planes[1].transform.position).magnitude, 2) + " km";
+    }
+
+    void Update () {
+        PerformRotation();
+        SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
+
+        for (int i=0; i < isTextDisplayed.Length; i++)
         {
             if(isTextDisplayed[i])
             {
@@ -59,11 +82,19 @@ public class PlaneManager : MonoBehaviour {
         foreach(GameObject plane in planes)
         {
             plane.GetComponent<Selected>().isSelected = false;
+        }
+        
+        planes[selectedPlaneIndex].GetComponent<Selected>().isSelected = true;
+    }
+
+    public void PlayMusic()
+    {
+        foreach (GameObject plane in planes)
+        {
             plane.GetComponent<AudioSource>().Pause();
         }
 
         planes[selectedPlaneIndex].GetComponent<AudioSource>().Play();
-        planes[selectedPlaneIndex].GetComponent<Selected>().isSelected = true;
     }
 
     public void SelectPlaneB()
@@ -85,6 +116,7 @@ public class PlaneManager : MonoBehaviour {
 
     public void AnimatePlane()
     {
+        PlayMusic();
         StartCoroutine(planes[selectedPlaneIndex].GetComponent<AnimationControl>().PlayAnimation(planes[selectedPlaneIndex].name + "Animation"));
     }
 
@@ -104,17 +136,29 @@ public class PlaneManager : MonoBehaviour {
 
         Selected selectedPlane = curPlane.GetComponent<Selected>();
         TextMesh planeText = curPlane.GetComponentInChildren<TextMesh>();
-        
-        planeText.text = "Selected Plane:\n" + curPlane.name + "\n"
-            + "Plane Speed: " + selectedPlane.speed + "\n"
-            + "Angle of Attack: " + (selectedPlane.angleOfAttack*180/Math.PI) + "\n"
-            + "Angle of Ascent: " + (selectedPlane.angleOfAscent * 180 / Math.PI) + "\n"
-            + "Lift: " + selectedPlane.lift + "\n"
-            + "Total Drag: " + selectedPlane.totalDrag + "\n"
-            + "Induced Drag: " + selectedPlane.inducedDrag + "\n"
-            + "Parasitic Drag: " + selectedPlane.parasiticDrag + "\n"
-            + "Thrust: " + selectedPlane.thrust;
 
+        if(curPlane.GetComponent<Animator>().enabled)
+        {
+            if (selectedPlane.speed != 0)
+            {
+                planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", (selectedPlane.speed * 100).ToString("000"), selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
+            }
+        }
+        else
+        {
+            planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", "000", selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
+        }
+
+        
+        //"Selected Plane:\n"
+        // curPlane.name + "\n"
+        //+ "Angle of Attack: " + (selectedPlane.angleOfAttack*180/Math.PI) + "\n"
+        //+ "Angle of Ascent: " + (selectedPlane.angleOfAscent * 180 / Math.PI) + "\n"
+        //+ "Lift: " + selectedPlane.lift + "\n"
+        //+ "Total Drag: " + selectedPlane.totalDrag + "\n"
+        //+ "Induced Drag: " + selectedPlane.inducedDrag + "\n"
+        //+ "Parasitic Drag: " + selectedPlane.parasiticDrag + "\n"
+        //+ "Thrust: " + selectedPlane.thrust;
     }
 
     public void HidePlaneDetails(int curPlaneIndex)
@@ -122,26 +166,15 @@ public class PlaneManager : MonoBehaviour {
         planes[curPlaneIndex].GetComponentInChildren<TextMesh>().text = "";
     }
 
-
-    private void CalculateDistance()
-    {
-        if (isDistanceShown)
-        {
-            planesDistance.text = "The Distance \n Between Planes is \n" + (planes[0].transform.position - planes[1].transform.position).magnitude + " km";
-        }
-        else
-        {
-            planesDistance.text = "";
-        }
-    }
-
     public void DisplayDistance()
     {
-        isDistanceShown = true;
+        planesDistance.SetActive(true);
+        distanceLine.SetActive(true);
     }
 
     public void HideDistance()
     {
-        isDistanceShown = false;
+        planesDistance.SetActive(false);
+        distanceLine.SetActive(false);
     }
 }

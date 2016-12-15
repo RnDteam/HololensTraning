@@ -10,6 +10,8 @@ public class PlaneHologram : MonoBehaviour {
     // Use this for initialization
     void Start () {
         GestureManager.Instance.OverrideFocusedObject = gameObject;
+
+
         //planeOffsetFromCamera = transform.position - Camera.main.transform.position;
     }
 
