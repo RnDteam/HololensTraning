@@ -1,7 +1,11 @@
-/FighterPlane/App/
+### Relative Unity ###
+/FighterPlane/[Aa]pp/
 /FighterPlane/[Tt]emp/
-
-# Created by https://www.gitignore.io/api/unity
+/FighterPlane/[Ll]ibrary/
+/FighterPlane/[Oo]bj/
+/FighterPlane/[Bb]uild/
+/FighterPlane/[Bb]uilds/
+/FighterPlane/Assets/AssetStoreTools*
 
 ### Unity ###
 /[Ll]ibrary/
