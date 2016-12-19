@@ -1,0 +1,17 @@
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\bin\ARM\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\bin\ARM\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\bin\ARM\Debug\Assembly-CSharp-firstpass.pri
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\priconfig.xml
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\priconfig.xml.intermediate
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\layout.resfiles
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\layout.resfiles.intermediate
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\resources.resfiles
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\resources.resfiles.intermediate
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\pri.resfiles
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\pri.resfiles.intermediate
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\qualifiers.txt
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\qualifiers.txt.intermediate
+C:\Users\User\Desktop\HololensTraining\FighterPlane\UWP\Assembly-CSharp-firstpass\obj\ARM\Debug\ARM\Debug\MultipleQualifiersPerDimensionFound.txt
