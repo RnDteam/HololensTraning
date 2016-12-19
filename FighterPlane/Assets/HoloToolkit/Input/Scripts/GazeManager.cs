@@ -6,11 +6,11 @@ using UnityEngine;
 /// </summary>
 public class GazeManager : Singleton<GazeManager>
 {
-    [Tooltip("Maximum gaze distance for calculating a hit.")]
-    public float MaxGazeDistance = 5.0f;
+    //[Tooltip("Maximum gaze distance for calculating a hit.")]
+    //public float MaxGazeDistance = 5.0f;
 
-    [Tooltip("Select the layers raycast should target.")]
-    public LayerMask RaycastLayerMask = Physics.DefaultRaycastLayers;
+    //[Tooltip("Select the layers raycast should target.")]
+    //public LayerMask RaycastLayerMask = Physics.DefaultRaycastLayers;
 
     /// <summary>
     /// Physics.Raycast result is true if it hits a Hologram.
@@ -33,9 +33,9 @@ public class GazeManager : Singleton<GazeManager>
     /// </summary>
     public Vector3 Normal { get; private set; }
 
-    private GazeStabilizer gazeStabilizer;
-    private Vector3 gazeOrigin;
-    private Vector3 gazeDirection;
+    //private GazeStabilizer gazeStabilizer;
+    //private Vector3 gazeOrigin;
+    //private Vector3 gazeDirection;
 
     void Awake()
     {

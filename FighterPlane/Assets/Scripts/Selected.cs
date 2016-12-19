@@ -23,6 +23,8 @@ public class Selected : MonoBehaviour {
     private Vector3 prevVelocity = new Vector3(0f, 0f, 0f);
     private Vector3 position;
     private Vector3 prevPosition;
+    private PlaneManager planeManager;
+    public int planeNumber;
 
     // Plane details
     public double speed;
@@ -40,6 +42,9 @@ public class Selected : MonoBehaviour {
     }
 
     void Start () {
+        GameObject g = GameObject.Find("PlaneManager");
+        planeManager = g.GetComponent<PlaneManager>();
+
         wings = transform.Find("Wings").gameObject;
         mainbody = transform.Find("Main_Body").gameObject;
         position = transform.position;
@@ -99,5 +104,14 @@ public class Selected : MonoBehaviour {
             wings.GetComponent<Renderer>().material.color = randomColor;//wingsFirstColor;
             mainbody.GetComponent<Renderer>().material.color = randomColor;// mainbodyFirstColor;
         }
+    }
+
+    /// <summary>
+    /// Called when our object is selected.  Generally called by
+    /// a gesture management component.
+    /// </summary>
+    public void OnSelect()
+    {
+        planeManager.SelectPlaneByNumber(planeNumber);
     }
 }

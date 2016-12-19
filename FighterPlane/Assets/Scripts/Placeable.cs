@@ -111,16 +111,6 @@ public class Placeable : MonoBehaviour
         // Place at first
         // IsPlacing = false;
         OnPlacementStart();
-        // todo: can be deleted later
-        // Create the object that will be used to indicate the bounds of the GameObject.
-        //boundsAsset = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //boundsAsset.transform.parent = gameObject.transform;
-        //boundsAsset.SetActive(false);
-
-        // Create a object that will be used as a shadow.
-        //shadowAsset = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        //shadowAsset.transform.parent = gameObject.transform;
-        //shadowAsset.SetActive(false);
     }
 
     /// <summary>
@@ -165,8 +155,6 @@ public class Placeable : MonoBehaviour
             GetComponent<Renderer>().material.color = Color.white;
             // todo: can be deleted later
             // Disable the visual elements.
-            //boundsAsset.SetActive(false);
-            //shadowAsset.SetActive(false);
 
             // Gracefully place the object on the target surface.
             float dist = (gameObject.transform.position - targetPosition).magnitude;

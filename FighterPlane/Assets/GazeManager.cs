@@ -9,7 +9,7 @@ namespace HoloToolkit.Unity
     public class GazeManager : Singleton<GazeManager>
     {
         [Tooltip("Maximum gaze distance for calculating a hit.")]
-        public float MaxGazeDistance = 5.0f;
+        public float MaxGazeDistance = 105.0f;
 
         [Tooltip("Select the layers raycast should target.")]
         public LayerMask RaycastLayerMask = Physics.DefaultRaycastLayers;
@@ -94,7 +94,6 @@ namespace HoloToolkit.Unity
             if (Hit)
             {
                 // If raycast hit a hologram...
-
                 // 2.a: Assign property Position to be the hitInfo point.
                 Position = hitInfo.point;
                 // 2.a: Assign property Normal to be the hitInfo normal.

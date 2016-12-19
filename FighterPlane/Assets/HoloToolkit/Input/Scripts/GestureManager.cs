@@ -63,6 +63,7 @@ namespace HoloToolkit.Unity
         {
             if (focusedObject != null)
             {
+                print(focusedObject.name);
                 focusedObject.SendMessage("OnSelect");
             }
         }

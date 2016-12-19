@@ -72,6 +72,17 @@ public class PlaneManager : MonoBehaviour {
         }
     }
 
+    public void SelectPlaneByNumber(int planeNumber)
+    {
+        if(planeNumber == 1)
+        {
+            SelectPlaneA();
+        }
+        else if (planeNumber == 2)
+        {
+            SelectPlaneB();
+        }
+    }
     public void SelectPlaneA()
     {
         selectedPlaneIndex = 0;
@@ -94,7 +105,14 @@ public class PlaneManager : MonoBehaviour {
         {
             plane.GetComponent<AudioSource>().Pause();
         }
-        planes[selectedPlaneIndex].GetComponent<AudioSource>().Play();
+        if (easterEnabled)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            planes[selectedPlaneIndex].GetComponent<AudioSource>().Play();
+        }
     }
 
     public void SelectPlaneB()
