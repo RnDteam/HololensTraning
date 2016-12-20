@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using HoloToolkit.Unity;
 using Assets;
@@ -204,6 +203,7 @@ public class PlaneManager : MonoBehaviour {
 
     public void ToggleEasterEgg()
     {
-        easterEnabled = !easterEnabled;
+        //easterEnabled = !easterEnabled;
+        DoCircles();
     }
 }

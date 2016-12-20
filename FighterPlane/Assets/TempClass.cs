@@ -18,8 +18,8 @@ namespace Assets
             planeBehavior.Remove(plane);
         }
 
-        void Start() { }
-        void Update()
+        //void Start() { }
+       void Update()
         {
             foreach(GameObject plane in planeBehavior.Keys)
             {
