@@ -5,6 +5,10 @@ using HoloToolkit.Unity;
 
 public class PlaneManager : MonoBehaviour {
 
+    private enum PLANES {
+        PlaneA,
+        PlaneB
+    }
     private int selectedPlaneIndex;
     public GameObject planesDistance;
     public GameObject[] planes;
@@ -14,7 +18,6 @@ public class PlaneManager : MonoBehaviour {
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
     private bool easterEnabled = false;
-    private bool applyCircleForce = false;
 
     private float rotationFactor;
 
@@ -26,7 +29,6 @@ public class PlaneManager : MonoBehaviour {
 
         foreach (GameObject plane in planes)
         {
-            plane.GetComponent<Selected>().isSelected = false;
             if (gameObject.GetComponent<Animator>() != null)
             {
                 gameObject.GetComponent<Animator>().Stop();
@@ -60,58 +62,50 @@ public class PlaneManager : MonoBehaviour {
         PerformRotation();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
 
-        for (int i=0; i < isTextDisplayed.Length; i++)
-        {
-            if(isTextDisplayed[i])
-            {
-                DisplayPlaneDetails(i);
-            }
-            else
-            {
-                HidePlaneDetails(i);
-            }
-        }
-        if (applyCircleForce)
-        {
-            //float startTime = Time.time;
-            double omega = 0.5;
-            double r = 2;
-            //planes[selectedPlaneIndex].transform.position = new Vector3(1, 1, 0);
-            //planes[selectedPlaneIndex].transform.localRotation = Quaternion.Euler(0, (float)(-1*omega*Time.time), 0);
-            planes[selectedPlaneIndex].transform.position = new Vector3((float)(r*Math.Cos(omega*(Time.timeSinceLevelLoad))), 1, (float)(r*Math.Sin(omega*(Time.timeSinceLevelLoad))));
-            //planes[selectedPlaneIndex].transform.Rotate(Vector3.Reflect(Vector3.up * (float)(1*omega*Time.deltaTime), Vector3.up));
-            planes[selectedPlaneIndex].transform.RotateAroundLocal(Vector3.up, (float)(-1*omega * (Time.deltaTime)));
-        }
+        //for (int i=0; i < isTextDisplayed.Length; i++)
+        //{
+        //    if(isTextDisplayed[i])
+        //    {
+        //        DisplayPlaneDetails(i);
+        //    }
+        //    else
+        //    {
+        //        HidePlaneDetails(i);
+        //    }
+        //}
     }
 
     public void SelectPlaneByNumber(int planeNumber)
     {
-        if(planeNumber == 1)
-        {
-            SelectPlaneA();
-        }
-        else if (planeNumber == 2)
-        {
-            SelectPlaneB();
-        }
+        selectedPlaneIndex = planeNumber - 1;
     }
+
+    // Selecting planes using voice commands
+    #region Selecting Planes
     public void SelectPlaneA()
     {
-        selectedPlaneIndex = 0;
-        SelectPlane();
+        SelectPlane((int)PLANES.PlaneA);
     }
 
-    private void SelectPlane()
+    public void SelectPlaneB()
     {
-        foreach(GameObject plane in planes)
-        {
-            plane.GetComponent<Selected>().isSelected = false;
-        }
-        
-        planes[selectedPlaneIndex].GetComponent<Selected>().isSelected = true;
+        SelectPlane((int)PLANES.PlaneB);
     }
 
-    public void PlayMusic()
+    private void SelectPlane(int currPlaneIndex)
+    {
+        int prevPlaneIndex = selectedPlaneIndex;
+
+        // Updating value of the current plane index
+        selectedPlaneIndex = currPlaneIndex;
+
+        // Deselecting previous plane and selecting the new one
+        planes[prevPlaneIndex].GetComponent<Selected>().OnDeselect();
+        planes[selectedPlaneIndex].GetComponent<Selected>().OnSelect();
+    }
+    #endregion
+
+    public void PlaySounds()
     {
         foreach (GameObject plane in planes)
         {
@@ -127,12 +121,6 @@ public class PlaneManager : MonoBehaviour {
         }
     }
 
-    public void SelectPlaneB()
-    {
-        selectedPlaneIndex = 1;
-        SelectPlane();
-    }
-
     private void PerformRotation()
     {
         if (GestureManager.Instance.IsNavigating)
@@ -146,19 +134,20 @@ public class PlaneManager : MonoBehaviour {
 
     public void AnimatePlane()
     {
-        PlayMusic();
-        //StartCoroutine(planes[selectedPlaneIndex].GetComponent<AnimationControl>().PlayAnimation(planes[selectedPlaneIndex].name + "Animation"));
-        applyCircleForce = true;
+        PlaySounds();
+        StartCoroutine(planes[selectedPlaneIndex].GetComponent<AnimationControl>().PlayAnimation(planes[selectedPlaneIndex].name + "Animation"));
     }
 
     public void CheckDisplaySign()
     {
-        isTextDisplayed[selectedPlaneIndex] = true;
+        planes[selectedPlaneIndex].GetComponent<Selected>().ShowPlaneInfo();
+        //isTextDisplayed[selectedPlaneIndex] = true;
     }
 
     public void UncheckDisplaySign()
     {
-        isTextDisplayed[selectedPlaneIndex] = false;
+        planes[selectedPlaneIndex].GetComponent<Selected>().HidePlaneInfo();
+        //isTextDisplayed[selectedPlaneIndex] = false;
     }
 
     public void DisplayPlaneDetails(int curPlaneIndex)
@@ -179,22 +168,11 @@ public class PlaneManager : MonoBehaviour {
         {
             planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", "000", selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
         }
-
-        
-        //"Selected Plane:\n"
-        // curPlane.name + "\n"
-        //+ "Angle of Attack: " + (selectedPlane.angleOfAttack*180/Math.PI) + "\n"
-        //+ "Angle of Ascent: " + (selectedPlane.angleOfAscent * 180 / Math.PI) + "\n"
-        //+ "Lift: " + selectedPlane.lift + "\n"
-        //+ "Total Drag: " + selectedPlane.totalDrag + "\n"
-        //+ "Induced Drag: " + selectedPlane.inducedDrag + "\n"
-        //+ "Parasitic Drag: " + selectedPlane.parasiticDrag + "\n"
-        //+ "Thrust: " + selectedPlane.thrust;
     }
 
     public void HidePlaneDetails(int curPlaneIndex)
     {
-        planes[curPlaneIndex].GetComponentInChildren<TextMesh>().text = "";
+        planes[curPlaneIndex].GetComponentInChildren<Selected>().HidePlaneInfo();
     }
 
     public void DisplayDistance()

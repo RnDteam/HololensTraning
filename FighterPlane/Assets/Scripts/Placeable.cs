@@ -187,67 +187,68 @@ public class Placeable : MonoBehaviour
     /// </returns>
     private bool ValidatePlacement(out Vector3 position, out Vector3 surfaceNormal)
     {
-        Vector3 raycastDirection = gameObject.transform.forward;
+        //todo for Debug purpose only it got commented
+        //Vector3 raycastDirection = gameObject.transform.forward;
 
-        if (PlacementSurface == PlacementSurfaces.Horizontal)
-        {
-            // Placing on horizontal surfaces.
-            // Raycast from the bottom face of the box collider.
-            raycastDirection = -(Vector3.up);
-        }
+        //if (PlacementSurface == PlacementSurfaces.Horizontal)
+        //{
+        //    // Placing on horizontal surfaces.
+        //    // Raycast from the bottom face of the box collider.
+        //    raycastDirection = -(Vector3.up);
+        //}
 
-        // Initialize out parameters.
+        //// Initialize out parameters.
         position = Vector3.zero;
         surfaceNormal = Vector3.zero;
 
-        Vector3[] facePoints = GetColliderFacePoints();
+        //Vector3[] facePoints = GetColliderFacePoints();
 
-        // The origin points we receive are in local space and we 
-        // need to raycast in world space.
-        for (int i = 0; i < facePoints.Length; i++)
-        {
-            facePoints[i] = gameObject.transform.TransformVector(facePoints[i]) + gameObject.transform.position;
-        }
+        //// The origin points we receive are in local space and we 
+        //// need to raycast in world space.
+        //for (int i = 0; i < facePoints.Length; i++)
+        //{
+        //    facePoints[i] = gameObject.transform.TransformVector(facePoints[i]) + gameObject.transform.position;
+        //}
 
-        // Cast a ray from the center of the box collider face to the surface.
-        RaycastHit centerHit;
-        if (!Physics.Raycast(facePoints[0],
-                        raycastDirection,
-                        out centerHit,
-                        maximumPlacementDistance,
-                        SpatialMappingManager.Instance.LayerMask))
-        {
-            // If the ray failed to hit the surface, we are done.
-            return false;
-        }
+        //// Cast a ray from the center of the box collider face to the surface.
+        //RaycastHit centerHit;
+        //if (!Physics.Raycast(facePoints[0],
+        //                raycastDirection,
+        //                out centerHit,
+        //                maximumPlacementDistance,
+        //                SpatialMappingManager.Instance.LayerMask))
+        //{
+        //    // If the ray failed to hit the surface, we are done.
+        //    return false;
+        //}
 
-        // We have found a surface.  Set position and surfaceNormal.
-        position = centerHit.point;
-        surfaceNormal = centerHit.normal;
+        //// We have found a surface.  Set position and surfaceNormal.
+        //position = centerHit.point;
+        //surfaceNormal = centerHit.normal;
 
-        // Cast a ray from the corners of the box collider face to the surface.
-        for (int i = 1; i < facePoints.Length; i++)
-        {
-            RaycastHit hitInfo;
-            if (Physics.Raycast(facePoints[i],
-                                raycastDirection,
-                                out hitInfo,
-                                maximumPlacementDistance,
-                                SpatialMappingManager.Instance.LayerMask))
-            {
-                // To be a valid placement location, each of the corners must have a similar
-                // enough distance to the surface as the center point
-                if (!IsEquivalentDistance(centerHit.distance, hitInfo.distance))
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                // The raycast failed to intersect with the target layer.
-                return false;
-            }
-        }
+        //// Cast a ray from the corners of the box collider face to the surface.
+        //for (int i = 1; i < facePoints.Length; i++)
+        //{
+        //    RaycastHit hitInfo;
+        //    if (Physics.Raycast(facePoints[i],
+        //                        raycastDirection,
+        //                        out hitInfo,
+        //                        maximumPlacementDistance,
+        //                        SpatialMappingManager.Instance.LayerMask))
+        //    {
+        //        // To be a valid placement location, each of the corners must have a similar
+        //        // enough distance to the surface as the center point
+        //        if (!IsEquivalentDistance(centerHit.distance, hitInfo.distance))
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // The raycast failed to intersect with the target layer.
+        //        return false;
+        //    }
+        //}
 
         return true;
     }

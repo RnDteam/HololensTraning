@@ -32,9 +32,15 @@ namespace HoloToolkit.Unity
             get { return focusedObject; }
         }
 
+        public GameObject PreviousTappedObject
+        {
+            get { return previousTappedObject; }
+        }
+
         private GestureRecognizer gestureRecognizer;
         private GameObject focusedObject;
-        
+        private GameObject previousTappedObject;
+
         public bool IsNavigating { get; private set; }
 
         public Vector3 NavigationPosition { get; private set; }
@@ -61,10 +67,18 @@ namespace HoloToolkit.Unity
 
         private void GestureRecognizer_TappedEvent(InteractionSourceKind source, int tapCount, Ray headRay)
         {
+            // Checking if the current focused object is not null
             if (focusedObject != null)
             {
-                print(focusedObject.name);
+                // Deselecting the previous clicekd item
+                if(previousTappedObject != null)
+                {
+                    previousTappedObject.SendMessage("OnDeselect");
+                }
+
+                // Selecting focused object and updating prev object
                 focusedObject.SendMessage("OnSelect");
+                previousTappedObject = focusedObject;
             }
         }
 

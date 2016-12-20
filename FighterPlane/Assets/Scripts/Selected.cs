@@ -4,17 +4,32 @@ using System;
 
 public class Selected : MonoBehaviour {
 
-    public bool isSelected;
-    //private Color wingsFirstColor;
-    private Color wingsSelectedColor;
-    //private Color mainbodyFirstColor;
-    private Color randomColor;
-    private Color mainbodySelectedColor;
+
+    // New
+    public bool IsTextShown {
+        get;
+        private set;
+    }
+    // todo if still needed
+    // isTraceShown
+    // isRegularSoundPlayed
+
+
+    private PlaneManager planeManager;
+    public int planeNumber;
+    private Color selectedColor;
+    private Color defaultColor;
+
     private GameObject wings;
     private GameObject mainbody;
 
     private static System.Random rand = new System.Random();
+
+    // todo Refactor later
+
     private Color[] colors = { Color.magenta, Color.yellow, new Color(255, 218, 185), new Color(187, 41, 187), new Color(175, 238, 238) };
+
+    #region physics
     const double gravityMag = 9.8;
     const double hercArea = 162.1;
     const double hercMass = 34400;
@@ -23,8 +38,6 @@ public class Selected : MonoBehaviour {
     private Vector3 prevVelocity = new Vector3(0f, 0f, 0f);
     private Vector3 position;
     private Vector3 prevPosition;
-    private PlaneManager planeManager;
-    public int planeNumber;
 
     // Plane details
     public double speed;
@@ -36,82 +49,88 @@ public class Selected : MonoBehaviour {
     public double totalDrag;
     public double thrust;
 
-    private double CalculateAirPressure()
-    {
-        return 101325 * Math.Exp((-gravityMag * 0.0289644 * transform.position.y / (8.3144598 * 273.6)));
-    }
+
+    #endregion
+    
+
 
     void Start () {
-        GameObject g = GameObject.Find("PlaneManager");
-        planeManager = g.GetComponent<PlaneManager>();
+        planeManager = GameObject.Find("PlaneManager").GetComponent<PlaneManager>();
+		defaultColor = colors[rand.Next(0, colors.Length - 1)];
+        selectedColor = Color.blue;
 
+        // Assigning wings and plane body for color purposes
         wings = transform.Find("Wings").gameObject;
         mainbody = transform.Find("Main_Body").gameObject;
+
+        #region physics
         position = transform.position;
         prevPosition = position;
         velocity = new Vector3(0f, 0f, 0f);
         prevVelocity = velocity;
         accelaration = new Vector3(0f, 0f, 0f);
-        randomColor = colors[rand.Next(0, colors.Length - 1)];//Color.Lerp(Color.yellow, Color.magenta, (float) rand.NextDouble());
-        //wingsFirstColor = wings.GetComponent<Renderer>().material.color;
-        wingsSelectedColor = Color.blue;
-        //mainbodyFirstColor = mainbody.GetComponent<Renderer>().material.color;
-        mainbodySelectedColor = Color.blue;
-
-        isSelected = false;
+        #endregion
     }
-    
-    void FixedUpdate()
+
+    void Update()
     {
-        //position = transform.position;
         velocity = (transform.position - prevPosition) / Time.fixedDeltaTime;
-            //new Vector3((position.x - prevPosition.x) / Time.deltaTime, (position.y - prevPosition.y) / Time.deltaTime, (position.z - prevPosition.z) / Time.deltaTime);
         accelaration = new Vector3((velocity.x - prevVelocity.x) / Time.deltaTime, (velocity.y - prevVelocity.y) / Time.deltaTime, (velocity.z - prevVelocity.z) / Time.deltaTime);
 
-        speed = velocity.magnitude;
-        angleOfAttack = transform.rotation.x;
-        if (speed == 0)
-        {
-            angleOfAscent = 0;
-        }
-        else
-        {
-            angleOfAscent = Math.Asin(velocity.y / velocity.magnitude);
-        }
-        parasiticDrag = 0.5 * CalculateAirPressure() * Math.Pow(speed, 2) * 0.4 * 162.1;
-        lift = Math.Cos(angleOfAttack) * (hercMass * (accelaration.y + gravityMag) + parasiticDrag * Math.Sin(angleOfAscent)) - Math.Sin(angleOfAttack) * (hercMass * accelaration.x + parasiticDrag * Math.Cos(angleOfAscent));
-        inducedDrag = lift * Math.Sin(angleOfAttack) * Math.Cos(angleOfAscent);
-        totalDrag = inducedDrag + parasiticDrag;
-        thrust = Math.Sin(angleOfAttack) * (hercMass * (accelaration.y + gravityMag) + parasiticDrag * Math.Sin(angleOfAscent)) + Math.Cos(angleOfAttack) * (hercMass * Math.Sqrt(Math.Pow(accelaration.x, 2) + Math.Pow(accelaration.z, 2)) + parasiticDrag * Math.Cos(angleOfAscent));
+
+        if (IsTextShown)
+		{
+			UpdateText();
+		}
+
 
         prevVelocity = velocity;
         prevPosition = transform.position;
     }
 
-    void Update () {
-        Selection();
-    }
-
-    private void Selection()
+    private void UpdateText()
     {
-        if (isSelected)
-        {
-            wings.GetComponent<Renderer>().material.color = wingsSelectedColor;
-            mainbody.GetComponent<Renderer>().material.color = mainbodySelectedColor;
-        }
-        else
-        {
-            wings.GetComponent<Renderer>().material.color = randomColor;//wingsFirstColor;
-            mainbody.GetComponent<Renderer>().material.color = randomColor;// mainbodyFirstColor;
-        }
+        gameObject.GetComponentInChildren<TextMesh>().text = PhysicsManager.CalculateFlightParameters(accelaration, velocity, transform, prevPosition, prevVelocity).ToString();
     }
 
-    /// <summary>
-    /// Called when our object is selected.  Generally called by
-    /// a gesture management component.
-    /// </summary>
+    #region
+    void FixedUpdate()
+    {
+
+    }
+    #endregion
+
+    #region Selecting Plane
     public void OnSelect()
     {
+        ConvertColors(selectedColor);
+        
+        // Notifying plane manager a plane was picked
         planeManager.SelectPlaneByNumber(planeNumber);
     }
+
+    public void OnDeselect()
+    {
+		ConvertColors(defaultColor);
+    }
+
+    private void ConvertColors(Color color)
+    {
+        wings.GetComponent<Renderer>().material.color = color;
+        mainbody.GetComponent<Renderer>().material.color = color;
+    }
+    #endregion
+
+    #region Visibility of Plane Details
+    public void HidePlaneInfo()
+    {
+        gameObject.GetComponentInChildren<TextMesh>().text = "";
+        IsTextShown = false;
+    }
+
+    public void ShowPlaneInfo()
+    {
+        IsTextShown = true;
+    }
+    #endregion
 }
