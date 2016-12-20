@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,13 +11,16 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
-    <UnityVersion>5.4.0f3-HTP</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <UnityVersion>5.5.0f3</UnityVersion>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -27,8 +30,9 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_4_0;UNITY_5_4;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EDITOR_RETINA;ENABLE_RETINA_GUISTYLES;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;ENABLE_HOLOLENS_MODULE_API;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_TEXTUREID_MAP;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_EVENT_QUEUE;ENABLE_NETWORK;ENABLE_EVENT_QUEUE;UNITY_PLATFORM_THREAD_TO_CORE_MAPPING;ENABLE_SUBSTANCE;PLATFORM_SUPPORTS_ADS_ID;ENABLE_UNITYWEBREQUEST;CURL_STATICLIB;UNITY_WSA;ENABLE_DOTNET;ENABLE_PROFILER;UNITY_WSA_10_0;UNITY_WINRT_10_0;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_0;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_NETWORK;ENABLE_EVENT_QUEUE;UNITY_PLATFORM_THREAD_TO_CORE_MAPPING;ENABLE_SUBSTANCE;PLATFORM_SUPPORTS_ADS_ID;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;CURL_STATICLIB;ENABLE_VR;UNITY_WSA;ENABLE_DOTNET;ENABLE_PROFILER;UNITY_WSA_10_0;UNITY_WINRT_10_0;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,8 +41,9 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_4_0;UNITY_5_4;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EDITOR_RETINA;ENABLE_RETINA_GUISTYLES;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;ENABLE_HOLOLENS_MODULE_API;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_TEXTUREID_MAP;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_EVENT_QUEUE;ENABLE_NETWORK;ENABLE_EVENT_QUEUE;UNITY_PLATFORM_THREAD_TO_CORE_MAPPING;ENABLE_SUBSTANCE;PLATFORM_SUPPORTS_ADS_ID;ENABLE_UNITYWEBREQUEST;CURL_STATICLIB;UNITY_WSA;ENABLE_DOTNET;ENABLE_PROFILER;UNITY_WSA_10_0;UNITY_WINRT_10_0;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_0;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_NETWORK;ENABLE_EVENT_QUEUE;UNITY_PLATFORM_THREAD_TO_CORE_MAPPING;ENABLE_SUBSTANCE;PLATFORM_SUPPORTS_ADS_ID;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;CURL_STATICLIB;ENABLE_VR;UNITY_WSA;ENABLE_DOTNET;ENABLE_PROFILER;UNITY_WSA_10_0;UNITY_WINRT_10_0;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -57,6 +62,12 @@
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PlaymodeTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
@@ -97,10 +108,187 @@
     <Compile Include="Assets\Holograms\Support\AstroMan\SetRendererSettings.cs" />
     <Compile Include="Assets\Holograms\Support\Fitbox\Fitbox.cs" />
     <Compile Include="Assets\Holograms\Support\Fitbox\Interpolator.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\AMapSearchExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\BingMapsElevationsExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\BingMapsLocationAPIExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\CacheTilesExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\CalcAreaExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ChangeMapTextureExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ChangeMarkerTextureExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ChangePositionAndZoomEventsExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ChangePositionUsingGyro.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ChangeProviderAndTypeExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\CheckIntenetConnectionExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ControlDataTrafficExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\CustomDownloadTileExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\DetectWaterByTextureExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\DistanceAndDirectionExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\DottedLineExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\DragMarkerAndTranslateMapExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\DragMarkerByLongPressExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\DrawingAPI_Example.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\DrawingElementEventsExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\FindAutocompleteExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\FindDirectionExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\FindLocationExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\FindLocationNameExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\FindPlacesExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\GPXExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\GetCenterPointOfMarkersExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\GetElevationExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\GroupMarkersExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\HereRoutingAPIExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\InertiaExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\InterceptElevationRequestExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\InterceptInputExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\LockPositionAndZoomExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\Marker3D_Example.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\Marker3D_GPS_Example.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\MarkerClickCountExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\MarkerClickExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\MarkerCustomDataExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\MarkerScaleByZoomExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\Marker_GPS_Example.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ModifyTooltipStyleExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\MoveMarkerOnRouteExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\MoveMarkersExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\NGUI\NGUICustomMarkerExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\NGUI\NGUICustomMarkerSystemExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\NGUI\NGUICustomTooltipExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\OSMRequestExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\OnDrawTooltipExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\OnHoverExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\OpenRouteServiceExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\QQSearchExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\RealTilesetSizeExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ResetCameraRotationExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\RotateCameraByCompassExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\RotateMapInsteadMarkerExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\SaveMapStateExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\SaveMarker3DExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\SaveMarkersExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ScreenToGeoExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\ShowMarkerLabelsByZoomExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\SmoothMoveExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\TilesetMapTilerOverlayExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\TilesetMarkerDepthExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\TilesetOverlayExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\TooltipWithoutBackgroundExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\UpdateZoomOnSmoothZoomProcessExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\uGUI\uGUICustomMarkerEngineExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\uGUI\uGUICustomMarkerExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\uGUI\uGUICustomTooltipExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\uGUI\uGUICustomTooltipForAllMarkersExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples (API usage)\uGUI\uGUISmoothZoomExample.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples\Scripts\Aircraft.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples\Scripts\AircraftWarning.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples\Scripts\Demo.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples\Scripts\ExampleGUI.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Examples\Scripts\GUITextureSize.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsControlBase.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsControlBase2D.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsControlBase3D.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsDFGUITextureControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsGUITextureControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsIGUITextureControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsNGUITextureControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsSpriteRendererControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsTextureControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsTileSetControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsUIImageControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Controls\OnlineMapsUIRawImageControl.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Core\OnlineMapsBuffer.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Core\OnlineMapsEnums.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Core\OnlineMapsTile.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Core\OnlineMapsUtils.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Drawing\OnlineMapsDrawingElement.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Drawing\OnlineMapsDrawingLine.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Drawing\OnlineMapsDrawingPoly.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Drawing\OnlineMapsDrawingRect.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\ExtraTypes\OnlineMapsGeoRect.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\ExtraTypes\OnlineMapsPositionRange.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\ExtraTypes\OnlineMapsRange.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\ExtraTypes\OnlineMapsVector2i.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\ExtraTypes\OnlineMapsWWW.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\JSON\OnlineMapsJSON.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\JSON\OnlineMapsJSONArray.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\JSON\OnlineMapsJSONItem.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\JSON\OnlineMapsJSONObject.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\JSON\OnlineMapsJSONValue.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Markers\OnlineMapsMarker.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Markers\OnlineMapsMarker3D.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Markers\OnlineMapsMarker3DInstance.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Markers\OnlineMapsMarkerBase.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Markers\OnlineMapsMarkerBillboard.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Markers\OnlineMapsMarkerInstanceBase.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\OnlineMaps.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\Buildings\OnlineMapsBuildingBase.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\Buildings\OnlineMapsBuildingBuiltIn.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\Buildings\OnlineMapsBuildingMaterial.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\Buildings\OnlineMapsBuildings.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\JSLoader\OnlineMapsJSLoader.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\OnlineMapsCache.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\OnlineMapsDirectionStep.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\OnlineMapsGPXObject.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\OnlineMapsJPEGDecoder.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\OnlineMapsLimits.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\OnlineMapsLocationService.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Plugins\OnlineMapsRWTConnector.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Projections\OnlineMapsProjection.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Projections\OnlineMapsProjectionSphericalMercator.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Projections\OnlineMapsProjectionWGS84.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Providers\Tiles\OnlineMapsProvider.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Providers\Traffic\OnlineMapsTrafficProvider.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Threading\OnlineMapsThreadManager.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\Threading\OnlineMapsThreadWINRT.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Base\OnlineMapsTextWebService.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Base\OnlineMapsWebServiceAPI.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsFindAutocomplete.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsFindDirection.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsFindDirectionAdvanced.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsFindLocation.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsFindPlaceDetails.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsFindPlaces.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsGetElevation.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Obsolete\OnlineMapsGoogleAPIQuery.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsAMapSearch.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsBingMapsElevation.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsBingMapsLocation.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGoogleDirections.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGoogleElevation.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGoogleGeocoding.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGooglePlaceDetails.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGooglePlacePhoto.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGooglePlaces.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGooglePlacesAutocomplete.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsGoogleRoads.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsHereRoutingAPI.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsOSMAPIQuery.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsOSMNominatim.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsOpenRouteService.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\OnlineMapsQQSearch.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsAMapSearchResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsBingMapsElevationResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsBingMapsLocationResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsGoogleDirectionsResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsGoogleElevationResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsGoogleGeocodingResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsGooglePlaceDetailsResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsGooglePlacesAutocompleteResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsGooglePlacesResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsHereRoutingAPIResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsOSMNominatimResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\WebServices\Results\OnlineMapsQQSearchResult.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\XML\OnlineMapsXML.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\XML\OnlineMapsXMLEnum.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\XML\OnlineMapsXMLList.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\XML\OnlineMapsXMLListEnum.cs" />
+    <Compile Include="Assets\Infinity Code\Online maps\Scripts\XML\OnlineMapsXMLNamespaceManager.cs" />
     <Compile Include="Assets\KeywordManager.cs" />
     <Compile Include="Assets\PlaneHologram.cs" />
     <Compile Include="Assets\PlaneManager.cs" />
     <Compile Include="Assets\RotationAction.cs" />
+    <Compile Include="Assets\ScaleFixer.cs" />
     <Compile Include="Assets\Scripts\DismissOnSelect.cs" />
     <Compile Include="Assets\Scripts\HolographicPlane.cs" />
     <Compile Include="Assets\Scripts\Interactible.cs" />
@@ -124,6 +312,9 @@
     <None Include="Assets\HoloToolkit\Utilities\Shaders\VertexLitConfigurable.cginc" />
     <None Include="Assets\HoloToolkit\Utilities\Shaders\VertexLitConfigurable.shader" />
     <None Include="Assets\HoloToolkit\Utilities\Shaders\VertexLitConfigurableTransparent.shader" />
+    <None Include="Assets\Infinity Code\Online maps\Shaders\TilesetCutoutShader.shader" />
+    <None Include="Assets\Infinity Code\Online maps\Shaders\TilesetDrawingElement.shader" />
+    <None Include="Assets\Infinity Code\Online maps\Shaders\TilesetShader.shader" />
     <None Include="Assets\Resources\Shaders\SpecularHighlight.shader" />
     <None Include="Assets\Resources\Shaders\StandardFastBackFaceCulling.shader" />
     <None Include="Assets\Resources\Shaders\UITransparent.shader" />
