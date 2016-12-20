@@ -14,6 +14,7 @@ public class PlaneManager : MonoBehaviour {
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
     private bool easterEnabled = false;
+    private bool applyCircleForce = false;
 
     private float rotationFactor;
 
@@ -69,6 +70,17 @@ public class PlaneManager : MonoBehaviour {
             {
                 HidePlaneDetails(i);
             }
+        }
+        if (applyCircleForce)
+        {
+            //float startTime = Time.time;
+            double omega = 0.5;
+            double r = 2;
+            //planes[selectedPlaneIndex].transform.position = new Vector3(1, 1, 0);
+            //planes[selectedPlaneIndex].transform.localRotation = Quaternion.Euler(0, (float)(-1*omega*Time.time), 0);
+            planes[selectedPlaneIndex].transform.position = new Vector3((float)(r*Math.Cos(omega*(Time.timeSinceLevelLoad))), 1, (float)(r*Math.Sin(omega*(Time.timeSinceLevelLoad))));
+            //planes[selectedPlaneIndex].transform.Rotate(Vector3.Reflect(Vector3.up * (float)(1*omega*Time.deltaTime), Vector3.up));
+            planes[selectedPlaneIndex].transform.RotateAroundLocal(Vector3.up, (float)(-1*omega * (Time.deltaTime)));
         }
     }
 
@@ -135,7 +147,8 @@ public class PlaneManager : MonoBehaviour {
     public void AnimatePlane()
     {
         PlayMusic();
-        StartCoroutine(planes[selectedPlaneIndex].GetComponent<AnimationControl>().PlayAnimation(planes[selectedPlaneIndex].name + "Animation"));
+        //StartCoroutine(planes[selectedPlaneIndex].GetComponent<AnimationControl>().PlayAnimation(planes[selectedPlaneIndex].name + "Animation"));
+        applyCircleForce = true;
     }
 
     public void CheckDisplaySign()

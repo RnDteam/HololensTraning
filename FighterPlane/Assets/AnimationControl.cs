@@ -14,7 +14,7 @@ public class AnimationControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
 
     public IEnumerator PlayAnimation(string animationName)
