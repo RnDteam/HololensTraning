@@ -8,18 +8,28 @@ namespace Assets
 {
     class MakeCircle : Maneuver
     {
-        float omega = 0.5f;
-        float r = 2;
+        public MakeCircle(float centerX = 0, float height = 1, float centerZ = 0, float omega = 0.5f, float r = 2)
+        {
+            this.centerX = centerX;
+            this.height = height;
+            this.centerZ = centerZ;
+            this.omega = omega;
+            this.r = r;
+        }
+        GameObject go = new GameObject();
+        float centerX;
+        float height;
+        float centerZ;
+        float omega;
+        float r;
 
-        //planes[selectedPlaneIndex].transform.position = new Vector3(1, 1, 0);
-        //planes[selectedPlaneIndex].transform.localRotation = Quaternion.Euler(0, (float)(-1*omega*Time.time), 0);
-        public override Vector3 newPos() { return new Vector3((float)(r * Math.Cos(omega * (Time.timeSinceLevelLoad))), 1, (float)(r * Math.Sin(omega * (Time.timeSinceLevelLoad)))); }
+        public override Vector3 newPos() {
+            return new Vector3((float)(r * Math.Cos(omega * (Time.timeSinceLevelLoad)) + centerX), height, (float)(r * Math.Sin(omega * (Time.timeSinceLevelLoad)) + centerZ));
+        }
 
-        //planes[selectedPlaneIndex].transform.Rotate(Vector3.Reflect(Vector3.up * (float)(1*omega*Time.deltaTime), Vector3.up));
         public override Quaternion newRot() {
-            GameObject go = new GameObject();
-            go.transform.rotation = Quaternion.Euler(30, 0, 0);//TODO make this depend on omega, r
-            go.transform.RotateAroundLocal(Vector3.up, (float)(-1 * omega * (Time.deltaTime)));
+            //TODO: when we have the whole "physics" class, calculate the bank angle (currently 30) based upon r and omega
+            go.transform.rotation = Quaternion.AngleAxis(-omega * Time.timeSinceLevelLoad * 180f / (float)Math.PI + 180, Vector3.up) * Quaternion.AngleAxis(-30, Vector3.forward);
             return go.transform.rotation;
         }
     }

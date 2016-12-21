@@ -11,7 +11,14 @@ namespace Assets
         private static Dictionary<GameObject, Maneuver> planeBehavior = new Dictionary<GameObject, Maneuver>();
         public static void AddBehavior(GameObject plane, Maneuver behavior)
         {
-            planeBehavior.Add(plane, behavior);
+            if (!planeBehavior.ContainsKey(plane))
+            {
+                planeBehavior.Add(plane, behavior);
+            }
+            else
+            {
+                planeBehavior[plane] = behavior;
+            }
         }
         public static void RemoveBehavior(GameObject plane)
         {
