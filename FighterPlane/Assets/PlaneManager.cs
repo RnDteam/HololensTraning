@@ -194,6 +194,7 @@ public class PlaneManager : MonoBehaviour {
 
     public void HidePlaneDetails(int curPlaneIndex)
     {
+        print("Hi- " + curPlaneIndex);
         planes[curPlaneIndex].GetComponentInChildren<TextMesh>().text = "";
     }
 
