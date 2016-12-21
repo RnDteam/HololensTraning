@@ -5,8 +5,6 @@ using UnityEngine;
 
 public static class PhysicsManager {
 
-
-
     const double gravityMag = 9.8;
     const double hercArea = 162.1;
     const double hercMass = 34400;
@@ -41,7 +39,6 @@ public static class PhysicsManager {
         pParams.InducedDrag = pParams.Lift * Math.Sin(pParams.AngleOfAttack) * Math.Cos(pParams.AngleOfAscent);
         pParams.TotalDrag = pParams.InducedDrag + pParams.ParasiticDrag;
         pParams.Thrust = Math.Sin(pParams.AngleOfAttack) * (hercMass * (accelaration.y + gravityMag) + pParams.ParasiticDrag * Math.Sin(pParams.AngleOfAscent)) + Math.Cos(pParams.AngleOfAttack) * (hercMass * Math.Sqrt(Math.Pow(accelaration.x, 2) + Math.Pow(accelaration.z, 2)) + pParams.ParasiticDrag * Math.Cos(pParams.AngleOfAscent));
-
 
         return pParams;
     }
