@@ -9,12 +9,18 @@ public class PlaneManager : MonoBehaviour {
         PlaneA,
         PlaneB
     }
-    private int selectedPlaneIndex;
-    public GameObject planesDistance;
+
+    // Indexes of selected and previous planes
+    private GameObject selectedPlane;
+    private GameObject previousPlane;
+    
+    // Planes objects array
     public GameObject[] planes;
-    private bool[] isTextDisplayed;// True means displayed, false - hidden.
+
+    public GameObject planesDistance;
     public Color lineColor;
     public GameObject distanceLine;
+
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
     private bool easterEnabled = false;
@@ -22,8 +28,7 @@ public class PlaneManager : MonoBehaviour {
     private float rotationFactor;
 
     void Start () {
-        selectedPlaneIndex = 0;
-        isTextDisplayed = new bool[planes.Length];
+        selectedPlane = planes[0];
 
         InitializeDistanceLine();
 
@@ -59,7 +64,7 @@ public class PlaneManager : MonoBehaviour {
     }
 
     void Update () {
-        PerformRotation();
+        RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
     }
 
@@ -67,43 +72,61 @@ public class PlaneManager : MonoBehaviour {
     #region Selecting Planes
     public void SelectPlaneA()
     {
-        ChangePlane((int)PLANES.PlaneA);
+        ChangePlane(planes[(int)PLANES.PlaneA]);
     }
 
     public void SelectPlaneB()
     {
-        ChangePlane((int)PLANES.PlaneB);
+        ChangePlane(planes[(int)PLANES.PlaneB]);
     }
 
-    private void ChangePlane(int currPlaneIndex)
+    private void ChangePlane(GameObject currPlane)
     {
-        int prevPlaneIndex = this.selectedPlaneIndex;
+        previousPlane = this.selectedPlane;
 
-        // Updating value of the current plane index
-        this.selectedPlaneIndex = currPlaneIndex;
+        // Updating value of the current plane
+        this.selectedPlane = currPlane;
 
         // Deselecting previous plane and selecting the new one
-        DeselectPlane(prevPlaneIndex);
-        SelectPlane(this.selectedPlaneIndex);
+        DeselectPlane(previousPlane);
+        SelectPlane(this.selectedPlane);
+    }
+
+    private bool Contains(Array array, object val)
+    {
+        return Array.IndexOf(array, val) != -1;
+    }
+
+    public bool IsPlane(GameObject tappedObject)
+    {
+        // In case the tapped object is a plane in our array
+        if (Contains(planes, tappedObject))
+        {
+            ChangePlane(tappedObject);
+
+            return true;
+        }
+
+        return false;
     }
 
     public void SelectPlaneByTap(int planeNumber)
     {
         // Deselect previous plane
-        DeselectPlane(this.selectedPlaneIndex);
+        DeselectPlane(this.selectedPlane);
 
         // Update value of selected plane
-        this.selectedPlaneIndex = planeNumber;
+        this.selectedPlane = planes[planeNumber];
     }
 
-    private void SelectPlane(int planeIndex)
+    private void SelectPlane(GameObject plane)
     {
-        planes[planeIndex].GetComponent<Selected>().SelectPlane();
+        plane.GetComponent<Selected>().SelectPlane();
     }
 
-    private void DeselectPlane(int planeIndex)
+    private void DeselectPlane(GameObject plane)
     {
-        planes[planeIndex].GetComponent<Selected>().DeselectPlane();
+        plane.GetComponent<Selected>().DeselectPlane();
     }
     #endregion
 
@@ -119,63 +142,38 @@ public class PlaneManager : MonoBehaviour {
         }
         else
         {
-            planes[selectedPlaneIndex].GetComponent<AudioSource>().Play();
+            selectedPlane.GetComponent<AudioSource>().Play();
         }
     }
 
-    private void PerformRotation()
+    private void RotatePlaneByHandGesture()
     {
         if (GestureManager.Instance.IsNavigating)
         {
             // This will help control the amount of rotation.
             rotationFactor = GestureManager.Instance.NavigationPosition.x * RotationSensitivity;
 
-            planes[selectedPlaneIndex].transform.Rotate(new Vector3(0, -1 * rotationFactor, 0));
+            selectedPlane.transform.Rotate(new Vector3(0, -1 * rotationFactor, 0));
         }
     }
 
     public void AnimatePlane()
     {
         PlaySounds();
-        StartCoroutine(planes[selectedPlaneIndex].GetComponent<AnimationControl>().PlayAnimation(planes[selectedPlaneIndex].name + "Animation"));
+        StartCoroutine(selectedPlane.GetComponent<AnimationControl>().PlayAnimation(selectedPlane.name + "Animation"));
     }
 
-    public void CheckDisplaySign()
+    public void ShowInfo()
     {
-        planes[selectedPlaneIndex].GetComponent<Selected>().ShowPlaneInfo();
+        selectedPlane.GetComponent<Selected>().ShowPlaneInfo();
     }
 
-    public void UncheckDisplaySign()
+    public void HideInfo()
     {
-        planes[selectedPlaneIndex].GetComponent<Selected>().HidePlaneInfo();
+        selectedPlane.GetComponent<Selected>().HidePlaneInfo();
     }
 
-    public void DisplayPlaneDetails(int curPlaneIndex)
-    {
-        GameObject curPlane = planes[curPlaneIndex];
-
-        Selected selectedPlane = curPlane.GetComponent<Selected>();
-        TextMesh planeText = curPlane.GetComponentInChildren<TextMesh>();
-
-        if(curPlane.GetComponent<Animator>().enabled)
-        {
-            if (selectedPlane.speed != 0)
-            {
-                planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", (selectedPlane.speed * 100).ToString("000"), selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
-            }
-        }
-        else
-        {
-            planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", "000", selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
-        }
-    }
-
-    public void HidePlaneDetails(int curPlaneIndex)
-    {
-        planes[curPlaneIndex].GetComponentInChildren<Selected>().HidePlaneInfo();
-    }
-
-    public void DisplayDistance()
+    public void ShowDistance()
     {
         planesDistance.SetActive(true);
         distanceLine.SetActive(true);

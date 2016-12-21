@@ -30,26 +30,11 @@ public class Selected : MonoBehaviour {
     private Color[] colors = { Color.magenta, Color.yellow, new Color(255, 218, 185), new Color(187, 41, 187), new Color(175, 238, 238) };
 
     #region physics
-    const double gravityMag = 9.8;
-    const double hercArea = 162.1;
-    const double hercMass = 34400;
     private Vector3 velocity;
     private Vector3 accelaration;
     private Vector3 prevVelocity = new Vector3(0f, 0f, 0f);
     private Vector3 position;
     private Vector3 prevPosition;
-
-    // Plane details
-    public double speed;
-    public double angleOfAttack;
-    public double angleOfAscent;
-    public double lift;
-    public double inducedDrag;
-    public double parasiticDrag;
-    public double totalDrag;
-    public double thrust;
-
-
     #endregion
     
 
@@ -91,13 +76,6 @@ public class Selected : MonoBehaviour {
     {
         gameObject.GetComponentInChildren<TextMesh>().text = PhysicsManager.CalculateFlightParameters(accelaration, velocity, transform, prevPosition, prevVelocity).ToString();
     }
-
-    #region
-    void FixedUpdate()
-    {
-
-    }
-    #endregion
 
     #region Selecting Plane
     public void OnSelect()

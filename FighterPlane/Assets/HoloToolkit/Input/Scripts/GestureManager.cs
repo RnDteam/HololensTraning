@@ -32,14 +32,10 @@ namespace HoloToolkit.Unity
             get { return focusedObject; }
         }
 
-        public GameObject PreviousTappedObject
-        {
-            get { return previousTappedObject; }
-        }
+        public PlaneManager planeManager;
 
         private GestureRecognizer gestureRecognizer;
         private GameObject focusedObject;
-        private GameObject previousTappedObject;
 
         public bool IsNavigating { get; private set; }
 
@@ -70,15 +66,11 @@ namespace HoloToolkit.Unity
             // Checking if the current focused object is not null
             if (focusedObject != null)
             {
-                // Deselecting the previous clicekd item
-                if(previousTappedObject != null)
+                // Send message if planemanagar didn't handle the focused object
+                if (!planeManager.IsPlane(focusedObject))
                 {
-                    previousTappedObject.SendMessage("OnDeselect");
+                    focusedObject.SendMessage("OnSelect");
                 }
-
-                // Selecting focused object and updating prev object
-                focusedObject.SendMessage("OnSelect");
-                previousTappedObject = focusedObject;
             }
         }
 

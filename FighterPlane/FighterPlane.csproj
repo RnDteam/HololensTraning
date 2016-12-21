@@ -107,7 +107,6 @@
     <Compile Include="Assets\PlaneManager.cs" />
     <Compile Include="Assets\RotationAction.cs" />
     <Compile Include="Assets\Scripts\DismissOnSelect.cs" />
-    <Compile Include="Assets\Scripts\HolographicPlane.cs" />
     <Compile Include="Assets\Scripts\Interactible.cs" />
     <Compile Include="Assets\Scripts\InteractibleAction.cs" />
     <Compile Include="Assets\Scripts\InteractibleManager.cs" />
