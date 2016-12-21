@@ -61,47 +61,49 @@ public class PlaneManager : MonoBehaviour {
     void Update () {
         PerformRotation();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
-
-        //for (int i=0; i < isTextDisplayed.Length; i++)
-        //{
-        //    if(isTextDisplayed[i])
-        //    {
-        //        DisplayPlaneDetails(i);
-        //    }
-        //    else
-        //    {
-        //        HidePlaneDetails(i);
-        //    }
-        //}
-    }
-
-    public void SelectPlaneByNumber(int planeNumber)
-    {
-        selectedPlaneIndex = planeNumber - 1;
     }
 
     // Selecting planes using voice commands
     #region Selecting Planes
     public void SelectPlaneA()
     {
-        SelectPlane((int)PLANES.PlaneA);
+        ChangePlane((int)PLANES.PlaneA);
     }
 
     public void SelectPlaneB()
     {
-        SelectPlane((int)PLANES.PlaneB);
+        ChangePlane((int)PLANES.PlaneB);
     }
 
-    private void SelectPlane(int currPlaneIndex)
+    private void ChangePlane(int currPlaneIndex)
     {
-        int prevPlaneIndex = selectedPlaneIndex;
+        int prevPlaneIndex = this.selectedPlaneIndex;
 
         // Updating value of the current plane index
-        selectedPlaneIndex = currPlaneIndex;
+        this.selectedPlaneIndex = currPlaneIndex;
 
         // Deselecting previous plane and selecting the new one
-        planes[prevPlaneIndex].GetComponent<Selected>().OnDeselect();
-        planes[selectedPlaneIndex].GetComponent<Selected>().OnSelect();
+        DeselectPlane(prevPlaneIndex);
+        SelectPlane(this.selectedPlaneIndex);
+    }
+
+    public void SelectPlaneByTap(int planeNumber)
+    {
+        // Deselect previous plane
+        DeselectPlane(this.selectedPlaneIndex);
+
+        // Update value of selected plane
+        this.selectedPlaneIndex = planeNumber;
+    }
+
+    private void SelectPlane(int planeIndex)
+    {
+        planes[planeIndex].GetComponent<Selected>().SelectPlane();
+    }
+
+    private void DeselectPlane(int planeIndex)
+    {
+        planes[planeIndex].GetComponent<Selected>().DeselectPlane();
     }
     #endregion
 
@@ -141,13 +143,11 @@ public class PlaneManager : MonoBehaviour {
     public void CheckDisplaySign()
     {
         planes[selectedPlaneIndex].GetComponent<Selected>().ShowPlaneInfo();
-        //isTextDisplayed[selectedPlaneIndex] = true;
     }
 
     public void UncheckDisplaySign()
     {
         planes[selectedPlaneIndex].GetComponent<Selected>().HidePlaneInfo();
-        //isTextDisplayed[selectedPlaneIndex] = false;
     }
 
     public void DisplayPlaneDetails(int curPlaneIndex)

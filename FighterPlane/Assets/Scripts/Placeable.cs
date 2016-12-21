@@ -109,7 +109,7 @@ public class Placeable : MonoBehaviour
         }
 
         // Place at first
-        // IsPlacing = false;
+        GestureManager.Instance.OverrideFocusedObject = gameObject;
         OnPlacementStart();
     }
 
@@ -147,8 +147,7 @@ public class Placeable : MonoBehaviour
             Vector3 targetPosition;
             Vector3 surfaceNormal;
             bool canBePlaced = ValidatePlacement(out targetPosition, out surfaceNormal);
-            DisplayBounds(canBePlaced);
-            DisplayShadow(targetPosition, surfaceNormal, canBePlaced);
+            DefineColor(canBePlaced);
         }
         else
         {
@@ -187,68 +186,67 @@ public class Placeable : MonoBehaviour
     /// </returns>
     private bool ValidatePlacement(out Vector3 position, out Vector3 surfaceNormal)
     {
-        //todo for Debug purpose only it got commented
-        //Vector3 raycastDirection = gameObject.transform.forward;
+        Vector3 raycastDirection = gameObject.transform.forward;
 
-        //if (PlacementSurface == PlacementSurfaces.Horizontal)
-        //{
-        //    // Placing on horizontal surfaces.
-        //    // Raycast from the bottom face of the box collider.
-        //    raycastDirection = -(Vector3.up);
-        //}
+        if (PlacementSurface == PlacementSurfaces.Horizontal)
+        {
+            // Placing on horizontal surfaces.
+            // Raycast from the bottom face of the box collider.
+            raycastDirection = -(Vector3.up);
+        }
 
-        //// Initialize out parameters.
+        // Initialize out parameters.
         position = Vector3.zero;
         surfaceNormal = Vector3.zero;
 
-        //Vector3[] facePoints = GetColliderFacePoints();
+        Vector3[] facePoints = GetColliderFacePoints();
 
-        //// The origin points we receive are in local space and we 
-        //// need to raycast in world space.
-        //for (int i = 0; i < facePoints.Length; i++)
-        //{
-        //    facePoints[i] = gameObject.transform.TransformVector(facePoints[i]) + gameObject.transform.position;
-        //}
+        // The origin points we receive are in local space and we 
+        // need to raycast in world space.
+        for (int i = 0; i < facePoints.Length; i++)
+        {
+            facePoints[i] = gameObject.transform.TransformVector(facePoints[i]) + gameObject.transform.position;
+        }
 
-        //// Cast a ray from the center of the box collider face to the surface.
-        //RaycastHit centerHit;
-        //if (!Physics.Raycast(facePoints[0],
-        //                raycastDirection,
-        //                out centerHit,
-        //                maximumPlacementDistance,
-        //                SpatialMappingManager.Instance.LayerMask))
-        //{
-        //    // If the ray failed to hit the surface, we are done.
-        //    return false;
-        //}
+        // Cast a ray from the center of the box collider face to the surface.
+        RaycastHit centerHit;
+        if (!Physics.Raycast(facePoints[0],
+                        raycastDirection,
+                        out centerHit,
+                        maximumPlacementDistance,
+                        SpatialMappingManager.Instance.LayerMask))
+        {
+            // If the ray failed to hit the surface, we are done.
+            return false;
+        }
 
-        //// We have found a surface.  Set position and surfaceNormal.
-        //position = centerHit.point;
-        //surfaceNormal = centerHit.normal;
+        // We have found a surface.  Set position and surfaceNormal.
+        position = centerHit.point;
+        surfaceNormal = centerHit.normal;
 
-        //// Cast a ray from the corners of the box collider face to the surface.
-        //for (int i = 1; i < facePoints.Length; i++)
-        //{
-        //    RaycastHit hitInfo;
-        //    if (Physics.Raycast(facePoints[i],
-        //                        raycastDirection,
-        //                        out hitInfo,
-        //                        maximumPlacementDistance,
-        //                        SpatialMappingManager.Instance.LayerMask))
-        //    {
-        //        // To be a valid placement location, each of the corners must have a similar
-        //        // enough distance to the surface as the center point
-        //        if (!IsEquivalentDistance(centerHit.distance, hitInfo.distance))
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // The raycast failed to intersect with the target layer.
-        //        return false;
-        //    }
-        //}
+        // Cast a ray from the corners of the box collider face to the surface.
+        for (int i = 1; i < facePoints.Length; i++)
+        {
+            RaycastHit hitInfo;
+            if (Physics.Raycast(facePoints[i],
+                                raycastDirection,
+                                out hitInfo,
+                                maximumPlacementDistance,
+                                SpatialMappingManager.Instance.LayerMask))
+            {
+                // To be a valid placement location, each of the corners must have a similar
+                // enough distance to the surface as the center point
+                if (!IsEquivalentDistance(centerHit.distance, hitInfo.distance))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                // The raycast failed to intersect with the target layer.
+                return false;
+            }
+        }
 
         return true;
     }
@@ -465,79 +463,17 @@ public class Placeable : MonoBehaviour
     /// <param name="canBePlaced">
     /// Specifies if the object is in a valid placement location.
     /// </param>
-    private void DisplayBounds(bool canBePlaced)
+    private void DefineColor(bool canBePlaced)
     {
-        // todo: can be deleted later
-        // Ensure the bounds asset is sized and positioned correctly.
-        //boundsAsset.transform.localPosition = boxCollider.center;
-        //boundsAsset.transform.localScale = boxCollider.size;
-        //boundsAsset.transform.rotation = gameObject.transform.rotation;
-
         // Apply the appropriate material.
         if (canBePlaced)
         {
             GetComponent<Renderer>().material.color = Color.green;
-            // boundsAsset.GetComponent<Renderer>().sharedMaterial = PlaceableBoundsMaterial;
         }
         else
         {
             GetComponent<Renderer>().material.color = Color.red;
-            // boundsAsset.GetComponent<Renderer>().sharedMaterial = NotPlaceableBoundsMaterial;
         }
-
-        // Show the bounds asset.
-        //boundsAsset.SetActive(true);
-    }
-
-    /// <summary>
-    /// Displays the placement shadow asset.
-    /// </summary>
-    /// <param name="position">
-    /// The position at which to place the shadow asset.
-    /// </param>
-    /// <param name="surfaceNormal">
-    /// The normal of the surface on which the asset will be placed
-    /// </param>
-    /// <param name="canBePlaced">
-    /// Specifies if the object is in a valid placement location.
-    /// </param>
-    private void DisplayShadow(Vector3 position,
-                            Vector3 surfaceNormal,
-                            bool canBePlaced)
-    {
-        // todo: can be deleted later
-        // Rotate the shadow so that it is displayed on the correct surface and matches the object.
-        //float rotationX = 0.0f;
-        //if (PlacementSurface == PlacementSurfaces.Horizontal)
-        //{
-        //    rotationX = 90.0f;
-        //}
-        //Quaternion rotation = Quaternion.Euler(rotationX, gameObject.transform.rotation.eulerAngles.y, 0);
-
-        //shadowAsset.transform.localScale = boxCollider.size;
-        //shadowAsset.transform.rotation = rotation;
-
-        // Apply the appropriate material.
-        //if (canBePlaced)
-        //{
-        //    shadowAsset.GetComponent<Renderer>().sharedMaterial = PlaceableShadowMaterial;
-        //}
-        //else
-        //{
-        //    shadowAsset.GetComponent<Renderer>().sharedMaterial = NotPlaceableShadowMaterial;
-        //}
-
-        // Show the shadow asset as appropriate.        
-        //if (position != Vector3.zero)
-        //{
-        //    // Position the shadow a small distance from the target surface, along the normal.
-        //    shadowAsset.transform.position = position + (0.01f * surfaceNormal);
-        //    shadowAsset.SetActive(true);
-        //}
-        //else
-        //{
-        //    shadowAsset.SetActive(false);
-        //}
     }
 
     /// <summary>

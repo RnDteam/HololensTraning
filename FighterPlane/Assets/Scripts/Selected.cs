@@ -82,8 +82,7 @@ public class Selected : MonoBehaviour {
 		{
 			UpdateText();
 		}
-
-
+        
         prevVelocity = velocity;
         prevPosition = transform.position;
     }
@@ -103,13 +102,18 @@ public class Selected : MonoBehaviour {
     #region Selecting Plane
     public void OnSelect()
     {
-        ConvertColors(selectedColor);
-        
+        SelectPlane();
+
         // Notifying plane manager a plane was picked
-        planeManager.SelectPlaneByNumber(planeNumber);
+        planeManager.SelectPlaneByTap(planeNumber - 1);
     }
 
-    public void OnDeselect()
+    public void SelectPlane()
+    {
+        ConvertColors(selectedColor);
+    }
+
+    public void DeselectPlane()
     {
 		ConvertColors(defaultColor);
     }
