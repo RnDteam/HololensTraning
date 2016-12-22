@@ -7,7 +7,8 @@ public class GroundGenerator : MonoBehaviour {
 
     private OnlineMapsTileSetControl OnlineMaps;
     private Mesh newMesh;
-    
+    private string groundName = "Ground";
+
     public GameObject BottomBase;
     public Material BaseMaterial;
 
@@ -22,6 +23,16 @@ public class GroundGenerator : MonoBehaviour {
         var mapVertices = GetComponent<MeshFilter>().sharedMesh.vertices;
         if (mapVertices.Select(v => v.y).Min() == 0)
             return;
+
+        var children = new List<GameObject>();
+        foreach (Transform child in transform)
+        {
+            if (child.name == groundName)
+            {
+                children.Add(child.gameObject);
+            }
+        }
+        children.ForEach(child => Destroy(child));
 
         var mapMesh = GetComponent<MeshFilter>().sharedMesh;
         var bottomMesh = BottomBase.GetComponent<MeshFilter>().sharedMesh;
@@ -41,7 +52,7 @@ public class GroundGenerator : MonoBehaviour {
         newMesh.RecalculateNormals();
 
 
-        var newGameObject = new GameObject("Ground");
+        var newGameObject = new GameObject(groundName);
         newGameObject.transform.parent = gameObject.transform;
         newGameObject.transform.localRotation = Quaternion.identity;
         newGameObject.transform.localScale = Vector3.one;
@@ -52,7 +63,7 @@ public class GroundGenerator : MonoBehaviour {
         newGameObject.GetComponent<MeshFilter>().mesh = newMesh;
         newGameObject.GetComponent<MeshRenderer>().material = BaseMaterial;
 
-        OnlineMaps.OnMeshUpdated -= generateNewMash;
+        //OnlineMaps.OnMeshUpdated -= generateNewMash;
     }
 
     private IEnumerable<Vector3> GetOuterSquare(IEnumerable<Vector3> Vertices)
