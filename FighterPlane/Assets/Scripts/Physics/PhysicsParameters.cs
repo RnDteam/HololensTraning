@@ -33,7 +33,7 @@ public class PhysicsParameters
 
     public override string ToString()
     {
-        return string.Format("Plane Speed: {0:0}\nAzimuth: {1}", (Speed * 100).ToString("000"), Rotation.eulerAngles.y.ToString("000"));
+        return string.Format("Speed: {0:0}\nAzimuth: {1}", (Speed * 100).ToString("000"), Rotation.eulerAngles.y.ToString("000"));
     }
 
     internal void UpdatePhysics(Transform transform)
