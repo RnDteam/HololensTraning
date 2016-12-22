@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Assets
 {
-    class MakeCircle : Maneuver
+    class MakeLoop : Maneuver
     {
-        public MakeCircle(float centerX = 0, float height = 1, float centerZ = 0, float omega = 0.5f, float r = 2)
+        public MakeLoop(float centerX = 0, float centerY = 1, float centerZ = 0, float omega = 0.5f, float r = 2)
         {
             this.centerX = centerX;
-            this.height = height;
+            this.centerY = centerY;
             this.centerZ = centerZ;
             this.omega = omega;
             this.r = r;
@@ -19,19 +19,21 @@ namespace Assets
         }
         GameObject go = new GameObject();
         float centerX;
-        float height;
+        float centerY;
         float centerZ;
         float omega;
         float r;
         float startTime;
 
-        public override Vector3 newPos() {
-            return new Vector3(r * (float)Math.Cos(omega * (Time.time - startTime)) + centerX, height, r * (float)Math.Sin(omega * (Time.time - startTime)) + centerZ);
+        public override Vector3 newPos()
+        {
+            return new Vector3(r * (float)Math.Cos(omega * (Time.time - startTime)) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime)) + centerY, centerZ);
         }
 
-        public override Quaternion newRot() {
+        public override Quaternion newRot()
+        {
             //TODO: when we have the whole "physics" class, calculate the bank angle (currently 30) based upon r and omega
-            go.transform.rotation = Quaternion.AngleAxis(-omega * (Time.time - startTime) * 180f / (float)Math.PI + 180, Vector3.up) * Quaternion.AngleAxis(-30, Vector3.forward);
+            go.transform.rotation = Quaternion.AngleAxis(270, Vector3.up) * Quaternion.AngleAxis(omega * (Time.time - startTime) * 180f / (float)Math.PI + 270, Vector3.right);
             return go.transform.rotation;
         }
     }

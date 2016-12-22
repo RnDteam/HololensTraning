@@ -26,8 +26,11 @@ namespace Assets
         }
 
         void Start() { }
+        int frameCount = 0;
         void Update()
         {
+            //if (frameCount++ % 4 != 0)
+                //return;
             foreach(GameObject plane in planeBehavior.Keys)
             {
                 plane.transform.position = planeBehavior[plane].newPos();

@@ -1,4 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/scene.unity
+- path: C:/Users/Locale/Documents/New Unity Project/Assets/Flight Control/Drone Folder/Flight
+    Tutoial.unity
   isLoaded: 1
   isActive: 1

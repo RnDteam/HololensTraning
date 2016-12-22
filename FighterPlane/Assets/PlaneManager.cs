@@ -141,7 +141,32 @@ public class PlaneManager : MonoBehaviour {
 
     public void DoCircles()
     {
-        TempClass.AddBehavior(planes[0], new MakeCircle());
+        float rad=0;
+        float omega = 0;
+        float height = 1;
+        if(selectedPlaneIndex == 0)
+        {
+            rad = 2;
+            omega = 0.25f;
+        }else
+        {
+            rad = 1;
+            omega = 0.25f;
+            height = 1.5f;
+        }
+        if (planes[selectedPlaneIndex].transform.position.y < 0.5)
+        {
+            TempClass.AddBehavior(planes[selectedPlaneIndex], new MakeCircle(0,height,0,omega, rad));
+        }else
+        {
+            TempClass.AddBehavior(planes[selectedPlaneIndex], new MakeCircle(0, planes[selectedPlaneIndex].transform.position.y, 0, omega, rad));
+        }
+    }
+
+    public void DoLoop()
+    {
+        Vector3 pos = planes[selectedPlaneIndex].transform.position;
+        TempClass.AddBehavior(planes[selectedPlaneIndex], new MakeLoop(pos.x,pos.y,pos.z));
     }
 
     public void CheckDisplaySign()
