@@ -9,37 +9,28 @@ public static class PhysicsManager {
     const double hercArea = 162.1;
     const double hercMass = 34400;
 
-    private static double CalculateAirPressure(Transform transform)
+    private static double CalculateAirPressure(Vector3 position)
     {
-        return 101325 * Math.Exp((-gravityMag * 0.0289644 * transform.position.y / (8.3144598 * 273.6)));
+        return 101325 * Math.Exp((-gravityMag * 0.0289644 * position.y / (8.3144598 * 273.6)));
     }
 
-    public static PhysicsParameters CalculateFlightParameters(Vector3 accelaration,
-                                          Vector3 velocity,
-                                          Transform transform,
-                                          Vector3 prevPosition,
-                                          Vector3 prevVelocity)
+    public static void CalculateFlightParameters(PhysicsParameters pParams)
     {
-        PhysicsParameters pParams = new PhysicsParameters();
-        pParams.Rotation = transform.rotation;
+        pParams.Speed = pParams.Velocity.magnitude;
+        pParams.AngleOfAttack = pParams.Rotation.x;
 
-
-        pParams.Speed = velocity.magnitude;
-        pParams.AngleOfAttack = transform.rotation.x;
         if (pParams.Speed == 0)
         {
             pParams.AngleOfAscent = 0;
         }
         else
         {
-            pParams.AngleOfAscent = Math.Asin(velocity.y / velocity.magnitude);
+            pParams.AngleOfAscent = Math.Asin(pParams.Velocity.y / pParams.Velocity.magnitude);
         }
-        pParams.ParasiticDrag = 0.5 * CalculateAirPressure(transform) * Math.Pow(pParams.Speed, 2) * 0.4 * 162.1;
-        pParams.Lift = Math.Cos(pParams.AngleOfAttack) * (hercMass * (accelaration.y + gravityMag) + pParams.ParasiticDrag * Math.Sin(pParams.AngleOfAscent)) - Math.Sin(pParams.AngleOfAttack) * (hercMass * accelaration.x + pParams.ParasiticDrag * Math.Cos(pParams.AngleOfAscent));
+        pParams.ParasiticDrag = 0.5 * CalculateAirPressure(pParams.Position) * Math.Pow(pParams.Speed, 2) * 0.4 * 162.1;
+        pParams.Lift = Math.Cos(pParams.AngleOfAttack) * (hercMass * (pParams.Accelaration.y + gravityMag) + pParams.ParasiticDrag * Math.Sin(pParams.AngleOfAscent)) - Math.Sin(pParams.AngleOfAttack) * (hercMass * pParams.Accelaration.x + pParams.ParasiticDrag * Math.Cos(pParams.AngleOfAscent));
         pParams.InducedDrag = pParams.Lift * Math.Sin(pParams.AngleOfAttack) * Math.Cos(pParams.AngleOfAscent);
         pParams.TotalDrag = pParams.InducedDrag + pParams.ParasiticDrag;
-        pParams.Thrust = Math.Sin(pParams.AngleOfAttack) * (hercMass * (accelaration.y + gravityMag) + pParams.ParasiticDrag * Math.Sin(pParams.AngleOfAscent)) + Math.Cos(pParams.AngleOfAttack) * (hercMass * Math.Sqrt(Math.Pow(accelaration.x, 2) + Math.Pow(accelaration.z, 2)) + pParams.ParasiticDrag * Math.Cos(pParams.AngleOfAscent));
-
-        return pParams;
+        pParams.Thrust = Math.Sin(pParams.AngleOfAttack) * (hercMass * (pParams.Accelaration.y + gravityMag) + pParams.ParasiticDrag * Math.Sin(pParams.AngleOfAscent)) + Math.Cos(pParams.AngleOfAttack) * (hercMass * Math.Sqrt(Math.Pow(pParams.Accelaration.x, 2) + Math.Pow(pParams.Accelaration.z, 2)) + pParams.ParasiticDrag * Math.Cos(pParams.AngleOfAscent));
     }
 }

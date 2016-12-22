@@ -66,7 +66,7 @@ namespace HoloToolkit.Unity
             // Checking if the current focused object is not null
             if (focusedObject != null)
             {
-                // Send message if planemanagar didn't handle the focused object
+                // Send message if planemanagar doesn't handle the focused object
                 if (!planeManager.IsPlane(focusedObject))
                 {
                     focusedObject.SendMessage("OnSelect");

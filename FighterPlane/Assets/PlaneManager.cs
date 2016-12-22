@@ -50,7 +50,7 @@ public class PlaneManager : MonoBehaviour {
 
         HideDistance();
     }
-
+    
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
         lr.SetPosition(0, planes[0].transform.position);
@@ -132,10 +132,8 @@ public class PlaneManager : MonoBehaviour {
 
     public void PlaySounds()
     {
-        foreach (GameObject plane in planes)
-        {
-            plane.GetComponent<AudioSource>().Pause();
-        }
+        previousPlane.GetComponent<AudioSource>().Pause();
+        
         if (easterEnabled)
         {
             GetComponent<AudioSource>().Play();

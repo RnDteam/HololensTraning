@@ -58,7 +58,7 @@ namespace HoloToolkit.Unity
         // Use for initialization.
         private void Start()
         {
-
+            drawVisualMeshes = true;
 #if !UNITY_EDITOR
             StartObserver();
 #endif
