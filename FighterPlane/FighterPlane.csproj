@@ -113,7 +113,7 @@
     <Compile Include="Assets\Scripts\PhysicsManager.cs" />
     <Compile Include="Assets\Scripts\PhysicsParameters.cs" />
     <Compile Include="Assets\Scripts\Placeable.cs" />
-    <Compile Include="Assets\Scripts\Selected.cs" />
+    <Compile Include="Assets\Scripts\PlaneDisplayController.cs" />
     <Compile Include="Assets\Scripts\TextRotation.cs" />
   </ItemGroup>
   <ItemGroup>

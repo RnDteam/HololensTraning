@@ -110,23 +110,14 @@ public class PlaneManager : MonoBehaviour {
         return false;
     }
 
-    public void SelectPlaneByTap(int planeNumber)
-    {
-        // Deselect previous plane
-        DeselectPlane(this.selectedPlane);
-
-        // Update value of selected plane
-        this.selectedPlane = planes[planeNumber];
-    }
-
     private void SelectPlane(GameObject plane)
     {
-        plane.GetComponent<Selected>().SelectPlane();
+        plane.GetComponent<PlaneDisplayController>().SelectPlane();
     }
 
     private void DeselectPlane(GameObject plane)
     {
-        plane.GetComponent<Selected>().DeselectPlane();
+        plane.GetComponent<PlaneDisplayController>().DeselectPlane();
     }
     #endregion
 
@@ -163,12 +154,12 @@ public class PlaneManager : MonoBehaviour {
 
     public void ShowInfo()
     {
-        selectedPlane.GetComponent<Selected>().ShowPlaneInfo();
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneInfo();
     }
 
     public void HideInfo()
     {
-        selectedPlane.GetComponent<Selected>().HidePlaneInfo();
+        selectedPlane.GetComponent<PlaneDisplayController>().HidePlaneInfo();
     }
 
     public void ShowDistance()
