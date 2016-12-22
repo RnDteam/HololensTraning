@@ -81,6 +81,7 @@
     <Compile Include="Assets\AnimationControl.cs" />
     <Compile Include="Assets\CursorManager.cs" />
     <Compile Include="Assets\GazeManager.cs" />
+    <Compile Include="Assets\GroundGenerator.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\BasicCursor.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\CursorManager.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\GazeManager.cs" />
