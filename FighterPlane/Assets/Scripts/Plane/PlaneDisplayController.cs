@@ -43,7 +43,7 @@ public class PlaneDisplayController : MonoBehaviour {
 
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = pParams.ToString();
+        planeInfo.GetComponent<TextMesh>().text = this.name + "\n" +pParams.ToString();
     }
 
     #region Selecting Plane
