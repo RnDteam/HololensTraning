@@ -167,20 +167,24 @@ public class PlaneManager : MonoBehaviour {
 
         Selected selectedPlane = curPlane.GetComponent<Selected>();
         TextMesh planeText = curPlane.GetComponentInChildren<TextMesh>();
+        Transform transSelected = curPlane.GetComponent<Transform>();
 
         if(curPlane.GetComponent<Animator>().enabled)
         {
             if (selectedPlane.speed != 0)
             {
-                planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", (selectedPlane.speed * 100).ToString("000"), selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
+                //planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", (selectedPlane.speed * 100).ToString("000"), selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
+                planeText.text = "Plane Position: " + (transSelected.position*10).ToString();
             }
         }
         else
         {
-            planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", "000", selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
+            //planeText.text = string.Format("Plane Speed: {0:0}\nAzimuth: {1}", "000", selectedPlane.transform.rotation.eulerAngles.y.ToString("000"));
+            planeText.text = "Plane Position: " + (transSelected.position*10).ToString();
+
         }
 
-        
+
         //"Selected Plane:\n"
         // curPlane.name + "\n"
         //+ "Angle of Attack: " + (selectedPlane.angleOfAttack*180/Math.PI) + "\n"
