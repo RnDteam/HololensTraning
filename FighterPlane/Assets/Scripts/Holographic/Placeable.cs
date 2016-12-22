@@ -109,7 +109,7 @@ public class Placeable : MonoBehaviour
         }
 
         // Place at first
-        // IsPlacing = false;
+        GestureManager.Instance.OverrideFocusedObject = gameObject;
         OnPlacementStart();
     }
 
@@ -147,8 +147,7 @@ public class Placeable : MonoBehaviour
             Vector3 targetPosition;
             Vector3 surfaceNormal;
             bool canBePlaced = ValidatePlacement(out targetPosition, out surfaceNormal);
-            DisplayBounds(canBePlaced);
-            DisplayShadow(targetPosition, surfaceNormal, canBePlaced);
+            DefineColor(canBePlaced);
         }
         else
         {
@@ -464,79 +463,17 @@ public class Placeable : MonoBehaviour
     /// <param name="canBePlaced">
     /// Specifies if the object is in a valid placement location.
     /// </param>
-    private void DisplayBounds(bool canBePlaced)
+    private void DefineColor(bool canBePlaced)
     {
-        // todo: can be deleted later
-        // Ensure the bounds asset is sized and positioned correctly.
-        //boundsAsset.transform.localPosition = boxCollider.center;
-        //boundsAsset.transform.localScale = boxCollider.size;
-        //boundsAsset.transform.rotation = gameObject.transform.rotation;
-
         // Apply the appropriate material.
         if (canBePlaced)
         {
             GetComponent<Renderer>().material.color = Color.green;
-            // boundsAsset.GetComponent<Renderer>().sharedMaterial = PlaceableBoundsMaterial;
         }
         else
         {
             GetComponent<Renderer>().material.color = Color.red;
-            // boundsAsset.GetComponent<Renderer>().sharedMaterial = NotPlaceableBoundsMaterial;
         }
-
-        // Show the bounds asset.
-        //boundsAsset.SetActive(true);
-    }
-
-    /// <summary>
-    /// Displays the placement shadow asset.
-    /// </summary>
-    /// <param name="position">
-    /// The position at which to place the shadow asset.
-    /// </param>
-    /// <param name="surfaceNormal">
-    /// The normal of the surface on which the asset will be placed
-    /// </param>
-    /// <param name="canBePlaced">
-    /// Specifies if the object is in a valid placement location.
-    /// </param>
-    private void DisplayShadow(Vector3 position,
-                            Vector3 surfaceNormal,
-                            bool canBePlaced)
-    {
-        // todo: can be deleted later
-        // Rotate the shadow so that it is displayed on the correct surface and matches the object.
-        //float rotationX = 0.0f;
-        //if (PlacementSurface == PlacementSurfaces.Horizontal)
-        //{
-        //    rotationX = 90.0f;
-        //}
-        //Quaternion rotation = Quaternion.Euler(rotationX, gameObject.transform.rotation.eulerAngles.y, 0);
-
-        //shadowAsset.transform.localScale = boxCollider.size;
-        //shadowAsset.transform.rotation = rotation;
-
-        // Apply the appropriate material.
-        //if (canBePlaced)
-        //{
-        //    shadowAsset.GetComponent<Renderer>().sharedMaterial = PlaceableShadowMaterial;
-        //}
-        //else
-        //{
-        //    shadowAsset.GetComponent<Renderer>().sharedMaterial = NotPlaceableShadowMaterial;
-        //}
-
-        // Show the shadow asset as appropriate.        
-        //if (position != Vector3.zero)
-        //{
-        //    // Position the shadow a small distance from the target surface, along the normal.
-        //    shadowAsset.transform.position = position + (0.01f * surfaceNormal);
-        //    shadowAsset.SetActive(true);
-        //}
-        //else
-        //{
-        //    shadowAsset.SetActive(false);
-        //}
     }
 
     /// <summary>

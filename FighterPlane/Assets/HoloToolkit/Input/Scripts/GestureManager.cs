@@ -32,9 +32,11 @@ namespace HoloToolkit.Unity
             get { return focusedObject; }
         }
 
+        public PlaneManager planeManager;
+
         private GestureRecognizer gestureRecognizer;
         private GameObject focusedObject;
-        
+
         public bool IsNavigating { get; private set; }
 
         public Vector3 NavigationPosition { get; private set; }
@@ -61,10 +63,14 @@ namespace HoloToolkit.Unity
 
         private void GestureRecognizer_TappedEvent(InteractionSourceKind source, int tapCount, Ray headRay)
         {
+            // Checking if the current focused object is not null
             if (focusedObject != null)
             {
-                print(focusedObject.name);
-                focusedObject.SendMessage("OnSelect");
+                // Send message if planemanagar doesn't handle the focused object
+                if (!planeManager.IsPlane(focusedObject))
+                {
+                    focusedObject.SendMessage("OnSelect");
+                }
             }
         }
 
