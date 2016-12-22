@@ -28,6 +28,9 @@ public enum PlacementSurfaces
 /// </summary>
 public class Placeable : MonoBehaviour
 {
+    [Tooltip("The object to color during placement.")]
+    public List<LineRenderer> LinesToColor = null;   
+
     [Tooltip("The base material used to render the bounds asset when placement is allowed.")]
     public Material PlaceableBoundsMaterial = null;
 
@@ -45,6 +48,7 @@ public class Placeable : MonoBehaviour
 
     [Tooltip("The child object(s) to hide during placement.")]
     public List<GameObject> ChildrenToHide = new List<GameObject>();
+    
 
     /// <summary>
     /// Indicates if the object is in the process of being placed.
@@ -151,9 +155,10 @@ public class Placeable : MonoBehaviour
         }
         else
         {
-            GetComponent<Renderer>().material.color = Color.white;
+            //GetComponent<Renderer>().material.color = Color.white;
             // todo: can be deleted later
             // Disable the visual elements.
+
 
             // Gracefully place the object on the target surface.
             float dist = (gameObject.transform.position - targetPosition).magnitude;
@@ -310,6 +315,11 @@ public class Placeable : MonoBehaviour
         {
             boxCollider.enabled = true;
         }
+        
+        foreach (var line in LinesToColor)
+        {
+            line.enabled = true;
+        }
 
         // Hide the child object(s) to make placement easier.
         for (int i = 0; i < ChildrenToHide.Count; i++)
@@ -343,6 +353,11 @@ public class Placeable : MonoBehaviour
         if (!ValidatePlacement(out position, out surfaceNormal))
         {
             return;
+        }
+
+        foreach (var line in LinesToColor)
+        {
+            line.enabled = false;
         }
 
         // The object is allowed to be placed.
@@ -465,14 +480,9 @@ public class Placeable : MonoBehaviour
     /// </param>
     private void DefineColor(bool canBePlaced)
     {
-        // Apply the appropriate material.
-        if (canBePlaced)
+        foreach (var line in LinesToColor)
         {
-            GetComponent<Renderer>().material.color = Color.green;
-        }
-        else
-        {
-            GetComponent<Renderer>().material.color = Color.red;
+            line.material = canBePlaced ? PlaceableBoundsMaterial : NotPlaceableBoundsMaterial;
         }
     }
 

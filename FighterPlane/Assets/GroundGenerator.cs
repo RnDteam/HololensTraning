@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,8 +10,9 @@ public class GroundGenerator : MonoBehaviour {
     private Mesh newMesh;
     private string groundName = "Ground";
 
-    public GameObject BottomBase;
     public Material BaseMaterial;
+    public LineRenderer TopMargins;
+    public LineRenderer BottomMargins;
 
     void Start()
     {
@@ -35,12 +37,15 @@ public class GroundGenerator : MonoBehaviour {
         children.ForEach(child => Destroy(child));
 
         var mapMesh = GetComponent<MeshFilter>().sharedMesh;
-        var bottomMesh = BottomBase.GetComponent<MeshFilter>().sharedMesh;
 
         var mapOuterSquare = GetOuterSquare(mapMesh.vertices);
-        var bottomSquare = GenerateBottomSquare(mapOuterSquare, BottomBase.transform.position.y);
-       
-        
+        var bottomSquare = GenerateBottomSquare(mapOuterSquare, 0);
+
+        TopMargins.numPositions = mapOuterSquare.Count();
+        TopMargins.SetPositions(mapOuterSquare.ToArray());
+        BottomMargins.numPositions = bottomSquare.Count();
+        BottomMargins.SetPositions(bottomSquare.ToArray());
+
         newMesh = new Mesh();
         newMesh.name = "newMesh";
         List<Vector3> vertices = new List<Vector3>();
@@ -62,8 +67,6 @@ public class GroundGenerator : MonoBehaviour {
         newGameObject.AddComponent<MeshRenderer>();
         newGameObject.GetComponent<MeshFilter>().mesh = newMesh;
         newGameObject.GetComponent<MeshRenderer>().material = BaseMaterial;
-
-        //OnlineMaps.OnMeshUpdated -= generateNewMash;
     }
 
     private IEnumerable<Vector3> GetOuterSquare(IEnumerable<Vector3> Vertices)
@@ -120,5 +123,4 @@ public class GroundGenerator : MonoBehaviour {
         triangles[i + 5] = v11;
         return i + 6;
     }
-
 }

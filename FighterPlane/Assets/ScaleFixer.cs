@@ -7,14 +7,14 @@ using System.Linq;
 public class ScaleFixer : MonoBehaviour {
 
     private OnlineMapsBuildings onlineMapsBuildings;
-    private OnlineMapsTileSetControl onlineMapsTileSetControl;
+    //private OnlineMapsTileSetControl onlineMapsTileSetControl;
 
     private float min = 0;
 
     void Start()
     {
         onlineMapsBuildings = gameObject.GetComponent<OnlineMapsBuildings>();
-        onlineMapsTileSetControl = gameObject.GetComponent<OnlineMapsTileSetControl>();
+        //onlineMapsTileSetControl = gameObject.GetComponent<OnlineMapsTileSetControl>();
         onlineMapsBuildings.OnBuildingCreated += SetBuildingScale;
         onlineMapsBuildings.OnBuildingCreated += SetGameObjectScale;
         //onlineMapsTileSetControl.OnMeshUpdated += SetMapHeight;
