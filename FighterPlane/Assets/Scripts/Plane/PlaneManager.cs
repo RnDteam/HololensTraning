@@ -178,4 +178,9 @@ public class PlaneManager : MonoBehaviour {
     {
         easterEnabled = !easterEnabled;
     }
+
+    public void ApplyForce()
+    {
+        ApplyCircleForce.enabled = true;
+    }
 }

@@ -8,7 +8,7 @@ public class PhysicsParameters
     public double Speed { get; set; }
     public double AngleOfAttack { get; set; }
     public double AngleOfAscent { get; set; }
-    public double Lift { get; set; }
+    public double Lift { get;  set; }
     public double InducedDrag { get; set; }
     public double ParasiticDrag { get; set; }
     public double TotalDrag { get; set; }
@@ -41,7 +41,7 @@ public class PhysicsParameters
         Rotation = transform.rotation;
         Position = transform.position;
         
-        Velocity = (Position - prevPosition) / Time.fixedDeltaTime;
+        Velocity = (Position - prevPosition) / Time.deltaTime;
         Accelaration = new Vector3((Velocity.x - prevVelocity.x) / Time.deltaTime, (Velocity.y - prevVelocity.y) / Time.deltaTime, (Velocity.z - prevVelocity.z) / Time.deltaTime);
 
         PhysicsManager.CalculateFlightParameters(this);
