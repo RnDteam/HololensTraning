@@ -58,7 +58,6 @@ namespace HoloToolkit.Unity
         // Use for initialization.
         private void Start()
         {
-
 #if !UNITY_EDITOR
             StartObserver();
 #endif
