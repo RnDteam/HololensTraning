@@ -78,9 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimationControl.cs" />
-    <Compile Include="Assets\CursorManager.cs" />
-    <Compile Include="Assets\GazeManager.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\BasicCursor.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\CursorManager.cs" />
     <Compile Include="Assets\HoloToolkit\Input\Scripts\GazeManager.cs" />
@@ -103,18 +100,19 @@
     <Compile Include="Assets\Holograms\Support\AstroMan\SetRendererSettings.cs" />
     <Compile Include="Assets\Holograms\Support\Fitbox\Fitbox.cs" />
     <Compile Include="Assets\Holograms\Support\Fitbox\Interpolator.cs" />
-    <Compile Include="Assets\KeywordManager.cs" />
-    <Compile Include="Assets\PlaneManager.cs" />
-    <Compile Include="Assets\RotationAction.cs" />
-    <Compile Include="Assets\Scripts\DismissOnSelect.cs" />
-    <Compile Include="Assets\Scripts\Interactible.cs" />
-    <Compile Include="Assets\Scripts\InteractibleAction.cs" />
-    <Compile Include="Assets\Scripts\InteractibleManager.cs" />
-    <Compile Include="Assets\Scripts\PhysicsManager.cs" />
-    <Compile Include="Assets\Scripts\PhysicsParameters.cs" />
-    <Compile Include="Assets\Scripts\Placeable.cs" />
-    <Compile Include="Assets\Scripts\PlaneDisplayController.cs" />
-    <Compile Include="Assets\Scripts\TextRotation.cs" />
+    <Compile Include="Assets\Scripts\Animation\AnimationControl.cs" />
+    <Compile Include="Assets\Scripts\Cursor\CursorManager.cs" />
+    <Compile Include="Assets\Scripts\Cursor\GazeManager.cs" />
+    <Compile Include="Assets\Scripts\Cursor\Interactible.cs" />
+    <Compile Include="Assets\Scripts\Cursor\InteractibleAction.cs" />
+    <Compile Include="Assets\Scripts\Cursor\InteractibleManager.cs" />
+    <Compile Include="Assets\Scripts\Holographic\Placeable.cs" />
+    <Compile Include="Assets\Scripts\Physics\PhysicsManager.cs" />
+    <Compile Include="Assets\Scripts\Physics\PhysicsParameters.cs" />
+    <Compile Include="Assets\Scripts\Plane\PlaneDisplayController.cs" />
+    <Compile Include="Assets\Scripts\Plane\PlaneManager.cs" />
+    <Compile Include="Assets\Scripts\Text\TextRotation.cs" />
+    <Compile Include="Assets\Scripts\Voice\KeywordManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\HoloToolkit\Input\Models\Cursor\UI-Default.shader" />
