@@ -97,7 +97,7 @@ public class PlaneManager : MonoBehaviour {
         return Array.IndexOf(array, val) != -1;
     }
 
-    public bool IsPlane(GameObject tappedObject)
+    public bool UpdateSelectedPlane(GameObject tappedObject)
     {
         // In case the tapped object is a plane in our array
         if (Contains(planes, tappedObject))
