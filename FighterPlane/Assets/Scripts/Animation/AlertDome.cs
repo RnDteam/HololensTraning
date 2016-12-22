@@ -7,14 +7,13 @@ public class AlertDome : MonoBehaviour
 
     public Material ActiveAlertDome;
     public Material NonActiveAlertDome;
-    public Material HideAlertDome;
-    private bool hideDome = true;
-    private bool isAlertActive = false;
+    private bool showDome = false;
 
 
     private void Awake()
     {
-        this.GetComponent<Renderer>().material = HideAlertDome;
+        this.GetComponent<Renderer>().material = NonActiveAlertDome;
+        this.GetComponent<Renderer>().enabled = showDome;
     }
 
     private void OnTriggerEnter(Collider myTrigger)
@@ -23,7 +22,7 @@ public class AlertDome : MonoBehaviour
         {
             this.GetComponent<Renderer>().material = ActiveAlertDome;
             this.GetComponent<AudioSource>().Play();
-            isAlertActive = true;
+            ShowAlert();
         }
     }
 
@@ -31,22 +30,21 @@ public class AlertDome : MonoBehaviour
     {
         if (myTrigger.gameObject.name.StartsWith("Hercules"))
         {
-            this.GetComponent<Renderer>().material = (hideDome ? HideAlertDome : NonActiveAlertDome);
+            this.GetComponent<Renderer>().material = NonActiveAlertDome;
             this.GetComponent<AudioSource>().Pause();
-            isAlertActive = false;
+            if (!showDome) HideAlert();
         }
     }
 
     public void ShowAlert()
     {
-        this.GetComponent<Renderer>().material = (isAlertActive ? ActiveAlertDome : NonActiveAlertDome);
-        hideDome = false;
+        this.GetComponent<Renderer>().enabled = true;
+        showDome = true;
     }
 
     public void HideAlert()
     {
-        this.GetComponent<Renderer>().material = HideAlertDome;
-        hideDome = true;
-
+        this.GetComponent<Renderer>().enabled = false;
+        showDome = false;
     }
 }
