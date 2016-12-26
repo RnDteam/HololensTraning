@@ -5,20 +5,14 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour {
 
-    
     private GameObject selectedBuilding;
 
-    public GameObject Map;
-    public Material SelectedBuildingMaterial;
-    public Material UnselectedBuildingMaterial;
-
-    void Start () {
-        Map.GetComponent<OnlineMapsBuildings>().OnBuildingCreated += LoadBuildings;
-	}
-
-    private void LoadBuildings(OnlineMapsBuildingBase building)
+    public void SelectBuilding(GameObject gameObject)
     {
-        
+        if (selectedBuilding)
+        {
+            selectedBuilding.GetComponent<InteractibleBuilding>().IsSelected = false;
+        }
+        selectedBuilding = gameObject;
     }
-    
 }
