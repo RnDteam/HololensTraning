@@ -44,9 +44,11 @@ public class PlaneManager : MonoBehaviour {
     private void InitializeDistanceLine()
     {
         LineRenderer lr = distanceLine.GetComponent<LineRenderer>();
-        lr.SetColors(lineColor, lineColor);
+        lr.startColor = lineColor;
+        lr.endColor = lineColor;
+        lr.startWidth = 0.01f;
+        lr.endWidth = 0.01f;
         SetLinePosition(lr, planesDistance);
-        lr.SetWidth(0.01f, 0.01f);
 
         HideDistance();
     }
