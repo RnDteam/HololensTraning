@@ -62,8 +62,8 @@ namespace HoloToolkit.Unity
             this.gameObject.transform.position = GazeManager.Instance.Position + GazeManager.Instance.Normal * DistanceFromCollision;
 
             // Reorient the cursor to match the hit object normal.
-            this.gameObject.transform.up = GazeManager.Instance.Normal;
-            this.gameObject.transform.rotation *= cursorDefaultRotation;
+            //this.gameObject.transform.up = GazeManager.Instance.Normal;
+            //this.gameObject.transform.rotation *= cursorDefaultRotation;
         }
     }
 }
