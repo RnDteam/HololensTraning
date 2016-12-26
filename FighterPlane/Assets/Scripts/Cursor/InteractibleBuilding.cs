@@ -60,9 +60,29 @@ public class InteractibleBuilding : MonoBehaviour {
     void SetText()
     {
         var buildingInfo = GetComponent<OnlineMapsBuildingBase>().metaInfo;
-        if (buildingInfo.Any(p => p.title == "name:en"))
-            TextHolder.GetComponent<TextMesh>().text = buildingInfo.Single(p => p.title == "name:en").info;
-        else TextHolder.GetComponent<TextMesh>().text = "General Building";
+        if (buildingInfo.Any(p => p.title == "name"))
+            TextHolder.GetComponent<TextMesh>().text = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
+        else TextHolder.GetComponent<TextMesh>().text = ReverseHebrewName("בניין כללי");
+    }
+
+    string ReverseHebrewName(string s)
+    {
+        if (s.Any(c => IsHebrew(c)))
+        {
+            return Reverse(s);
+        }
+        return s;
+    }
+
+    static string Reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        return new string(charArray.Reverse().ToArray());
+    }
+
+    bool IsHebrew(char c)
+    {
+        return "אבגדהוזחטיכלמנסעפצקרשתךםןףץ".Contains(c);
     }
 
     public void ShowInfo()
