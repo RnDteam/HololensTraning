@@ -10,6 +10,7 @@ public class MapCommands : MonoBehaviour {
     private OnlineMapsLimits limits;
 
     public Material[] Materials;
+    public GameObject TextPrefab;
 
     void Start()
     {
@@ -18,20 +19,21 @@ public class MapCommands : MonoBehaviour {
         limits = GetComponent<OnlineMapsLimits>();
 
         buildings.OnBuildingCreated += InitializeBuilding;
-        //buildings.OnBuildingCreated += initializeMaterials;
     }
 
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
         interactible.buildingManager = GetComponent<BuildingManager>();
-    }
 
-    //private void initializeMaterials(OnlineMapsBuildingBase building)
-    //{
-    //    var go = building.gameObject;
-    //    go.GetComponent<InteractibleBuilding>().defaultMaterials = Materials;
-    //}
+        var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
+        textHolder.transform.parent = building.gameObject.transform;
+        textHolder.transform.localPosition = new Vector3(0, 100, 0);
+        textHolder.transform.localRotation = Quaternion.identity;
+        textHolder.transform.localScale = Vector3.one;
+
+        interactible.TextHolder = textHolder;
+    }
 
     public void ZoomIn()
     {
