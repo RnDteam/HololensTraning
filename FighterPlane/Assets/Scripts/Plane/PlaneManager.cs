@@ -45,9 +45,11 @@ public class PlaneManager : MonoBehaviour {
     private void InitializeDistanceLine()
     {
         LineRenderer lr = distanceLine.GetComponent<LineRenderer>();
-        lr.SetColors(lineColor, lineColor);
+        lr.startColor = lineColor;
+        lr.endColor = lineColor;
+        lr.startWidth = 0.01f;
+        lr.endWidth = 0.01f;
         SetLinePosition(lr, planesDistance);
-        lr.SetWidth(0.01f, 0.01f);
 
         HideDistance();
     }
@@ -98,7 +100,7 @@ public class PlaneManager : MonoBehaviour {
         return Array.IndexOf(array, val) != -1;
     }
 
-    public bool IsPlane(GameObject tappedObject)
+    public bool UpdateSelectedPlane(GameObject tappedObject)
     {
         // In case the tapped object is a plane in our array
         if (Contains(planes, tappedObject))
