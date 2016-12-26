@@ -18,8 +18,9 @@ public class PlaneManager : MonoBehaviour {
     public GameObject[] planes;
 
     public GameObject planesDistance;
-    public Color lineColor;
     public GameObject distanceLine;
+    public Color lineColor;
+    public GameObject AlertDome_1;
 
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
