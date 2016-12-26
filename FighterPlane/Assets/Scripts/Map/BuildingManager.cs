@@ -7,6 +7,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour {
 
     private List<GameObject> selectedBuildings;
+    public bool infoVisiblity = false;
 
     private void Start()
     {
@@ -31,8 +32,29 @@ public class BuildingManager : MonoBehaviour {
             }
 
             gameObject.GetComponent<InteractibleBuilding>().Select();
-            gameObject.GetComponent<InteractibleBuilding>().ShowInfo();
             selectedBuildings.Add(gameObject);
+            if (infoVisiblity)
+            {
+                gameObject.GetComponent<InteractibleBuilding>().ShowInfo();
+            }
+        }
+    }
+
+    public void ShowInfo()
+    {
+        infoVisiblity = true;
+        if (selectedBuildings.Count == 1)
+        {
+            selectedBuildings.Single().GetComponent<InteractibleBuilding>().ShowInfo();
+        }
+    }
+
+    public void HideInfo()
+    {
+        infoVisiblity = false;
+        if (selectedBuildings.Count == 1)
+        {
+            selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().HideInfo());
         }
     }
 }
