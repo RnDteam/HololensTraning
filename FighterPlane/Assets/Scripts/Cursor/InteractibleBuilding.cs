@@ -5,11 +5,11 @@ public class InteractibleBuilding : MonoBehaviour {
 
     private Renderer buildingRenderer;
     private bool previousSelection = false;
-    public GameObject TextHolder;
-    private bool InfoVisibility = false;
 
-    public bool IsSelected = false;
+    [Tooltip("Displays the building information.")]
+    public GameObject TextHolder;
     public BuildingManager buildingManager;
+    public bool IsSelected = false;
 
     private void Start()
     {
@@ -25,6 +25,7 @@ public class InteractibleBuilding : MonoBehaviour {
         previousSelection = IsSelected;
     }
 
+    #region select
     private void UpdateSelection()
     {
         buildingManager.SelectBuilding(gameObject);
@@ -56,33 +57,15 @@ public class InteractibleBuilding : MonoBehaviour {
     {
         IsSelected = !IsSelected;
     }
-
+    #endregion
+    
+    #region info
     void SetText()
     {
         var buildingInfo = GetComponent<OnlineMapsBuildingBase>().metaInfo;
         if (buildingInfo.Any(p => p.title == "name"))
             TextHolder.GetComponent<TextMesh>().text = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
         else TextHolder.GetComponent<TextMesh>().text = ReverseHebrewName("בניין כללי");
-    }
-
-    string ReverseHebrewName(string s)
-    {
-        if (s.Any(c => IsHebrew(c)))
-        {
-            return Reverse(s);
-        }
-        return s;
-    }
-
-    static string Reverse(string s)
-    {
-        char[] charArray = s.ToCharArray();
-        return new string(charArray.Reverse().ToArray());
-    }
-
-    bool IsHebrew(char c)
-    {
-        return "אבגדהוזחטיכלמנסעפצקרשתךםןףץ".Contains(c);
     }
 
     public void ShowInfo()
@@ -98,4 +81,27 @@ public class InteractibleBuilding : MonoBehaviour {
     {
         TextHolder.SetActive(false);
     }
+    #endregion
+
+    #region string utils
+    static string ReverseHebrewName(string s)
+    {
+        if (s.Any(c => IsHebrew(c)))
+        {
+            return Reverse(s);
+        }
+        return s;
+    }
+
+    static string Reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        return new string(charArray.Reverse().ToArray());
+    }
+
+    static bool IsHebrew(char c)
+    {
+        return "אבגדהוזחטיכלמנסעפצקרשתךםןףץ".Contains(c);
+    }
+    #endregion
 }
