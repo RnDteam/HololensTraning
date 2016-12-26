@@ -96,7 +96,6 @@ public class PlaneDisplayController : MonoBehaviour {
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        Debug.Log(this.name + " " + pParams.ToString() + " " + "Gas Amount(Liters): " + this.gasAmount.ToString("000.0"));
         planeInfo.GetComponent<TextMesh>().text = this.name + "\n" +pParams.ToString() 
                                                             + "\n" + "Gas Amount(Liters): " + this.gasAmount.ToString("000.0");
     }
