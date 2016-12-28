@@ -1,21 +1,22 @@
-﻿using System;
+﻿using HoloToolkit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour {
+public class BuildingManager : Singleton<BuildingManager> 
+{
+    protected BuildingManager() { }
 
-    private List<GameObject> selectedBuildings;
+    private GameObject selectedBuilding = null;
     public bool infoVisiblity = false;
-
+    
     public GameObject SelectedBuilding
     {
         get
         {
-            if (selectedBuildings.Count() == 1)
-                return selectedBuildings.Single();
-            return null;
+            return selectedBuilding;
         }
     }
 
@@ -27,33 +28,28 @@ public class BuildingManager : MonoBehaviour {
         }
     }
 
-    private void Start()
-    {
-        selectedBuildings = new List<GameObject>();
-    }
-
     public void SelectBuilding(GameObject gameObject)
     {
-        if (selectedBuildings.Contains(gameObject))
+        if (selectedBuilding == gameObject)
         {
-            gameObject.GetComponent<InteractibleBuilding>().Unselect();
-            selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().HideInfo());
-            selectedBuildings.Remove(gameObject);
+            selectedBuilding.GetComponent<InteractibleBuilding>().Unselect();
+            selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
+            selectedBuilding = null;
         }
         else
         {
-            if (selectedBuildings.Count > 0)
+            if (selectedBuilding != null)
             {
-                selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().Unselect());
-                selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().HideInfo());
-                selectedBuildings.RemoveRange(0, selectedBuildings.Count);
+                selectedBuilding.GetComponent<InteractibleBuilding>().Unselect();
+                selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
             }
 
-            gameObject.GetComponent<InteractibleBuilding>().Select();
-            selectedBuildings.Add(gameObject);
+            selectedBuilding = gameObject;
+            selectedBuilding.GetComponent<InteractibleBuilding>().Select();
+
             if (infoVisiblity)
             {
-                gameObject.GetComponent<InteractibleBuilding>().ShowInfo();
+                selectedBuilding.GetComponent<InteractibleBuilding>().ShowInfo();
             }
         }
     }
@@ -61,18 +57,18 @@ public class BuildingManager : MonoBehaviour {
     public void ShowInfo()
     {
         infoVisiblity = true;
-        if (selectedBuildings.Count == 1)
+        if (IsBuildingSelected)
         {
-            selectedBuildings.Single().GetComponent<InteractibleBuilding>().ShowInfo();
+            selectedBuilding.GetComponent<InteractibleBuilding>().ShowInfo();
         }
     }
 
     public void HideInfo()
     {
         infoVisiblity = false;
-        if (selectedBuildings.Count == 1)
+        if (IsBuildingSelected)
         {
-            selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().HideInfo());
+            selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
         }
     }
 }

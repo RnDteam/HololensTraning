@@ -4,31 +4,40 @@ using UnityEngine;
 public class InteractibleBuilding : MonoBehaviour {
 
     private Renderer buildingRenderer;
-    private bool previousSelection = false;
 
     [Tooltip("Displays the building information.")]
     public GameObject TextHolder;
-    public BuildingManager buildingManager;
+
+    private bool isSelected = false;
+
     public bool IsSelected = false;
+    private bool sentToBuildingManager = false; //for debug in unity
 
     private void Start()
     {
         buildingRenderer = GetComponent<Renderer>();
+        SetText();
+        TextHolder.SetActive(false);
     }
 
     private void Update()
     {
-        if (IsSelected != previousSelection)
+        if (IsSelected && !sentToBuildingManager)
         {
-            UpdateSelection();
+            OnSelect();
+            sentToBuildingManager = true;
         }
-        previousSelection = IsSelected;
+        if (!IsSelected && sentToBuildingManager)
+        {
+            OnSelect();
+            sentToBuildingManager = false;
+        }
     }
 
     #region select
     private void UpdateSelection()
     {
-        buildingManager.SelectBuilding(gameObject);
+        BuildingManager.Instance.SelectBuilding(gameObject);
     }
 
     private void SetColor(Color color)
@@ -41,21 +50,21 @@ public class InteractibleBuilding : MonoBehaviour {
 
     public void Select()
     {
-        IsSelected = true;
-        previousSelection = true;
+        isSelected = true;
         SetColor(Color.red);
+        IsSelected = true;
     }
 
     public void Unselect()
     {
-        IsSelected = false;
-        previousSelection = false;
+        isSelected = false;
         SetColor(Color.white);
+        IsSelected = false;
     }
 
     void OnSelect()
     {
-        IsSelected = !IsSelected;
+        BuildingManager.Instance.SelectBuilding(gameObject);
     }
     #endregion
     
@@ -70,10 +79,6 @@ public class InteractibleBuilding : MonoBehaviour {
 
     public void ShowInfo()
     {
-        if (TextHolder.GetComponent<TextMesh>().text == string.Empty)
-        {
-            SetText();
-        }
         TextHolder.SetActive(true);
     }
 

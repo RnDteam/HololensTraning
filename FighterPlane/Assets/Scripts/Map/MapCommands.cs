@@ -60,7 +60,6 @@ public class MapCommands : MonoBehaviour {
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
-        interactible.buildingManager = GetComponent<BuildingManager>();
 
         var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
         textHolder.transform.parent = building.gameObject.transform;
