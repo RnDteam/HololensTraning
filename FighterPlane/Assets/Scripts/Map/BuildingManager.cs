@@ -9,6 +9,24 @@ public class BuildingManager : MonoBehaviour {
     private List<GameObject> selectedBuildings;
     public bool infoVisiblity = false;
 
+    public GameObject SelectedBuilding
+    {
+        get
+        {
+            if (selectedBuildings.Count() == 1)
+                return selectedBuildings.Single();
+            return null;
+        }
+    }
+
+    public bool IsBuildingSelected
+    {
+        get
+        {
+            return SelectedBuilding != null;
+        }
+    }
+
     private void Start()
     {
         selectedBuildings = new List<GameObject>();
