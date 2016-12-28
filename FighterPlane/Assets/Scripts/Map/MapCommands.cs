@@ -84,10 +84,9 @@ public class MapCommands : MonoBehaviour {
 
     public void ZoomToBuilding()
     {
-        var buildingManager = GetComponent<BuildingManager>();
-        if (buildingManager.IsBuildingSelected)
+        if (BuildingManager.Instance.IsBuildingSelected)
         {
-            var coords = buildingManager.SelectedBuilding.GetComponent<OnlineMapsBuildingBuiltIn>().centerCoordinates;
+            var coords = BuildingManager.Instance.SelectedBuilding.GetComponent<OnlineMapsBuildingBuiltIn>().centerCoordinates;
             onlineMaps.SetPositionAndZoom(coords.x, coords.y, 18);
         }
     }
