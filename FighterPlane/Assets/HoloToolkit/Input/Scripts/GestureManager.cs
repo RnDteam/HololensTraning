@@ -34,8 +34,9 @@ namespace HoloToolkit.Unity
 
         public PlaneManager planeManager;
 
-        private GestureRecognizer gestureRecognizer;
+        public GestureRecognizer gestureRecognizer { get; private set; }
         private GameObject focusedObject;
+
 
         public bool IsNavigating { get; private set; }
 
@@ -48,7 +49,8 @@ namespace HoloToolkit.Unity
 
             gestureRecognizer.SetRecognizableGestures(
                 GestureSettings.Tap |
-                GestureSettings.NavigationX);
+                GestureSettings.NavigationX |
+                GestureSettings.NavigationZ);
 
             gestureRecognizer.TappedEvent += GestureRecognizer_TappedEvent;
 
