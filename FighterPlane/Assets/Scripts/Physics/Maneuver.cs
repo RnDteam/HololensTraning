@@ -6,8 +6,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Physics
 {
-    abstract class Maneuver
+    public abstract class Maneuver
     {
+        public bool isEnabled = false;
         public abstract Vector3 newPos();
         public abstract Quaternion newRot();
     }

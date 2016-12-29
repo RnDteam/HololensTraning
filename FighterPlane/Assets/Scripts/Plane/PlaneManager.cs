@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using HoloToolkit.Unity;
 using System.Collections.Generic;
+using Assets.Scripts.Physics;
 
 public class PlaneManager : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class PlaneManager : MonoBehaviour {
     
     // Planes objects array
     public GameObject[] planes;
+    private Dictionary<GameObject, Maneuver> maneuvers = new Dictionary<GameObject, Maneuver>();
 
     public GameObject planesDistance;
     public GameObject distanceLine;
@@ -28,6 +30,8 @@ public class PlaneManager : MonoBehaviour {
     private bool easterEnabled = false;
 
     private float rotationFactor;
+
+    private System.Random rnd = new System.Random();
 
     void Start () {
         selectedPlane = planes[0];
@@ -70,6 +74,17 @@ public class PlaneManager : MonoBehaviour {
     void Update () {
         RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
+        ManageManeuvers();
+
+    }
+
+    private void ManageManeuvers()
+    {
+        foreach (GameObject plane in maneuvers.Keys)
+        {
+            plane.transform.position = maneuvers[plane].newPos();
+            plane.transform.rotation = maneuvers[plane].newRot();
+        }
     }
 
     // Selecting planes using voice commands
@@ -181,5 +196,32 @@ public class PlaneManager : MonoBehaviour {
     public void ToggleEasterEgg()
     {
         easterEnabled = !easterEnabled;
+    }
+
+    private void AddManeuver(Maneuver man)
+    {
+        if (maneuvers.ContainsKey(selectedPlane))
+        {
+            maneuvers[selectedPlane] = man;
+        }
+        else
+        {
+            maneuvers.Add(selectedPlane, man);
+        }
+    }
+
+    public void DoCircle()
+    {
+        AddManeuver(new MakeCircle(selectedPlane.transform.position, (float)rnd.NextDouble(), (float)rnd.NextDouble()));
+    }
+
+    public void DoLoop()
+    {
+        AddManeuver(new DoLoop(selectedPlane.transform.position, (float)rnd.NextDouble(), (float)rnd.NextDouble()));
+    }
+
+    public void DoSplitS()
+    {
+        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
     }
 }
