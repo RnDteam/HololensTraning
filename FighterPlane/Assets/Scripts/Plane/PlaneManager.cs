@@ -127,7 +127,10 @@ public class PlaneManager : MonoBehaviour {
 
     public void PlaySounds()
     {
-        previousPlane.GetComponent<AudioSource>().Pause();
+        if (previousPlane)
+        {
+            previousPlane.GetComponent<AudioSource>().Pause();
+        }
         
         if (easterEnabled)
         {
