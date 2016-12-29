@@ -181,6 +181,7 @@ public class PlaneManager : MonoBehaviour {
 
     public void ApplyForce()
     {
+        SelectPlaneA();
         ApplyCircleForce.enabled = true;
     }
 }
