@@ -13,6 +13,8 @@ public class InteractibleBuilding : MonoBehaviour {
     public bool IsSelected = false;
     private bool sentToBuildingManager = false; //for debug in unity
 
+    public Color SelectedBuildingColor;
+
     private void Start()
     {
         buildingRenderer = GetComponent<Renderer>();
@@ -51,7 +53,7 @@ public class InteractibleBuilding : MonoBehaviour {
     public void Select()
     {
         isSelected = true;
-        SetColor(Color.red);
+        SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
         IsSelected = true;
     }
 

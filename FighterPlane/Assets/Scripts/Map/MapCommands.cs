@@ -11,7 +11,7 @@ public class MapCommands : MonoBehaviour {
 
     public float MovementFactor = 0.00005f;
 
-    public Material[] Materials;
+    public Color SelectedBuildingColor;
     public GameObject TextPrefab;
 
     private void Start()
@@ -60,6 +60,7 @@ public class MapCommands : MonoBehaviour {
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
+        interactible.SelectedBuildingColor = SelectedBuildingColor;
 
         var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
         textHolder.transform.parent = building.gameObject.transform;
