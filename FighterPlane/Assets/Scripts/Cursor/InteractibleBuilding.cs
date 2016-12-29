@@ -8,12 +8,15 @@ public class InteractibleBuilding : MonoBehaviour {
     [Tooltip("Displays the building information.")]
     public GameObject TextHolder;
 
-    private bool isSelected = false;
+    public Color SelectedBuildingColor;
+
+    #region for debug
+    //private bool isSelected = false;
 
     public bool IsSelected = false;
-    private bool sentToBuildingManager = false; //for debug in unity
+    private bool sentToBuildingManager = false;
+    #endregion
 
-    public Color SelectedBuildingColor;
 
     private void Start()
     {
@@ -52,14 +55,14 @@ public class InteractibleBuilding : MonoBehaviour {
 
     public void Select()
     {
-        isSelected = true;
+        //isSelected = true;
         SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
         IsSelected = true;
     }
 
     public void Unselect()
     {
-        isSelected = false;
+        //isSelected = false;
         SetColor(Color.white);
         IsSelected = false;
     }
