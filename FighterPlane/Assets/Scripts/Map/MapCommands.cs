@@ -9,7 +9,7 @@ public class MapCommands : MonoBehaviour {
     private OnlineMapsBuildings buildings;
     private OnlineMapsLimits limits;
 
-    public float MovementFactor = 0.1f;
+    public float MovementFactor = .25f;
 
     public Color SelectedBuildingColor;
     public GameObject TextPrefab;
