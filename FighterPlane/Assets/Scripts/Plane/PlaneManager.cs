@@ -14,7 +14,8 @@ public class PlaneManager : MonoBehaviour {
     // Indexes of selected and previous planes
     private GameObject selectedPlane;
     private GameObject previousPlane;
-    
+    private GameObject selectedCamera;
+
     // Planes objects array
     public GameObject[] planes;
 
@@ -30,7 +31,9 @@ public class PlaneManager : MonoBehaviour {
     private float rotationFactor;
 
     void Start () {
-        selectedPlane = planes[0];
+        // Default Selection
+        selectedPlane = planes[(int)PLANES.PlaneA];
+        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
 
         InitializeDistanceLine();
 
@@ -57,14 +60,14 @@ public class PlaneManager : MonoBehaviour {
     
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
-        lr.SetPosition(0, planes[0].transform.position);
-        lr.SetPosition(1, planes[1].transform.position);
+        lr.SetPosition(0, planes[(int)PLANES.PlaneA].transform.position);
+        lr.SetPosition(1, planes[(int)PLANES.PlaneB].transform.position);
 
-        Vector3 middlePoint = (planes[0].transform.position + planes[1].transform.position) / 2;
+        Vector3 middlePoint = (planes[(int)PLANES.PlaneA].transform.position + planes[(int)PLANES.PlaneB].transform.position) / 2;
         distance.transform.position = middlePoint;
 
         TextMesh text = distance.GetComponent<TextMesh>();
-        text.text = Math.Round((planes[0].transform.position - planes[1].transform.position).magnitude, 2) + " km";
+        text.text = Math.Round((planes[(int)PLANES.PlaneA].transform.position - planes[(int)PLANES.PlaneB].transform.position).magnitude, 2) + " km";
     }
 
     void Update () {
@@ -150,12 +153,15 @@ public class PlaneManager : MonoBehaviour {
         }
     }
 
+    #region Plane Animation
     public void AnimatePlane()
     {
         PlaySounds();
         StartCoroutine(selectedPlane.GetComponent<AnimationControl>().PlayAnimation(selectedPlane.name + "Animation"));
     }
+    #endregion
 
+    #region Plane Information
     public void ShowInfo()
     {
         selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneInfo();
@@ -165,7 +171,9 @@ public class PlaneManager : MonoBehaviour {
     {
         selectedPlane.GetComponent<PlaneDisplayController>().HidePlaneInfo();
     }
+    #endregion
 
+    #region Planes Distance
     public void ShowDistance()
     {
         planesDistance.SetActive(true);
@@ -177,9 +185,41 @@ public class PlaneManager : MonoBehaviour {
         planesDistance.SetActive(false);
         distanceLine.SetActive(false);
     }
+    #endregion
 
+    #region Plane Camera 
+    public void ShowPilotView()
+    {
+        // Deselecting the old selectedCamera
+        selectedCamera.SetActive(false);
+
+        // Updating and selecting selectedCamera
+        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowPilotView();
+    }
+
+    public void ShowPlaneView()
+    {
+        // Deselecting the old selectedCamera
+        selectedCamera.SetActive(false);
+
+        // Updating and selecting selectedCamera
+        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().planeCamera;
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneView();
+    }
+
+    public void ShowGroundView()
+    {
+        selectedCamera.SetActive(false);
+    }
+    #endregion
+
+
+
+    #region Easter Egg
     public void ToggleEasterEgg()
     {
         easterEnabled = !easterEnabled;
     }
+    #endregion
 }
