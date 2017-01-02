@@ -13,7 +13,7 @@ public class AlertDome : MonoBehaviour
     private void Awake()
     {
         this.GetComponent<Renderer>().material = NonActiveAlertDome;
-        this.GetComponent<Renderer>().enabled = showDome;
+        HideAlert();
     }
 
     private void OnTriggerEnter(Collider myTrigger)

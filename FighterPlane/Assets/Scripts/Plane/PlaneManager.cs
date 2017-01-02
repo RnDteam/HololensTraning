@@ -193,22 +193,24 @@ public class PlaneManager : MonoBehaviour {
     #region Plane Camera 
     public void ShowPilotView()
     {
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowPilotView();
+
         // Deselecting the old selectedCamera
         selectedCamera.SetActive(false);
 
-        // Updating and selecting selectedCamera
-        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
-        selectedPlane.GetComponent<PlaneDisplayController>().ShowPilotView();
+        // Updating selectedCamera
+        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().planeCamera;
     }
 
     public void ShowPlaneView()
     {
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneView();
+
         // Deselecting the old selectedCamera
         selectedCamera.SetActive(false);
 
-        // Updating and selecting selectedCamera
+        // Updating selectedCamera
         selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().planeCamera;
-        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneView();
     }
 
     public void ShowGroundView()
@@ -216,9 +218,7 @@ public class PlaneManager : MonoBehaviour {
         selectedCamera.SetActive(false);
     }
     #endregion
-
-
-
+    
     #region Easter Egg
     public void ToggleEasterEgg()
     {
