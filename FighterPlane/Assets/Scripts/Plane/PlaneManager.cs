@@ -71,7 +71,7 @@ public class PlaneManager : MonoBehaviour {
     }
 
     void Update () {
-        RotatePlaneByHandGesture();
+        //RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
     }
 
@@ -130,7 +130,10 @@ public class PlaneManager : MonoBehaviour {
 
     public void PlaySounds()
     {
-        previousPlane.GetComponent<AudioSource>().Pause();
+        if (previousPlane)
+        {
+            previousPlane.GetComponent<AudioSource>().Pause();
+        }
         
         if (easterEnabled)
         {

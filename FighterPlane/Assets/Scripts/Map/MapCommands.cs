@@ -9,9 +9,9 @@ public class MapCommands : MonoBehaviour {
     private OnlineMapsBuildings buildings;
     private OnlineMapsLimits limits;
 
-    public float MovementFactor = 0.00005f;
+    public float MovementFactor = .25f;
 
-    public Material[] Materials;
+    public Color SelectedBuildingColor;
     public GameObject TextPrefab;
 
     private void Start()
@@ -44,11 +44,9 @@ public class MapCommands : MonoBehaviour {
 
         double mx = (brx - tlx) / dx;
         double my = (tly - bry) / dy;
-
-        double v = (double)MovementFactor * Time.deltaTime;
-
-        double ox = mx * v * direction.x;
-        double oy = my * v * direction.z;
+        
+        double ox = MovementFactor * mx * direction.x * Time.deltaTime;
+        double oy = MovementFactor * my * direction.z * Time.deltaTime;
 
         px += ox;
         pz += oy;
@@ -60,6 +58,7 @@ public class MapCommands : MonoBehaviour {
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
+        interactible.SelectedBuildingColor = SelectedBuildingColor;
 
         var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
         textHolder.transform.parent = building.gameObject.transform;

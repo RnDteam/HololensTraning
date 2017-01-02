@@ -8,16 +8,22 @@ public class InteractibleBuilding : MonoBehaviour {
     [Tooltip("Displays the building information.")]
     public GameObject TextHolder;
 
-    private bool isSelected = false;
+    public Color SelectedBuildingColor;
+
+    private string name = string.Empty;
+
+    #region for debug
+    //private bool isSelected = false;
 
     public bool IsSelected = false;
-    private bool sentToBuildingManager = false; //for debug in unity
+    private bool sentToBuildingManager = false;
+    #endregion
+
 
     private void Start()
     {
         buildingRenderer = GetComponent<Renderer>();
         SetText();
-        TextHolder.SetActive(false);
     }
 
     private void Update()
@@ -50,14 +56,14 @@ public class InteractibleBuilding : MonoBehaviour {
 
     public void Select()
     {
-        isSelected = true;
-        SetColor(Color.red);
+        //isSelected = true;
+        SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
         IsSelected = true;
     }
 
     public void Unselect()
     {
-        isSelected = false;
+        //isSelected = false;
         SetColor(Color.white);
         IsSelected = false;
     }
@@ -73,18 +79,18 @@ public class InteractibleBuilding : MonoBehaviour {
     {
         var buildingInfo = GetComponent<OnlineMapsBuildingBase>().metaInfo;
         if (buildingInfo.Any(p => p.title == "name"))
-            TextHolder.GetComponent<TextMesh>().text = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
-        else TextHolder.GetComponent<TextMesh>().text = ReverseHebrewName("בניין כללי");
+            name = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
+        else name = ReverseHebrewName("בניין כללי");
     }
 
     public void ShowInfo()
     {
-        TextHolder.SetActive(true);
+        TextHolder.GetComponent<TextMesh>().text = name;
     }
 
     public void HideInfo()
     {
-        TextHolder.SetActive(false);
+        TextHolder.GetComponent<TextMesh>().text = string.Empty;
     }
     #endregion
 
