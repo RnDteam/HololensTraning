@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BuildingManager : Singleton<BuildingManager> 
+public partial class BuildingManager : Singleton<BuildingManager> 
 {
-    protected BuildingManager() { }
-
     private GameObject selectedBuilding = null;
+    private string selectedBuildingId = null;
+    private Vector2 selectedBuildingCoords;
+
+    #region properties
     public bool infoVisiblity = false;
     
     public GameObject SelectedBuilding
@@ -24,34 +26,91 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         get
         {
-            return SelectedBuilding != null;
+            return selectedBuildingId != null;
+        }
+    }
+
+    public string SelectedBuildingId
+    {
+        get
+        {
+            return selectedBuildingId;
+        }
+    }
+
+    public Vector2 SelectedBuildingCoords
+    {
+        get
+        {
+            return selectedBuildingCoords;
+        }
+    }
+    #endregion
+
+    private void SetBuilding(GameObject building, bool select)
+    {
+        if (!building)
+        {
+            return;
+        }
+
+        if (select)
+        {
+            building.GetComponent<InteractibleBuilding>().Select();
+            building.GetComponent<BuildingDisplay>().Select();
+            if (infoVisiblity)
+            {
+                building.GetComponent<BuildingDisplay>().ShowInfo();
+            }
+        }
+        else
+        {
+            building.GetComponent<InteractibleBuilding>().Unselect();
+            building.GetComponent<BuildingDisplay>().Unselect();
+            building.GetComponent<BuildingDisplay>().HideInfo();
         }
     }
 
     public void SelectBuilding(GameObject gameObject)
     {
-        if (selectedBuilding == gameObject)
+        if (gameObject == null)
         {
-            selectedBuilding.GetComponent<InteractibleBuilding>().Unselect();
-            selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
+            return;
+        }
+        //if we're selecting the selected building
+        if (IsBuildingSelected && selectedBuildingId == gameObject.GetComponent<OnlineMapsBuildingBase>().id)
+        {
+            SetBuilding(selectedBuilding, false);
             selectedBuilding = null;
+            selectedBuildingId = null;
         }
         else
-        {
-            if (selectedBuilding != null)
+        {   
+            //if we're selecting a new building when another is selected
+            if (IsBuildingSelected)
             {
+                SetBuilding(selectedBuilding, false);
                 selectedBuilding.GetComponent<InteractibleBuilding>().Unselect();
-                selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
+                selectedBuilding.GetComponent<BuildingDisplay>().HideInfo();
             }
-
+            
             selectedBuilding = gameObject;
-            selectedBuilding.GetComponent<InteractibleBuilding>().Select();
-
-            if (infoVisiblity)
-            {
-                selectedBuilding.GetComponent<InteractibleBuilding>().ShowInfo();
-            }
+            selectedBuilding.GetComponent<OnlineMapsBuildingBase>().OnDispose += buildingDisposed;
+            selectedBuildingId = selectedBuilding.GetComponent<OnlineMapsBuildingBase>().id;
+            selectedBuildingCoords = selectedBuilding.GetComponent<OnlineMapsBuildingBase>().centerCoordinates;
+            SetBuilding(selectedBuilding, true);
         }
+    }
+
+    private void buildingDisposed(OnlineMapsBuildingBase building)
+    {
+        selectedBuilding = null;
+    }
+
+    public void ReselectBuilding(GameObject gameObject)
+    {
+        selectedBuilding = gameObject;
+        SetBuilding(selectedBuilding, true);
     }
 
     public void ShowInfo()
@@ -59,7 +118,7 @@ public class BuildingManager : Singleton<BuildingManager>
         infoVisiblity = true;
         if (IsBuildingSelected)
         {
-            selectedBuilding.GetComponent<InteractibleBuilding>().ShowInfo();
+            selectedBuilding.GetComponent<BuildingDisplay>().ShowInfo();
         }
     }
 
@@ -68,7 +127,7 @@ public class BuildingManager : Singleton<BuildingManager>
         infoVisiblity = false;
         if (IsBuildingSelected)
         {
-            selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
+            selectedBuilding.GetComponent<BuildingDisplay>().HideInfo();
         }
     }
 }

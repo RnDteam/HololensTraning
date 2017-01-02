@@ -13,12 +13,15 @@ public class MapCommands : MonoBehaviour {
 
     public Color SelectedBuildingColor;
     public GameObject TextPrefab;
+    private int function;
 
     private void Start()
     {
         onlineMaps = OnlineMaps.instance;
         buildings = OnlineMapsBuildings.instance;
         limits = GetComponent<OnlineMapsLimits>();
+
+        //onlineMaps.OnChangePosition += PositionChanged;
 
         buildings.OnBuildingCreated += InitializeBuilding;
     }
@@ -58,15 +61,24 @@ public class MapCommands : MonoBehaviour {
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
-        interactible.SelectedBuildingColor = SelectedBuildingColor;
+        var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
+        buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
 
         var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
         textHolder.transform.parent = building.gameObject.transform;
         textHolder.transform.localPosition = new Vector3(0, 100, 0);
         textHolder.transform.localRotation = Quaternion.identity;
         textHolder.transform.localScale = Vector3.one;
+        buildingDisplay.TextHolder = textHolder;
 
-        interactible.TextHolder = textHolder;
+        if (BuildingManager.Instance.IsBuildingSelected && building.id == BuildingManager.Instance.SelectedBuildingId)
+        {
+            if (Contains(building.centerCoordinates))
+            {
+                building.gameObject.SetActive(true);
+                BuildingManager.Instance.ReselectBuilding(building.gameObject);
+            }
+        }
     }
 
     public void ZoomIn()
@@ -85,8 +97,16 @@ public class MapCommands : MonoBehaviour {
     {
         if (BuildingManager.Instance.IsBuildingSelected)
         {
-            var coords = BuildingManager.Instance.SelectedBuilding.GetComponent<OnlineMapsBuildingBuiltIn>().centerCoordinates;
+            var coords = BuildingManager.Instance.SelectedBuildingCoords;
             onlineMaps.SetPositionAndZoom(coords.x, coords.y, 18);
         }
     }
+    
+    public bool Contains(Vector2 coord)
+    {
+        return coord.x >= onlineMaps.topLeftPosition.x && coord.x <= onlineMaps.bottomRightPosition.x
+            && coord.y >= onlineMaps.bottomRightPosition.y && coord.y <= onlineMaps.topLeftPosition.y;
+    }
+
+    
 }
