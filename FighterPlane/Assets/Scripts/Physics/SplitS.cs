@@ -48,7 +48,7 @@ namespace Assets.Scripts.Physics
 
         public override Quaternion newRot()
         {
-            if(stage == 1)
+            if(stage == 0)
             {
                 currentRotation = currentRotation * Quaternion.AngleAxis(omegaRoll * (Time.deltaTime) * 180f / (float)Math.PI, initRotation * Vector3.right);
                 if (omegaRoll * (Time.time - startTime) >= Math.PI)

@@ -212,17 +212,17 @@ public class PlaneManager : MonoBehaviour {
 
     public void DoCircle()
     {
-        AddManeuver(new MakeCircle(selectedPlane.transform.position, (float)rnd.NextDouble(), (float)rnd.NextDouble()));
+        AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.right));
     }
 
     public void DoLoop()
     {
-        AddManeuver(new DoLoop(selectedPlane.transform.position, (float)rnd.NextDouble(), (float)rnd.NextDouble()));
+        AddManeuver(new DoLoop(selectedPlane.transform.position, selectedPlane.transform.forward));
     }
 
     public void Escape()
     {
-        AddManeuver(new LoopThenCircle(selectedPlane.transform.position, (float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble()));
+        AddManeuver(new LoopThenCircle(selectedPlane.transform.position, selectedPlane.transform.forward));
     }
 
     public void DoSplitS()

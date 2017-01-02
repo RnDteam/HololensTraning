@@ -8,43 +8,37 @@ namespace Assets.Scripts.Physics
 {
     class LoopThenCircle : Maneuver
     {
-        public LoopThenCircle(Vector3 currentPos, float loopOmega = 0.5f, float loopR = 2, float circleOmega = 0.5f, float circleR = 2, bool insideLoop = true)
+        public LoopThenCircle(Vector3 currentPos, Vector3 currentForward, float loopOmega = 0.5f, float loopR = 2, float circleOmega = 0.5f, float circleR = 2)
         {
-            loop = new DoLoop(currentPos, loopOmega, loopR, insideLoop);
+
+            currentManeuver = new DoLoop(currentPos, currentForward, loopOmega, loopR);
             startTime = Time.time;
+            this.loopOmega = loopOmega;
             this.circleOmega = circleOmega;
             this.circleR = circleR;
         }
 
         float circleOmega;
         float circleR;
-        DoLoop loop;
-        MakeCircle circle;
+        float loopOmega;
+        Maneuver currentManeuver;
         float startTime;
 
         bool stillInLoop = true;
 
         public override Vector3 newPos()
         {
-            if (stillInLoop)
+            if (stillInLoop && loopOmega * (Time.time - startTime) >= 2 * Math.PI)
             {
-                if(loop.omega * (Time.time - startTime) >= 2 * Math.PI)
-                {
-                    stillInLoop = false;
-                    circle = new MakeCircle(loop.newPos(), circleOmega, circleR);
-                }
-                return loop.newPos();
+                currentManeuver = new MakeCircle(currentManeuver.newPos(), currentManeuver.newRot() * Vector3.right, circleOmega, circleR);
+                stillInLoop = false;
             }
-            return circle.newPos();
+            return currentManeuver.newPos();
         }
 
         public override Quaternion newRot()
         {
-            if (stillInLoop)
-            {
-                return loop.newRot();
-            }
-            return circle.newRot();
+            return currentManeuver.newRot();
         }
     }
 }

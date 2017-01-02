@@ -8,55 +8,46 @@ namespace Assets.Scripts.Physics
 {
     public class DoLoop : Maneuver
     {
-        public DoLoop(float centerX = 0, float centerY = 1, float z = 0, float omega = 0.5f, float r = 2, bool insideLoop = true)
+        public DoLoop(float centerX = 0, float centerY = 1, float z = 0, float omega = 0.5f, float r = 2)
         {
             this.centerX = centerX;
             this.centerY = centerY;
-            this.z = z;
+            this.centerZ = z;
             this.omega = omega;
             this.r = r;
             startTime = Time.time;
-            if (insideLoop)
-            {
-                loopOrientation = Quaternion.AngleAxis(180, Vector3.forward);
-            }
         }
 
-        public DoLoop(Vector3 currentPosition, float omega = 0.5f, float r = 2, bool insideLoop = true)
+        public DoLoop(Vector3 currentPosition, Vector3 currentForward, float omega = 0.5f, float r = 2)
         {
             centerX = currentPosition.x;
             centerY = currentPosition.y + r;
-            z = currentPosition.z;
+            centerZ = currentPosition.z;
             this.omega = omega;
             this.r = r;
             startTime = Time.time;
-            if (insideLoop)
-            {
-                loopOrientation = Quaternion.AngleAxis(180, Vector3.forward);
-            }
+            zComponentOfHorizontal = Vector3.Dot(currentForward, Vector3.forward);
+            //xComponentOfHorizontal = 
         }
 
-        GameObject go = new GameObject();
         public float centerX;
         public float centerY;
-        public float z;
+        public float centerZ;
         public float omega;
         public float r;
         float startTime;
         bool insideLoop;
-        private Quaternion loopOrientation = Quaternion.identity;
+        private float zComponentOfHorizontal = 1;
         private float phase = (float) -Math.PI/2;
 
         public override Vector3 newPos()
         {
-            return new Vector3(r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime) + phase) + centerY, z);
+            return new Vector3((1-zComponentOfHorizontal) * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime) + phase) + centerY, zComponentOfHorizontal * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerZ);
         }
 
         public override Quaternion newRot()
         {
-            //go.transform.rotation = Quaternion.AngleAxis(-omega * (Time.time - startTime) * 180f / (float)Math.PI + 180, Vector3.up) * Quaternion.AngleAxis(-30, Vector3.forward);
-            go.transform.rotation = Quaternion.AngleAxis(90, Vector3.up)  * Quaternion.AngleAxis(-omega * (Time.time - startTime) * 180f / (float)Math.PI + 180, Vector3.right) * loopOrientation;
-            return go.transform.rotation;
+            return Quaternion.LookRotation(-new Vector3((float)(-(1 - zComponentOfHorizontal) * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -newPos() + new Vector3(centerX, centerY, centerZ));
         }
     }
 }
