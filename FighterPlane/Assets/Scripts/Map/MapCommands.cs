@@ -114,8 +114,6 @@ public class MapCommands : MonoBehaviour {
         {
             target = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(hitInfo.point);
         }
-
-        Debug.Log(string.Format("{0:0.000000} {1:0.000000}", target.x, target.y));
         return target;
     }
 
