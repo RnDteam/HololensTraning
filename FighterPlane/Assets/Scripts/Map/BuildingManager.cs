@@ -90,8 +90,6 @@ public partial class BuildingManager : Singleton<BuildingManager>
             if (IsBuildingSelected)
             {
                 SetBuilding(selectedBuilding, false);
-                selectedBuilding.GetComponent<InteractibleBuilding>().Unselect();
-                selectedBuilding.GetComponent<BuildingDisplay>().HideInfo();
             }
             
             selectedBuilding = gameObject;

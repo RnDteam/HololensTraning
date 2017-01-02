@@ -33,6 +33,7 @@ public class MapCommands : MonoBehaviour {
             var motionvector = Camera.main.transform.TransformVector(GestureManager.Instance.NavigationPosition);
             MoveMap(motionvector);
         }
+        GetGazePosition();
     }
 
     private void MoveMap(Vector3 direction)
@@ -60,6 +61,7 @@ public class MapCommands : MonoBehaviour {
 
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
+        building.gameObject.layer = 31;
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
         var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
         buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
@@ -83,14 +85,38 @@ public class MapCommands : MonoBehaviour {
 
     public void ZoomIn()
     {
-        if (onlineMaps.zoom < limits.maxZoom)
-            onlineMaps.zoom++;
+        ZoomToGaze(1);
     }
 
     public void ZoomOut()
     {
-        if (onlineMaps.zoom > limits.minZoom)
-            onlineMaps.zoom--;
+        ZoomToGaze(-1);
+    }
+
+    private void ZoomToGaze(int zoomDifference)
+    {
+        if (onlineMaps.zoom >= limits.maxZoom)
+            return;
+
+        var target = GetGazePosition();
+        onlineMaps.SetPositionAndZoom(target.x, target.y, onlineMaps.zoom + zoomDifference);
+    }
+    
+    private Vector2 GetGazePosition()
+    {
+        double lng, lat;
+        onlineMaps.GetPosition(out lng, out lat);
+        Vector2 target = new Vector2((float)lng, (float)lat);
+
+        RaycastHit hitInfo;
+        bool hit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, LayerMask.GetMask("Map"));
+        if (hit)
+        {
+            target = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(hitInfo.point);
+        }
+
+        Debug.Log(string.Format("{0:0.000000} {1:0.000000}", target.x, target.y));
+        return target;
     }
 
     public void ZoomToBuilding()
