@@ -4,30 +4,46 @@ using UnityEngine;
 public class InteractibleBuilding : MonoBehaviour {
 
     private Renderer buildingRenderer;
-    private bool previousSelection = false;
+
+    [Tooltip("Displays the building information.")]
     public GameObject TextHolder;
-    private bool InfoVisibility = false;
+
+    public Color SelectedBuildingColor;
+
+    private string name = string.Empty;
+
+    #region for debug
+    //private bool isSelected = false;
 
     public bool IsSelected = false;
-    public BuildingManager buildingManager;
+    private bool sentToBuildingManager = false;
+    #endregion
+
 
     private void Start()
     {
         buildingRenderer = GetComponent<Renderer>();
+        SetText();
     }
 
     private void Update()
     {
-        if (IsSelected != previousSelection)
+        if (IsSelected && !sentToBuildingManager)
         {
-            UpdateSelection();
+            OnSelect();
+            sentToBuildingManager = true;
         }
-        previousSelection = IsSelected;
+        if (!IsSelected && sentToBuildingManager)
+        {
+            OnSelect();
+            sentToBuildingManager = false;
+        }
     }
 
+    #region select
     private void UpdateSelection()
     {
-        buildingManager.SelectBuilding(gameObject);
+        BuildingManager.Instance.SelectBuilding(gameObject);
     }
 
     private void SetColor(Color color)
@@ -40,42 +56,63 @@ public class InteractibleBuilding : MonoBehaviour {
 
     public void Select()
     {
+        //isSelected = true;
+        SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
         IsSelected = true;
-        previousSelection = true;
-        SetColor(Color.red);
     }
 
     public void Unselect()
     {
-        IsSelected = false;
-        previousSelection = false;
+        //isSelected = false;
         SetColor(Color.white);
+        IsSelected = false;
     }
 
     void OnSelect()
     {
-        IsSelected = !IsSelected;
+        BuildingManager.Instance.SelectBuilding(gameObject);
     }
-
+    #endregion
+    
+    #region info
     void SetText()
     {
         var buildingInfo = GetComponent<OnlineMapsBuildingBase>().metaInfo;
-        if (buildingInfo.Any(p => p.title == "name:en"))
-            TextHolder.GetComponent<TextMesh>().text = buildingInfo.Single(p => p.title == "name:en").info;
-        else TextHolder.GetComponent<TextMesh>().text = "General Building";
+        if (buildingInfo.Any(p => p.title == "name"))
+            name = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
+        else name = ReverseHebrewName("בניין כללי");
     }
 
     public void ShowInfo()
     {
-        if (TextHolder.GetComponent<TextMesh>().text == string.Empty)
-        {
-            SetText();
-        }
-        TextHolder.SetActive(true);
+        TextHolder.GetComponent<TextMesh>().text = name;
     }
 
     public void HideInfo()
     {
-        TextHolder.SetActive(false);
+        TextHolder.GetComponent<TextMesh>().text = string.Empty;
     }
+    #endregion
+
+    #region string utils
+    static string ReverseHebrewName(string s)
+    {
+        if (s.Any(c => IsHebrew(c)))
+        {
+            return Reverse(s);
+        }
+        return s;
+    }
+
+    static string Reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        return new string(charArray.Reverse().ToArray());
+    }
+
+    static bool IsHebrew(char c)
+    {
+        return "אבגדהוזחטיכלמנסעפצקרשתךםןףץ".Contains(c);
+    }
+    #endregion
 }

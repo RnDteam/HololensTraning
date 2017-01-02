@@ -34,8 +34,9 @@ namespace HoloToolkit.Unity
 
         public PlaneManager planeManager;
 
-        private GestureRecognizer gestureRecognizer;
+        public GestureRecognizer gestureRecognizer { get; private set; }
         private GameObject focusedObject;
+
 
         public bool IsNavigating { get; private set; }
 
@@ -48,7 +49,8 @@ namespace HoloToolkit.Unity
 
             gestureRecognizer.SetRecognizableGestures(
                 GestureSettings.Tap |
-                GestureSettings.NavigationX);
+                GestureSettings.NavigationX |
+                GestureSettings.NavigationZ);
 
             gestureRecognizer.TappedEvent += GestureRecognizer_TappedEvent;
 
@@ -96,7 +98,9 @@ namespace HoloToolkit.Unity
             {
                 // If the currently focused object doesn't match the old focused object, cancel the current gesture.
                 // Start looking for new gestures.  This is to prevent applying gestures from one hologram to another.
-                gestureRecognizer.CancelGestures();
+
+                //canceled due to buildings that stop map movement.
+                //gestureRecognizer.CancelGestures();
                 gestureRecognizer.StartCapturingGestures();
             }
         }
