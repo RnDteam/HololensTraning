@@ -24,8 +24,8 @@ namespace Assets.Scripts.Physics
 
         public DoLoop(Vector3 currentPosition, float omega = 0.5f, float r = 2, bool insideLoop = true)
         {
-            centerX = currentPosition.x - r;
-            centerY = currentPosition.y;
+            centerX = currentPosition.x;
+            centerY = currentPosition.y + r;
             z = currentPosition.z;
             this.omega = omega;
             this.r = r;
@@ -37,24 +37,25 @@ namespace Assets.Scripts.Physics
         }
 
         GameObject go = new GameObject();
-        float centerX;
-        float centerY;
-        float z;
-        float omega;
-        float r;
+        public float centerX;
+        public float centerY;
+        public float z;
+        public float omega;
+        public float r;
         float startTime;
         bool insideLoop;
         private Quaternion loopOrientation = Quaternion.identity;
+        private float phase = (float) -Math.PI/2;
 
         public override Vector3 newPos()
         {
-            return new Vector3(r * (float)Math.Cos(omega * (Time.time - startTime)) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime)) + centerY, z);
+            return new Vector3(r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime) + phase) + centerY, z);
         }
 
         public override Quaternion newRot()
         {
             //go.transform.rotation = Quaternion.AngleAxis(-omega * (Time.time - startTime) * 180f / (float)Math.PI + 180, Vector3.up) * Quaternion.AngleAxis(-30, Vector3.forward);
-            go.transform.rotation = Quaternion.AngleAxis(90, Vector3.up)  * Quaternion.AngleAxis(-omega * (Time.time - startTime) * 180f / (float)Math.PI + 90, Vector3.right) * loopOrientation;
+            go.transform.rotation = Quaternion.AngleAxis(90, Vector3.up)  * Quaternion.AngleAxis(-omega * (Time.time - startTime) * 180f / (float)Math.PI + 180, Vector3.right) * loopOrientation;
             return go.transform.rotation;
         }
     }

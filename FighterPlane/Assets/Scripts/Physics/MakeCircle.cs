@@ -29,11 +29,11 @@ namespace Assets.Scripts.Physics
         }
 
         GameObject go = new GameObject();
-        float centerX;
-        float height;
-        float centerZ;
-        float omega;
-        float r;
+        public float centerX;
+        public float height;
+        public float centerZ;
+        public float omega;
+        public float r;
         float startTime;
 
         public override Vector3 newPos()
