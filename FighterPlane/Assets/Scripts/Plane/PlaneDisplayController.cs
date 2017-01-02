@@ -24,6 +24,8 @@ public class PlaneDisplayController : MonoBehaviour {
     public  Color defaultColor;
     public GameObject planeInfo;
     public GameObject lackOfGasAlert;
+    public GameObject planeCamera;
+    public GameObject pilotCamera;
 
     private GameObject wings;
     private GameObject mainbody;
@@ -55,6 +57,18 @@ public class PlaneDisplayController : MonoBehaviour {
 			DisplayUpdatedInfo();
 		}
     }
+
+    #region Plane's Camera
+    public void ShowPilotView()
+    {
+        pilotCamera.SetActive(true);
+    }
+
+    public void ShowPlaneView()
+    {
+        planeCamera.SetActive(true);
+    }
+    #endregion
 
     #region Plane's Gas
     private void HandleGasAmount()
