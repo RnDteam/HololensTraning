@@ -1,38 +1,74 @@
-﻿using System;
+﻿using HoloToolkit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour {
+public class BuildingManager : Singleton<BuildingManager> 
+{
+    protected BuildingManager() { }
 
-    private List<GameObject> selectedBuildings;
-
-    private void Start()
+    private GameObject selectedBuilding = null;
+    public bool infoVisiblity = false;
+    
+    public GameObject SelectedBuilding
     {
-        selectedBuildings = new List<GameObject>();
+        get
+        {
+            return selectedBuilding;
+        }
+    }
+
+    public bool IsBuildingSelected
+    {
+        get
+        {
+            return SelectedBuilding != null;
+        }
     }
 
     public void SelectBuilding(GameObject gameObject)
     {
-        if (selectedBuildings.Contains(gameObject))
+        if (selectedBuilding == gameObject)
         {
-            gameObject.GetComponent<InteractibleBuilding>().Unselect();
-            selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().HideInfo());
-            selectedBuildings.Remove(gameObject);
+            selectedBuilding.GetComponent<InteractibleBuilding>().Unselect();
+            selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
+            selectedBuilding = null;
         }
         else
         {
-            if (selectedBuildings.Count > 0)
+            if (selectedBuilding != null)
             {
-                selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().Unselect());
-                selectedBuildings.ForEach(b => b.GetComponent<InteractibleBuilding>().HideInfo());
-                selectedBuildings.RemoveRange(0, selectedBuildings.Count);
+                selectedBuilding.GetComponent<InteractibleBuilding>().Unselect();
+                selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
             }
 
-            gameObject.GetComponent<InteractibleBuilding>().Select();
-            gameObject.GetComponent<InteractibleBuilding>().ShowInfo();
-            selectedBuildings.Add(gameObject);
+            selectedBuilding = gameObject;
+            selectedBuilding.GetComponent<InteractibleBuilding>().Select();
+
+            if (infoVisiblity)
+            {
+                selectedBuilding.GetComponent<InteractibleBuilding>().ShowInfo();
+            }
+        }
+    }
+
+    public void ShowInfo()
+    {
+        infoVisiblity = true;
+        if (IsBuildingSelected)
+        {
+            selectedBuilding.GetComponent<InteractibleBuilding>().ShowInfo();
+        }
+    }
+
+    public void HideInfo()
+    {
+        infoVisiblity = false;
+        if (IsBuildingSelected)
+        {
+            selectedBuilding.GetComponent<InteractibleBuilding>().HideInfo();
         }
     }
 }
