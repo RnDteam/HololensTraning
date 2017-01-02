@@ -9,7 +9,7 @@ public class InteractibleBuilding : MonoBehaviour {
     public GameObject TextHolder;
 
     public Color SelectedBuildingColor;
-
+    
     #region for debug
     //private bool isSelected = false;
 

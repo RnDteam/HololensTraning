@@ -10,10 +10,11 @@ public class LocationSync : MonoBehaviour {
     private Vector2 coords;
 
     private void Update () {
-        coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.TransformPoint(transform.position));
-        Longitude = coords.x;
-        Latitude = coords.y;
-        Altitude = CalculateHeight();
+        LocationManager.Instance.GetCoordsByWorldPosition(transform, out Latitude, out Longitude, out Altitude);
+        //coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.TransformPoint(transform.position));
+        //Longitude = coords.x;
+        //Latitude = coords.y;
+        //Altitude = CalculateHeight();
     }
 
     private double CalculateHeight()

@@ -68,7 +68,7 @@ public class PlaneManager : MonoBehaviour {
     }
 
     void Update () {
-        RotatePlaneByHandGesture();
+        //RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
     }
 
