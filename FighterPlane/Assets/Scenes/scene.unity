@@ -1180,7 +1180,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 150}
-          m_MethodName: AnimatePlane
+          m_MethodName: BeginFlight
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1498,7 +1498,41 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Grand Canyon
+  - Keyword: Do Loop
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 150}
+          m_MethodName: DoLoop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: Elude
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 150}
+          m_MethodName: Escape
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: grand canyon
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1521,6 +1555,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 147}
           m_MethodName: SelectHouse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: Do Circle
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 150}
+          m_MethodName: DoCircle
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2144,8 +2195,8 @@ EllipsoidParticleEmitter:
   m_Emit: 1
   minSize: 0.03
   maxSize: 0.03
-  minEnergy: 5
-  maxEnergy: 5
+  minEnergy: 1
+  maxEnergy: 1
   minEmission: 200
   maxEmission: 200
   worldVelocity: {x: 0, y: 0, z: 0}
@@ -2669,7 +2720,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4281906467290694, guid: 5262573197b6be24a8d7c3725fba7e3c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.5
+      value: 5.52
       objectReference: {fileID: 0}
     - target: {fileID: 4281906467290694, guid: 5262573197b6be24a8d7c3725fba7e3c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3144,6 +3195,7 @@ GameObject:
   - component: {fileID: 1737447586}
   - component: {fileID: 1737447580}
   - component: {fileID: 1737447579}
+  - component: {fileID: 1737447581}
   m_Layer: 9
   m_Name: HerculesB
   m_TagString: Untagged
@@ -3182,6 +3234,17 @@ MonoBehaviour:
   lackOfGasAlert: {fileID: 1285686278}
   planeCamera: {fileID: 376200430}
   pilotCamera: {fileID: 765711609}
+--- !u!114 &1737447581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061ce6344bb300d4692e66691e63ee1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1737447582
 BoxCollider:
   m_ObjectHideFlags: 0
