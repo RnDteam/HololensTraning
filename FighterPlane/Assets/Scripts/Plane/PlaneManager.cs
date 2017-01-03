@@ -29,6 +29,8 @@ public class PlaneManager : MonoBehaviour {
     private bool easterEnabled = false;
 
     private float rotationFactor;
+    private Vector3 defaultScale;
+    private int defaultZoom;
 
     void Start () {
         // Default Selection
@@ -43,6 +45,33 @@ public class PlaneManager : MonoBehaviour {
             {
                 gameObject.GetComponent<Animator>().Stop();
             }
+        }
+
+        defaultScale = planes[0].transform.localScale;
+        defaultZoom = OnlineMaps.instance.zoom;
+        OnlineMaps.instance.OnChangeZoom += Function;
+        OnlineMaps.instance.OnChangePosition += Function2;
+    }
+
+    private void Function2()
+    {
+        foreach (var plane in planes)
+        {
+            var newPosition = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
+            plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
+        }
+    }
+
+    private void Function()
+    {
+        var zoomDifference = OnlineMaps.instance.zoom - defaultZoom;
+        var scaleFactor = (float)Math.Pow(2, zoomDifference);
+        foreach (var plane in planes)
+        {
+            plane.transform.localScale = scaleFactor * defaultScale;
+
+            plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
+            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * scaleFactor, plane.transform.localPosition.z);
         }
     }
 

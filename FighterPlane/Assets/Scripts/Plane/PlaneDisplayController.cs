@@ -27,6 +27,9 @@ public class PlaneDisplayController : MonoBehaviour {
     public GameObject planeCamera;
     public GameObject pilotCamera;
 
+    public Vector2 coords;
+    public float localHeight;
+
     private GameObject wings;
     private GameObject mainbody;
    
@@ -56,6 +59,9 @@ public class PlaneDisplayController : MonoBehaviour {
             
 			DisplayUpdatedInfo();
 		}
+
+        localHeight = transform.localPosition.y;
+        coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.position);
     }
 
     #region Plane's Camera
