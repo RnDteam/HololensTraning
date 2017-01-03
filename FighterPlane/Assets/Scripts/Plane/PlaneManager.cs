@@ -49,11 +49,11 @@ public class PlaneManager : MonoBehaviour {
 
         defaultScale = planes[0].transform.localScale;
         defaultZoom = OnlineMaps.instance.zoom;
-        OnlineMaps.instance.OnChangeZoom += Function;
-        OnlineMaps.instance.OnChangePosition += Function2;
+        OnlineMaps.instance.OnChangeZoom += ChangeZoom;
+        OnlineMaps.instance.OnChangePosition += ChangePosition;
     }
 
-    private void Function2()
+    private void ChangePosition()
     {
         foreach (var plane in planes)
         {
@@ -62,7 +62,7 @@ public class PlaneManager : MonoBehaviour {
         }
     }
 
-    private void Function()
+    private void ChangeZoom()
     {
         var zoomDifference = OnlineMaps.instance.zoom - defaultZoom;
         var scaleFactor = (float)Math.Pow(2, zoomDifference);

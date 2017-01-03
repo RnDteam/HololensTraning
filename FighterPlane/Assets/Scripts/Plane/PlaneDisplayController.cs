@@ -34,6 +34,8 @@ public class PlaneDisplayController : MonoBehaviour {
     private GameObject mainbody;
    
     private PhysicsParameters pParams;
+
+    public bool IsVisible;
     
     void Start () {
         // Assigning wings and plane body for color purposes
@@ -44,6 +46,15 @@ public class PlaneDisplayController : MonoBehaviour {
         IsGasAlertActive = false;
         selectedColor = Color.blue;
         ConvertColors(defaultColor);
+
+        if (MapCommands.Instance.Contains(coords))
+        {
+            IsVisible = true;
+        }
+        else
+        {
+            SetVisibility(false);
+        }
     }
 
     void Update()
@@ -62,6 +73,32 @@ public class PlaneDisplayController : MonoBehaviour {
 
         localHeight = transform.localPosition.y;
         coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.position);
+
+        if (IsVisible && !MapCommands.Instance.Contains(coords))
+        {
+            SetVisibility(false);
+        }
+        else if (!IsVisible && MapCommands.Instance.Contains(coords))
+        {
+            SetVisibility(true);
+        }
+    }
+
+    public void SetVisibility(bool value)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<MeshRenderer>() != null)
+            {
+                child.GetComponent<MeshRenderer>().enabled = value;
+                continue;
+            }
+            if (child.GetComponent<ParticleRenderer>())
+            {
+                child.GetComponent<ParticleRenderer>().enabled = value;
+            }
+        }
+        IsVisible = value;
     }
 
     #region Plane's Camera
