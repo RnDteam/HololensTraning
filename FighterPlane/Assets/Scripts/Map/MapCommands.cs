@@ -20,7 +20,7 @@ public class MapCommands : MonoBehaviour {
         onlineMaps = OnlineMaps.instance;
         buildings = OnlineMapsBuildings.instance;
         limits = GetComponent<OnlineMapsLimits>();
-
+        
         //onlineMaps.OnChangePosition += PositionChanged;
 
         buildings.OnBuildingCreated += InitializeBuilding;

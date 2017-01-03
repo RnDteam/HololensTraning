@@ -1,10 +1,13 @@
-﻿using System;
+﻿using HoloToolkit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GroundGenerator : MonoBehaviour {
+public delegate void GroundMeshCreated();
+
+public partial class GroundGenerator : Singleton<GroundGenerator> {
 
     private OnlineMapsTileSetControl OnlineMaps;
     private Mesh newMesh;
@@ -14,6 +17,17 @@ public class GroundGenerator : MonoBehaviour {
     public Material BaseMaterial;
     public LineRenderer TopMargins;
     public LineRenderer BottomMargins;
+    public float maxY = 0;
+
+    public event GroundMeshCreated MeshCreated;
+
+    protected virtual void OnMeshCreated()
+    {
+        if (MeshCreated != null)
+        {
+            MeshCreated();
+        }
+    }
 
     void Start()
     {
@@ -64,6 +78,8 @@ public class GroundGenerator : MonoBehaviour {
             Quaternion.identity, Vector3.one, new Type[] { typeof(MeshFilter), typeof(MeshRenderer) });
         newGameObject.GetComponent<MeshFilter>().mesh = newMesh;
         newGameObject.GetComponent<MeshRenderer>().material = BaseMaterial;
+
+        OnMeshCreated();
     }
 
     private GameObject CreateNewGameObject(Transform parent, string name, Vector3 localPosition, Quaternion localRotation, Vector3 localScale, Type[] components)
@@ -82,11 +98,12 @@ public class GroundGenerator : MonoBehaviour {
 
         float minX, maxX = minX = Vertices.ElementAt(0).x;
         float minZ, maxZ = minZ = Vertices.ElementAt(0).z;
-
+        
         foreach (var v in distinctVetrices)
         {
             if (v.x > maxX) maxX = v.x;
             if (v.x < minX) minX = v.x;
+            if (v.y > maxY) maxY = v.y;
             if (v.z > maxZ) maxZ = v.z;
             if (v.z < minZ) minZ = v.z;
         }
