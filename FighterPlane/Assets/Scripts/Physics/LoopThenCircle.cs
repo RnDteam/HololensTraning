@@ -8,37 +8,39 @@ namespace Assets.Scripts.Physics
 {
     class LoopThenCircle : Maneuver
     {
-        public LoopThenCircle(Vector3 currentPos, Vector3 currentForward, float loopOmega = 0.5f, float loopR = 2, float circleOmega = 0.5f, float circleR = 2)
+        public LoopThenCircle(Vector3 currentPos, Vector3 currentForward, float loopOmega = GlobalManager.defaultLoopOmega, float loopRadius = GlobalManager.defaultLoopRadius, float circleOmega = GlobalManager.defaultCircleOmega, float circleRadius = GlobalManager.defaultCircleRadius)
         {
-
-            currentManeuver = new DoLoop(currentPos, currentForward, loopOmega, loopR);
+            canInterrupt = false;
+            executedManeuver = new DoLoop(currentPos, currentForward, loopOmega, loopRadius);
             startTime = Time.time;
             this.loopOmega = loopOmega;
             this.circleOmega = circleOmega;
-            this.circleR = circleR;
+            this.circleRadius = circleRadius;
         }
 
         float circleOmega;
-        float circleR;
+        float circleRadius;
         float loopOmega;
-        Maneuver currentManeuver;
+        Maneuver executedManeuver;
         float startTime;
 
-        bool stillInLoop = true;
-
-        public override Vector3 newPos()
+        public override void UpdateState()
         {
-            if (stillInLoop && loopOmega * (Time.time - startTime) >= 2 * Math.PI)
+            if (!canInterrupt && loopOmega * (Time.time - startTime) >= 2 * Math.PI)
             {
-                currentManeuver = new MakeCircle(currentManeuver.newPos(), currentManeuver.newRot() * Vector3.right, circleOmega, circleR);
-                stillInLoop = false;
+                executedManeuver = new MakeCircle(executedManeuver.UpdateWorldPosition(), executedManeuver.UpdateWorldRotation() * Vector3.right, circleOmega, circleRadius);
+                canInterrupt = true;
             }
-            return currentManeuver.newPos();
         }
 
-        public override Quaternion newRot()
+        public override Vector3 UpdateWorldPosition()
         {
-            return currentManeuver.newRot();
+            return executedManeuver.UpdateWorldPosition();
+        }
+
+        public override Quaternion UpdateWorldRotation()
+        {
+            return executedManeuver.UpdateWorldRotation();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Assets.Scripts.Physics
         float startTime;
         int stage = 0;// there are three "stages": the 180 roll, the half loop, and the flight out of the loop
 
-        public override Vector3 newPos()
+        public override Vector3 UpdateWorldPosition()
         {
             if (stage == 0)
             {
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Physics
             return currentPosition;
         }
 
-        public override Quaternion newRot()
+        public override Quaternion UpdateWorldRotation()
         {
             if(stage == 0)
             {

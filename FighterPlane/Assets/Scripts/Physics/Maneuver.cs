@@ -8,8 +8,9 @@ namespace Assets.Scripts.Physics
 {
     public abstract class Maneuver
     {
-        public bool isEnabled = false;
-        public abstract Vector3 newPos();
-        public abstract Quaternion newRot();
+        public bool canInterrupt = true;
+        public abstract Vector3 UpdateWorldPosition();
+        public abstract Quaternion UpdateWorldRotation();
+        public virtual void UpdateState() { return; }
     }
 }
