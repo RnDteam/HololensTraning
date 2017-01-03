@@ -1,4 +1,5 @@
 ﻿using HoloToolkit;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public partial class BuildingManager : Singleton<BuildingManager>
     private GameObject selectedBuilding = null;
     private string selectedBuildingId = null;
     private Vector2 selectedBuildingCoords;
+    public ArrayList desroidBuildingsList = new ArrayList();
 
     public string BuildingKeyword;
 
@@ -90,7 +92,7 @@ public partial class BuildingManager : Singleton<BuildingManager>
             {
                 SetBuilding(selectedBuilding, false);
             }
-            
+
             selectedBuilding = gameObject;
             selectedBuilding.GetComponent<OnlineMapsBuildingBase>().OnDispose += buildingDisposed;
             selectedBuildingId = selectedBuilding.GetComponent<OnlineMapsBuildingBase>().id;

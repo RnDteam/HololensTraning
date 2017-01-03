@@ -16,14 +16,23 @@ public class BuildingDisplay : MonoBehaviour {
     {
         buildingRenderer = GetComponent<Renderer>();
         SetText();
+        if (BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
+        {
+            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+        }
     }
 
     #region Selection
     public void Select()
     {
         SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
-        var explosion = ReplaceInParent(ExplosionPrefab);
-        var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+        if (!BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
+        {
+            var explosion = ReplaceInParent(ExplosionPrefab);
+            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+            BuildingManager.Instance.desroidBuildingsList.Add(gameObject.GetComponent<OnlineMapsBuildingBase>().id);
+        }
+
     }
 
     public void Unselect()
