@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HoloToolkit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace Academy.HoloToolkit.Unity
     /// Edit -> Project Settings -> Player -> Settings for Windows Store -> Publishing Settings -> Capabilities
     /// or in your Visual Studio Package.appxmanifest capabilities.
     /// </summary>
-    public class KeywordManager : MonoBehaviour
+    public partial class KeywordManager : Singleton<KeywordManager>
     {
 
         [System.Serializable]
@@ -66,6 +67,31 @@ namespace Academy.HoloToolkit.Unity
             }
         }
 
+        void Restart()
+        {
+            if (KeywordsAndResponses.Length > 0)
+            {
+                keywordRecognizer.Dispose();
+
+                // Convert the struct array into a dictionary, with the keywords and the keys and the methods as the values.
+                // This helps easily link the keyword recognized to the UnityEvent to be invoked.
+                responses = KeywordsAndResponses.ToDictionary(keywordAndResponse => keywordAndResponse.Keyword,
+                                                              keywordAndResponse => keywordAndResponse.Response);
+
+                keywordRecognizer = new KeywordRecognizer(responses.Keys.ToArray());
+                keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+
+                if (RecognizerStart == RecognizerStartBehavior.AutoStart)
+                {
+                    keywordRecognizer.Start();
+                }
+            }
+            else
+            {
+                Debug.LogError("Must have at least one keyword specified in the Inspector on " + gameObject.name + ".");
+            }
+        }
+
         void OnDestroy()
         {
             if (keywordRecognizer != null)
@@ -83,6 +109,7 @@ namespace Academy.HoloToolkit.Unity
             // Check to make sure the recognized keyword exists in the methods dictionary, then invoke the corresponding method.
             if (responses.TryGetValue(args.text, out keywordResponse))
             {
+                BuildingManager.Instance.BuildingKeyword = args.text;
                 keywordResponse.Invoke();
             }
         }
@@ -109,6 +136,38 @@ namespace Academy.HoloToolkit.Unity
             {
                 keywordRecognizer.Stop();
             }
+        }
+
+        public void AddKeywordAndResponse(string keyword, UnityEvent response)
+        {
+            if (KeywordsAndResponses.Any(kar => kar.Keyword == keyword))
+            {
+                return;
+            }
+            var NewKeywordsAndResponses = new KeywordAndResponse[KeywordsAndResponses.Length + 1];
+            for (int i = 0; i< KeywordsAndResponses.Length; i++)
+            {
+                NewKeywordsAndResponses[i] = KeywordsAndResponses[i];
+            }
+            NewKeywordsAndResponses[KeywordsAndResponses.Length] = new KeywordAndResponse() { Keyword = keyword, Response = response };
+            KeywordsAndResponses = NewKeywordsAndResponses;
+            Restart();
+        }
+
+        public void RemoveKeyword(string keyword)
+        {
+            if (KeywordsAndResponses.All(kar => kar.Keyword != keyword))
+            {
+                return;
+            }
+            var NewKeywordsAndResponses = new KeywordAndResponse[KeywordsAndResponses.Length - 1];
+            for (int i = 0, j = 0; i < KeywordsAndResponses.Length; i++)
+            {
+                if (KeywordsAndResponses[i].Keyword != keyword)
+                    NewKeywordsAndResponses[j++] = KeywordsAndResponses[i];
+            }
+            KeywordsAndResponses = NewKeywordsAndResponses;
+            Restart();
         }
     }
 }
