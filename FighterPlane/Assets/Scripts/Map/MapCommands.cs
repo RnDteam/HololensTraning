@@ -1,7 +1,5 @@
-﻿using System;
-using HoloToolkit.Unity;
+﻿using HoloToolkit.Unity;
 using UnityEngine;
-using UnityEngine.VR.WSA.Input;
 
 public class MapCommands : MonoBehaviour {
 
@@ -13,7 +11,6 @@ public class MapCommands : MonoBehaviour {
 
     public Color SelectedBuildingColor;
     public GameObject TextPrefab;
-    private int function;
 
     private void Start()
     {
@@ -81,6 +78,16 @@ public class MapCommands : MonoBehaviour {
                 BuildingManager.Instance.ReselectBuilding(building.gameObject);
             }
         }
+    }
+
+    private void AddBuildingKeyword(string keyword, string buildingId)
+    {
+
+    }
+
+    private void RemoveBuildingKeyword(string buildingId)
+    {
+
     }
 
     public void ZoomIn()
