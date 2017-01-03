@@ -14,6 +14,8 @@ public class MapCommands : MonoBehaviour {
 
     public Color SelectedBuildingColor;
     public GameObject TextPrefab;
+    public GameObject ExplosionPrefab;
+    public GameObject RuinBuildingPrefab;
 
     private void Start()
     {
@@ -65,6 +67,8 @@ public class MapCommands : MonoBehaviour {
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
         var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
         buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
+        buildingDisplay.ExplosionPrefab = ExplosionPrefab;
+        buildingDisplay.RuinBuildingPrefab = RuinBuildingPrefab;
 
         var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
         textHolder.transform.parent = building.gameObject.transform;

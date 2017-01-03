@@ -6,6 +6,8 @@ public class BuildingDisplay : MonoBehaviour {
     [Tooltip("Displays the building information.")]
     public GameObject TextHolder;
     public Color SelectedBuildingColor = Color.cyan;
+    public GameObject ExplosionPrefab;
+    public GameObject RuinBuildingPrefab;
 
     private Renderer buildingRenderer;
     private string text = string.Empty;
@@ -20,6 +22,14 @@ public class BuildingDisplay : MonoBehaviour {
     public void Select()
     {
         SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
+        var explosion = ReplaceInParent(ExplosionPrefab);
+        var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+
+        gameObject.GetComponent<InteractibleBuilding>().IsSelected = false;
+        CopyComponent(gameObject.GetComponent<OnlineMapsBuildingBuiltIn>(), ruinBuilding);
+        CopyComponent(gameObject.GetComponent<InteractibleBuilding>(), ruinBuilding);
+
+        //Destroy(gameObject, ExplosionPrefab.GetComponent<Detonator>().destroyTime);
     }
 
     public void Unselect()
@@ -35,6 +45,31 @@ public class BuildingDisplay : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region destroy building
+    Component CopyComponent(Component original, GameObject destination)
+    {
+        System.Type type = original.GetType();
+        Component copy = destination.AddComponent(type);
+        // Copied fields can be restricted with BindingFlags
+        System.Reflection.FieldInfo[] fields = type.GetFields();
+        foreach (System.Reflection.FieldInfo field in fields)
+        {
+            field.SetValue(copy, field.GetValue(original));
+        }
+        return copy;
+    }
+
+    private GameObject ReplaceInParent(GameObject prefab)
+    {
+        var gameObject = Instantiate(prefab, transform);
+        gameObject.transform.localPosition = Vector3.zero;
+        gameObject.transform.localRotation = transform.localRotation;
+        gameObject.transform.localScale = transform.localScale;
+        buildingRenderer.enabled = false;
+        return gameObject;
+    }
     #endregion
 
     #region info
