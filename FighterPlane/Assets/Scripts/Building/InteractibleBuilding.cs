@@ -32,20 +32,18 @@ public class InteractibleBuilding : MonoBehaviour {
     }
 
     #region select
-    private void UpdateSelection()
-    {
-        BuildingManager.Instance.SelectBuilding(gameObject);
-    }
 
+    //TODO: For Debug only
     public void Select()
     {
-        display.Select();
+        //display.Select();
         IsSelected = true;
     }
 
+    //TODO: For Debug only
     public void Unselect()
     {
-        display.Unselect();
+        //display.Unselect();
         IsSelected = false;
     }
 

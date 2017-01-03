@@ -57,7 +57,7 @@ public partial class BuildingManager : Singleton<BuildingManager>
 
         if (select)
         {
-            building.GetComponent<InteractibleBuilding>().Select();
+            building.GetComponent<InteractibleBuilding>().Select(); //TODO: delete after debug
             building.GetComponent<BuildingDisplay>().Select();
             if (infoVisiblity)
             {
@@ -66,7 +66,7 @@ public partial class BuildingManager : Singleton<BuildingManager>
         }
         else
         {
-            building.GetComponent<InteractibleBuilding>().Unselect();
+            building.GetComponent<InteractibleBuilding>().Unselect(); //TODO: delete after debug
             building.GetComponent<BuildingDisplay>().Unselect();
             building.GetComponent<BuildingDisplay>().HideInfo();
         }
@@ -78,7 +78,7 @@ public partial class BuildingManager : Singleton<BuildingManager>
         {
             return;
         }
-        //if we're selecting the selected building
+        //if we're selecting the selected building == unselcting a building
         if (IsBuildingSelected && selectedBuildingId == gameObject.GetComponent<OnlineMapsBuildingBase>().id)
         {
             SetBuilding(selectedBuilding, false);
