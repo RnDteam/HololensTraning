@@ -25,9 +25,9 @@ public class BuildingDisplay : MonoBehaviour {
         var explosion = ReplaceInParent(ExplosionPrefab);
         var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
 
-        gameObject.GetComponent<InteractibleBuilding>().IsSelected = false;
-        CopyComponent(gameObject.GetComponent<OnlineMapsBuildingBuiltIn>(), ruinBuilding);
-        CopyComponent(gameObject.GetComponent<InteractibleBuilding>(), ruinBuilding);
+        //gameObject.GetComponent<InteractibleBuilding>().IsSelected = false;
+        //CopyComponent(gameObject.GetComponent<OnlineMapsBuildingBuiltIn>(), ruinBuilding);
+        //CopyComponent(gameObject.GetComponent<InteractibleBuilding>(), ruinBuilding);
 
         //Destroy(gameObject, ExplosionPrefab.GetComponent<Detonator>().destroyTime);
     }
