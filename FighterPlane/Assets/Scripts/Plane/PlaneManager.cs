@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using HoloToolkit.Unity;
 using System.Collections.Generic;
+using Assets.Scripts.Physics;
+using Assets.Scripts.Plane;
 
 public class PlaneManager : MonoBehaviour {
 
@@ -73,6 +75,7 @@ public class PlaneManager : MonoBehaviour {
     void Update () {
         //RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
+
     }
 
     // Selecting planes using voice commands
@@ -225,4 +228,39 @@ public class PlaneManager : MonoBehaviour {
         easterEnabled = !easterEnabled;
     }
     #endregion
+
+    private void AddManeuver(Maneuver man)
+    {
+        selectedPlane.GetComponent<ManeuverController>().SetManeuver(man);
+    }
+
+    public void DoCircle()
+    {
+        AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.right));
+    }
+
+    public void DoLoop()
+    {
+        AddManeuver(new DoLoop(selectedPlane.transform.position, selectedPlane.transform.forward));
+    }
+
+    public void Escape()
+    {
+        AddManeuver(new LoopThenCircle(selectedPlane.transform.position, selectedPlane.transform.forward));
+    }
+
+    public void BeginFlight()
+    {
+        if (!selectedPlane.GetComponent<ManeuverController>().hasManeuvered)
+        {
+            AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.right));
+        }
+    }
+
+    /*
+    public void DoSplitS()
+    {
+        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
+    }
+    */
 }
