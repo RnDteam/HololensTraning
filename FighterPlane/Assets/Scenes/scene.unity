@@ -1583,6 +1583,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+  - Keyword: uninitialized
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 147}
+          m_MethodName: SelectBuildingVoiceCommand
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!114 &143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,6 +1661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311e3b5b68020e43b15045f95d95884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuildingKeyword: 
   infoVisiblity: 0
 --- !u!114 &150
 MonoBehaviour:
@@ -1882,8 +1900,8 @@ MonoBehaviour:
   useWebplayerProxy: 1
   webplayerProxyURL: http://service.infinity-code.com/redirect.php?
   width: 0
-  latitude: 32.786444
-  longitude: 35.004722
+  latitude: 32.787312
+  longitude: 34.959676
   _position: {x: 0, y: 0}
   _zoom: 17
   _activeTypeSettings: 
@@ -1957,6 +1975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311e3b5b68020e43b15045f95d95884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuildingKeyword: 
   infoVisiblity: 0
 --- !u!114 &169
 MonoBehaviour:

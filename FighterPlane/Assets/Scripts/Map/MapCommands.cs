@@ -1,5 +1,8 @@
-﻿using HoloToolkit.Unity;
+﻿using Academy.HoloToolkit.Unity;
+using HoloToolkit.Unity;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MapCommands : MonoBehaviour {
 
@@ -77,6 +80,14 @@ public class MapCommands : MonoBehaviour {
                 building.gameObject.SetActive(true);
                 BuildingManager.Instance.ReselectBuilding(building.gameObject);
             }
+        }
+
+        if (building.metaInfo.Any(p => p.title == "name:en"))
+        {
+            UnityEvent ue = KeywordManager.Instance.KeywordsAndResponses.Single(kar => kar.Keyword == "uninitialized").Response;
+            var keyword = building.metaInfo.Single(p => p.title == "name:en").info;
+            KeywordManager.Instance.AddKeywordAndResponse(keyword, ue);
+            building.OnDispose += (b) => KeywordManager.Instance.RemoveKeyword(keyword);
         }
     }
 

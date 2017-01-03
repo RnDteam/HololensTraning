@@ -1,4 +1,5 @@
 ﻿using HoloToolkit;
+using System.Linq;
 using UnityEngine;
 
 public partial class BuildingManager : Singleton<BuildingManager> 
@@ -6,6 +7,8 @@ public partial class BuildingManager : Singleton<BuildingManager>
     private GameObject selectedBuilding = null;
     private string selectedBuildingId = null;
     private Vector2 selectedBuildingCoords;
+
+    public string BuildingKeyword;
 
     #region properties
     public bool infoVisiblity = false;
@@ -125,8 +128,12 @@ public partial class BuildingManager : Singleton<BuildingManager>
         }
     }
 
-    private void SelectBuildingById(string id)
+    public void SelectBuildingById(string id)
     {
+        if (id == null)
+        {
+            return;
+        }
         if (OnlineMapsBuildings.instance.buildings.ContainsKey(id))
         {
             SelectBuilding(OnlineMapsBuildings.instance.buildings[id].gameObject);
@@ -135,6 +142,46 @@ public partial class BuildingManager : Singleton<BuildingManager>
         {
             selectedBuildingId = id;
             selectedBuilding = null;
+        }
+    }
+        
+    private string GetValue(OnlineMapsBuildingBase building, string attribute)
+    {
+        if (building.metaInfo.Count(p => p.title == attribute) == 1)
+        {
+            return building.metaInfo.Single(p => p.title == attribute).info;
+        }
+        return null;
+    }
+
+    private string NameToId(string name)
+    {
+        if (OnlineMapsBuildings.instance.buildings.Count(b => GetValue(b.Value, "name:en") == name) == 1) {
+            return (OnlineMapsBuildings.instance.buildings.Single(b => GetValue(b.Value, "name:en") == name).Value).id;
+        }
+        return null;
+    }
+
+    private bool BuildingIsReachable(string name)
+    {
+        return NameToId(name) != null;
+    }
+
+    public void SelectBuildingVoiceCommand()
+    {
+        Debug.Log("BuildingKeyword = " + BuildingKeyword);
+        if (BuildingKeyword != null)
+        {
+            var id = NameToId(BuildingKeyword);
+            if (id == null)
+            {
+                Debug.Log("Building not found!");
+            }
+            else
+            {
+                Debug.Log("BuildingID = " + id);
+                SelectBuildingById(id);
+            }
         }
     }
 
