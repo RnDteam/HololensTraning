@@ -12,7 +12,7 @@ namespace Assets.Scripts.Physics
         {
             this.centerX = centerX;
             this.centerY = centerY;
-            this.centerZ = z;
+            centerZ = z;
             this.omega = omega;
             this.r = r;
             startTime = Time.time;
@@ -26,8 +26,8 @@ namespace Assets.Scripts.Physics
             this.omega = omega;
             this.r = r;
             startTime = Time.time;
-            zComponentOfHorizontal = Vector3.Dot(currentForward, Vector3.forward);
-            //xComponentOfHorizontal = 
+            zComponentOfHorizontal = Vector3.Dot(-currentForward, Vector3.forward);
+            xComponentOfHorizontal = Vector3.Dot(-currentForward, Vector3.right);
         }
 
         public float centerX;
@@ -38,16 +38,18 @@ namespace Assets.Scripts.Physics
         float startTime;
         bool insideLoop;
         private float zComponentOfHorizontal = 1;
+        private float xComponentOfHorizontal = 0;
         private float phase = (float) -Math.PI/2;
 
         public override Vector3 newPos()
         {
-            return new Vector3((1-zComponentOfHorizontal) * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime) + phase) + centerY, zComponentOfHorizontal * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerZ);
+            return new Vector3(xComponentOfHorizontal * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime) + phase) + centerY, zComponentOfHorizontal * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerZ);
         }
 
         public override Quaternion newRot()
         {
-            return Quaternion.LookRotation(-new Vector3((float)(-(1 - zComponentOfHorizontal) * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -newPos() + new Vector3(centerX, centerY, centerZ));
+            //the minus sign on the "forward" vector is because our herculese model's "forward" vector is towards the tail; I don't understand why the "upwards" vector is AWAY from the center of the circle, but that is the only way to make it work
+            return Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -newPos() + new Vector3(centerX, centerY, centerZ));
         }
     }
 }
