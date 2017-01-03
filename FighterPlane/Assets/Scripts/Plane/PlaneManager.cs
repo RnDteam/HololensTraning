@@ -65,17 +65,16 @@ public class PlaneManager : MonoBehaviour {
 
     private void ChangeZoom()
     {
-        var zoomDifference = OnlineMaps.instance.zoom - defaultZoom;
-        var previousZoomDifference = OnlineMaps.instance.zoom - previousZoom;
+        var absoluteScaleFactor = (float)Math.Pow(2, OnlineMaps.instance.zoom - defaultZoom);
+        var currentScaleFactor = (float)Math.Pow(2, OnlineMaps.instance.zoom - previousZoom);
         previousZoom = OnlineMaps.instance.zoom;
-        var scaleFactor = (float)Math.Pow(2, zoomDifference);
-        var heightScaleFactor = (float)Math.Pow(2, previousZoomDifference);
+
         foreach (var plane in planes)
         {
-            plane.transform.localScale = scaleFactor * defaultScale;
+            plane.transform.localScale = absoluteScaleFactor * defaultScale;
 
             plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
-            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * heightScaleFactor, plane.transform.localPosition.z);
+            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * currentScaleFactor, plane.transform.localPosition.z);
         }
     }
 
