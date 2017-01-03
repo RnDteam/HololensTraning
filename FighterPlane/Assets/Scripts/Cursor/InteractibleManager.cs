@@ -1,4 +1,5 @@
 ﻿using HoloToolkit;
+using HoloToolkit.Unity;
 using UnityEngine;
 
 /// <summary>
