@@ -1,8 +1,4 @@
 ﻿using HoloToolkit;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public partial class BuildingManager : Singleton<BuildingManager> 
@@ -127,5 +123,28 @@ public partial class BuildingManager : Singleton<BuildingManager>
         {
             selectedBuilding.GetComponent<BuildingDisplay>().HideInfo();
         }
+    }
+
+    private void SelectBuildingById(string id)
+    {
+        if (OnlineMapsBuildings.instance.buildings.ContainsKey(id))
+        {
+            SelectBuilding(OnlineMapsBuildings.instance.buildings[id].gameObject);
+        }
+        else
+        {
+            selectedBuildingId = id;
+            selectedBuilding = null;
+        }
+    }
+
+    public void SelectGrandCanyon()
+    {
+        SelectBuildingById("39383661");
+    }
+
+    public void SelectHouse()
+    {
+        SelectBuildingById("183294007");
     }
 }
