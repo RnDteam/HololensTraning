@@ -254,6 +254,11 @@ public class PlaneManager : MonoBehaviour {
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.right));
     }
 
+    public void AttackBuilding()
+    {
+        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, BuildingManager.Instance.SelectedBuildingCoords));
+    }
+
     /*
     public void DoSplitS()
     {
