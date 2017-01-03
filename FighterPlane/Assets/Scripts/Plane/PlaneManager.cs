@@ -239,6 +239,7 @@ public class PlaneManager : MonoBehaviour {
     {
         easterEnabled = !easterEnabled;
     }
+    #endregion
 
     private void AddManeuver(Maneuver man)
     {
