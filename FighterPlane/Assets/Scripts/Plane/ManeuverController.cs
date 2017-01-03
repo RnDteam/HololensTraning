@@ -11,14 +11,16 @@ namespace Assets.Scripts.Plane
     {
 
         private Maneuver maneuver;
-        public bool hasManeuvered = false;
+        private bool hasBegunFlight = false;
+        private bool canFly = false;
 
-        public int SetManeuver(Maneuver man)
+        public int SetManeuver(Maneuver newManeuver)
         {
-            hasManeuvered = true;
-            if (maneuver == null || maneuver.canInterrupt)
+            canFly = canFly || newManeuver is BeginFlightManeuver;
+            if (canFly && (maneuver == null || maneuver.canInterrupt) && !(hasBegunFlight && newManeuver is BeginFlightManeuver))
             {
-                maneuver = man;
+                hasBegunFlight = true;
+                maneuver = newManeuver;
                 return 0;
             }
             return 1;
@@ -29,8 +31,8 @@ namespace Assets.Scripts.Plane
             if(maneuver != null)
             {
                 maneuver.UpdateState();
-                gameObject.transform.position = maneuver.UpdateWorldPosition();
-                gameObject.transform.rotation = maneuver.UpdateWorldRotation();
+                gameObject.transform.position = maneuver.CalculateWorldPosition();
+                gameObject.transform.rotation = maneuver.CalculateWorldRotation();
             }
         }
     }

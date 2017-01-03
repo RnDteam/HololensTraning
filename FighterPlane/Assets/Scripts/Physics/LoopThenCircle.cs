@@ -28,19 +28,19 @@ namespace Assets.Scripts.Physics
         {
             if (!canInterrupt && loopOmega * (Time.time - startTime) >= 2 * Math.PI)
             {
-                executedManeuver = new MakeCircle(executedManeuver.UpdateWorldPosition(), executedManeuver.UpdateWorldRotation() * Vector3.right, circleOmega, circleRadius);
+                executedManeuver = new MakeCircle(executedManeuver.CalculateWorldPosition(), executedManeuver.CalculateWorldRotation() * Vector3.right, circleOmega, circleRadius);
                 canInterrupt = true;
             }
         }
 
-        public override Vector3 UpdateWorldPosition()
+        public override Vector3 CalculateWorldPosition()
         {
-            return executedManeuver.UpdateWorldPosition();
+            return executedManeuver.CalculateWorldPosition();
         }
 
-        public override Quaternion UpdateWorldRotation()
+        public override Quaternion CalculateWorldRotation()
         {
-            return executedManeuver.UpdateWorldRotation();
+            return executedManeuver.CalculateWorldRotation();
         }
     }
 }

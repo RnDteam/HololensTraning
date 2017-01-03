@@ -229,9 +229,9 @@ public class PlaneManager : MonoBehaviour {
     }
     #endregion
 
-    private void AddManeuver(Maneuver man)
+    private void AddManeuver(Maneuver newManeuver)
     {
-        selectedPlane.GetComponent<ManeuverController>().SetManeuver(man);
+        selectedPlane.GetComponent<ManeuverController>().SetManeuver(newManeuver);
     }
 
     public void DoCircle()
@@ -251,10 +251,7 @@ public class PlaneManager : MonoBehaviour {
 
     public void BeginFlight()
     {
-        if (!selectedPlane.GetComponent<ManeuverController>().hasManeuvered)
-        {
-            AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.right));
-        }
+        AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.right));
     }
 
     /*

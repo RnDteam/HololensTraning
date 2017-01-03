@@ -42,7 +42,7 @@ namespace Assets.Scripts.Physics
         float xComponentOfHorizontal = 0;
         float phase = (float) -Math.PI/2;
 
-        public override Vector3 UpdateWorldPosition()
+        public override Vector3 CalculateWorldPosition()
         {
             //calculate the new position based on the parametric equation for circular motion:
             //
@@ -58,14 +58,14 @@ namespace Assets.Scripts.Physics
             return new Vector3(xComponentOfHorizontal * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerX, r * (float)Math.Sin(omega * (Time.time - startTime) + phase) + centerY, zComponentOfHorizontal * r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerZ);
         }
 
-        public override Quaternion UpdateWorldRotation()
+        public override Quaternion CalculateWorldRotation()
         {
             //Calculate the "forward" direction by taking the derivative of the position with respect to time, removing factors shared
             //by all components of the vector like r and omega
             //The minus sign in front of the vector is because our Hercules model's "forward" direction is in the direction of the tail
             //I don't know why the "upward" direction is AWAY from the center of the circle instead of TOWARDS the center of the circle,
             //but that is the only way to make it work.
-            return Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -UpdateWorldPosition() + new Vector3(centerX, centerY, centerZ));
+            return Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -CalculateWorldPosition() + new Vector3(centerX, centerY, centerZ));
         }
     }
 }
