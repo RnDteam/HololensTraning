@@ -256,7 +256,7 @@ public class PlaneManager : MonoBehaviour {
 
     public void AttackBuilding()
     {
-        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, BuildingManager.Instance.SelectedBuildingCoords));
+        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.right, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords)));
     }
 
     /*
