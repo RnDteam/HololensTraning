@@ -2193,28 +2193,6 @@ Prefab:
       propertyPath: m_Name
       value: HerculesA
       objectReference: {fileID: 0}
-    - target: {fileID: 102209469422753172, guid: 5262573197b6be24a8d7c3725fba7e3c,
-        type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941381302471770, guid: 5262573197b6be24a8d7c3725fba7e3c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941381302471770, guid: 5262573197b6be24a8d7c3725fba7e3c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 15.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941381302471770, guid: 5262573197b6be24a8d7c3725fba7e3c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 43.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 102169791373271426, guid: 5262573197b6be24a8d7c3725fba7e3c,
-        type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5262573197b6be24a8d7c3725fba7e3c, type: 2}
   m_IsPrefabParent: 0
@@ -3290,6 +3268,8 @@ GameObject:
   - component: {fileID: 1737447580}
   - component: {fileID: 1737447579}
   - component: {fileID: 1737447581}
+  - component: {fileID: 1737447588}
+  - component: {fileID: 1737447587}
   m_Layer: 9
   m_Name: HerculesB
   m_TagString: Untagged
@@ -3503,6 +3483,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1737447587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b231be613e092d469219ca84b9f1281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapon: 0
+--- !u!114 &1737447588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5998e5437da9e64d84110ae35ff45d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  planes: []
+  planesDistance: {fileID: 0}
+  distanceLine: {fileID: 0}
+  lineColor: {r: 0, g: 0, b: 0, a: 0}
+  AlertDome_1: {fileID: 0}
+  PlaneVisibilityWhenOffMap: 1
+  RotationSensitivity: 10
 --- !u!1001 &1907127474
 Prefab:
   m_ObjectHideFlags: 0
@@ -3512,15 +3523,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4160679381989666, guid: b18d2b72f5944de4aa76360f90c85d41, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 15.6
       objectReference: {fileID: 0}
     - target: {fileID: 4160679381989666, guid: b18d2b72f5944de4aa76360f90c85d41, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 4160679381989666, guid: b18d2b72f5944de4aa76360f90c85d41, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 60.7
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4160679381989666, guid: b18d2b72f5944de4aa76360f90c85d41, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3541,10 +3552,6 @@ Prefab:
     - target: {fileID: 4160679381989666, guid: b18d2b72f5944de4aa76360f90c85d41, type: 2}
       propertyPath: m_RootOrder
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1142321821411312, guid: b18d2b72f5944de4aa76360f90c85d41, type: 2}
-      propertyPath: m_Name
-      value: TextHolder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b18d2b72f5944de4aa76360f90c85d41, type: 2}

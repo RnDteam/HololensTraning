@@ -4,6 +4,8 @@ using HoloToolkit.Unity;
 using Assets.Scripts.Physics;
 using Assets.Scripts.Plane;
 using HoloToolkit;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class PlaneManager : Singleton<PlaneManager>
 {
@@ -108,11 +110,14 @@ public partial class PlaneManager : Singleton<PlaneManager>
         text.text = Math.Round((planes[(int)PLANES.PlaneA].transform.position - planes[(int)PLANES.PlaneB].transform.position).magnitude, 2) + " km";
     }
 
+    private IEnumerable<GameObject> GetPlanesWithWeapon(Weapon weapon)
+    {
+        return planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon == weapon);
+    }
+
     void Update()
     {
-        //RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
-
     }
 
     // Selecting planes using voice commands

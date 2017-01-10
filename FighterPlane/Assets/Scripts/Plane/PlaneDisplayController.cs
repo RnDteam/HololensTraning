@@ -150,7 +150,7 @@ public class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = pParams.ToString() + "\n" + "Gas Amount(Liters): " + gasAmount.ToString("000.0");
+        planeInfo.GetComponent<TextMesh>().text = "Weapon: " + GetComponent<PlaneWeapon>().Weapon.ToString() + "\n" + pParams.ToString() + "\n" + "Gas Amount(Liters): " + gasAmount.ToString("000.0");
     }
 
     public void HidePlaneInfo()
