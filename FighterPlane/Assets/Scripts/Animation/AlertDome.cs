@@ -22,7 +22,7 @@ public class AlertDome : MonoBehaviour
         {
             this.GetComponent<Renderer>().material = ActiveAlertDome;
             this.GetComponent<AudioSource>().Play();
-            ShowAlert();
+            this.GetComponent<Renderer>().enabled = true; ;
         }
     }
 

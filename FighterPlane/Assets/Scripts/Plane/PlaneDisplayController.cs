@@ -2,9 +2,11 @@
 using System.Collections;
 using System;
 
-public class PlaneDisplayController : MonoBehaviour {
-    
-    public bool IsInfoShown {
+public class PlaneDisplayController : MonoBehaviour
+{
+
+    public bool IsInfoShown
+    {
         get;
         private set;
     }
@@ -21,7 +23,7 @@ public class PlaneDisplayController : MonoBehaviour {
     public float gasAmount = 100;
 
     private Color selectedColor;
-    public  Color defaultColor;
+    public Color defaultColor;
     public GameObject planeInfo;
     public GameObject lackOfGasAlert;
     public GameObject planeCamera;
@@ -32,7 +34,7 @@ public class PlaneDisplayController : MonoBehaviour {
 
     private GameObject wings;
     private GameObject mainbody;
-   
+
     private PhysicsParameters pParams;
 
     public bool IsVisible;
@@ -61,10 +63,10 @@ public class PlaneDisplayController : MonoBehaviour {
     {
         // Update Gas Amount
         HandleGasAmount();
-        
+
         // Calculate inforamtion only if text is shown
         if (IsInfoShown)
-		{
+        {
             // Calculate physics information
             pParams.UpdatePhysics(transform);
             
@@ -101,18 +103,6 @@ public class PlaneDisplayController : MonoBehaviour {
         IsVisible = value;
     }
 
-    #region Plane's Camera
-    public void ShowPilotView()
-    {
-        pilotCamera.SetActive(true);
-    }
-
-    public void ShowPlaneView()
-    {
-        planeCamera.SetActive(true);
-    }
-    #endregion
-
     #region Plane's Gas
     private void HandleGasAmount()
     {
@@ -122,7 +112,7 @@ public class PlaneDisplayController : MonoBehaviour {
         if (gasAmount <= GlobalManager.GasThreshold)
         {
             // todo will be changed if found a better way to avoid boolea parameter
-            if(!IsGasAlertActive)
+            if (!IsGasAlertActive)
             {
                 IsGasAlertActive = true;
                 lackOfGasAlert.GetComponent<MeshRenderer>().enabled = true;
@@ -140,7 +130,7 @@ public class PlaneDisplayController : MonoBehaviour {
 
     public void DeselectPlane()
     {
-		ConvertColors(defaultColor);
+        ConvertColors(defaultColor);
     }
 
     private void ConvertColors(Color color)
@@ -153,7 +143,7 @@ public class PlaneDisplayController : MonoBehaviour {
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = this.name + "\n" +pParams.ToString() 
+        planeInfo.GetComponent<TextMesh>().text = this.name + "\n" + pParams.ToString()
                                                             + "\n" + "Gas Amount(Liters): " + this.gasAmount.ToString("000.0");
     }
 
