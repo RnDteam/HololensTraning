@@ -27,6 +27,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public Color lineColor;
     public GameObject AlertDome_1;
 
+    public bool PlaneVisibilityWhenOffMap = true;
+
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
     private bool easterEnabled = false;

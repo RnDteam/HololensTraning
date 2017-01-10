@@ -48,8 +48,8 @@ public class PlaneDisplayController : MonoBehaviour
         IsGasAlertActive = false;
         selectedColor = Color.blue;
         ConvertColors(defaultColor);
-
-        if (MapCommands.Instance.Contains(coords))
+        
+        if (PlaneManager.Instance.PlaneVisibilityWhenOffMap || MapCommands.Instance.Contains(coords))
         {
             IsVisible = true;
         }
@@ -76,13 +76,16 @@ public class PlaneDisplayController : MonoBehaviour
         localHeight = transform.localPosition.y;
         coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.position);
 
-        if (IsVisible && !MapCommands.Instance.Contains(coords))
+        if (!PlaneManager.Instance.PlaneVisibilityWhenOffMap)
         {
-            //SetVisibility(false);
-        }
-        else if (!IsVisible && MapCommands.Instance.Contains(coords))
-        {
-            SetVisibility(true);
+            if (IsVisible && !MapCommands.Instance.Contains(coords))
+            {
+                SetVisibility(false);
+            }
+            else if (!IsVisible && MapCommands.Instance.Contains(coords))
+            {
+                SetVisibility(true);
+            }
         }
     }
 
