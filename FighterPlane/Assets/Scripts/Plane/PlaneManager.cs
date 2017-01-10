@@ -317,6 +317,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
         }
         return position;
     }
+
     public void AttackBuilding()
     {
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.right, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords)));
@@ -327,4 +328,5 @@ public partial class PlaneManager : Singleton<PlaneManager>
     {
         AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
     }
+    */
 }

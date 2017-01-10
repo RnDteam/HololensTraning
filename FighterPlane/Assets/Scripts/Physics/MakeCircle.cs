@@ -72,9 +72,7 @@ namespace Assets.Scripts.Physics
 
         public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
         {
-            var heightRelativeToSurface = relativeTransform.InverseTransformPoint(new Vector3 { y = height }).y;
-            heightRelativeToSurface *= currentZoomRatio;
-            height = relativeTransform.TransformPoint(new Vector3 { y = heightRelativeToSurface }).y;
+            height = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, height);
 
             r *= MapMovement.Instance.CurrentZoomRatio;
         }

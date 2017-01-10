@@ -54,5 +54,23 @@ namespace Assets.Scripts.Physics
         {
             return orientation;
         }
+
+        public override Vector3 GetCenter()
+        {
+            return endPoint;
+        }
+
+        public override void UpdateOnMapMoved(Vector3 movementVector)
+        {
+            startPoint += movementVector;
+            endPoint += movementVector;
+        }
+
+        public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
+        {
+            startPoint.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, startPoint.y);
+            endPoint.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, endPoint.y);
+        }
+
     }
 }

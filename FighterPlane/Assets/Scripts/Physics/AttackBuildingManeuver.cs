@@ -15,7 +15,6 @@ namespace Assets.Scripts.Physics
             AttackCoords = CoordsToAttack;
             AttackCoords.y = AttackCoords.y + GlobalManager.heightAboveBuildingToAttack;
             this.flightSpeed = flightSpeed;
-            initialCoords = currentPosition;
             this.radius = radius;
             this.omega = omega;
             startTime = Time.time;
@@ -23,8 +22,7 @@ namespace Assets.Scripts.Physics
         }
 
         Vector3 AttackCoords;
-        Vector3 initialCoords;
-        Vector3 finalCoords;
+        Vector3 finalCoords = new Vector3();
         Maneuver executedManeuver;
         float flightSpeed;
         float startTime;
@@ -56,7 +54,7 @@ namespace Assets.Scripts.Physics
                 //BoomBuilding();
                 executedManeuver = new MakeCircle(position, rotation * Vector3.right, omega, radius);
             }
-            if(stage == 2 && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, initialCoords.z)) < permissibleAngleErrorDegrees)
+            if(stage == 2 && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)
             {
                 stage = 3;
                 executedManeuver = new StraightFlightManeuver(position, finalCoords, flightSpeed, Quaternion.LookRotation(-(finalCoords - position), Vector3.up));
@@ -76,6 +74,25 @@ namespace Assets.Scripts.Physics
         public override Quaternion CalculateWorldRotation()
         {
             return executedManeuver.CalculateWorldRotation();
+        }
+
+        public override Vector3 GetCenter()
+        {
+            return executedManeuver.GetCenter();
+        }
+
+        public override void UpdateOnMapMoved(Vector3 movementVector)
+        {
+            AttackCoords += movementVector;
+            finalCoords += movementVector;
+            executedManeuver.UpdateOnMapMoved(movementVector);
+        }
+
+        public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
+        {
+            AttackCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, AttackCoords.y);
+            finalCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, finalCoords.y);
+            executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
         }
     }
 }
