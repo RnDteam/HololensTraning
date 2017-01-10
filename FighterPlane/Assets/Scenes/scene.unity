@@ -1945,6 +1945,10 @@ MonoBehaviour:
   MovementFactor: 0.25
   SelectedBuildingColor: {r: 0, g: 1, b: 1, a: 0}
   TextPrefab: {fileID: 1796454134989534, guid: 2121e1e8a12c5e24ebd4094ec7a3180d, type: 2}
+  ExplosionPrefab: {fileID: 1708663654794822, guid: 36a637b29c88a1549bef931dc3e0f126,
+    type: 2}
+  RuinBuildingPrefab: {fileID: 1641480235678074, guid: 065b32f58e4def94c891e70d455b3ce0,
+    type: 2}
 --- !u!114 &164
 MonoBehaviour:
   m_ObjectHideFlags: 0
