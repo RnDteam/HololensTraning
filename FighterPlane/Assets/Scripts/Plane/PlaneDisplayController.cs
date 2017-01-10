@@ -35,8 +35,6 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
         pParams = new PhysicsParameters(transform);
         IsGasAlertActive = false;
-        selectedColor = Color.blue;
-        ConvertColors(defaultColor);
         
         if (PlaneManager.Instance.PlaneVisibilityWhenOffMap || MapCommands.Instance.Contains(coords))
         {

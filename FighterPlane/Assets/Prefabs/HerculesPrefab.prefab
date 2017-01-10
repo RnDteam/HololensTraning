@@ -434,8 +434,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -2.67, y: 5.5, z: -3.15}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.7600012, y: 5.5, z: 2.800002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4340762139302194}
@@ -777,7 +777,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1564992813933612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -953,7 +953,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.5, z: 2}
+  m_Size: {x: 2, y: 1.52, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &81035345365902888
 AudioListener:
@@ -1208,6 +1208,9 @@ MonoBehaviour:
   planeCamera: {fileID: 1997051470565346}
   pilotCamera: {fileID: 1716896504390062}
   gasAmount: 180
+  coords: {x: 0, y: 0}
+  localHeight: 0
+  IsVisible: 0
   defaultColor: {r: 0.7794118, g: 0.5092757, b: 0.19485295, a: 0}
   planeModel: {fileID: 1740555580184952}
 --- !u!114 &114808915961465096
