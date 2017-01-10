@@ -13,7 +13,7 @@ public partial class MapMovement : Singleton<MapMovement> {
     public float CurrentZoomRatio { get; private set; }
 
     private Vector2 previousCoords;
-    public Vector3 MovementVector;
+    public Vector3 MovementVector { get; private set; }
 
     #region events
     public event MapMoved Moved;
