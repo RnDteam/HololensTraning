@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using Assets.Scripts.Physics;
 using Assets.Scripts.Plane;
 
-public class PlaneManager : MonoBehaviour {
+public class PlaneManager : MonoBehaviour
+{
 
-    private enum PLANES {
+    private enum PLANES
+    {
         PlaneA,
         PlaneB
     }
@@ -16,7 +18,8 @@ public class PlaneManager : MonoBehaviour {
     // Indexes of selected and previous planes
     private GameObject selectedPlane;
     private GameObject previousPlane;
-    private GameObject selectedCamera;
+    private GameObject currentCam;
+    public GameObject mainCamera;
 
     // Planes objects array
     public GameObject[] planes;
@@ -32,10 +35,11 @@ public class PlaneManager : MonoBehaviour {
 
     private float rotationFactor;
 
-    void Start () {
+    void Start()
+    {
         // Default Selection
         selectedPlane = planes[(int)PLANES.PlaneA];
-        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
+        currentCam = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
 
         InitializeDistanceLine();
 
@@ -59,7 +63,7 @@ public class PlaneManager : MonoBehaviour {
 
         HideDistance();
     }
-    
+
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
         lr.SetPosition(0, planes[(int)PLANES.PlaneA].transform.position);
@@ -72,7 +76,8 @@ public class PlaneManager : MonoBehaviour {
         text.text = Math.Round((planes[(int)PLANES.PlaneA].transform.position - planes[(int)PLANES.PlaneB].transform.position).magnitude, 2) + " km";
     }
 
-    void Update () {
+    void Update()
+    {
         //RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
 
@@ -131,13 +136,14 @@ public class PlaneManager : MonoBehaviour {
     }
     #endregion
 
+    #region Plane Sounds
     public void PlaySounds()
     {
         if (previousPlane)
         {
             previousPlane.GetComponent<AudioSource>().Pause();
         }
-        
+
         if (easterEnabled)
         {
             GetComponent<AudioSource>().Play();
@@ -147,6 +153,7 @@ public class PlaneManager : MonoBehaviour {
             selectedPlane.GetComponent<AudioSource>().Play();
         }
     }
+    #endregion
 
     private void RotatePlaneByHandGesture()
     {
@@ -196,32 +203,46 @@ public class PlaneManager : MonoBehaviour {
     #region Plane Camera 
     public void ShowPilotView()
     {
-        selectedPlane.GetComponent<PlaneDisplayController>().ShowPilotView();
+        // Deselecting the old currentCam
+        DisableCamera(currentCam);
 
-        // Deselecting the old selectedCamera
-        selectedCamera.SetActive(false);
-
-        // Updating selectedCamera
-        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().planeCamera;
+        // Updating currentCam
+        currentCam = EnableCamera(selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera);
     }
 
     public void ShowPlaneView()
     {
-        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneView();
+        // Deselecting the old currentCam
+        DisableCamera(currentCam);
 
-        // Deselecting the old selectedCamera
-        selectedCamera.SetActive(false);
-
-        // Updating selectedCamera
-        selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().planeCamera;
+        // Updating currentCam
+        currentCam = EnableCamera(selectedPlane.GetComponent<PlaneDisplayController>().planeCamera);
     }
 
     public void ShowGroundView()
     {
-        selectedCamera.SetActive(false);
+        DisableCamera(currentCam);
+
+        EnableCamera(mainCamera);
+    }
+
+    private GameObject EnableCamera(GameObject cam)
+    {
+        cam.GetComponent<Camera>().enabled = true;
+        cam.GetComponent<AudioListener>().enabled = true;
+
+        return cam;
+    }
+
+    private void DisableCamera(GameObject cam)
+    {
+        mainCamera.GetComponent<AudioListener>().enabled = false;
+
+        cam.GetComponent<Camera>().enabled = false;
+        cam.GetComponent<AudioListener>().enabled = false;
     }
     #endregion
-    
+
     #region Easter Egg
     public void ToggleEasterEgg()
     {
@@ -251,6 +272,7 @@ public class PlaneManager : MonoBehaviour {
 
     public void BeginFlight()
     {
+        PlaySounds();
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.right));
     }
 
