@@ -10,6 +10,6 @@ public class BuildingWeapon : MonoBehaviour {
     void Start () {
         Array values = Enum.GetValues(typeof(Weapon));
         System.Random random = new System.Random();
-        Weapon = (Weapon)values.GetValue(random.Next(values.Length));
+        Weapon = (Weapon)values.GetValue(random.Next(values.Length)); 
     }
 }
