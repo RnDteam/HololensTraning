@@ -16,9 +16,12 @@ public class BuildingDisplay : MonoBehaviour {
     {
         buildingRenderer = GetComponent<Renderer>();
         SetText();
-        if (BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
+        try
         {
-            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+            RuinBuildingIfBomed();
+        } catch
+        {
+            Debug.Log("Couldn't ruin building " + gameObject.GetComponent<OnlineMapsBuildingBase>().id);
         }
     }
 
@@ -26,12 +29,7 @@ public class BuildingDisplay : MonoBehaviour {
     public void Select()
     {
         SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
-        if (!BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
-        {
-            var explosion = ReplaceInParent(ExplosionPrefab);
-            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
-            BuildingManager.Instance.desroidBuildingsList.Add(gameObject.GetComponent<OnlineMapsBuildingBase>().id);
-        }
+        BoomBuilding();
 
     }
 
@@ -51,6 +49,24 @@ public class BuildingDisplay : MonoBehaviour {
     #endregion
 
     #region destroy building
+    private void RuinBuildingIfBomed()
+    {
+        if (BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
+        {
+            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+        }
+    }
+
+    private void BoomBuilding()
+    {
+        if (!BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
+        {
+            var explosion = ReplaceInParent(ExplosionPrefab);
+            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+            BuildingManager.Instance.desroidBuildingsList.Add(gameObject.GetComponent<OnlineMapsBuildingBase>().id);
+        }
+    }
+
     private GameObject ReplaceInParent(GameObject prefab)
     {
         var gameObject = Instantiate(prefab, transform);
