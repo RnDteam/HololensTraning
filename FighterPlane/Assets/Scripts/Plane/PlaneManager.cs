@@ -52,8 +52,6 @@ public class PlaneManager : MonoBehaviour {
 
         defaultScale = planes[0].transform.localScale;
         previousZoom = defaultZoom = OnlineMaps.instance.zoom;
-        OnlineMaps.instance.OnChangeZoom += ChangeZoom;
-        OnlineMaps.instance.OnChangePosition += ChangePosition;
     }
 
     private void ChangePosition()
