@@ -1,10 +1,11 @@
-﻿using System;
+﻿using HoloToolkit;
+using System;
 using UnityEngine;
 
 public delegate void MapMoved();
 public delegate void MapZoomChanged();  
 
-public class MapMovement : MonoBehaviour {
+public partial class MapMovement : Singleton<MapMovement> {
 
     public int DefaultZoom { get; private set; }
     public int PreviousZoom { get; private set; }
@@ -60,7 +61,8 @@ public class MapMovement : MonoBehaviour {
         var previousPosition = OnlineMapsTileSetControl.instance.GetWorldPosition(previousCoords);
         SetPosition(out previousCoords);
         var currentPosition = OnlineMapsTileSetControl.instance.GetWorldPosition(previousCoords);
-        MovementVector = currentPosition - previousPosition;
+        MovementVector = previousPosition - currentPosition;
+        OnMapMoved();
     }
 
     private void ChangeZoom()
@@ -68,5 +70,6 @@ public class MapMovement : MonoBehaviour {
         AbsoluteZoomRatio = (float)Math.Pow(2, OnlineMaps.instance.zoom - DefaultZoom);
         CurrentZoomRatio = (float)Math.Pow(2, OnlineMaps.instance.zoom - PreviousZoom);
         PreviousZoom = OnlineMaps.instance.zoom;
+        OnZoomChanged();
     }
 }

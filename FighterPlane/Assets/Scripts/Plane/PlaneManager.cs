@@ -32,8 +32,6 @@ public class PlaneManager : MonoBehaviour {
 
     private float rotationFactor;
     private Vector3 defaultScale;
-    private int defaultZoom;
-    private int previousZoom;
 
     void Start () {
         // Default Selection
@@ -41,6 +39,9 @@ public class PlaneManager : MonoBehaviour {
         selectedCamera = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
 
         InitializeDistanceLine();
+
+        MapMovement.Instance.Moved += ChangePosition;
+        MapMovement.Instance.ZoomChanged += ChangeZoom;
 
         foreach (GameObject plane in planes)
         {
@@ -51,30 +52,27 @@ public class PlaneManager : MonoBehaviour {
         }
 
         defaultScale = planes[0].transform.localScale;
-        previousZoom = defaultZoom = OnlineMaps.instance.zoom;
+        //previousZoom = defaultZoom = OnlineMaps.instance.zoom;
     }
 
     private void ChangePosition()
     {
+        Debug.Log("Map moved " + MapMovement.Instance.MovementVector.ToString());
         foreach (var plane in planes)
         {
-            var newPosition = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
+            var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
             plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
         }
     }
 
     private void ChangeZoom()
     {
-        var absoluteScaleFactor = (float)Math.Pow(2, OnlineMaps.instance.zoom - defaultZoom);
-        var currentScaleFactor = (float)Math.Pow(2, OnlineMaps.instance.zoom - previousZoom);
-        previousZoom = OnlineMaps.instance.zoom;
-
         foreach (var plane in planes)
         {
-            plane.transform.localScale = absoluteScaleFactor * defaultScale;
+            plane.transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
 
             plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
-            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * currentScaleFactor, plane.transform.localPosition.z);
+            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, plane.transform.localPosition.z);
         }
     }
 
