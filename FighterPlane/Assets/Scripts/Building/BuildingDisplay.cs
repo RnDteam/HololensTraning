@@ -53,8 +53,14 @@ public class BuildingDisplay : MonoBehaviour {
     {
         if (BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
         {
-            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+            RuinBuilding();
         }
+    }
+
+    private void RuinBuilding()
+    {
+        var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+        buildingRenderer = ruinBuilding.GetComponent<Renderer>();
     }
 
     private void BoomBuilding()
@@ -62,7 +68,7 @@ public class BuildingDisplay : MonoBehaviour {
         if (!BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
         {
             var explosion = ReplaceInParent(ExplosionPrefab);
-            var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+            RuinBuilding();
             BuildingManager.Instance.desroidBuildingsList.Add(gameObject.GetComponent<OnlineMapsBuildingBase>().id);
         }
     }
