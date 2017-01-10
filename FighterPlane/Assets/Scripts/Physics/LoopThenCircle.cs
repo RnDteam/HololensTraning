@@ -51,5 +51,10 @@ namespace Assets.Scripts.Physics
         {
             circleRadius *= currentZoomRatio;
         }
+
+        public override Vector3 GetCenter()
+        {
+            return executedManeuver.GetCenter();
+        }
     }
 }

@@ -138,6 +138,12 @@ public partial class MapCommands : Singleton<MapCommands> {
         }
     }
     
+    public void ZoomToPlane()
+    {
+        var coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(PlaneManager.Instance.GetPlaneCenter());
+        OnlineMaps.instance.SetPosition(coords.x, coords.y);
+    }
+
     public bool Contains(Vector2 coord)
     {
         return coord.x >= OnlineMaps.instance.topLeftPosition.x && coord.x <= OnlineMaps.instance.bottomRightPosition.x

@@ -82,5 +82,10 @@ namespace Assets.Scripts.Physics
 
             r *= currentZoomRatio;
         }
+
+        public override Vector3 GetCenter()
+        {
+            return new Vector3(centerX, centerY, centerZ);
+        }
     }
 }

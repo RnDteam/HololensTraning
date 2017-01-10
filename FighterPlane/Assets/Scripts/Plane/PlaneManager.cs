@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using HoloToolkit.Unity;
-using System.Collections.Generic;
 using Assets.Scripts.Physics;
 using Assets.Scripts.Plane;
+using HoloToolkit;
 
-public class PlaneManager : MonoBehaviour
+public partial class PlaneManager : Singleton<PlaneManager>
 {
-
     private enum PLANES
     {
         PlaneA,
@@ -308,10 +306,13 @@ public class PlaneManager : MonoBehaviour
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.right));
     }
 
-    /*
-    public void DoSplitS()
+    public Vector3 GetPlaneCenter()
     {
-        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
+        var position = selectedPlane.GetComponent<ManeuverController>().transform.position;
+        if (selectedPlane.GetComponent<ManeuverController>().IsFlying)
+        {
+            position = selectedPlane.GetComponent<ManeuverController>().ManeuverCenter;
+        }
+        return position;
     }
-    */
 }

@@ -9,10 +9,17 @@ namespace Assets.Scripts.Plane
 {
     class ManeuverController : MonoBehaviour
     {
-
         private Maneuver maneuver;
         private bool hasBegunFlight = false;
         private bool canFly = false;
+        
+        public Vector3 ManeuverCenter
+        {
+            get
+            {
+                return maneuver.GetCenter();
+            }
+        }
 
         private void Start()
         {

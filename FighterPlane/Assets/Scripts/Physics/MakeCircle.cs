@@ -78,5 +78,10 @@ namespace Assets.Scripts.Physics
 
             r *= MapMovement.Instance.CurrentZoomRatio;
         }
+
+        public override Vector3 GetCenter()
+        {
+            return new Vector3(centerX, height, centerZ);
+        }
     }
 }
