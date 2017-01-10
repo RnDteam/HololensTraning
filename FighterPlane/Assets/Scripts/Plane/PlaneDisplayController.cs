@@ -2,9 +2,11 @@
 using System.Collections;
 using System;
 
-public class PlaneDisplayController : MonoBehaviour {
-    
-    public bool IsInfoShown {
+public class PlaneDisplayController : MonoBehaviour
+{
+
+    public bool IsInfoShown
+    {
         get;
         private set;
     }
@@ -21,16 +23,21 @@ public class PlaneDisplayController : MonoBehaviour {
     public float gasAmount = 100;
 
     private Color selectedColor;
-    public  Color defaultColor;
+    public Color defaultColor;
     public GameObject planeInfo;
     public GameObject lackOfGasAlert;
     public GameObject planeCamera;
     public GameObject pilotCamera;
 
+    public Vector2 coords;
+    public float localHeight;
+
     private GameObject wings;
     private GameObject mainbody;
-   
+
     private PhysicsParameters pParams;
+
+    public bool IsVisible;
     
     void Start () {
         // Assigning wings and plane body for color purposes
@@ -41,34 +48,63 @@ public class PlaneDisplayController : MonoBehaviour {
         IsGasAlertActive = false;
         selectedColor = Color.blue;
         ConvertColors(defaultColor);
+        
+        if (PlaneManager.Instance.PlaneVisibilityWhenOffMap || MapCommands.Instance.Contains(coords))
+        {
+            IsVisible = true;
+        }
+        else
+        {
+            SetVisibility(false);
+        }
     }
 
     void Update()
     {
         // Update Gas Amount
         HandleGasAmount();
-        
+
         // Calculate inforamtion only if text is shown
         if (IsInfoShown)
-		{
+        {
             // Calculate physics information
             pParams.UpdatePhysics(transform);
             
 			DisplayUpdatedInfo();
 		}
+
+        localHeight = transform.localPosition.y;
+        coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.position);
+
+        if (!PlaneManager.Instance.PlaneVisibilityWhenOffMap)
+        {
+            if (IsVisible && !MapCommands.Instance.Contains(coords))
+            {
+                SetVisibility(false);
+            }
+            else if (!IsVisible && MapCommands.Instance.Contains(coords))
+            {
+                SetVisibility(true);
+            }
+        }
     }
 
-    #region Plane's Camera
-    public void ShowPilotView()
+    public void SetVisibility(bool value)
     {
-        pilotCamera.SetActive(true);
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<MeshRenderer>() != null)
+            {
+                child.GetComponent<MeshRenderer>().enabled = value;
+                continue;
+            }
+            if (child.GetComponent<ParticleRenderer>())
+            {
+                child.GetComponent<ParticleRenderer>().enabled = value;
+            }
+        }
+        IsVisible = value;
     }
-
-    public void ShowPlaneView()
-    {
-        planeCamera.SetActive(true);
-    }
-    #endregion
 
     #region Plane's Gas
     private void HandleGasAmount()
@@ -79,7 +115,7 @@ public class PlaneDisplayController : MonoBehaviour {
         if (gasAmount <= GlobalManager.GasThreshold)
         {
             // todo will be changed if found a better way to avoid boolea parameter
-            if(!IsGasAlertActive)
+            if (!IsGasAlertActive)
             {
                 IsGasAlertActive = true;
                 lackOfGasAlert.GetComponent<MeshRenderer>().enabled = true;
@@ -97,7 +133,7 @@ public class PlaneDisplayController : MonoBehaviour {
 
     public void DeselectPlane()
     {
-		ConvertColors(defaultColor);
+        ConvertColors(defaultColor);
     }
 
     private void ConvertColors(Color color)
@@ -110,7 +146,7 @@ public class PlaneDisplayController : MonoBehaviour {
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = this.name + "\n" +pParams.ToString() 
+        planeInfo.GetComponent<TextMesh>().text = this.name + "\n" + pParams.ToString()
                                                             + "\n" + "Gas Amount(Liters): " + this.gasAmount.ToString("000.0");
     }
 

@@ -9,10 +9,39 @@ namespace Assets.Scripts.Plane
 {
     class ManeuverController : MonoBehaviour
     {
-
         private Maneuver maneuver;
         private bool hasBegunFlight = false;
         private bool canFly = false;
+        
+        public Vector3 ManeuverCenter
+        {
+            get
+            {
+                return maneuver.GetCenter();
+            }
+        }
+
+        private void Start()
+        {
+            MapMovement.Instance.Moved += SetManeuverOnMapMoved;
+            MapMovement.Instance.ZoomChanged += SetManeuverOnZoomChanged;
+        }
+
+        private void SetManeuverOnMapMoved()
+        {
+            if (IsFlying)
+            {
+                maneuver.UpdateOnMapMoved(MapMovement.Instance.MovementVector);
+            }
+        }
+
+        private void SetManeuverOnZoomChanged()
+        {
+            if (IsFlying)
+            {
+                maneuver.UpdateOnZoomChanged(transform.parent, MapMovement.Instance.CurrentZoomRatio, MapMovement.Instance.AbsoluteZoomRatio);
+            }
+        }
 
         public int SetManeuver(Maneuver newManeuver)
         {
@@ -33,6 +62,14 @@ namespace Assets.Scripts.Plane
                 maneuver.UpdateState();
                 gameObject.transform.position = maneuver.CalculateWorldPosition();
                 gameObject.transform.rotation = maneuver.CalculateWorldRotation();
+            }
+        }
+
+        public bool IsFlying
+        {
+            get
+            {
+                return maneuver != null;
             }
         }
     }
