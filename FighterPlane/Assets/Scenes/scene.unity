@@ -1595,12 +1595,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: zoom to plane
+  - Keyword: move to plane
     Response:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 163}
-          m_MethodName: ZoomToPlane
+          m_MethodName: MoveToPlane
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

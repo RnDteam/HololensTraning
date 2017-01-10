@@ -138,7 +138,7 @@ public partial class MapCommands : Singleton<MapCommands> {
         }
     }
     
-    public void ZoomToPlane()
+    public void MoveToPlane()
     {
         var coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(PlaneManager.Instance.GetPlaneCenter());
         OnlineMaps.instance.SetPosition(coords.x, coords.y);
