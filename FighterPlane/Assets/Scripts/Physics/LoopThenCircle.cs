@@ -42,5 +42,15 @@ namespace Assets.Scripts.Physics
         {
             return executedManeuver.CalculateWorldRotation();
         }
+
+        public override void UpdateOnMapMoved()
+        {
+        }
+
+        public override void UpdateOnZoomChanged()
+        {
+            //TODO change somehow
+            circleRadius *= MapMovement.Instance.CurrentZoomRatio;
+        }
     }
 }

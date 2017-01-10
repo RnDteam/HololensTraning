@@ -57,7 +57,6 @@ public class PlaneManager : MonoBehaviour {
 
     private void ChangePosition()
     {
-        Debug.Log("Map moved " + MapMovement.Instance.MovementVector.ToString());
         foreach (var plane in planes)
         {
             var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
@@ -71,8 +70,11 @@ public class PlaneManager : MonoBehaviour {
         {
             plane.transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
 
-            plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
-            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, plane.transform.localPosition.z);
+            if (!plane.GetComponent<ManeuverController>().IsFlying)
+            {
+                plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
+                plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, plane.transform.localPosition.z);
+            }
         }
     }
 

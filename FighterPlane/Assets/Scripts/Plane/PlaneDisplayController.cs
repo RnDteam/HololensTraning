@@ -76,7 +76,7 @@ public class PlaneDisplayController : MonoBehaviour {
 
         if (IsVisible && !MapCommands.Instance.Contains(coords))
         {
-            SetVisibility(false);
+            //SetVisibility(false);
         }
         else if (!IsVisible && MapCommands.Instance.Contains(coords))
         {

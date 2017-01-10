@@ -59,5 +59,17 @@ namespace Assets.Scripts.Physics
             }
             return currentRotation;
         }
+
+        public override void UpdateOnMapMoved()
+        {
+            currentPosition += MapMovement.Instance.MovementVector;
+        }
+
+        public override void UpdateOnZoomChanged()
+        {
+            var currentHeight = currentPosition.y * MapMovement.Instance.CurrentZoomRatio;
+            currentPosition += new Vector3(0, currentHeight, 0);
+            r *= MapMovement.Instance.CurrentZoomRatio;
+        }
     }
 }

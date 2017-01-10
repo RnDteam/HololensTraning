@@ -63,5 +63,21 @@ namespace Assets.Scripts.Physics
             //better with a larger bank angle, even though it isn't physically correct
             return Quaternion.LookRotation(-new Vector3((float) -Math.Sin(omega * (Time.time - startTime) + phase), 0, -(float)Math.Cos(omega * (Time.time - startTime) + phase)), Vector3.up) * Quaternion.AngleAxis((float) (Math.Atan((r * Math.Pow(omega, 2)) / GlobalManager.gravityMag) * 180 / Math.PI + GlobalManager.unphysicalBankAngle), Vector3.forward);
         }
+
+        public override void UpdateOnMapMoved()
+        {
+            centerX += MapMovement.Instance.MovementVector.x;
+            centerZ += MapMovement.Instance.MovementVector.z;
+        }
+
+        public override void UpdateOnZoomChanged()
+        {
+            //TODO change somehow
+            var heightRelativeToSurface = Placeable.Instance.transform.InverseTransformPoint(new Vector3 { y = height }).y;
+            heightRelativeToSurface *= MapMovement.Instance.CurrentZoomRatio;
+            height = Placeable.Instance.transform.TransformPoint(new Vector3 { y = heightRelativeToSurface }).y;
+
+            r *= MapMovement.Instance.CurrentZoomRatio;
+        }
     }
 }

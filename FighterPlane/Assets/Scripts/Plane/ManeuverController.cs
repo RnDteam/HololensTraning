@@ -35,5 +35,13 @@ namespace Assets.Scripts.Plane
                 gameObject.transform.rotation = maneuver.CalculateWorldRotation();
             }
         }
+
+        public bool IsFlying
+        {
+            get
+            {
+                return maneuver != null;
+            }
+        }
     }
 }
