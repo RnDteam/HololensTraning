@@ -10,7 +10,7 @@ namespace Assets.Scripts.Physics
     {
         const float permissibleAngleErrorDegrees = 1f;
         //in the future, we can add different radii and omegas for the different stages of the attack; in the meantime, we'll just use one set for simplicity
-        public AttackBuildingManeuver(Vector3 currentPosition, Vector3 currentRight, Vector3 CoordsToAttack, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
+        public AttackBuildingManeuver(Vector3 currentPosition, Vector3 currentRight, Vector3 CoordsToAttack, GameObject building, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
         {
             AttackCoords = CoordsToAttack;
             AttackCoords.y = AttackCoords.y + GlobalManager.heightAboveBuildingToAttack;
@@ -19,6 +19,7 @@ namespace Assets.Scripts.Physics
             this.omega = omega;
             startTime = Time.time;
             executedManeuver = new MakeCircle(currentPosition, currentRight, omega, radius);
+            this.building = building;
         }
 
         Vector3 AttackCoords;
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Physics
         float startTime;
         float radius;
         float omega;
+        GameObject building;
         //let's divide the attack up into five stages: the initial circle, the straight flight to the target, the circle segment above the target,
         //the straight flight back to the area the plane was in at the beginning, and the final circle. It's not strictly necessary,
         //but less messy than things like "if(executedManeuver is MakeCircle && ...)"
@@ -51,7 +53,7 @@ namespace Assets.Scripts.Physics
             if(stage == 1 && ((StraightFlightManeuver) executedManeuver).finished)
             {
                 stage = 2;
-                //BoomBuilding();
+                building.GetComponent<BuildingDisplay>().BoomBuilding();
                 executedManeuver = new MakeCircle(position, rotation * Vector3.right, omega, radius);
             }
             if(stage == 2 && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)

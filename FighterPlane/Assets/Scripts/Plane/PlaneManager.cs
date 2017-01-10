@@ -320,7 +320,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void AttackBuilding()
     {
-        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.right, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords)));
+        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.right, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
     }
 
     /*

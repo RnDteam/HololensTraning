@@ -29,7 +29,7 @@ public class BuildingDisplay : MonoBehaviour {
     public void Select()
     {
         SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
-        BoomBuilding();
+        //BoomBuilding();
 
     }
 
@@ -63,7 +63,7 @@ public class BuildingDisplay : MonoBehaviour {
         buildingRenderer = ruinBuilding.GetComponent<Renderer>();
     }
 
-    private void BoomBuilding()
+    public void BoomBuilding()
     {
         if (!BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
         {
