@@ -52,15 +52,17 @@ public class PlaneManager : MonoBehaviour {
         }
 
         defaultScale = planes[0].transform.localScale;
-        //previousZoom = defaultZoom = OnlineMaps.instance.zoom;
     }
 
     private void ChangePosition()
     {
         foreach (var plane in planes)
         {
-            var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
-            plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
+            if (!plane.GetComponent<ManeuverController>().IsFlying)
+            {
+                var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
+                plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
+            }
         }
     }
 
@@ -283,4 +285,11 @@ public class PlaneManager : MonoBehaviour {
     {
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.right));
     }
+
+    /*
+    public void DoSplitS()
+    {
+        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
+    }
+    */
 }
