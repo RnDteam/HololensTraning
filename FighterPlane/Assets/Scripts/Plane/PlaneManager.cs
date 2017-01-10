@@ -283,11 +283,4 @@ public class PlaneManager : MonoBehaviour {
     {
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.right));
     }
-
-    /*
-    public void DoSplitS()
-    {
-        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
-    }
-    */
 }

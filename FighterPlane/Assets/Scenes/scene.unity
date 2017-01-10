@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 162}
   - component: {fileID: 163}
   - component: {fileID: 165}
+  - component: {fileID: 34}
   m_Layer: 30
   m_Name: Map
   m_TagString: Untagged
@@ -255,9 +256,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &34
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05726f44b12d651499f4c561b8a6368a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementVector: {x: 0, y: 0, z: 0}
 --- !u!1 &36 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1226518508906802, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1267828745}
+--- !u!224 &37 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224059034421387534, guid: 5262573197b6be24a8d7c3725fba7e3c,
     type: 2}
   m_PrefabInternal: {fileID: 1267828745}
 --- !u!1 &40
@@ -448,11 +466,6 @@ Transform:
   m_Father: {fileID: 79}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &75 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4281906467290694, guid: 5262573197b6be24a8d7c3725fba7e3c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1267828745}
 --- !u!4 &79
 Transform:
   m_ObjectHideFlags: 0
@@ -466,7 +479,7 @@ Transform:
   - {fileID: 66}
   - {fileID: 49}
   - {fileID: 72}
-  - {fileID: 75}
+  - {fileID: 37}
   - {fileID: 458180095}
   - {fileID: 676117971}
   m_Father: {fileID: 0}

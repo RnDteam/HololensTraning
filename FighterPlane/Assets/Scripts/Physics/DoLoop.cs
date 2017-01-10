@@ -68,20 +68,19 @@ namespace Assets.Scripts.Physics
             return Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -CalculateWorldPosition() + new Vector3(centerX, centerY, centerZ));
         }
 
-        public override void UpdateOnMapMoved()
+        public override void UpdateOnMapMoved(Vector3 movementVector)
         {
-            centerX += MapMovement.Instance.MovementVector.x;
-            centerZ += MapMovement.Instance.MovementVector.z;
+            centerX += movementVector.x;
+            centerZ += movementVector.z;
         }
 
-        public override void UpdateOnZoomChanged()
+        public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
         {
-            //TODO change somehow
-            var heightRelativeToSurface = Placeable.Instance.transform.InverseTransformPoint(new Vector3 { y = centerY }).y;
-            heightRelativeToSurface *= MapMovement.Instance.CurrentZoomRatio;
-            centerY = Placeable.Instance.transform.TransformPoint(new Vector3 { y = heightRelativeToSurface }).y;
+            var heightRelativeToSurface = relativeTransform.InverseTransformPoint(new Vector3 { y = centerY }).y;
+            heightRelativeToSurface *= currentZoomRatio;
+            centerY = relativeTransform.TransformPoint(new Vector3 { y = heightRelativeToSurface }).y;
 
-            r *= MapMovement.Instance.CurrentZoomRatio;
+            r *= currentZoomRatio;
         }
     }
 }

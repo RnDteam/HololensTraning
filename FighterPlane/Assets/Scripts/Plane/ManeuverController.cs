@@ -14,6 +14,28 @@ namespace Assets.Scripts.Plane
         private bool hasBegunFlight = false;
         private bool canFly = false;
 
+        private void Start()
+        {
+            MapMovement.Instance.Moved += SetManeuverOnMapMoved;
+            MapMovement.Instance.ZoomChanged += SetManeuverOnZoomChanged;
+        }
+
+        private void SetManeuverOnMapMoved()
+        {
+            if (IsFlying)
+            {
+                maneuver.UpdateOnMapMoved(MapMovement.Instance.MovementVector);
+            }
+        }
+
+        private void SetManeuverOnZoomChanged()
+        {
+            if (IsFlying)
+            {
+                maneuver.UpdateOnZoomChanged(transform.parent, MapMovement.Instance.CurrentZoomRatio, MapMovement.Instance.AbsoluteZoomRatio);
+            }
+        }
+
         public int SetManeuver(Maneuver newManeuver)
         {
             canFly = canFly || newManeuver is BeginFlightManeuver;

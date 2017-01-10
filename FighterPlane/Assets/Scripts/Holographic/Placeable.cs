@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity;
-using HoloToolkit;
 
 /// <summary>
 /// Enumeration containing the surfaces on which a GameObject
@@ -27,7 +26,7 @@ public enum PlacementSurfaces
 /// * A transparent cube representing the object's box collider.
 /// * Shadow on the target surface indicating whether or not placement is valid.
 /// </summary>
-public partial class Placeable : Singleton<Placeable>
+public class Placeable : MonoBehaviour
 {
     [Tooltip("The object to color during placement.")]
     public List<LineRenderer> LinesToColor = null;   
