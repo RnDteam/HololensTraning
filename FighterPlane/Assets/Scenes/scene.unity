@@ -3268,7 +3268,6 @@ GameObject:
   - component: {fileID: 1737447580}
   - component: {fileID: 1737447579}
   - component: {fileID: 1737447581}
-  - component: {fileID: 1737447588}
   - component: {fileID: 1737447587}
   m_Layer: 9
   m_Name: HerculesB
@@ -3495,25 +3494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon: 0
---- !u!114 &1737447588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1737447578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5998e5437da9e64d84110ae35ff45d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  planes: []
-  planesDistance: {fileID: 0}
-  distanceLine: {fileID: 0}
-  lineColor: {r: 0, g: 0, b: 0, a: 0}
-  AlertDome_1: {fileID: 0}
-  PlaneVisibilityWhenOffMap: 1
-  RotationSensitivity: 10
 --- !u!1001 &1907127474
 Prefab:
   m_ObjectHideFlags: 0
