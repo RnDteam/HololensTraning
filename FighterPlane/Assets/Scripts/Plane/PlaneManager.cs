@@ -11,8 +11,9 @@ public class PlaneManager : MonoBehaviour
 
     private enum PLANES
     {
-        PlaneA,
-        PlaneB
+        HerculesA,
+        HerculesB,
+        LeviatanA
     }
 
     // Indexes of selected and previous planes
@@ -38,7 +39,7 @@ public class PlaneManager : MonoBehaviour
     void Start()
     {
         // Default Selection
-        selectedPlane = planes[(int)PLANES.PlaneA];
+        selectedPlane = planes[(int)PLANES.HerculesA];
         currentCam = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
 
         InitializeDistanceLine();
@@ -66,33 +67,38 @@ public class PlaneManager : MonoBehaviour
 
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
-        lr.SetPosition(0, planes[(int)PLANES.PlaneA].transform.position);
-        lr.SetPosition(1, planes[(int)PLANES.PlaneB].transform.position);
+        lr.SetPosition(0, planes[(int)PLANES.HerculesA].transform.position);
+        lr.SetPosition(1, planes[(int)PLANES.HerculesB].transform.position);
 
-        Vector3 middlePoint = (planes[(int)PLANES.PlaneA].transform.position + planes[(int)PLANES.PlaneB].transform.position) / 2;
+        Vector3 middlePoint = (planes[(int)PLANES.HerculesA].transform.position + planes[(int)PLANES.HerculesB].transform.position) / 2;
         distance.transform.position = middlePoint;
 
         TextMesh text = distance.GetComponent<TextMesh>();
-        text.text = Math.Round((planes[(int)PLANES.PlaneA].transform.position - planes[(int)PLANES.PlaneB].transform.position).magnitude, 2) + " km";
+        text.text = Math.Round((planes[(int)PLANES.HerculesA].transform.position - planes[(int)PLANES.HerculesB].transform.position).magnitude, 2) + " km";
     }
 
     void Update()
     {
-        //RotatePlaneByHandGesture();
+        //RotateHerculesByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
 
     }
 
     // Selecting planes using voice commands
     #region Selecting Planes
-    public void SelectPlaneA()
+    public void SelectHerculesA()
     {
-        ChangePlane(planes[(int)PLANES.PlaneA]);
+        ChangePlane(planes[(int)PLANES.HerculesA]);
     }
 
-    public void SelectPlaneB()
+    public void SelectHerculesB()
     {
-        ChangePlane(planes[(int)PLANES.PlaneB]);
+        ChangePlane(planes[(int)PLANES.HerculesB]);
+    }
+
+    public void SelectLeviatanA()
+    {
+        ChangePlane(planes[(int)PLANES.LeviatanA]);
     }
 
     private void ChangePlane(GameObject currPlane)
@@ -155,7 +161,7 @@ public class PlaneManager : MonoBehaviour
     }
     #endregion
 
-    private void RotatePlaneByHandGesture()
+    private void RotateHerculesByHandGesture()
     {
         if (GestureManager.Instance.IsNavigating)
         {
@@ -177,7 +183,7 @@ public class PlaneManager : MonoBehaviour
     #region Plane Information
     public void ShowInfo()
     {
-        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneInfo();
+        selectedPlane.GetComponent<PlaneDisplayController>(). ShowPlaneInfo();
     }
 
     public void HideInfo()
