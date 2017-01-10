@@ -1849,8 +1849,8 @@ MonoBehaviour:
   useWebplayerProxy: 1
   webplayerProxyURL: http://service.infinity-code.com/redirect.php?
   width: 0
-  latitude: 32.787312
-  longitude: 34.959676
+  latitude: 32.786809
+  longitude: 35.005207
   _position: {x: 0, y: 0}
   _zoom: 17
   _activeTypeSettings: 
@@ -3182,6 +3182,9 @@ MonoBehaviour:
   lackOfGasAlert: {fileID: 1285686278}
   planeCamera: {fileID: 376200430}
   pilotCamera: {fileID: 765711609}
+  coords: {x: 0, y: 0}
+  localHeight: 0
+  IsVisible: 0
 --- !u!65 &1737447582
 BoxCollider:
   m_ObjectHideFlags: 0
