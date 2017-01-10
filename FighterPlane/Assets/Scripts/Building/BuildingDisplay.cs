@@ -6,6 +6,8 @@ public class BuildingDisplay : MonoBehaviour {
     [Tooltip("Displays the building information.")]
     public GameObject TextHolder;
     public Color SelectedBuildingColor = Color.cyan;
+    public GameObject ExplosionPrefab;
+    public GameObject RuinBuildingPrefab;
 
     private Renderer buildingRenderer;
     private string text = string.Empty;
@@ -14,12 +16,21 @@ public class BuildingDisplay : MonoBehaviour {
     {
         buildingRenderer = GetComponent<Renderer>();
         SetText();
+        try
+        {
+            RuinBuildingIfBomed();
+        } catch
+        {
+            Debug.Log("Couldn't ruin building " + gameObject.GetComponent<OnlineMapsBuildingBase>().id);
+        }
     }
 
     #region Selection
     public void Select()
     {
         SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
+        //BoomBuilding();
+
     }
 
     public void Unselect()
@@ -35,6 +46,42 @@ public class BuildingDisplay : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region destroy building
+    private void RuinBuildingIfBomed()
+    {
+        if (BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
+        {
+            RuinBuilding();
+        }
+    }
+
+    private void RuinBuilding()
+    {
+        var ruinBuilding = ReplaceInParent(RuinBuildingPrefab);
+        buildingRenderer = ruinBuilding.GetComponent<Renderer>();
+    }
+
+    public void BoomBuilding()
+    {
+        if (!BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
+        {
+            var explosion = ReplaceInParent(ExplosionPrefab);
+            RuinBuilding();
+            BuildingManager.Instance.desroidBuildingsList.Add(gameObject.GetComponent<OnlineMapsBuildingBase>().id);
+        }
+    }
+
+    private GameObject ReplaceInParent(GameObject prefab)
+    {
+        var gameObject = Instantiate(prefab, transform);
+        gameObject.transform.localPosition = Vector3.zero;
+        gameObject.transform.localRotation = transform.localRotation;
+        gameObject.transform.localScale = transform.localScale;
+        buildingRenderer.enabled = false;
+        return gameObject;
+    }
     #endregion
 
     #region info

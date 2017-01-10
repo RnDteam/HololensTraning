@@ -42,5 +42,20 @@ namespace Assets.Scripts.Physics
         {
             return executedManeuver.CalculateWorldRotation();
         }
+
+        public override void UpdateOnMapMoved(Vector3 movementVector)
+        {
+        }
+
+        public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
+        {
+            executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
+            circleRadius *= currentZoomRatio;
+        }
+
+        public override Vector3 GetCenter()
+        {
+            return executedManeuver.GetCenter();
+        }
     }
 }

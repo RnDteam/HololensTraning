@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using HoloToolkit.Unity;
-using System.Collections.Generic;
 using Assets.Scripts.Physics;
 using Assets.Scripts.Plane;
+using HoloToolkit;
 
-public class PlaneManager : MonoBehaviour
+public partial class PlaneManager : Singleton<PlaneManager>
 {
-
     private enum PLANES
     {
         HerculesA,
@@ -30,11 +28,14 @@ public class PlaneManager : MonoBehaviour
     public Color lineColor;
     public GameObject AlertDome_1;
 
+    public bool PlaneVisibilityWhenOffMap = true;
+
     [Tooltip("Rotation max speed controls amount of rotation.")]
     public float RotationSensitivity = 10.0f;
     private bool easterEnabled = false;
 
     private float rotationFactor;
+    private Vector3 defaultScale;
 
     void Start()
     {
@@ -44,11 +45,42 @@ public class PlaneManager : MonoBehaviour
 
         InitializeDistanceLine();
 
+        MapMovement.Instance.Moved += ChangePosition;
+        MapMovement.Instance.ZoomChanged += ChangeZoom;
+
         foreach (GameObject plane in planes)
         {
             if (gameObject.GetComponent<Animator>() != null)
             {
                 gameObject.GetComponent<Animator>().Stop();
+            }
+        }
+
+        defaultScale = planes[0].transform.localScale;
+    }
+
+    private void ChangePosition()
+    {
+        foreach (var plane in planes)
+        {
+            if (!plane.GetComponent<ManeuverController>().IsFlying)
+            {
+                var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
+                plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
+            }
+        }
+    }
+
+    private void ChangeZoom()
+    {
+        foreach (var plane in planes)
+        {
+            plane.transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
+
+            if (!plane.GetComponent<ManeuverController>().IsFlying)
+            {
+                plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
+                plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, plane.transform.localPosition.z);
             }
         }
     }
@@ -280,6 +312,21 @@ public class PlaneManager : MonoBehaviour
     {
         PlaySounds();
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.right));
+    }
+
+    public Vector3 GetPlaneCenter()
+    {
+        var position = selectedPlane.GetComponent<ManeuverController>().transform.position;
+        if (selectedPlane.GetComponent<ManeuverController>().IsFlying)
+        {
+            position = selectedPlane.GetComponent<ManeuverController>().ManeuverCenter;
+        }
+        return position;
+    }
+
+    public void AttackBuilding()
+    {
+        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.right, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
     }
 
     /*

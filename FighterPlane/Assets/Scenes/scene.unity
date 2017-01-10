@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 162}
   - component: {fileID: 163}
   - component: {fileID: 165}
+  - component: {fileID: 34}
   m_Layer: 30
   m_Name: Map
   m_TagString: Untagged
@@ -255,6 +256,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &34
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05726f44b12d651499f4c561b8a6368a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &36 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1226518508906802, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1267828745}
+--- !u!224 &37 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224059034421387534, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1267828745}
 --- !u!1 &40
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1596,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+  - Keyword: move to plane
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 163}
+          m_MethodName: MoveToPlane
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
   - Keyword: uninitialized
     Response:
       m_PersistentCalls:
@@ -1591,29 +1630,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Plane C
+  - Keyword: Reset App
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: SelectLeviatanA
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Matos Gimel
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: SelectLeviatanA
+        - m_Target: {fileID: 163}
+          m_MethodName: ResetApp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1708,6 +1730,7 @@ MonoBehaviour:
   distanceLine: {fileID: 10}
   lineColor: {r: 1, g: 0.216, b: 0, a: 0.378}
   AlertDome_1: {fileID: 676117970}
+  PlaneVisibilityWhenOffMap: 1
   RotationSensitivity: 10
 --- !u!114 &151
 MonoBehaviour:
@@ -1927,8 +1950,8 @@ MonoBehaviour:
   useWebplayerProxy: 1
   webplayerProxyURL: http://service.infinity-code.com/redirect.php?
   width: 0
-  latitude: 32.787312
-  longitude: 34.959676
+  latitude: 32.786809
+  longitude: 35.005207
   _position: {x: 0, y: 0}
   _zoom: 17
   _activeTypeSettings: 
@@ -1971,6 +1994,10 @@ MonoBehaviour:
   MovementFactor: 0.25
   SelectedBuildingColor: {r: 0, g: 1, b: 1, a: 0}
   TextPrefab: {fileID: 1796454134989534, guid: 2121e1e8a12c5e24ebd4094ec7a3180d, type: 2}
+  ExplosionPrefab: {fileID: 1708663654794822, guid: 36a637b29c88a1549bef931dc3e0f126,
+    type: 2}
+  RuinBuildingPrefab: {fileID: 1641480235678074, guid: 065b32f58e4def94c891e70d455b3ce0,
+    type: 2}
 --- !u!114 &164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,8 +2099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490b2f7dfcb7880439f2da933cf9aa0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveAlertDome: {fileID: 2100000, guid: e3c27b4502683e3488f9c6f59efc1374, type: 2}
-  NonActiveAlertDome: {fileID: 2100000, guid: 2a13ac242b0202d4abecad18d0f6de72, type: 2}
+  ActiveAlertDome: {fileID: 2100000, guid: 5ddb6916d49553a459987052c327a3c7, type: 2}
+  NonActiveAlertDome: {fileID: 2100000, guid: 777d61678ac970341bf51e9a8fc1fcbb, type: 2}
 --- !u!23 &676117973
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2460,6 +2487,234 @@ GameObject:
   m_PrefabInternal: {fileID: 849733552}
 --- !u!4 &1754421405 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4851041359495880, guid: b64de9ff4e010a642ad58c2618556239,
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4762350450645052, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1641769026}
+  m_LocalRotation: {x: 0.09617427, y: 0.51117647, z: 0.16356353, w: 0.8382697}
+  m_LocalPosition: {x: 10.5159, y: 8.3002, z: -18.7326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 458180095}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1737447578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1226518508906802, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 458180095}
+  - component: {fileID: 1737447585}
+  - component: {fileID: 1737447584}
+  - component: {fileID: 1737447583}
+  - component: {fileID: 1737447582}
+  - component: {fileID: 1737447586}
+  - component: {fileID: 1737447580}
+  - component: {fileID: 1737447579}
+  - component: {fileID: 1737447581}
+  m_Layer: 9
+  m_Name: HerculesB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1737447579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114071151002138600, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aded598542bcdf4f98d79d58baf0231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1737447580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114754544133999498, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce820c79a7a75f1438b73bf98f3d6813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeNumber: 1
+  gasAmount: 100
+  defaultColor: {r: 0.6431373, g: 0.6627451, b: 0, a: 0}
+  planeInfo: {fileID: 1478375881}
+  lackOfGasAlert: {fileID: 1285686278}
+  planeCamera: {fileID: 376200430}
+  pilotCamera: {fileID: 765711609}
+  coords: {x: 0, y: 0}
+  localHeight: 0
+  IsVisible: 0
+--- !u!114 &1737447581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061ce6344bb300d4692e66691e63ee1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1737447582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65501222955752404, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 45, y: 10, z: 40}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &1737447583
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 82155627431947726, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 904a8e7acbdc68849afcbafc7519b7e3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 6
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!23 &1737447584
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 23942092818994288, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!95 &1737447585
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 95411635140034696, guid: 5262573197b6be24a8d7c3725fba7e3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737447578}
+  m_Enabled: 0
+  m_Avatar: {fileID: 9000000, guid: dc43f4f68058dd342ba33b313a2a08b6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1097facf2caf656438fa1c4bc1e91e96, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!54 &1737447586
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 54998576582145942, guid: 5262573197b6be24a8d7c3725fba7e3c,
     type: 2}
   m_PrefabInternal: {fileID: 849733552}

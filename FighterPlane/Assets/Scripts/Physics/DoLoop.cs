@@ -67,5 +67,22 @@ namespace Assets.Scripts.Physics
             //but that is the only way to make it work.
             return Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -CalculateWorldPosition() + new Vector3(centerX, centerY, centerZ));
         }
+
+        public override void UpdateOnMapMoved(Vector3 movementVector)
+        {
+            centerX += movementVector.x;
+            centerZ += movementVector.z;
+        }
+
+        public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
+        {
+            centerY = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, centerY);
+            r *= currentZoomRatio;
+        }
+
+        public override Vector3 GetCenter()
+        {
+            return new Vector3(centerX, centerY, centerZ);
+        }
     }
 }

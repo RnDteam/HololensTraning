@@ -23,12 +23,29 @@ public abstract class PlaneDisplayController : MonoBehaviour
     public GameObject pilotCamera;
     public float gasAmount = 100;
 
+    public Vector2 coords;
+    public float localHeight;
+    
+
     private PhysicsParameters pParams;
 
-    public void Start()
-    {
+    public bool IsVisible;
+    
+    public void Start () {
+
         pParams = new PhysicsParameters(transform);
         IsGasAlertActive = false;
+        selectedColor = Color.blue;
+        ConvertColors(defaultColor);
+        
+        if (PlaneManager.Instance.PlaneVisibilityWhenOffMap || MapCommands.Instance.Contains(coords))
+        {
+            IsVisible = true;
+        }
+        else
+        {
+            SetVisibility(false);
+        }
     }
 
     void Update()
@@ -41,9 +58,41 @@ public abstract class PlaneDisplayController : MonoBehaviour
         {
             // Calculate physics information
             pParams.UpdatePhysics(transform);
+            
+			DisplayUpdatedInfo();
+		}
 
-            DisplayUpdatedInfo();
+        localHeight = transform.localPosition.y;
+        coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.position);
+
+        if (!PlaneManager.Instance.PlaneVisibilityWhenOffMap)
+        {
+            if (IsVisible && !MapCommands.Instance.Contains(coords))
+            {
+                SetVisibility(false);
+            }
+            else if (!IsVisible && MapCommands.Instance.Contains(coords))
+            {
+                SetVisibility(true);
+            }
         }
+    }
+
+    public void SetVisibility(bool value)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<MeshRenderer>() != null)
+            {
+                child.GetComponent<MeshRenderer>().enabled = value;
+                continue;
+            }
+            if (child.GetComponent<ParticleRenderer>())
+            {
+                child.GetComponent<ParticleRenderer>().enabled = value;
+            }
+        }
+        IsVisible = value;
     }
 
     #region Plane's Gas

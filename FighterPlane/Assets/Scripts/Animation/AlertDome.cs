@@ -9,20 +9,39 @@ public class AlertDome : MonoBehaviour
     public Material NonActiveAlertDome;
     private bool showDome = false;
 
+    private Vector3 defaultScale;
+
 
     private void Awake()
     {
-        this.GetComponent<Renderer>().material = NonActiveAlertDome;
+        GetComponent<Renderer>().material = NonActiveAlertDome;
         HideAlert();
+
+        defaultScale = transform.localScale;
+
+        MapMovement.Instance.Moved += MapMoved;
+        MapMovement.Instance.ZoomChanged += MapZoomChanged;
+    }
+
+    private void MapZoomChanged()
+    {
+        transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+    }
+
+    private void MapMoved()
+    {
+        var newPosition = transform.position + MapMovement.Instance.MovementVector;
+        transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
     }
 
     private void OnTriggerEnter(Collider myTrigger)
     {
         if (myTrigger.gameObject.name.StartsWith("Hercules"))
         {
-            this.GetComponent<Renderer>().material = ActiveAlertDome;
-            this.GetComponent<AudioSource>().Play();
-            ShowAlert();
+            GetComponent<Renderer>().material = ActiveAlertDome;
+            GetComponent<AudioSource>().Play();
+            GetComponent<Renderer>().enabled = true; ;
         }
     }
 
@@ -30,21 +49,21 @@ public class AlertDome : MonoBehaviour
     {
         if (myTrigger.gameObject.name.StartsWith("Hercules"))
         {
-            this.GetComponent<Renderer>().material = NonActiveAlertDome;
-            this.GetComponent<AudioSource>().Pause();
+            GetComponent<Renderer>().material = NonActiveAlertDome;
+            GetComponent<AudioSource>().Pause();
             if (!showDome) HideAlert();
         }
     }
 
     public void ShowAlert()
     {
-        this.GetComponent<Renderer>().enabled = true;
+        GetComponent<Renderer>().enabled = true;
         showDome = true;
     }
 
     public void HideAlert()
     {
-        this.GetComponent<Renderer>().enabled = false;
+        GetComponent<Renderer>().enabled = false;
         showDome = false;
     }
 }

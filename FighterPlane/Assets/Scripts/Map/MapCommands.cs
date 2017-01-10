@@ -1,12 +1,12 @@
 ﻿using Academy.HoloToolkit.Unity;
+using HoloToolkit;
 using HoloToolkit.Unity;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MapCommands : MonoBehaviour {
-
-    private OnlineMaps onlineMaps;
+public partial class MapCommands : Singleton<MapCommands> {
+    
     private OnlineMapsBuildings buildings;
     private OnlineMapsLimits limits;
 
@@ -14,14 +14,16 @@ public class MapCommands : MonoBehaviour {
 
     public Color SelectedBuildingColor;
     public GameObject TextPrefab;
+    public GameObject ExplosionPrefab;
+    public GameObject RuinBuildingPrefab;
+
 
     private void Start()
     {
-        onlineMaps = OnlineMaps.instance;
         buildings = OnlineMapsBuildings.instance;
         limits = GetComponent<OnlineMapsLimits>();
 
-        //onlineMaps.OnChangePosition += PositionChanged;
+        //OnlineMaps.instance.OnChangePosition += PositionChanged;
 
         buildings.OnBuildingCreated += InitializeBuilding;
     }
@@ -40,9 +42,9 @@ public class MapCommands : MonoBehaviour {
     {
         double px, pz, tlx, tly, brx, bry, dx, dy;
 
-        onlineMaps.GetPosition(out px, out pz);
-        onlineMaps.GetTopLeftPosition(out tlx, out tly);
-        onlineMaps.GetBottomRightPosition(out brx, out bry);
+        OnlineMaps.instance.GetPosition(out px, out pz);
+        OnlineMaps.instance.GetTopLeftPosition(out tlx, out tly);
+        OnlineMaps.instance.GetBottomRightPosition(out brx, out bry);
 
         OnlineMapsUtils.DistanceBetweenPoints(tlx, tly, brx, bry, out dx, out dy);
 
@@ -55,7 +57,7 @@ public class MapCommands : MonoBehaviour {
         px += ox;
         pz += oy;
 
-        onlineMaps.SetPosition(px, pz);
+        OnlineMaps.instance.SetPosition(px, pz);
     }
     
 
@@ -65,6 +67,8 @@ public class MapCommands : MonoBehaviour {
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
         var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
         buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
+        buildingDisplay.ExplosionPrefab = ExplosionPrefab;
+        buildingDisplay.RuinBuildingPrefab = RuinBuildingPrefab;
 
         var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
         textHolder.transform.parent = building.gameObject.transform;
@@ -91,16 +95,6 @@ public class MapCommands : MonoBehaviour {
         }
     }
 
-    private void AddBuildingKeyword(string keyword, string buildingId)
-    {
-
-    }
-
-    private void RemoveBuildingKeyword(string buildingId)
-    {
-
-    }
-
     public void ZoomIn()
     {
         ZoomToGaze(1);
@@ -113,17 +107,17 @@ public class MapCommands : MonoBehaviour {
 
     private void ZoomToGaze(int zoomDifference)
     {
-        if (onlineMaps.zoom >= limits.maxZoom)
+        if (OnlineMaps.instance.zoom >= limits.maxZoom)
             return;
 
         var target = GetGazePosition();
-        onlineMaps.SetPositionAndZoom(target.x, target.y, onlineMaps.zoom + zoomDifference);
+        OnlineMaps.instance.SetPositionAndZoom(target.x, target.y, OnlineMaps.instance.zoom + zoomDifference);
     }
     
     private Vector2 GetGazePosition()
     {
         double lng, lat;
-        onlineMaps.GetPosition(out lng, out lat);
+        OnlineMaps.instance.GetPosition(out lng, out lat);
         Vector2 target = new Vector2((float)lng, (float)lat);
 
         RaycastHit hitInfo;
@@ -140,14 +134,25 @@ public class MapCommands : MonoBehaviour {
         if (BuildingManager.Instance.IsBuildingSelected)
         {
             var coords = BuildingManager.Instance.SelectedBuildingCoords;
-            onlineMaps.SetPositionAndZoom(coords.x, coords.y, 18);
+            OnlineMaps.instance.SetPositionAndZoom(coords.x, coords.y, 18);
         }
     }
     
+    public void MoveToPlane()
+    {
+        var coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(PlaneManager.Instance.GetPlaneCenter());
+        OnlineMaps.instance.SetPosition(coords.x, coords.y);
+    }
+
+    public void ResetApp()
+    {
+        Application.LoadLevel(0);
+    }
+
     public bool Contains(Vector2 coord)
     {
-        return coord.x >= onlineMaps.topLeftPosition.x && coord.x <= onlineMaps.bottomRightPosition.x
-            && coord.y >= onlineMaps.bottomRightPosition.y && coord.y <= onlineMaps.topLeftPosition.y;
+        return coord.x >= OnlineMaps.instance.topLeftPosition.x && coord.x <= OnlineMaps.instance.bottomRightPosition.x
+            && coord.y >= OnlineMaps.instance.bottomRightPosition.y && coord.y <= OnlineMaps.instance.topLeftPosition.y;
     }
 
     
