@@ -37,7 +37,7 @@ namespace Assets.Scripts.Physics
         float r;
         float startTime;
 
-        public override Vector3 UpdateWorldPosition()
+        public override Vector3 CalculateWorldPosition()
         {
             //calculate the new position based on the parametric equation for circular motion:
             //
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Physics
             return new Vector3(r * (float)Math.Cos(omega * (Time.time - startTime) + phase) + centerX, height, -r * (float)Math.Sin(omega * (Time.time - startTime) + phase) + centerZ);
         }
 
-        public override Quaternion UpdateWorldRotation()
+        public override Quaternion CalculateWorldRotation()
         {
             //Calculate the "forward" direction by taking the derivative of the position with respect to time, removing factors shared
             //by all components of the vector like r and omega
