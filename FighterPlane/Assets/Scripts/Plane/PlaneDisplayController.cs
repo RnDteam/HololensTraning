@@ -25,6 +25,7 @@ public class PlaneDisplayController : MonoBehaviour
     private Color selectedColor;
     public Color defaultColor;
     public GameObject planeInfo;
+    public GameObject planeName;
     public GameObject lackOfGasAlert;
     public GameObject planeCamera;
     public GameObject pilotCamera;
@@ -57,7 +58,10 @@ public class PlaneDisplayController : MonoBehaviour
         {
             SetVisibility(false);
         }
+
+        setPlaneName();
     }
+
 
     void Update()
     {
@@ -146,8 +150,7 @@ public class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = this.name + "\n" + pParams.ToString()
-                                                            + "\n" + "Gas Amount(Liters): " + this.gasAmount.ToString("000.0");
+        planeInfo.GetComponent<TextMesh>().text = pParams.ToString() + "\n" + "Gas Amount(Liters): " + gasAmount.ToString("000.0");
     }
 
     public void HidePlaneInfo()
@@ -161,5 +164,11 @@ public class PlaneDisplayController : MonoBehaviour
         planeInfo.SetActive(true);
         IsInfoShown = true;
     }
+
+    private void setPlaneName()
+    {
+        planeName.GetComponent<TextMesh>().text = name;
+    }
+
     #endregion
 }
