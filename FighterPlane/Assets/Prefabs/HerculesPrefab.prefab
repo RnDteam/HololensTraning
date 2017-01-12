@@ -421,7 +421,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_LocalRotation: {x: -0.22218688, y: 0.100646585, z: 0.023065353, w: 0.96952116}
+  m_LocalRotation: {x: -0.22679736, y: -0.025969654, z: -0.19474682, w: 0.9539194}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.2, y: 0.25, z: 0.25}
   m_Children: []
@@ -434,8 +434,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7600012, y: 5.5, z: 2.800002}
+  m_LocalRotation: {x: 0.021143088, y: 0.11243968, z: 0.18358713, w: 0.9763227}
+  m_LocalPosition: {x: 2.659103, y: 5.500001, z: -2.73659}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4340762139302194}
@@ -598,7 +598,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c347ef46f3b11f649bb2b5cc60020480, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -722,7 +722,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8b20e7efdbe003e498e3e4ee3d76a8dd, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1058,7 +1058,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 098da9351876eb14aa5eaf1163659e15, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 27bc08d42e26f394dbf9a5b4a4edabbb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
@@ -1203,15 +1203,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39645893501661c488d74395a7957f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor: {r: 0.584, g: 0.797, b: 0.834, a: 0}
   planeInfo: {fileID: 1361938491797014}
   lackOfGasAlert: {fileID: 1564992813933612}
   planeCamera: {fileID: 1997051470565346}
   pilotCamera: {fileID: 1716896504390062}
-  gasAmount: 180
-  coords: {x: 0, y: 0}
-  localHeight: 0
-  IsVisible: 0
-  defaultColor: {r: 0.7794118, g: 0.5092757, b: 0.19485295, a: 0}
+  gasAmount: 58.156548
+  coords: {x: 34.98149, y: 32.83901}
+  localHeight: 5.500001
+  IsVisible: 1
   planeModel: {fileID: 1740555580184952}
 --- !u!114 &114808915961465096
 MonoBehaviour:

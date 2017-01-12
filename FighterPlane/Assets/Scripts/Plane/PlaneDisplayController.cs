@@ -17,6 +17,8 @@ public abstract class PlaneDisplayController : MonoBehaviour
         private set;
     }
 
+    private Color selectedColor;
+    public Color defaultColor;
     public GameObject planeInfo;
     public GameObject lackOfGasAlert;
     public GameObject planeCamera;
@@ -32,6 +34,8 @@ public abstract class PlaneDisplayController : MonoBehaviour
     public bool IsVisible;
     
     public void Start () {
+        selectedColor = Color.blue;
+        ConvertColors(defaultColor);
 
         pParams = new PhysicsParameters(transform);
         IsGasAlertActive = false;
@@ -94,7 +98,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     }
 
     #region Plane's Gas
-    protected void HandleGasAmount()
+    public void HandleGasAmount()
     {
         gasAmount = gasAmount > 0 ? gasAmount - Time.deltaTime : 0;
 
@@ -113,8 +117,17 @@ public abstract class PlaneDisplayController : MonoBehaviour
     #endregion
 
     #region Selecting Plane
-    public abstract void SelectPlane();
-    public abstract void DeselectPlane();
+    public void SelectPlane()
+    {
+        ConvertColors(selectedColor);
+    }
+
+    public void DeselectPlane()
+    {
+        ConvertColors(defaultColor);
+    }
+
+    protected abstract void ConvertColors(Color color);
     #endregion
 
     #region Plane Details
