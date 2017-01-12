@@ -27,19 +27,26 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
     public Vector2 coords;
     public float localHeight;
-    
+    private Vector3 defaultScale;
+
+
 
     private PhysicsParameters pParams;
 
     public bool IsVisible;
-    
-    public void Start () {
+
+    public void Start()
+    {
         selectedColor = Color.blue;
         ConvertColors(defaultColor);
 
+        defaultScale = transform.localScale;
+        MapMovement.Instance.ZoomChanged += ChangeZoom;
+        MapMovement.Instance.Moved += ChangePosition;
+
         pParams = new PhysicsParameters(transform);
         IsGasAlertActive = false;
-        
+
         if (PlaneManager.Instance.PlaneVisibilityWhenOffMap || MapCommands.Instance.Contains(coords))
         {
             IsVisible = true;
@@ -60,9 +67,9 @@ public abstract class PlaneDisplayController : MonoBehaviour
         {
             // Calculate physics information
             pParams.UpdatePhysics(transform);
-            
-			DisplayUpdatedInfo();
-		}
+
+            DisplayUpdatedInfo();
+        }
 
         localHeight = transform.localPosition.y;
         coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.position);
@@ -78,6 +85,26 @@ public abstract class PlaneDisplayController : MonoBehaviour
                 SetVisibility(true);
             }
         }
+    }
+
+
+    private void ChangeZoom()
+    {
+        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
+
+        transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
+        transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(GetComponent<PlaneDisplayController>().coords);
+        transform.localPosition = new Vector3(transform.localPosition.x, GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+    }
+
+    private void ChangePosition()
+    {
+        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
+        {
+            var newPosition = transform.position + MapMovement.Instance.MovementVector;
+            transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
+        }
+
     }
 
     public void SetVisibility(bool value)
