@@ -11,7 +11,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
     {
         HerculesA,
         HerculesB,
-        LeviatanA
+        LeviatanA,
+        LeviatanB
     }
 
     // Indexes of selected and previous planes
@@ -40,6 +41,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     void Start()
     {
         // Default Selection
+        previousPlane = planes[(int)PLANES.HerculesA];
         selectedPlane = planes[(int)PLANES.HerculesA];
         currentCam = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
 
@@ -99,14 +101,14 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
-        lr.SetPosition(0, planes[(int)PLANES.HerculesA].transform.position);
-        lr.SetPosition(1, planes[(int)PLANES.HerculesB].transform.position);
+        lr.SetPosition(0, previousPlane.transform.position);
+        lr.SetPosition(1, selectedPlane.transform.position);
 
-        Vector3 middlePoint = (planes[(int)PLANES.HerculesA].transform.position + planes[(int)PLANES.HerculesB].transform.position) / 2;
+        Vector3 middlePoint = (previousPlane.transform.position + selectedPlane.transform.position) / 2;
         distance.transform.position = middlePoint;
 
         TextMesh text = distance.GetComponent<TextMesh>();
-        text.text = Math.Round((planes[(int)PLANES.HerculesA].transform.position - planes[(int)PLANES.HerculesB].transform.position).magnitude, 2) + " km";
+        text.text = Math.Round((previousPlane.transform.position - selectedPlane.transform.position).magnitude, 2) + " km";
     }
 
     void Update()
@@ -131,6 +133,11 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void SelectLeviatanA()
     {
         ChangePlane(planes[(int)PLANES.LeviatanA]);
+    }
+
+    public void SelectLeviatanB()
+    {
+        ChangePlane(planes[(int)PLANES.LeviatanB]);
     }
 
     private void ChangePlane(GameObject currPlane)
@@ -203,14 +210,6 @@ public partial class PlaneManager : Singleton<PlaneManager>
             selectedPlane.transform.Rotate(new Vector3(0, -1 * rotationFactor, 0));
         }
     }
-
-    #region Plane Animation
-    public void AnimatePlane()
-    {
-        PlaySounds();
-        StartCoroutine(selectedPlane.GetComponent<AnimationControl>().PlayAnimation(selectedPlane.name + "Animation"));
-    }
-    #endregion
 
     #region Plane Information
     public void ShowInfo()

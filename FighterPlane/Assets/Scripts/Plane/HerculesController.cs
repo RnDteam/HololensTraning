@@ -26,7 +26,6 @@ public class HerculesController : PlaneDisplayController {
     #region Selecting Plane
     public override void SelectPlane()
     {
-        Debug.Log("herculessss");
         ConvertColors(selectedColor);
     }
 

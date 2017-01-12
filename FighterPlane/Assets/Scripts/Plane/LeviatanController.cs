@@ -29,7 +29,6 @@ public class LeviatanController : PlaneDisplayController
     #region Selecting Plane
     public override void SelectPlane()
     {
-        Debug.Log("Leviatan");
         ConvertColors(selectedColor);
     }
 
