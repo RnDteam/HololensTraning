@@ -37,22 +37,18 @@ public class AlertDome : MonoBehaviour
 
     private void OnTriggerEnter(Collider myTrigger)
     {
-        if (myTrigger.gameObject.name.StartsWith("Hercules"))
-        {
-            GetComponent<Renderer>().material = ActiveAlertDome;
-            GetComponent<AudioSource>().Play();
-            GetComponent<Renderer>().enabled = true; ;
-        }
+     
+        GetComponent<Renderer>().material = ActiveAlertDome;
+        GetComponent<AudioSource>().Play();
+        GetComponent<Renderer>().enabled = true; ;
+     
     }
 
     private void OnTriggerExit(Collider myTrigger)
     {
-        if (myTrigger.gameObject.name.StartsWith("Hercules"))
-        {
-            GetComponent<Renderer>().material = NonActiveAlertDome;
-            GetComponent<AudioSource>().Pause();
-            if (!showDome) HideAlert();
-        }
+        GetComponent<Renderer>().material = NonActiveAlertDome;
+        GetComponent<AudioSource>().Pause();
+        if (!showDome) HideAlert();
     }
 
     public void ShowAlert()

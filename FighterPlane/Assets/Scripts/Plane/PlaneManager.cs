@@ -20,6 +20,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     private GameObject previousPlane;
     private GameObject currentCam;
     public GameObject mainCamera;
+    public GameObject expectedFlightLane;
 
     // Planes objects array
     public GameObject[] planes;
@@ -289,6 +290,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     private void AddManeuver(Maneuver newManeuver)
     {
+        
         selectedPlane.GetComponent<ManeuverController>().SetManeuver(newManeuver);
     }
 

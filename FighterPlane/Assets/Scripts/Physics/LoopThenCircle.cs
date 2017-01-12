@@ -33,6 +33,11 @@ namespace Assets.Scripts.Physics
             }
         }
 
+        public override void UpdateFlightLane(GameObject expectedFlightLane)
+        {
+            expectedFlightLane.transform.position = this.GetCenter();
+        }
+
         public override Vector3 CalculateWorldPosition()
         {
             return executedManeuver.CalculateWorldPosition();

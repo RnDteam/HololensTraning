@@ -68,6 +68,10 @@ namespace Assets.Scripts.Physics
             }
         }
 
+        // todo implement later
+        public override void UpdateFlightLane(GameObject expectedFlightLane){ }
+
+
         public override Vector3 CalculateWorldPosition()
         {
             return executedManeuver.CalculateWorldPosition();

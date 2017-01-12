@@ -21,5 +21,12 @@ namespace Assets.Scripts.Physics
             heightRelativeToSurface *= currentZoomRatio;
             return relativeTransform.TransformPoint(new Vector3 { y = heightRelativeToSurface }).y;
         }
+
+        public virtual void UpdateFlightLane(GameObject expectedFlightLane)
+        {
+            Debug.Log(this.GetCenter());
+            expectedFlightLane.transform.position = this.GetCenter();
+            expectedFlightLane.transform.rotation = new Quaternion(0, 0, 0, 1);
+        }
     }
 }

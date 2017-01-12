@@ -8,6 +8,17 @@ namespace Assets.Scripts.Physics
 {
     public class DoLoop : Maneuver
     {
+        float centerX;
+        float centerY;
+        float centerZ;
+        float omega;
+        float r;
+        float startTime;
+        bool insideLoop;
+        float zComponentOfHorizontal = 1;
+        float xComponentOfHorizontal = 0;
+        float phase = (float) -Math.PI/2;
+
         public DoLoop(float centerX = 0, float centerY = 1, float z = 0, float omega = GlobalManager.defaultLoopOmega, float r = GlobalManager.defaultLoopRadius)
         {
             this.centerX = centerX;
@@ -31,16 +42,11 @@ namespace Assets.Scripts.Physics
             xComponentOfHorizontal = Vector3.Dot(-currentForward, Vector3.right);
         }
 
-        float centerX;
-        float centerY;
-        float centerZ;
-        float omega;
-        float r;
-        float startTime;
-        bool insideLoop;
-        float zComponentOfHorizontal = 1;
-        float xComponentOfHorizontal = 0;
-        float phase = (float) -Math.PI/2;
+        public override void UpdateFlightLane(GameObject expectedFlightLane)
+        {
+            expectedFlightLane.transform.position = this.GetCenter();
+            expectedFlightLane.transform.rotation = new Quaternion(1, 0, 0, 1);
+        }
 
         public override Vector3 CalculateWorldPosition()
         {

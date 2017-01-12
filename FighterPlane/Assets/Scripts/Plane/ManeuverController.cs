@@ -12,7 +12,8 @@ namespace Assets.Scripts.Plane
         private Maneuver maneuver;
         private bool hasBegunFlight = false;
         private bool canFly = false;
-        
+        public GameObject expectedFlightLane;
+
         public Vector3 ManeuverCenter
         {
             get
@@ -50,6 +51,10 @@ namespace Assets.Scripts.Plane
             {
                 hasBegunFlight = true;
                 maneuver = newManeuver;
+
+                // later do only if visible
+                maneuver.UpdateFlightLane(expectedFlightLane);
+
                 return 0;
             }
             return 1;
