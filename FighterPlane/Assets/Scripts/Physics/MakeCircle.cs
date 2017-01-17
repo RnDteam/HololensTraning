@@ -8,6 +8,7 @@ namespace Assets.Scripts.Physics
 {
     class MakeCircle : Maneuver
     {
+        /*
         public MakeCircle(float centerX = 0, float height = 1, float centerZ = 0, float omega = GlobalManager.defaultCircleOmega, float r = GlobalManager.defaultCircleRadius)
         {
             this.centerX = centerX;
@@ -17,9 +18,11 @@ namespace Assets.Scripts.Physics
             this.r = r;
             startTime = Time.time;
         }
+        */
 
-        public MakeCircle(Vector3 currentPosition, Vector3 currentRight, float omega = GlobalManager.defaultCircleOmega, float r = GlobalManager.defaultCircleRadius)
+        public MakeCircle(Vector3 currentPosition, Quaternion currentRotation, float omega = GlobalManager.defaultCircleOmega, float r = GlobalManager.defaultCircleRadius)
         {
+            Vector3 currentRight = currentRotation * Vector3.right;
             centerX = currentPosition.x - r * Vector3.Dot(currentRight, Vector3.right);
             height = currentPosition.y;
             centerZ = currentPosition.z + r * Vector3.Dot(currentRight, Vector3.back);//"back" is towards the nose of the hercules
@@ -27,6 +30,7 @@ namespace Assets.Scripts.Physics
             this.r = r;
             startTime = Time.time;
             phase = (float) Math.Atan2(Vector3.Dot(currentRight, Vector3.back), Vector3.Dot(currentRight, Vector3.right));
+            correctPoseManeuver = new CorrectPoseManeuver(currentRotation, Quaternion.LookRotation(-new Vector3((float)-Math.Sin(omega * GlobalManager.timeToCorrectPose + phase), 0, -(float)Math.Cos(omega * GlobalManager.timeToCorrectPose + phase)), Vector3.up) * Quaternion.AngleAxis((float)(Math.Atan((r * Math.Pow(omega, 2)) / GlobalManager.gravityMag) * 180 / Math.PI + GlobalManager.unphysicalBankAngle), Vector3.forward));
         }
 
         float phase = 0;
@@ -36,6 +40,7 @@ namespace Assets.Scripts.Physics
         float omega;
         float r;
         float startTime;
+        CorrectPoseManeuver correctPoseManeuver;
 
         public override Vector3 CalculateWorldPosition()
         {
@@ -61,7 +66,14 @@ namespace Assets.Scripts.Physics
             //downwards and an accelaration of v^2/R = (omega^2)R towards the direction of the circle.
             //The "UnphysicalBankAngle" is added to the calculated bank angle because the calculated bank angle was "too small;" it looks
             //better with a larger bank angle, even though it isn't physically correct
-            return Quaternion.LookRotation(-new Vector3((float) -Math.Sin(omega * (Time.time - startTime) + phase), 0, -(float)Math.Cos(omega * (Time.time - startTime) + phase)), Vector3.up) * Quaternion.AngleAxis((float) (Math.Atan((r * Math.Pow(omega, 2)) / GlobalManager.gravityMag) * 180 / Math.PI + GlobalManager.unphysicalBankAngle), Vector3.forward);
+            if (Time.time - startTime >= GlobalManager.timeToCorrectPose)
+            {
+                return Quaternion.LookRotation(-new Vector3((float)-Math.Sin(omega * (Time.time - startTime) + phase), 0, -(float)Math.Cos(omega * (Time.time - startTime) + phase)), Vector3.up) * Quaternion.AngleAxis((float)(Math.Atan((r * Math.Pow(omega, 2)) / GlobalManager.gravityMag) * 180 / Math.PI + GlobalManager.unphysicalBankAngle), Vector3.forward);
+            }
+            else
+            {
+                return correctPoseManeuver.CalculateWorldRotation();
+            }
         }
 
         public override void UpdateOnMapMoved(Vector3 movementVector)

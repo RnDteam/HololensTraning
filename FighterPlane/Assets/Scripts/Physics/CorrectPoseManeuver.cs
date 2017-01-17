@@ -6,40 +6,24 @@ using UnityEngine;
 
 namespace Assets.Scripts.Physics
 {
-    class CorrectPoseManeuver : Maneuver
+    class CorrectPoseManeuver
     {
-        //fixes the pose of the plane. Does not calculate position.
-        public CorrectPoseManeuver(Quaternion initialRotation,  float finalRoll, float finalPitch, float finalYaw, float totalTime = GlobalManager.timeToCorrectPose)
+        //fixes the pose of the plane
+        public CorrectPoseManeuver(Quaternion initialRotation,  Quaternion finalRotation, float totalTime = GlobalManager.timeToCorrectPose)
         {
-
+            this.initialRotation = initialRotation;
+            this.finalRotation = finalRotation;
+            this.totalTime = totalTime;
+            startTime = Time.time;
         }
 
         Quaternion initialRotation;
-        Quaternion finalRotation
-
-        public override Vector3 CalculateWorldPosition()
+        Quaternion finalRotation;
+        float startTime;
+        float totalTime;
+        public Quaternion CalculateWorldRotation()
         {
-            throw new NotImplementedException();
-        }
-
-        public override Quaternion CalculateWorldRotation()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Vector3 GetCenter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void UpdateOnMapMoved(Vector3 movementVector)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
-        {
-            throw new NotImplementedException();
+            return Quaternion.Slerp(initialRotation, finalRotation, (Time.time - startTime) / totalTime);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace Assets.Scripts.Physics
 {
     class LoopThenCircle : Maneuver
     {
-        public LoopThenCircle(Vector3 currentPos, Vector3 currentForward, float loopOmega = GlobalManager.defaultLoopOmega, float loopRadius = GlobalManager.defaultLoopRadius, float circleOmega = GlobalManager.defaultCircleOmega, float circleRadius = GlobalManager.defaultCircleRadius)
+        public LoopThenCircle(Vector3 currentPos, Quaternion currentRotation, float loopOmega = GlobalManager.defaultLoopOmega, float loopRadius = GlobalManager.defaultLoopRadius, float circleOmega = GlobalManager.defaultCircleOmega, float circleRadius = GlobalManager.defaultCircleRadius)
         {
             canInterrupt = false;
-            executedManeuver = new DoLoop(currentPos, currentForward, loopOmega, loopRadius);
+            executedManeuver = new DoLoop(currentPos, currentRotation, loopOmega, loopRadius);
             startTime = Time.time;
             this.loopOmega = loopOmega;
             this.circleOmega = circleOmega;
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Physics
         {
             if (!canInterrupt && loopOmega * (Time.time - startTime) >= 2 * Math.PI)
             {
-                executedManeuver = new MakeCircle(executedManeuver.CalculateWorldPosition(), executedManeuver.CalculateWorldRotation() * Vector3.right, circleOmega, circleRadius);
+                executedManeuver = new MakeCircle(executedManeuver.CalculateWorldPosition(), executedManeuver.CalculateWorldRotation(), circleOmega, circleRadius);
                 canInterrupt = true;
             }
         }

@@ -6,31 +6,29 @@ using UnityEngine;
 
 namespace Assets.Scripts.Physics
 {
-    //calculate a straight-line flight between two points. Does NOT change rotation: if the plane is incorrectly oriented to fly
-    //between the two points, then this will preserve the incorrect orientation as the plane moves. When the plane reaches the
-    //endpoint, the plane will cease to move.
+    //calculate a straight-line flight between two points. When the plane reaches the endpoint, the plane will cease to move.
     //
     //Calculate the line between two points using one of the definitions of a line between A and B:
     //line = tB + (1 - t)A, where 0 <= t <= 1
     class StraightFlightManeuver : Maneuver
     {
-        public StraightFlightManeuver(Vector3 startPoint, Vector3 endPoint, float flightSpeed, Quaternion constantOrientation)
+        public StraightFlightManeuver(Vector3 startPoint, Vector3 endPoint, float flightSpeed, Quaternion currentOrientation)
         {
             this.startPoint = startPoint;
             this.endPoint = endPoint;
-            this.flightSpeed = flightSpeed;
-            orientation = constantOrientation;
+            orientation = Quaternion.LookRotation(startPoint - endPoint, Vector3.up);
             startTime = Time.time;
             tNormFactor = flightSpeed / (endPoint - startPoint).magnitude;
+            correctPoseManeuver = new CorrectPoseManeuver(currentOrientation, orientation);
         }
 
         public bool finished = false;
         Vector3 startPoint, endPoint;
-        float flightSpeed;
         Quaternion orientation;
         float startTime;
         float tNormFactor;
         float t;
+        CorrectPoseManeuver correctPoseManeuver;
 
         public override void UpdateState()
         {
@@ -52,7 +50,14 @@ namespace Assets.Scripts.Physics
 
         public override Quaternion CalculateWorldRotation()
         {
-            return orientation;
+            if (Time.time - startTime >= GlobalManager.timeToCorrectPose)
+            {
+                return orientation;
+            }
+            else
+            {
+                return correctPoseManeuver.CalculateWorldRotation();
+            }
         }
 
         public override Vector3 GetCenter()

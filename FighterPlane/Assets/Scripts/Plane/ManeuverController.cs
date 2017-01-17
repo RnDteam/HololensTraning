@@ -12,6 +12,7 @@ namespace Assets.Scripts.Plane
         private Maneuver maneuver;
         private bool hasBegunFlight = false;
         private bool canFly = false;
+        private Maneuver interruptedManeuver;
         
         public Vector3 ManeuverCenter
         {
@@ -48,6 +49,10 @@ namespace Assets.Scripts.Plane
             canFly = canFly || newManeuver is BeginFlightManeuver;
             if (canFly && (maneuver == null || maneuver.canInterrupt) && !(hasBegunFlight && newManeuver is BeginFlightManeuver))
             {
+                if(newManeuver is LoopThenCircle)
+                {
+                    interruptedManeuver = maneuver;
+                }
                 hasBegunFlight = true;
                 maneuver = newManeuver;
                 return 0;
@@ -62,6 +67,10 @@ namespace Assets.Scripts.Plane
                 maneuver.UpdateState();
                 gameObject.transform.position = maneuver.CalculateWorldPosition();
                 gameObject.transform.rotation = maneuver.CalculateWorldRotation();
+                if(maneuver is LoopThenCircle && maneuver.canInterrupt && !(interruptedManeuver is MakeCircle))
+                {
+                    maneuver = interruptedManeuver;
+                }
             }
         }
 

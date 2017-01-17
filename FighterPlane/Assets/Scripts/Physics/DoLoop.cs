@@ -8,6 +8,7 @@ namespace Assets.Scripts.Physics
 {
     public class DoLoop : Maneuver
     {
+        /*
         public DoLoop(float centerX = 0, float centerY = 1, float z = 0, float omega = GlobalManager.defaultLoopOmega, float r = GlobalManager.defaultLoopRadius)
         {
             this.centerX = centerX;
@@ -17,9 +18,11 @@ namespace Assets.Scripts.Physics
             this.r = r;
             startTime = Time.time;
         }
+        */
 
-        public DoLoop(Vector3 currentPosition, Vector3 currentForward, float omega = GlobalManager.defaultLoopOmega, float r = GlobalManager.defaultLoopRadius)
+        public DoLoop(Vector3 currentPosition, Quaternion currentRotation, float omega = GlobalManager.defaultLoopOmega, float r = GlobalManager.defaultLoopRadius)
         {
+            Vector3 currentForward = currentRotation * Vector3.forward;
             centerX = currentPosition.x;
             centerY = currentPosition.y + r;
             centerZ = currentPosition.z;
@@ -29,6 +32,7 @@ namespace Assets.Scripts.Physics
             //The minus sign is because our hercules model's forward vector is towards its tail
             zComponentOfHorizontal = Vector3.Dot(-currentForward, Vector3.forward);
             xComponentOfHorizontal = Vector3.Dot(-currentForward, Vector3.right);
+            correctPoseManeuver = new CorrectPoseManeuver(currentRotation, Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * GlobalManager.timeToCorrectPose + phase)), (float)Math.Cos(omega * GlobalManager.timeToCorrectPose + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * GlobalManager.timeToCorrectPose + phase))), -new Vector3(xComponentOfHorizontal * r * (float)Math.Cos(omega * GlobalManager.timeToCorrectPose + phase) + centerX, r * (float)Math.Sin(omega * GlobalManager.timeToCorrectPose + phase) + centerY, zComponentOfHorizontal * r * (float)Math.Cos(omega * GlobalManager.timeToCorrectPose + phase) + centerZ) + new Vector3(centerX, centerY, centerZ)));
         }
 
         float centerX;
@@ -41,6 +45,7 @@ namespace Assets.Scripts.Physics
         float zComponentOfHorizontal = 1;
         float xComponentOfHorizontal = 0;
         float phase = (float) -Math.PI/2;
+        CorrectPoseManeuver correctPoseManeuver;
 
         public override Vector3 CalculateWorldPosition()
         {
@@ -65,7 +70,14 @@ namespace Assets.Scripts.Physics
             //The minus sign in front of the vector is because our Hercules model's "forward" direction is in the direction of the tail
             //I don't know why the "upward" direction is AWAY from the center of the circle instead of TOWARDS the center of the circle,
             //but that is the only way to make it work.
-            return Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -CalculateWorldPosition() + new Vector3(centerX, centerY, centerZ));
+            if (Time.time - startTime >= GlobalManager.timeToCorrectPose)
+            {
+                return Quaternion.LookRotation(-new Vector3((float)(-xComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase)), (float)Math.Cos(omega * (Time.time - startTime) + phase), (float)(-zComponentOfHorizontal * Math.Sin(omega * (Time.time - startTime) + phase))), -CalculateWorldPosition() + new Vector3(centerX, centerY, centerZ));
+            }
+            else
+            {
+                return correctPoseManeuver.CalculateWorldRotation();
+            }
         }
 
         public override void UpdateOnMapMoved(Vector3 movementVector)
