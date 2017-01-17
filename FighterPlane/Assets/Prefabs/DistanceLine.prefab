@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4241243243668316}
   - component: {fileID: 120529714845768576}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 23134181401827770}
   - component: {fileID: 102605079060385708}
   - component: {fileID: 114085506308850788}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4718062477165224}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: DistanceLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
