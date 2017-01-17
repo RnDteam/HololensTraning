@@ -17,6 +17,8 @@ namespace Assets.Scripts.Physics
             this.flightSpeed = flightSpeed;
             this.radius = radius;
             this.omega = omega;
+            initialPosition = currentPosition;
+            initialRight = currentRight;
             startTime = Time.time;
             executedManeuver = new MakeCircle(currentPosition, currentRight, omega, radius);
             this.building = building;
@@ -29,11 +31,43 @@ namespace Assets.Scripts.Physics
         float startTime;
         float radius;
         float omega;
+        Vector3 initialPosition;
+        Vector3 initialRight;
         GameObject building;
         //let's divide the attack up into five stages: the initial circle, the straight flight to the target, the circle segment above the target,
         //the straight flight back to the area the plane was in at the beginning, and the final circle. It's not strictly necessary,
         //but less messy than things like "if(executedManeuver is MakeCircle && ...)"
-        int stage = 0; 
+        int stage = 0;
+
+        /*
+         * Return the Vector3 representing the endpoint of the attack path - that is, the coordinates we are attacking
+         * */
+        public Vector3 GetEndpointOfAttackPath()
+        {
+            return AttackCoords;
+        }
+
+        /*
+         * Return the Vector3 representing the start of the attack path - the coordinates where the plane leaves the initial circle
+         * */
+        public Vector3 GetStartPointOfAttackPath()
+        {
+            //Threw the relevant equations, into wolfram alpha; it turns out that the resulting mathematical solution is surprisingly copmplicated.
+            //Therefore, we will calculate this point computationally
+            float increment = Time.fixedDeltaTime * radius;
+            for(float theta = 0; theta < 2 * Math.PI; theta += increment)
+            {
+                Vector3 position = new Vector3(radius * (float)Math.Cos(theta) + initialPosition.x - radius * Vector3.Dot(initialRight, Vector3.right), initialPosition.y, -radius * (float)Math.Sin(theta) + initialPosition.z + radius * Vector3.Dot(initialRight, Vector3.back));
+                Quaternion rotation = Quaternion.LookRotation(-new Vector3((float)-Math.Sin(theta), 0, -(float)Math.Cos(theta)), Vector3.up) * Quaternion.AngleAxis((float)(Math.Atan((radius * Math.Pow(omega, 2)) / GlobalManager.gravityMag) * 180 / Math.PI + GlobalManager.unphysicalBankAngle), Vector3.forward);
+                if (stage == 0 && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(AttackCoords.x, position.y, AttackCoords.z)) < permissibleAngleErrorDegrees)
+                {
+                    return position;
+                }
+            }
+            //if we throw this, than it means that there is no point where the plane leaves the initial circle
+            //this can happen if an attempt is made to attack a point inside of the circle
+            throw (new ArgumentOutOfRangeException());
+        }
 
         public override void UpdateState()
         {
