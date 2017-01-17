@@ -4,13 +4,17 @@ using HoloToolkit.Unity;
 using Assets.Scripts.Physics;
 using Assets.Scripts.Plane;
 using HoloToolkit;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class PlaneManager : Singleton<PlaneManager>
 {
     private enum PLANES
     {
-        PlaneA,
-        PlaneB
+        HerculesA,
+        HerculesB,
+        LeviatanA,
+        LeviatanB
     }
 
     // Indexes of selected and previous planes
@@ -34,18 +38,19 @@ public partial class PlaneManager : Singleton<PlaneManager>
     private bool easterEnabled = false;
 
     private float rotationFactor;
-    private Vector3 defaultScale;
+    //private Vector3 defaultScale;
 
     void Start()
     {
         // Default Selection
-        selectedPlane = planes[(int)PLANES.PlaneA];
+        previousPlane = planes[(int)PLANES.HerculesA];
+        selectedPlane = planes[(int)PLANES.HerculesA];
         currentCam = selectedPlane.GetComponent<PlaneDisplayController>().pilotCamera;
 
         InitializeDistanceLine();
 
-        MapMovement.Instance.Moved += ChangePosition;
-        MapMovement.Instance.ZoomChanged += ChangeZoom;
+        //MapMovement.Instance.Moved += ChangePosition;
+        //MapMovement.Instance.ZoomChanged += ChangeZoom;
 
         foreach (GameObject plane in planes)
         {
@@ -55,34 +60,34 @@ public partial class PlaneManager : Singleton<PlaneManager>
             }
         }
 
-        defaultScale = planes[0].transform.localScale;
+        //defaultScale = planes[0].transform.localScale;
     }
 
-    private void ChangePosition()
-    {
-        foreach (var plane in planes)
-        {
-            if (!plane.GetComponent<ManeuverController>().IsFlying)
-            {
-                var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
-                plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
-            }
-        }
-    }
+    //private void ChangePosition()
+    //{
+    //    foreach (var plane in planes)
+    //    {
+    //        if (!plane.GetComponent<ManeuverController>().IsFlying)
+    //        {
+    //            var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
+    //            plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
+    //        }
+    //    }
+    //}
 
-    private void ChangeZoom()
-    {
-        foreach (var plane in planes)
-        {
-            plane.transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
+    //private void ChangeZoom()
+    //{
+    //    foreach (var plane in planes)
+    //    {
+    //        plane.transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
 
-            if (!plane.GetComponent<ManeuverController>().IsFlying)
-            {
-                plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
-                plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, plane.transform.localPosition.z);
-            }
-        }
-    }
+    //        if (!plane.GetComponent<ManeuverController>().IsFlying)
+    //        {
+    //            plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
+    //            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, plane.transform.localPosition.z);
+    //        }
+    //    }
+    //}
 
     private void InitializeDistanceLine()
     {
@@ -98,33 +103,46 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
-        lr.SetPosition(0, planes[(int)PLANES.PlaneA].transform.position);
-        lr.SetPosition(1, planes[(int)PLANES.PlaneB].transform.position);
+        lr.SetPosition(0, previousPlane.transform.position);
+        lr.SetPosition(1, selectedPlane.transform.position);
 
-        Vector3 middlePoint = (planes[(int)PLANES.PlaneA].transform.position + planes[(int)PLANES.PlaneB].transform.position) / 2;
+        Vector3 middlePoint = (previousPlane.transform.position + selectedPlane.transform.position) / 2;
         distance.transform.position = middlePoint;
 
         TextMesh text = distance.GetComponent<TextMesh>();
-        text.text = Math.Round((planes[(int)PLANES.PlaneA].transform.position - planes[(int)PLANES.PlaneB].transform.position).magnitude, 2) + " km";
+        text.text = Math.Round((previousPlane.transform.position - selectedPlane.transform.position).magnitude, 2) + " km";
+    }
+
+    private IEnumerable<GameObject> GetPlanesWithWeapon(Weapon weapon)
+    {
+        return planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon == weapon);
     }
 
     void Update()
     {
-        //RotatePlaneByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
-
     }
 
     // Selecting planes using voice commands
     #region Selecting Planes
-    public void SelectPlaneA()
+    public void SelectHerculesA()
     {
-        ChangePlane(planes[(int)PLANES.PlaneA]);
+        ChangePlane(planes[(int)PLANES.HerculesA]);
     }
 
-    public void SelectPlaneB()
+    public void SelectHerculesB()
     {
-        ChangePlane(planes[(int)PLANES.PlaneB]);
+        ChangePlane(planes[(int)PLANES.HerculesB]);
+    }
+
+    public void SelectLeviatanA()
+    {
+        ChangePlane(planes[(int)PLANES.LeviatanA]);
+    }
+
+    public void SelectLeviatanB()
+    {
+        ChangePlane(planes[(int)PLANES.LeviatanB]);
     }
 
     private void ChangePlane(GameObject currPlane)
@@ -187,7 +205,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     }
     #endregion
 
-    private void RotatePlaneByHandGesture()
+    private void RotateHerculesByHandGesture()
     {
         if (GestureManager.Instance.IsNavigating)
         {
@@ -198,18 +216,10 @@ public partial class PlaneManager : Singleton<PlaneManager>
         }
     }
 
-    #region Plane Animation
-    public void AnimatePlane()
-    {
-        PlaySounds();
-        StartCoroutine(selectedPlane.GetComponent<AnimationControl>().PlayAnimation(selectedPlane.name + "Animation"));
-    }
-    #endregion
-
     #region Plane Information
     public void ShowInfo()
     {
-        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneInfo();
+        selectedPlane.GetComponent<PlaneDisplayController>(). ShowPlaneInfo();
     }
 
     public void HideInfo()
@@ -316,6 +326,26 @@ public partial class PlaneManager : Singleton<PlaneManager>
             position = selectedPlane.GetComponent<ManeuverController>().ManeuverCenter;
         }
         return position;
+    }
+
+    public void GetRelevantPlanes()
+    {
+        foreach (var plane in planes)
+        {
+            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
+        }
+
+        var building = BuildingManager.Instance.SelectedBuilding;
+        if (building == null)
+        {
+            return;
+        }
+
+        var relevantPlanes = planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon != Weapon.None && p.GetComponent<PlaneWeapon>().Weapon == building.GetComponent<BuildingWeapon>().Weapon);
+        foreach (var plane in relevantPlanes)
+        {
+            plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(building);
+        }
     }
 
     public void AttackBuilding()

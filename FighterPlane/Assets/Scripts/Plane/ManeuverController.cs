@@ -22,6 +22,11 @@ namespace Assets.Scripts.Plane
             }
         }
 
+        public Maneuver getManeuver()
+        {
+            return maneuver;
+        }
+
         private void Start()
         {
             MapMovement.Instance.Moved += SetManeuverOnMapMoved;
