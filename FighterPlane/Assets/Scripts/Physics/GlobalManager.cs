@@ -12,4 +12,5 @@ public static class GlobalManager {
     public const float defaultAttackSpeed = 0.33333f;
     public const float unphysicalBankAngle = 20;
     public const float heightAboveBuildingToAttack = 0.3f;
+    public const float timeToCorrectPose = 0.5f;
 }
