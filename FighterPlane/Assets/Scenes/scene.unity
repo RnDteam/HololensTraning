@@ -2529,6 +2529,11 @@ Prefab:
       propertyPath: m_Name
       value: HerculesA
       objectReference: {fileID: 0}
+    - target: {fileID: 120113014441491812, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: m_UseWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
   m_IsPrefabParent: 0

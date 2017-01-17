@@ -351,6 +351,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void AttackBuilding()
     {
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
 
     /*

@@ -14,6 +14,8 @@ namespace Assets.Scripts.Physics
         {
             AttackCoords = CoordsToAttack;
             AttackCoords.y = AttackCoords.y + GlobalManager.heightAboveBuildingToAttack;
+            initialPosition = currentPosition;
+            initialRight = currentRotation * Vector3.right;
             this.flightSpeed = flightSpeed;
             this.radius = radius;
             this.omega = omega;
@@ -30,6 +32,7 @@ namespace Assets.Scripts.Physics
         Vector3 initialPosition;
         Vector3 initialRight;
         GameObject building;
+        GameObject line;
         //let's divide the attack up into five stages: the initial circle, the straight flight to the target, the circle segment above the target,
         //the straight flight back to the area the plane was in at the beginning, and the final circle. It's not strictly necessary,
         //but less messy than things like "if(executedManeuver is MakeCircle && ...)"
@@ -65,6 +68,11 @@ namespace Assets.Scripts.Physics
             throw (new ArgumentOutOfRangeException());
         }
 
+        public void SetLine(GameObject line)
+        {
+            this.line = line;
+        }
+
         public override void UpdateState()
         {
             executedManeuver.UpdateState();
@@ -85,6 +93,9 @@ namespace Assets.Scripts.Physics
                 stage = 2;
                 building.GetComponent<BuildingDisplay>().BoomBuilding();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
+                //Vector3[] pos = { new Vector3() };
+                //line.SetPositions(pos);
+                line.SetActive(false);
             }
             if(stage == 2 && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)
             {
