@@ -6,8 +6,21 @@ public class BuildingWeapon : MonoBehaviour {
     public Weapon Weapon;
     
     void Start () {
-        Array values = Enum.GetValues(typeof(Weapon));
-        System.Random random = new System.Random();
-        Weapon = (Weapon)values.GetValue(random.Next(values.Length)); 
+        long id;
+        if (long.TryParse(GetComponent<OnlineMapsBuildingBase>().id, out id))
+        {
+            if (id % 2 == 0)
+            {
+                Weapon = Weapon.Missile;
+            }
+            else
+            {
+                Weapon = Weapon.Rocket;
+            }
+        }
+        else
+        {
+            Weapon = Weapon.None;
+        }
     }
 }

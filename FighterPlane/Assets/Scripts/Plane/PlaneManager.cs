@@ -322,4 +322,25 @@ public partial class PlaneManager : Singleton<PlaneManager>
         }
         return position;
     }
+
+    public void GetRelevantPlanes()
+    {
+        foreach (var plane in planes)
+        {
+            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
+        }
+        Debug.Log("finding...");
+        var building = BuildingManager.Instance.SelectedBuilding;
+        if (building == null)
+        {
+            return;
+        }
+        Debug.Log("selected building: " + BuildingManager.Instance.SelectedBuildingId);
+        var relevantPlanes = planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon != Weapon.None && p.GetComponent<PlaneWeapon>().Weapon == building.GetComponent<BuildingWeapon>().Weapon);
+        foreach (var plane in relevantPlanes)
+        {
+            Debug.Log(plane.name);
+            plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(building);
+        }
+    }
 }

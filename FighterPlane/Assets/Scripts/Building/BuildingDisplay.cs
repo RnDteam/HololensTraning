@@ -29,7 +29,6 @@ public class BuildingDisplay : MonoBehaviour {
     public void Select()
     {
         SetColor(Color.Lerp(SelectedBuildingColor, Color.white, 0.3f));
-        BoomBuilding();
 
     }
 

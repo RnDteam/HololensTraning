@@ -29,12 +29,18 @@ public class PlaneDisplayController : MonoBehaviour
     public GameObject lackOfGasAlert;
     public GameObject planeCamera;
     public GameObject pilotCamera;
+    public GameObject distanceText;
+    public GameObject distanceLine;
+    public GameObject Target;
+    private Vector3 targetPosition;
 
     public Vector2 coords;
     public float localHeight;
 
     private GameObject wings;
     private GameObject mainbody;
+
+    private bool isDistanceShown = false;
 
     private PhysicsParameters pParams;
 
@@ -90,6 +96,11 @@ public class PlaneDisplayController : MonoBehaviour
             {
                 SetVisibility(true);
             }
+        }
+
+        if (isDistanceShown)
+        {
+            SetLinePosition();
         }
     }
 
@@ -170,5 +181,40 @@ public class PlaneDisplayController : MonoBehaviour
         planeName.GetComponent<TextMesh>().text = name;
     }
 
+    #endregion
+
+    #region Planes Distance
+    public void ShowDistance()
+    {
+        distanceText.SetActive(true);
+        distanceLine.SetActive(true);
+    }
+
+    public void HideDistance()
+    {
+        distanceText.SetActive(false);
+        distanceLine.SetActive(false);
+    }
+
+    private void SetLinePosition()
+    {
+        distanceLine.GetComponent<LineRenderer>().SetPosition(0, transform.TransformPoint(transform.position));
+        distanceLine.GetComponent<LineRenderer>().SetPosition(1, Target.transform.TransformPoint(Target.transform.position));
+    }
+
+    public void ShowDistanceLine(GameObject target)
+    {
+        Target = target;
+        //targetPosition = OnlineMapsTileSetControl.instance.GetWorldPosition(target.GetComponent<OnlineMapsBuildingBase>().centerCoordinates);
+        isDistanceShown = true;
+        ShowDistance();
+    }
+
+    public void HideDistanceLine()
+    {
+        Target = null;
+        isDistanceShown = false;
+        HideDistance();
+    }
     #endregion
 }

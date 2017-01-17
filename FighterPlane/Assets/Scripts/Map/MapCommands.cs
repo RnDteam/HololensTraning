@@ -151,5 +151,4 @@ public partial class MapCommands : Singleton<MapCommands> {
             && coord.y >= OnlineMaps.instance.bottomRightPosition.y && coord.y <= OnlineMaps.instance.topLeftPosition.y;
     }
 
-    
 }
