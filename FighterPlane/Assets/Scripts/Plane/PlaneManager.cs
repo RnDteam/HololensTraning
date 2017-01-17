@@ -350,14 +350,12 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void AttackBuilding()
     {
+        foreach (var plane in planes)
+        {
+            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
+        }
+
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
         selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
-
-    /*
-    public void DoSplitS()
-    {
-        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
-    }
-    */
 }
