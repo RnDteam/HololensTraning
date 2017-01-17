@@ -1598,7 +1598,7 @@ MonoBehaviour:
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 165}
           m_MethodName: SelectBuildingVoiceCommand
           m_Mode: 1
           m_Arguments:
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomRange:
     max: 20
-    min: 15
+    min: 17
     maxLimit: 20
     minLimit: 3
   levelsRange:
@@ -2038,10 +2038,10 @@ MonoBehaviour:
   useWebplayerProxy: 1
   webplayerProxyURL: http://service.infinity-code.com/redirect.php?
   width: 0
-  latitude: 32.832
-  longitude: 34.99
+  latitude: 32.786289
+  longitude: 35.004697
   _position: {x: 0, y: 0}
-  _zoom: 16
+  _zoom: 17
   _activeTypeSettings: 
 --- !u!114 &161
 MonoBehaviour:
@@ -2220,7 +2220,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2240,7 +2240,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2513,7 +2513,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2604,7 +2604,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
