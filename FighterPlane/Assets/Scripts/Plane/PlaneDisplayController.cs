@@ -107,16 +107,20 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
     private void ChangeZoom()
     {
-        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
-
         transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
-        transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(GetComponent<PlaneDisplayController>().coords);
-        transform.localPosition = new Vector3(transform.localPosition.x, GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+
+        //if plane is flying then the manuver changes the zoom
+        if (!GetComponent<ManeuverController>().IsFlying)
+        {
+            transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(GetComponent<PlaneDisplayController>().coords);
+            transform.localPosition = new Vector3(transform.localPosition.x, GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+        }
     }
 
     private void ChangePosition()
     {
-        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
+        //if plane is flying then the manuver changes the zoom
+        if (!GetComponent<ManeuverController>().IsFlying)
         {
             var newPosition = transform.position + MapMovement.Instance.MovementVector;
             transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);

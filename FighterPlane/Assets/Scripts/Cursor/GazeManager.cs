@@ -35,21 +35,13 @@ namespace HoloToolkit.Unity
         /// </summary>
         public Vector3 Normal { get; private set; }
 
-        private GazeStabilizer gazeStabilizer;
         private Vector3 gazeOrigin;
         private Vector3 gazeDirection;
-
-        void Awake()
-        {
-            gazeStabilizer = GetComponent<GazeStabilizer>();
-        }
-
+        
         private void Update()
         {
             gazeOrigin = Camera.main.transform.position;
             gazeDirection = Camera.main.transform.forward;
-            gazeStabilizer.UpdateHeadStability(gazeOrigin, Camera.main.transform.rotation);
-            gazeOrigin = gazeStabilizer.StableHeadPosition;
 
             UpdateRaycast();
         }

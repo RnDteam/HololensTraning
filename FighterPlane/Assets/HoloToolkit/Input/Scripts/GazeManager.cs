@@ -35,17 +35,9 @@ namespace Academy.HoloToolkit.Unity
         /// </summary>
         public Vector3 Normal { get; private set; }
 
-        private GazeStabilizer gazeStabilizer;
         private Vector3 gazeOrigin;
         private Vector3 gazeDirection;
-
-        void Awake()
-        {
-            /* TODO: DEVELOPER CODING EXERCISE 3.a */
-
-            // 3.a: GetComponent GazeStabilizer and assign it to gazeStabilizer.
-            gazeStabilizer = GetComponent<GazeStabilizer>();
-        }
+        
 
         private void Update()
         {
@@ -53,15 +45,7 @@ namespace Academy.HoloToolkit.Unity
             gazeOrigin = Camera.main.transform.position;
 
             // 2.a: Assign Camera's main transform forward to gazeDirection.
-            gazeDirection = Camera.main.transform.forward;
-
-            // 3.a: Using gazeStabilizer, call function UpdateHeadStability.
-            // Pass in gazeOrigin and Camera's main transform rotation.
-            gazeStabilizer.UpdateHeadStability(gazeOrigin, Camera.main.transform.rotation);
-
-            // 3.a: Using gazeStabilizer, get the StableHeadPosition and
-            // assign it to gazeOrigin.
-            gazeOrigin = gazeStabilizer.StableHeadPosition;
+            gazeDirection = Camera.main.transform.forward;            
 
             UpdateRaycast();
         }

@@ -8,21 +8,10 @@ namespace Assets.Scripts.Physics
 {
     public class DoLoop : Maneuver
     {
-        /*
-        public DoLoop(float centerX = 0, float centerY = 1, float z = 0, float omega = GlobalManager.defaultLoopOmega, float r = GlobalManager.defaultLoopRadius)
-        {
-            this.centerX = centerX;
-            this.centerY = centerY;
-            centerZ = z;
-            this.omega = omega;
-            this.r = r;
-            startTime = Time.time;
-        }
-        */
-
         public DoLoop(Vector3 currentPosition, Quaternion currentRotation, float omega = GlobalManager.defaultLoopOmega, float r = GlobalManager.defaultLoopRadius)
         {
             Vector3 currentForward = currentRotation * Vector3.forward;
+            r *= MapMovement.Instance.AbsoluteZoomRatio;
             centerX = currentPosition.x;
             centerY = currentPosition.y + r;
             centerZ = currentPosition.z;
