@@ -21,6 +21,7 @@ namespace Assets.Scripts.Physics
             this.omega = omega;
             executedManeuver = new MakeCircle(currentPosition, currentRotation, omega, radius);
             this.building = building;
+            MapCommands.Instance.LockMap();
         }
 
         Vector3 AttackCoords;
@@ -105,6 +106,7 @@ namespace Assets.Scripts.Physics
             if(stage == 3 && ((StraightFlightManeuver) executedManeuver).finished)
             {
                 stage = 4;
+                MapCommands.Instance.UnlockMap();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
             }
         }

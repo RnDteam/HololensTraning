@@ -41,7 +41,6 @@ namespace Assets.Scripts.Physics
         float omega;
         float r;
         float startTime;
-        bool insideLoop;
         float zComponentOfHorizontal = 1;
         float xComponentOfHorizontal = 0;
         float phase = (float) -Math.PI/2;

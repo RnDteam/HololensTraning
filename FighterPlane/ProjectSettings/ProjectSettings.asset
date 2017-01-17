@@ -544,14 +544,14 @@ PlayerSettings:
   cloudServicesEnabled:
     Analytics: 0
     Build: 0
-    Collab: 0
+    Collab: 1
     ErrorHub: 0
     Game_Performance: 0
     Hub: 0
     Purchasing: 0
     UNet: 0
     Unity_Ads: 0
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: 928e8fab-c618-4505-9530-eba855422199
+  projectName: FighterPlane
+  organizationId: rndteam
   cloudEnabled: 0
