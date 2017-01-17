@@ -37,7 +37,7 @@ public class AlertDome : MonoBehaviour
 
     private void OnTriggerEnter(Collider myTrigger)
     {
-        if (myTrigger.gameObject.name.StartsWith("Hercules"))
+        if (myTrigger.gameObject.CompareTag("Plane"))
         {
             GetComponent<Renderer>().material = ActiveAlertDome;
             GetComponent<AudioSource>().Play();
@@ -47,7 +47,7 @@ public class AlertDome : MonoBehaviour
 
     private void OnTriggerExit(Collider myTrigger)
     {
-        if (myTrigger.gameObject.name.StartsWith("Hercules"))
+        if (myTrigger.gameObject.CompareTag("Plane"))
         {
             GetComponent<Renderer>().material = NonActiveAlertDome;
             GetComponent<AudioSource>().Pause();

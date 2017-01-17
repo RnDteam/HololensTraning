@@ -4,6 +4,7 @@ using HoloToolkit.Unity;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public partial class MapCommands : Singleton<MapCommands> {
     
@@ -147,7 +148,7 @@ public partial class MapCommands : Singleton<MapCommands> {
 
     public void ResetApp()
     {
-        Application.LoadLevel(0);
+        SceneManager.LoadScene(0);
     }
 
     public bool Contains(Vector2 coord)

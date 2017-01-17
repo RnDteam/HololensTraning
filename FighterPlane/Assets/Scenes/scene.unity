@@ -2167,6 +2167,15 @@ Prefab:
       propertyPath: m_Name
       value: LeviatanB
       objectReference: {fileID: 0}
+    - target: {fileID: 65906438901909068, guid: 68ce8bd5b26b186468ec9652f3282f87,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_TagString
+      value: Plane
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114860228513847410, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
@@ -2181,11 +2190,41 @@ GameObject:
   m_PrefabParentObject: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87,
     type: 2}
   m_PrefabInternal: {fileID: 268744765}
+--- !u!54 &268744768
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 268744767}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &421433823 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87,
     type: 2}
   m_PrefabInternal: {fileID: 566294394}
+--- !u!54 &421433824
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421433823}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &421433829 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87,
@@ -2234,6 +2273,15 @@ Prefab:
       propertyPath: m_Name
       value: LeviatanA
       objectReference: {fileID: 0}
+    - target: {fileID: 65906438901909068, guid: 68ce8bd5b26b186468ec9652f3282f87,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_TagString
+      value: Plane
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114860228513847410, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
@@ -2251,6 +2299,7 @@ GameObject:
   - component: {fileID: 676117973}
   - component: {fileID: 676117972}
   - component: {fileID: 676117976}
+  - component: {fileID: 676117977}
   m_Layer: 8
   m_Name: AlertDome
   m_TagString: Untagged
@@ -2297,7 +2346,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 777d61678ac970341bf51e9a8fc1fcbb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2353,7 +2402,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.15509844
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -2414,11 +2463,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!54 &676117977
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 676117970}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1110393083 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e,
     type: 2}
   m_PrefabInternal: {fileID: 1202163165}
+--- !u!54 &1110393084
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110393083}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1202163165
 Prefab:
   m_ObjectHideFlags: 0
@@ -2467,6 +2546,15 @@ Prefab:
       propertyPath: Weapon
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65545922220291450, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_TagString
+      value: Plane
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
@@ -2486,6 +2574,21 @@ Transform:
   m_PrefabParentObject: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e,
     type: 2}
   m_PrefabInternal: {fileID: 1920560929}
+--- !u!54 &1650179631
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1650179623}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1920560929
 Prefab:
   m_ObjectHideFlags: 0
@@ -2528,6 +2631,15 @@ Prefab:
     - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_Name
       value: HerculesA
+      objectReference: {fileID: 0}
+    - target: {fileID: 65545922220291450, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_TagString
+      value: Plane
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
