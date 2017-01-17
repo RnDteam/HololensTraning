@@ -66,6 +66,7 @@ public partial class MapCommands : Singleton<MapCommands> {
         building.gameObject.layer = LayerMask.NameToLayer("Map");
         building.gameObject.AddComponent<BuildingWeapon>();
         building.gameObject.AddComponent<InteractibleBuilding>();
+
         var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
         buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
         buildingDisplay.ExplosionPrefab = ExplosionPrefab;
