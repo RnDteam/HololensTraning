@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class PlaneDisplayController : MonoBehaviour
+public abstract class PlaneDisplayController : MonoBehaviour
 {
 
     public bool IsInfoShown
@@ -17,38 +17,36 @@ public class PlaneDisplayController : MonoBehaviour
         private set;
     }
 
-    public int planeNumber;
-
-    // Gas variables
-    public float gasAmount = 100;
-
     private Color selectedColor;
     public Color defaultColor;
     public GameObject planeInfo;
     public GameObject lackOfGasAlert;
     public GameObject planeCamera;
     public GameObject pilotCamera;
+    public float gasAmount = 100;
 
     public Vector2 coords;
     public float localHeight;
+    private Vector3 defaultScale;
 
-    private GameObject wings;
-    private GameObject mainbody;
+
 
     private PhysicsParameters pParams;
 
     public bool IsVisible;
-    
-    void Start () {
-        // Assigning wings and plane body for color purposes
-        wings = transform.Find("Wings").gameObject;
-        mainbody = transform.Find("Main_Body").gameObject;
+
+    public void Start()
+    {
+        selectedColor = Color.blue;
+        ConvertColors(defaultColor);
+
+        defaultScale = transform.localScale;
+        MapMovement.Instance.ZoomChanged += ChangeZoom;
+        MapMovement.Instance.Moved += ChangePosition;
 
         pParams = new PhysicsParameters(transform);
         IsGasAlertActive = false;
-        selectedColor = Color.blue;
-        ConvertColors(defaultColor);
-        
+
         if (PlaneManager.Instance.PlaneVisibilityWhenOffMap || MapCommands.Instance.Contains(coords))
         {
             IsVisible = true;
@@ -69,9 +67,9 @@ public class PlaneDisplayController : MonoBehaviour
         {
             // Calculate physics information
             pParams.UpdatePhysics(transform);
-            
-			DisplayUpdatedInfo();
-		}
+
+            DisplayUpdatedInfo();
+        }
 
         localHeight = transform.localPosition.y;
         coords = OnlineMapsTileSetControl.instance.GetCoordsByWorldPosition(transform.position);
@@ -87,6 +85,26 @@ public class PlaneDisplayController : MonoBehaviour
                 SetVisibility(true);
             }
         }
+    }
+
+
+    private void ChangeZoom()
+    {
+        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
+
+        transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
+        transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(GetComponent<PlaneDisplayController>().coords);
+        transform.localPosition = new Vector3(transform.localPosition.x, GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+    }
+
+    private void ChangePosition()
+    {
+        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
+        {
+            var newPosition = transform.position + MapMovement.Instance.MovementVector;
+            transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
+        }
+
     }
 
     public void SetVisibility(bool value)
@@ -107,7 +125,7 @@ public class PlaneDisplayController : MonoBehaviour
     }
 
     #region Plane's Gas
-    private void HandleGasAmount()
+    public void HandleGasAmount()
     {
         gasAmount = gasAmount > 0 ? gasAmount - Time.deltaTime : 0;
 
@@ -136,11 +154,7 @@ public class PlaneDisplayController : MonoBehaviour
         ConvertColors(defaultColor);
     }
 
-    private void ConvertColors(Color color)
-    {
-        wings.GetComponent<Renderer>().material.color = color;
-        mainbody.GetComponent<Renderer>().material.color = color;
-    }
+    protected abstract void ConvertColors(Color color);
     #endregion
 
     #region Plane Details

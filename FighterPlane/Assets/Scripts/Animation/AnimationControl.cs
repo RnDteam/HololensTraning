@@ -4,11 +4,11 @@ using System.Collections;
 public class AnimationControl : MonoBehaviour {
 
     private Animator anim;
-    
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    public virtual void Start () {
         anim = gameObject.GetComponent<Animator>();
-        anim.StopPlayback();
+    
         anim.enabled = false;
     }
 	
