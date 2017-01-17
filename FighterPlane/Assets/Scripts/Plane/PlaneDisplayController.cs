@@ -20,16 +20,21 @@ public abstract class PlaneDisplayController : MonoBehaviour
     private Color selectedColor;
     public Color defaultColor;
     public GameObject planeInfo;
+    public GameObject planeName;
     public GameObject lackOfGasAlert;
     public GameObject planeCamera;
     public GameObject pilotCamera;
+    public GameObject distanceText;
+    public GameObject distanceLine;
     public float gasAmount = 100;
 
     public Vector2 coords;
     public float localHeight;
+
     private Vector3 defaultScale;
-
-
+    private GameObject Target;
+    private Vector3 targetPosition;
+    private bool isDistanceShown = false;
 
     private PhysicsParameters pParams;
 
@@ -55,7 +60,12 @@ public abstract class PlaneDisplayController : MonoBehaviour
         {
             SetVisibility(false);
         }
+
+        setPlaneName();
+
+        distanceText.transform.localScale /= transform.localScale.x;
     }
+
 
     void Update()
     {
@@ -85,7 +95,13 @@ public abstract class PlaneDisplayController : MonoBehaviour
                 SetVisibility(true);
             }
         }
+
+        if (isDistanceShown)
+        {
+            SetLinePosition();
+        }
     }
+    
 
 
     private void ChangeZoom()
@@ -160,8 +176,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = this.name + "\n" + pParams.ToString()
-                                                            + "\n" + "Gas Amount(Liters): " + this.gasAmount.ToString("000.0");
+        planeInfo.GetComponent<TextMesh>().text = "Weapon: " + GetComponent<PlaneWeapon>().Weapon.ToString() + "\n" + pParams.ToString() + "\n" + "Gas Amount(Liters): " + gasAmount.ToString("000.0");
     }
 
     public void HidePlaneInfo()
@@ -174,6 +189,51 @@ public abstract class PlaneDisplayController : MonoBehaviour
     {
         planeInfo.SetActive(true);
         IsInfoShown = true;
+    }
+
+    private void setPlaneName()
+    {
+        planeName.GetComponent<TextMesh>().text = name;
+    }
+
+    #endregion
+
+    #region Planes Distance
+    public void ShowDistance()
+    {
+        distanceText.SetActive(true);
+        distanceLine.SetActive(true);
+    }
+
+    public void HideDistance()
+    {
+        distanceText.SetActive(false);
+        distanceLine.SetActive(false);
+    }
+
+    private void SetLinePosition()
+    {
+        var p1 = transform.position;
+        var p2 = Target.transform.TransformPoint(Target.transform.position);
+        distanceLine.GetComponent<LineRenderer>().SetPosition(0, p1);
+        distanceLine.GetComponent<LineRenderer>().SetPosition(1, p2);
+
+        distanceText.transform.position = Vector3.Lerp(p1, p2, 0.5f);
+        distanceText.GetComponent<TextMesh>().text = Math.Round((p1 - p2).magnitude, 2) + " m";
+    }
+
+    public void ShowDistanceLine(GameObject target)
+    {
+        Target = target;
+        isDistanceShown = true;
+        ShowDistance();
+    }
+
+    public void HideDistanceLine()
+    {
+        Target = null;
+        isDistanceShown = false;
+        HideDistance();
     }
     #endregion
 }

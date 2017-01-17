@@ -64,6 +64,7 @@ public partial class MapCommands : Singleton<MapCommands> {
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
         building.gameObject.layer = 31;
+        building.gameObject.AddComponent<BuildingWeapon>();
         var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
         var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
         buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
@@ -155,5 +156,4 @@ public partial class MapCommands : Singleton<MapCommands> {
             && coord.y >= OnlineMaps.instance.bottomRightPosition.y && coord.y <= OnlineMaps.instance.topLeftPosition.y;
     }
 
-    
 }

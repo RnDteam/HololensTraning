@@ -4,6 +4,8 @@ using HoloToolkit.Unity;
 using Assets.Scripts.Physics;
 using Assets.Scripts.Plane;
 using HoloToolkit;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class PlaneManager : Singleton<PlaneManager>
 {
@@ -111,11 +113,14 @@ public partial class PlaneManager : Singleton<PlaneManager>
         text.text = Math.Round((previousPlane.transform.position - selectedPlane.transform.position).magnitude, 2) + " km";
     }
 
+    private IEnumerable<GameObject> GetPlanesWithWeapon(Weapon weapon)
+    {
+        return planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon == weapon);
+    }
+
     void Update()
     {
-        //RotateHerculesByHandGesture();
         SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
-
     }
 
     // Selecting planes using voice commands
@@ -323,15 +328,29 @@ public partial class PlaneManager : Singleton<PlaneManager>
         return position;
     }
 
+    public void GetRelevantPlanes()
+    {
+        foreach (var plane in planes)
+        {
+            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
+        }
+        Debug.Log("finding...");
+        var building = BuildingManager.Instance.SelectedBuilding;
+        if (building == null)
+        {
+            return;
+        }
+        Debug.Log("selected building: " + BuildingManager.Instance.SelectedBuildingId);
+        var relevantPlanes = planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon != Weapon.None && p.GetComponent<PlaneWeapon>().Weapon == building.GetComponent<BuildingWeapon>().Weapon);
+        foreach (var plane in relevantPlanes)
+        {
+            Debug.Log(plane.name);
+            plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(building);
+        }
+    }
+
     public void AttackBuilding()
     {
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.right, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
     }
-
-    /*
-    public void DoSplitS()
-    {
-        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
-    }
-    */
 }
