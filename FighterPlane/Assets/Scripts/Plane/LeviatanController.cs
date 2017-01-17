@@ -24,8 +24,6 @@ public class LeviatanController : PlaneDisplayController
     #region Selecting Plane
     protected override void ConvertColors(Color color)
     {
-        Debug.Log("This is " + gameObject.name + " changing to " + color);
-
         foreach(GameObject meshPart in meshParts)
         {
             foreach(Material mat in meshPart.GetComponent<Renderer>().materials) {

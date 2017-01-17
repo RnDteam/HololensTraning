@@ -2150,53 +2150,8 @@ Prefab:
       propertyPath: m_Name
       value: LeviatanB
       objectReference: {fileID: 0}
-    - target: {fileID: 114582698129989902, guid: 68ce8bd5b26b186468ec9652f3282f87,
-        type: 2}
-      propertyPath: distanceLine
-      value: 
-      objectReference: {fileID: 814717698}
-    - target: {fileID: 114582698129989902, guid: 68ce8bd5b26b186468ec9652f3282f87,
-        type: 2}
-      propertyPath: distanceText
-      value: 
-      objectReference: {fileID: 780291412}
-    - target: {fileID: 0}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1661825353895940, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4441848909212616, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114860228513847410, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &268744766 stripped
@@ -2209,18 +2164,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87,
     type: 2}
   m_PrefabInternal: {fileID: 268744765}
---- !u!114 &268744768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 268744767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b231be613e092d469219ca84b9f1281, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Weapon: 2
 --- !u!1 &421433823 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87,
@@ -2274,27 +2217,8 @@ Prefab:
       propertyPath: m_Name
       value: LeviatanA
       objectReference: {fileID: 0}
-    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894299985400700, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114860228513847410, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &676117970
@@ -2473,16 +2397,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!1 &780291412 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1633518888809900, guid: 45ca62e3ffd035e41acbd4335ad03a95,
-    type: 2}
-  m_PrefabInternal: {fileID: 1305364971}
---- !u!1 &814717698 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1567951568519950, guid: 45ca62e3ffd035e41acbd4335ad03a95,
-    type: 2}
-  m_PrefabInternal: {fileID: 1305364971}
 --- !u!1 &1110393083 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e,
@@ -2531,7 +2445,13 @@ Prefab:
       propertyPath: m_Name
       value: HerculesB
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114349040637289354, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: Weapon
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114107886462221036, guid: 109d9782a66984d43830476a9450162e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1202163166 stripped
@@ -2539,48 +2459,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e,
     type: 2}
   m_PrefabInternal: {fileID: 1202163165}
---- !u!1001 &1305364971
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 268744766}
-    m_Modifications:
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718062477165224, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 45ca62e3ffd035e41acbd4335ad03a95, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1650179623 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e,
@@ -2634,6 +2512,20 @@ Prefab:
       propertyPath: m_Name
       value: HerculesA
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1990554041855350, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101716996615728, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349040637289354, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: Weapon
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114107886462221036, guid: 109d9782a66984d43830476a9450162e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
   m_IsPrefabParent: 0

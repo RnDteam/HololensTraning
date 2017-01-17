@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1265781017122170
 GameObject:
   m_ObjectHideFlags: 1
@@ -346,7 +346,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716896504390062}
   m_LocalRotation: {x: 0, y: 0.99965733, z: -0.026176924, w: 0}
-  m_LocalPosition: {x: 0, y: 0.1, z: 1.73}
+  m_LocalPosition: {x: 0, y: 0.1, z: -0.67}
   m_LocalScale: {x: 0.050000064, y: 0.05, z: 0.05000006}
   m_Children: []
   m_Father: {fileID: 4801973446588612}
@@ -358,9 +358,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101716996615728}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -1.900001, y: -32.5, z: -24.499985}
-  m_LocalScale: {x: 1.4999995, y: 1.5, z: 1.4999995}
+  m_LocalRotation: {x: -0.041842535, y: 0.010969113, z: 0.00045940554, w: 0.9990639}
+  m_LocalPosition: {x: -2.032641, y: -2.7202218, z: 2.8599877}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4508154471378974}
   m_RootOrder: 1
@@ -384,7 +384,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_LocalRotation: {x: -0.11776426, y: -0.6691373, z: -0.10835718, w: 0.7257036}
+  m_LocalRotation: {x: -0.105067275, y: 0.045211308, z: 0.004781666, w: 0.99342537}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
@@ -531,7 +531,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_LocalRotation: {x: -0.22679736, y: -0.025969654, z: -0.19474682, w: 0.9539194}
+  m_LocalRotation: {x: -0.13582036, y: 0.045041297, z: 0.006181255, w: 0.9896898}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.2, y: 0.25, z: 0.25}
   m_Children: []
@@ -544,8 +544,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.76, y: 5.5, z: -1.9}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 5.5, z: -1.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4340762139302194}
@@ -937,7 +937,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1564992813933612}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -1358,7 +1358,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_Text: 
+  m_Text: HerculesA
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1400,14 +1400,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101716996615728}
-  m_Text: 
+  m_Text: 0.89 m
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 15
+  m_FontSize: 60
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1467,9 +1467,9 @@ MonoBehaviour:
   pilotCamera: {fileID: 1716896504390062}
   distanceText: {fileID: 1101716996615728}
   distanceLine: {fileID: 1990554041855350}
-  gasAmount: 40
-  coords: {x: 34.98149, y: 32.83901}
-  localHeight: 5.500001
+  gasAmount: 0
+  coords: {x: 34.981426, y: 32.83843}
+  localHeight: 5.5
   IsVisible: 1
   planeModel: {fileID: 1740555580184952}
 --- !u!114 &114349040637289354
@@ -1538,8 +1538,8 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0.276, y: 1.45, z: 3.0259855}
+  - {x: -0.13052817, y: 0.90595543, z: 3.5979831}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.01

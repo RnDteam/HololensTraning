@@ -62,6 +62,8 @@ public abstract class PlaneDisplayController : MonoBehaviour
         }
 
         setPlaneName();
+
+        distanceText.transform.localScale /= transform.localScale.x;
     }
 
 
