@@ -26,16 +26,14 @@ public abstract class PlaneDisplayController : MonoBehaviour
     public GameObject pilotCamera;
     public GameObject distanceText;
     public GameObject distanceLine;
-    public GameObject Target;
-    private Vector3 targetPosition;
     public float gasAmount = 100;
 
     public Vector2 coords;
     public float localHeight;
+
     private Vector3 defaultScale;
-
-
-
+    private GameObject Target;
+    private Vector3 targetPosition;
     private bool isDistanceShown = false;
 
     private PhysicsParameters pParams;
@@ -213,14 +211,18 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
     private void SetLinePosition()
     {
-        distanceLine.GetComponent<LineRenderer>().SetPosition(0, transform.TransformPoint(transform.position));
-        distanceLine.GetComponent<LineRenderer>().SetPosition(1, Target.transform.TransformPoint(Target.transform.position));
+        var p1 = transform.position;
+        var p2 = Target.transform.TransformPoint(Target.transform.position);
+        distanceLine.GetComponent<LineRenderer>().SetPosition(0, p1);
+        distanceLine.GetComponent<LineRenderer>().SetPosition(1, p2);
+
+        distanceText.transform.position = Vector3.Lerp(p1, p2, 0.5f);
+        distanceText.GetComponent<TextMesh>().text = Math.Round((p1 - p2).magnitude, 2) + " m";
     }
 
     public void ShowDistanceLine(GameObject target)
     {
         Target = target;
-        //targetPosition = OnlineMapsTileSetControl.instance.GetWorldPosition(target.GetComponent<OnlineMapsBuildingBase>().centerCoordinates);
         isDistanceShown = true;
         ShowDistance();
     }
