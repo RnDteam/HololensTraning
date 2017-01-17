@@ -9,5 +9,7 @@ public static class GlobalManager {
     public const float defaultCircleRadius = 0.5f;
     public const float defaultLoopOmega = 0.66667f;
     public const float defaultCircleOmega = 0.66667f;
+    public const float defaultAttackSpeed = 0.33333f;
     public const float unphysicalBankAngle = 20;
+    public const float heightAboveBuildingToAttack = 0.3f;
 }

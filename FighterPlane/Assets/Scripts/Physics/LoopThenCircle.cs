@@ -49,6 +49,7 @@ namespace Assets.Scripts.Physics
 
         public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
         {
+            executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
             circleRadius *= currentZoomRatio;
         }
 

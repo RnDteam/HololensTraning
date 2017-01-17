@@ -62,7 +62,7 @@ public class BuildingDisplay : MonoBehaviour {
         buildingRenderer = ruinBuilding.GetComponent<Renderer>();
     }
 
-    private void BoomBuilding()
+    public void BoomBuilding()
     {
         if (!BuildingManager.Instance.desroidBuildingsList.Contains(gameObject.GetComponent<OnlineMapsBuildingBase>().id))
         {

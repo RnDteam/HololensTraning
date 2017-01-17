@@ -145,6 +145,11 @@ public partial class MapCommands : Singleton<MapCommands> {
         OnlineMaps.instance.SetPosition(coords.x, coords.y);
     }
 
+    public void ResetApp()
+    {
+        Application.LoadLevel(0);
+    }
+
     public bool Contains(Vector2 coord)
     {
         return coord.x >= OnlineMaps.instance.topLeftPosition.x && coord.x <= OnlineMaps.instance.bottomRightPosition.x
