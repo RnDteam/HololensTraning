@@ -15,7 +15,6 @@ public class BuildingDisplay : MonoBehaviour {
     private void Awake()
     {
         buildingRenderer = GetComponent<Renderer>();
-        SetText();
         try
         {
             RuinBuildingIfBomed();
@@ -84,12 +83,23 @@ public class BuildingDisplay : MonoBehaviour {
     #endregion
 
     #region info
-    void SetText()
+    public void SetText()
     {
         var buildingInfo = GetComponent<OnlineMapsBuildingBase>().metaInfo;
         if (buildingInfo.Any(p => p.title == "name"))
+        {
             text = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
+        }
         else text = ReverseHebrewName("בניין כללי");
+        /*BuildingWeapon weapon= GetComponent<BuildingWeapon>();
+        if (weapon.Weapon.Equals(Weapon.Rocket))
+        {
+            text += "\n" + "ליט:קשנ";
+        }
+        else if (weapon.Equals(Weapon.Missile))
+        {
+            text += "\n" + "הצצפ:קשנ";
+        }*/
     }
 
     public void ShowInfo()

@@ -4,6 +4,7 @@ using UnityEngine;
 public class BuildingWeapon : MonoBehaviour {
 
     public Weapon Weapon;
+    public string asd = "asd";
     
     void Start () {
         long id;
@@ -12,6 +13,7 @@ public class BuildingWeapon : MonoBehaviour {
             if (id % 2 == 0)
             {
                 Weapon = Weapon.Missile;
+
             }
             else
             {
@@ -22,5 +24,6 @@ public class BuildingWeapon : MonoBehaviour {
         {
             Weapon = Weapon.None;
         }
+        
     }
 }

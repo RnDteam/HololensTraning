@@ -49,7 +49,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1248513847150042
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 114582698129989902}
   - component: {fileID: 114831407428647754}
   - component: {fileID: 114267049416591956}
-  - component: {fileID: 54097628264993066}
+  - component: {fileID: 54078848394275024}
   m_Layer: 8
   m_Name: LeviatanA 1
   m_TagString: Plane
@@ -318,7 +318,7 @@ Transform:
   m_LocalScale: {x: 0.050000064, y: 0.05, z: 0.05000006}
   m_Children: []
   m_Father: {fileID: 4494766027297240}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 3.0000002, y: 180, z: 0}
 --- !u!4 &4162778928561454
 Transform:
@@ -359,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 1630254178252718}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -1.900001, y: -32.5, z: -24.499985}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 39062.242, y: 39062.242, z: 39062.242}
   m_Children: []
   m_Father: {fileID: 4441848909212616}
   m_RootOrder: 1
@@ -370,13 +370,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248513847150042}
-  m_LocalRotation: {x: -0.11776426, y: -0.6691373, z: -0.10835718, w: 0.7257036}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.12992802, y: 0.7889145, z: -0.59262705, w: 0.09760093}
+  m_LocalPosition: {x: 113.3333, y: -0.0001335143, z: 20}
+  m_LocalScale: {x: 13.33333, y: 13.333334, z: 13.333332}
   m_Children: []
-  m_Father: {fileID: 4494766027297240}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 4844387060023280}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 64.415, y: -225, z: -47.951}
 --- !u!4 &4393016243902462
 Transform:
   m_ObjectHideFlags: 1
@@ -403,7 +403,7 @@ Transform:
   - {fileID: 4912163510974278}
   - {fileID: 4311129347556698}
   m_Father: {fileID: 4494766027297240}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4494766027297240
 Transform:
@@ -417,12 +417,11 @@ Transform:
   m_Children:
   - {fileID: 4844387060023280}
   - {fileID: 4999763752610394}
-  - {fileID: 4697678525463334}
   - {fileID: 4707371856245672}
   - {fileID: 4069282711215954}
-  - {fileID: 4375432491358398}
   - {fileID: 4894299985400700}
   - {fileID: 4441848909212616}
+  - {fileID: 4697678525463334}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -445,13 +444,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661825353895940}
-  m_LocalRotation: {x: 0.13305794, y: -0.48786962, z: -0.07553492, w: -0.8594029}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalRotation: {x: -0.13754079, y: 0.6093992, z: 0.10839145, w: 0.7732829}
+  m_LocalPosition: {x: -0, y: 6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4494766027297240}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -20.171, y: 76.481, z: 0}
 --- !u!4 &4700055047617106
 Transform:
   m_ObjectHideFlags: 1
@@ -472,11 +471,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1616262237693320}
   m_LocalRotation: {x: 0, y: 0.98560035, z: -0.16909142, w: 0}
-  m_LocalPosition: {x: 0, y: 9.4, z: 19.9}
+  m_LocalPosition: {x: 0, y: 9.4, z: 20.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4494766027297240}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 19.47, y: 180, z: 0}
 --- !u!4 &4844387060023280
 Transform:
@@ -487,7 +486,8 @@ Transform:
   m_LocalRotation: {x: -0.50000006, y: 0.5, z: -0.50000006, w: -0.5}
   m_LocalPosition: {x: 0, y: 0.2, z: 1.5}
   m_LocalScale: {x: 0.07500005, y: 0.07500008, z: 0.075000025}
-  m_Children: []
+  m_Children:
+  - {fileID: 4375432491358398}
   m_Father: {fileID: 4494766027297240}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90.00001, y: 270, z: 0}
@@ -516,7 +516,7 @@ Transform:
   m_Children:
   - {fileID: 4162778928561454}
   m_Father: {fileID: 4494766027297240}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!4 &4912163510974278
 Transform:
@@ -682,11 +682,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bd9b70e7fc408f34d97bcd6c6bcb3f40, type: 2}
-  - {fileID: 2100000, guid: 47e5c1f1b52379349829333a2267f35a, type: 2}
-  - {fileID: 2100000, guid: 299b8880fa653d24e8c7ea60e9abfd86, type: 2}
-  - {fileID: 2100000, guid: 0b16307602da46549937ad22db659c0d, type: 2}
-  - {fileID: 2100000, guid: e8bf04a47a6b9d64a94f24ffc0071c2a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -783,9 +783,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 47e5c1f1b52379349829333a2267f35a, type: 2}
-  - {fileID: 2100000, guid: 4d90a08c95017eb4a98b6626fa499764, type: 2}
-  - {fileID: 2100000, guid: bd9b70e7fc408f34d97bcd6c6bcb3f40, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -847,9 +847,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0b16307602da46549937ad22db659c0d, type: 2}
-  - {fileID: 2100000, guid: e8bf04a47a6b9d64a94f24ffc0071c2a, type: 2}
-  - {fileID: 2100000, guid: 299b8880fa653d24e8c7ea60e9abfd86, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -915,9 +915,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0b16307602da46549937ad22db659c0d, type: 2}
-  - {fileID: 2100000, guid: 299b8880fa653d24e8c7ea60e9abfd86, type: 2}
-  - {fileID: 2100000, guid: 47e5c1f1b52379349829333a2267f35a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -979,8 +979,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 299b8880fa653d24e8c7ea60e9abfd86, type: 2}
-  - {fileID: 2100000, guid: 47e5c1f1b52379349829333a2267f35a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1081,7 +1081,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938364142060298}
   m_Mesh: {fileID: 4300008, guid: 04652ccb6f845c440b28eb5dff2431fd, type: 3}
---- !u!54 &54097628264993066
+--- !u!54 &54078848394275024
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1303,7 +1303,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248513847150042}
-  m_Text: 
+  m_Text: LeviatanB
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1316,7 +1316,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4280189183
+    rgba: 4288266437
 --- !u!102 &102888845663971964
 TextMesh:
   serializedVersion: 3
@@ -1324,7 +1324,9 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661825353895940}
-  m_Text: 
+  m_Text: 'Weapon: Rocket
+
+    Speed: 00'
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1337,7 +1339,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4280942366
+    rgba: 4291407000
 --- !u!102 &102975553413040528
 TextMesh:
   serializedVersion: 3
@@ -1412,8 +1414,8 @@ MonoBehaviour:
   pilotCamera: {fileID: 1378825305854946}
   distanceText: {fileID: 1630254178252718}
   distanceLine: {fileID: 1787299770020656}
-  gasAmount: 273.1951
-  coords: {x: 34.997734, y: 32.835957}
+  gasAmount: 0
+  coords: {x: 35.00452, y: 32.788475}
   localHeight: 6.5000005
   IsVisible: 1
   planeModel: {fileID: 1986374571206962}
