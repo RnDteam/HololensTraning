@@ -283,7 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7b48314bbfddc45a311ff62923eddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingId: 39383661
+  buildingId: 96623741
+  flashesTimeDifference: 0.3
+  flashLoop: 15
 --- !u!82 &36
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1877,6 +1879,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+  - Keyword: Play Scenario
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 35}
+          m_MethodName: ActivateScenario
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!114 &143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2721,7 +2740,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 9.5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalRotation.x
