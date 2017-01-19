@@ -13,8 +13,10 @@ public partial class PlaneManager : Singleton<PlaneManager>
     {
         HerculesA,
         HerculesB,
+        HerculesC,
         LeviatanA,
-        LeviatanB
+        LeviatanB,
+        LeviatanC
     }
 
     // Indexes of selected and previous planes
@@ -119,6 +121,11 @@ public partial class PlaneManager : Singleton<PlaneManager>
         ChangePlane(planes[(int)PLANES.HerculesB]);
     }
 
+    public void SelectHerculesC()
+    {
+        ChangePlane(planes[(int)PLANES.HerculesC]);
+    }
+
     public void SelectLeviatanA()
     {
         ChangePlane(planes[(int)PLANES.LeviatanA]);
@@ -127,6 +134,17 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void SelectLeviatanB()
     {
         ChangePlane(planes[(int)PLANES.LeviatanB]);
+    }
+
+    public void SelectLeviatanC()
+    {
+        ChangePlane(planes[(int)PLANES.LeviatanC]);
+    }
+
+    public void SelectPlaneByIndex(int index)
+    {
+        if (index>0 && index < Enum.GetNames(typeof(PLANES)).Length)
+        ChangePlane(planes[index]);
     }
 
     private void ChangePlane(GameObject currPlane)
@@ -319,10 +337,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void GetRelevantPlanes()
     {
-        foreach (var plane in planes)
-        {
-            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
-        }
+        RemoveDistanceLines();
 
         var building = BuildingManager.Instance.SelectedBuilding;
         if (building == null)
@@ -331,20 +346,35 @@ public partial class PlaneManager : Singleton<PlaneManager>
         }
 
         var relevantPlanes = planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon != Weapon.None && p.GetComponent<PlaneWeapon>().Weapon == building.GetComponent<BuildingWeapon>().Weapon);
+        ShowDistanceLines(building, relevantPlanes);
+    }
+
+    private static void ShowDistanceLines(GameObject building, IEnumerable<GameObject> relevantPlanes)
+    {
         foreach (var plane in relevantPlanes)
         {
             plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(building);
         }
     }
 
-    public void AttackBuilding()
+    private void RemoveDistanceLines()
     {
         foreach (var plane in planes)
         {
             plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
         }
+    }
+
+    public void AttackBuilding()
+    {
+        RemoveDistanceLines();
 
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
+    }
+
+    public void ShowAttackPath()
+    {
+        RemoveDistanceLines();
         selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
 }

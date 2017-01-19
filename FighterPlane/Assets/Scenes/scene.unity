@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7b48314bbfddc45a311ff62923eddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingId: 39383661
+  buildingId: 96623741
   flashesTimeDifference: 0.3
   flashLoop: 15
 --- !u!82 &36
@@ -557,8 +557,10 @@ Transform:
   - {fileID: 676117971}
   - {fileID: 1650179624}
   - {fileID: 1202163166}
+  - {fileID: 172461532}
   - {fileID: 421433829}
   - {fileID: 268744766}
+  - {fileID: 1683994332}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1202,6 +1204,10 @@ MonoBehaviour:
     - Hercules A
     - Matos Aleph
     - Plane A
+    - Ido
+    - Eedo
+    - Adu
+    - do
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1223,6 +1229,8 @@ MonoBehaviour:
     - Hercules B
     - Matos Bet
     - Plane B
+    - Cohen
+    - Co'en
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1243,6 +1251,7 @@ MonoBehaviour:
     Keywords:
     - Begin Flight
     - Lahtoos
+    - Toos
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1302,6 +1311,7 @@ MonoBehaviour:
   - MethodPurpose: Zoom In
     Keywords:
     - Zoom In
+    - Hitkarev
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1321,6 +1331,7 @@ MonoBehaviour:
   - MethodPurpose: Zoom Out
     Keywords:
     - Zoom Out
+    - Hitrahek
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1339,7 +1350,8 @@ MonoBehaviour:
         PublicKeyToken=null
   - MethodPurpose: Show DIstance
     Keywords:
-    - Show Distance
+    - Show DIstance
+    - Hatzeg Merhak
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1359,6 +1371,7 @@ MonoBehaviour:
   - MethodPurpose: Hide Distance
     Keywords:
     - Hide Distance
+    - Hahsteir Merhack
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1397,6 +1410,7 @@ MonoBehaviour:
   - MethodPurpose: Show Alert
     Keywords:
     - Show Alert
+    - Hatzeg Kipa
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1416,6 +1430,7 @@ MonoBehaviour:
   - MethodPurpose: Hide Alert
     Keywords:
     - Hide Alert
+    - Hahsteir Kipa
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1435,6 +1450,8 @@ MonoBehaviour:
   - MethodPurpose: View Pilot Camera
     Keywords:
     - Pilot View
+    - Pilot Mode
+    - Matsav Taias
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1454,6 +1471,8 @@ MonoBehaviour:
   - MethodPurpose: View Plane Camera
     Keywords:
     - Plane View
+    - Plane Mode
+    - Matsav Matos
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1473,6 +1492,8 @@ MonoBehaviour:
   - MethodPurpose: View Ground Camera(default)
     Keywords:
     - Ground View
+    - Ground Mode
+    - Matsav karka
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1492,6 +1513,12 @@ MonoBehaviour:
   - MethodPurpose: Zoom to Building
     Keywords:
     - Zoom to Building
+    - Zoom Lebinian
+    - Hitkarev Lebinian
+    - Show Target
+    - Show Dagon
+    - Hitkarev Matara
+    - Hitkarev Dagon
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1511,6 +1538,7 @@ MonoBehaviour:
   - MethodPurpose: Show Building Name
     Keywords:
     - Show Name
+    - Hatzeg Pratim
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1530,6 +1558,7 @@ MonoBehaviour:
   - MethodPurpose: Hide Building Name
     Keywords:
     - Hide Name
+    - Hahsteir Pratim
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1546,9 +1575,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - MethodPurpose: Plane - do loop
+  - MethodPurpose: Plane - Loop
     Keywords:
-    - Do Loop
+    - Loop
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1565,9 +1594,11 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - MethodPurpose: Plane - elude
+  - MethodPurpose: Plane - Elude
     Keywords:
     - Elude
+    - Hithamek
+    - Zuz
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1584,9 +1615,10 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - MethodPurpose: Plane - do circle
+  - MethodPurpose: Plane - Circle
     Keywords:
-    - Do Circle
+    - Circle
+    - Maagal
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1606,6 +1638,7 @@ MonoBehaviour:
   - MethodPurpose: Move to Plane
     Keywords:
     - Move to Plane
+    - Zuz Lematos
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1644,6 +1677,10 @@ MonoBehaviour:
   - MethodPurpose: Attack Building
     Keywords:
     - Bomb
+    - Attack
+    - Rashai Tkifa
+    - Tkifa
+    - Tkof
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1663,7 +1700,8 @@ MonoBehaviour:
   - MethodPurpose: Select Leviatan A
     Keywords:
     - Leviatan A
-    - Plane Three
+    - Plane Four
+    - Ziv
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1683,7 +1721,8 @@ MonoBehaviour:
   - MethodPurpose: Select Leviatan B
     Keywords:
     - Leviatan B
-    - Plane Four
+    - Plane Five
+    - Calev
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1703,6 +1742,8 @@ MonoBehaviour:
   - MethodPurpose: Get Planes With Matching Ammo
     Keywords:
     - Find Planes
+    - Hatzeg Metosim
+    - Hatzeg Letkifa
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1739,12 +1780,77 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - MethodPurpose: Play Scenario
-    Keywords: []
+    Keywords:
+    - Play Scenario
+    - Nagen
     Response:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 35}
           m_MethodName: ActivateScenario
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - MethodPurpose: Select Hercules C
+    Keywords:
+    - Plane Three
+    - Chen
+    - Hen
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 150}
+          m_MethodName: SelectHerculesC
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - MethodPurpose: Select Leviatan C
+    Keywords:
+    - Plane Six
+    - Yariv
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 150}
+          m_MethodName: SelectLeviatanC
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - MethodPurpose: Show Attack Path
+    Keywords:
+    - Show Attack Path
+    - Plan Attack
+    - Bdok Nativ
+    - Nativ Tkifa
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 150}
+          m_MethodName: ShowAttackPath
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1821,8 +1927,10 @@ MonoBehaviour:
   planes:
   - {fileID: 1650179623}
   - {fileID: 1110393083}
+  - {fileID: 172461531}
   - {fileID: 421433823}
   - {fileID: 268744767}
+  - {fileID: 1683994333}
   planesDistance: {fileID: 27}
   distanceLine: {fileID: 10}
   lineColor: {r: 1, g: 0.216, b: 0, a: 0.378}
@@ -2152,6 +2260,16 @@ MonoBehaviour:
     type: 2}
   PlacementSurface: 1
   ChildrenToHide: []
+--- !u!1 &172461531 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1803080707}
+--- !u!4 &172461532 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1803080707}
 --- !u!1001 &268744765
 Prefab:
   m_ObjectHideFlags: 0
@@ -2165,7 +2283,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.5000005
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2189,11 +2307,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_Name
-      value: LeviatanB
+      value: Calaeb
       objectReference: {fileID: 0}
     - target: {fileID: 65906438901909068, guid: 68ce8bd5b26b186468ec9652f3282f87,
         type: 2}
@@ -2203,6 +2321,11 @@ Prefab:
     - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_TagString
       value: Plane
+      objectReference: {fileID: 0}
+    - target: {fileID: 114267049416591956, guid: 68ce8bd5b26b186468ec9652f3282f87,
+        type: 2}
+      propertyPath: Weapon
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -2280,11 +2403,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_Name
-      value: LeviatanA
+      value: Ziv
       objectReference: {fileID: 0}
     - target: {fileID: 4707371856245672, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2531,7 +2654,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_Name
-      value: HerculesB
+      value: Cohen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
@@ -2566,6 +2689,166 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &1683994331
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 79}
+    m_Modifications:
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 6.5000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_Name
+      value: Yariv
+      objectReference: {fileID: 0}
+    - target: {fileID: 65906438901909068, guid: 68ce8bd5b26b186468ec9652f3282f87,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_TagString
+      value: Plane
+      objectReference: {fileID: 0}
+    - target: {fileID: 114267049416591956, guid: 68ce8bd5b26b186468ec9652f3282f87,
+        type: 2}
+      propertyPath: Weapon
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.20000008
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.20000008
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+  m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1683994332 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87,
+    type: 2}
+  m_PrefabInternal: {fileID: 1683994331}
+--- !u!1 &1683994333 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87,
+    type: 2}
+  m_PrefabInternal: {fileID: 1683994331}
+--- !u!54 &1683994334
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683994333}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1001 &1803080707
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 79}
+    m_Modifications:
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_Name
+      value: Chen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1920560929
 Prefab:
   m_ObjectHideFlags: 0
@@ -2607,7 +2890,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_Name
-      value: HerculesA
+      value: Ido
       objectReference: {fileID: 0}
     - target: {fileID: 65545922220291450, guid: 109d9782a66984d43830476a9450162e,
         type: 2}
@@ -2622,6 +2905,11 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349040637289354, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: Weapon
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
