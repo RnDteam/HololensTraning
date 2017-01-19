@@ -99,7 +99,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
         if (isDistanceShown)
         {
-            SetLinePosition(transform.position, targetPosition);
+            SetLinePosition(transform.position, targetPosition, Color.white, Color.white);
         }
     }
     
@@ -227,14 +227,14 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.SetActive(false);
     }
 
-    private void SetLinePosition(Vector3 startPoint, Vector3 endPoint)
+    private void SetLinePosition(Vector3 startPoint, Vector3 endPoint, Color startColor ,Color endColor)
     {
         distanceLine.GetComponent<LineRenderer>().SetPosition(0, startPoint);
         distanceLine.GetComponent<LineRenderer>().SetPosition(1, endPoint);
-        distanceLine.GetComponent<LineRenderer>().SetColors(Color.white, Color.red);
+        distanceLine.GetComponent<LineRenderer>().SetColors(startColor, endColor);
 
         distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
-        distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " m";
+        distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " mi.";
     }
 
     public void ShowDistanceLine(GameObject target)
@@ -257,7 +257,9 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceText.SetActive(false);
 
         SetLinePosition(gameObject.GetComponent<ManeuverController>().GetAttackStartPoint(),
-                        gameObject.GetComponent<ManeuverController>().GetAttackEndPoint());
+                        gameObject.GetComponent<ManeuverController>().GetAttackEndPoint(),
+                        Color.white,
+                        Color.red);
         }
     #endregion
 }
