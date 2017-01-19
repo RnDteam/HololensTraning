@@ -106,10 +106,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     void Update()
     {
-        if(distanceLine.active)
-        {
-            SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
-        }
+        SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
     }
 
     // Selecting planes using voice commands
