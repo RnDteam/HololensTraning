@@ -14,7 +14,9 @@ namespace Assets.Scripts.Physics
         public virtual void UpdateState() { return; }
         public abstract void UpdateOnMapMoved(Vector3 movementVector);
         public abstract void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio);
-        public abstract Vector3 GetCenter();
+        public abstract Vector3 GetFocusPoint();
+        public abstract void Pause();
+        public abstract void Resume();
         public static float CalculateYOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float y)
         {
             var heightRelativeToSurface = relativeTransform.InverseTransformPoint(new Vector3 { y = y }).y;

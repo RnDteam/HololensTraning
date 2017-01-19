@@ -30,6 +30,7 @@ namespace Assets.Scripts.Physics
         float omega;
         float r;
         float startTime;
+        float ellapsedTime;
         float zComponentOfHorizontal = 1;
         float xComponentOfHorizontal = 0;
         float phase = (float) -Math.PI/2;
@@ -80,9 +81,19 @@ namespace Assets.Scripts.Physics
             r *= currentZoomRatio;
         }
 
-        public override Vector3 GetCenter()
+        public override Vector3 GetFocusPoint()
         {
             return new Vector3(centerX, centerY, centerZ);
+        }
+
+        public override void Pause()
+        {
+            ellapsedTime = Time.time - startTime; ;
+        }
+
+        public override void Resume()
+        {
+            startTime = Time.time - ellapsedTime;
         }
     }
 }
