@@ -61,7 +61,7 @@ namespace Assets.Scripts.Physics
             }
         }
 
-        public override Vector3 GetCenter()
+        public override Vector3 GetFocusPoint()
         {
             return endPoint;
         }

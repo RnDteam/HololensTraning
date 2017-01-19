@@ -19,7 +19,7 @@ namespace Assets.Scripts.Plane
         {
             get
             {
-                return maneuver.GetCenter();
+                return maneuver.GetFocusPoint();
             }
         }
 

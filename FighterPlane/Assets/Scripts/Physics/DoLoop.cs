@@ -31,7 +31,6 @@ namespace Assets.Scripts.Physics
         float r;
         float startTime;
         float ellapsedTime;
-        bool insideLoop;
         float zComponentOfHorizontal = 1;
         float xComponentOfHorizontal = 0;
         float phase = (float) -Math.PI/2;
@@ -82,7 +81,7 @@ namespace Assets.Scripts.Physics
             r *= currentZoomRatio;
         }
 
-        public override Vector3 GetCenter()
+        public override Vector3 GetFocusPoint()
         {
             return new Vector3(centerX, centerY, centerZ);
         }
