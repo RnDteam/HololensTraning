@@ -53,9 +53,9 @@ namespace Assets.Scripts.Physics
             circleRadius *= currentZoomRatio;
         }
 
-        public override Vector3 GetCenter()
+        public override Vector3 GetFocusPoint()
         {
-            return executedManeuver.GetCenter();
+            return executedManeuver.GetFocusPoint();
         }
 
         public override void Pause()

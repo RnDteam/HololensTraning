@@ -9,6 +9,22 @@ namespace Assets.Scripts.Physics
     class AttackBuildingManeuver : Maneuver
     {
         const float permissibleAngleErrorDegrees = 1f;
+        Vector3 AttackCoords;
+        Vector3 finalCoords = new Vector3();
+        Maneuver executedManeuver;
+        float flightSpeed;
+        float radius;
+        float omega;
+        Vector3 initialPosition;
+        Vector3 initialRight;
+        GameObject building;
+        GameObject line;
+        enum stagesOfAttack
+        {
+            initialAttackCircle, straightFlightToTarget, circleSegmentAboveTarget, straightFlightBackToCircle, finalCircle
+        };
+        int stage = (int) stagesOfAttack.initialAttackCircle;
+
         //in the future, we can add different radii and omegas for the different stages of the attack; in the meantime, we'll just use one set for simplicity
         public AttackBuildingManeuver(Vector3 currentPosition, Quaternion currentRotation, Vector3 CoordsToAttack, GameObject building, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
         {
@@ -26,35 +42,14 @@ namespace Assets.Scripts.Physics
             MapCommands.Instance.LockMap();
         }
 
-        Vector3 AttackCoords;
-        Vector3 finalCoords = new Vector3();
-        Maneuver executedManeuver;
-        float flightSpeed;
-        float radius;
-        float omega;
-        Vector3 initialPosition;
-        Vector3 initialRight;
-        GameObject building;
-        GameObject line;
-        //let's divide the attack up into five stages: the initial circle, the straight flight to the target, the circle segment above the target,
-        //the straight flight back to the area the plane was in at the beginning, and the final circle. It's not strictly necessary,
-        //but less messy than things like "if(executedManeuver is MakeCircle && ...)"
-        int stage = 0;
-
-        /*
-         * Return the Vector3 representing the endpoint of the attack path - that is, the coordinates we are attacking
-         * */
         public Vector3 GetEndpointOfAttackPath()
         {
             return AttackCoords;
         }
 
-        /*
-         * Return the Vector3 representing the start of the attack path - the coordinates where the plane leaves the initial circle
-         * */
         public Vector3 GetStartPointOfAttackPath()
         {
-            //Threw the relevant equations, into wolfram alpha; it turns out that the resulting mathematical solution is surprisingly copmplicated.
+            //Threw the relevant equations, into wolfram alpha; it turns out that the resulting mathematical solution is surprisingly complicated.
             //Therefore, we will calculate this point computationally
             float increment = Time.fixedDeltaTime * radius;
             for(float theta = 0; theta < 2 * Math.PI; theta += increment)
@@ -91,9 +86,9 @@ namespace Assets.Scripts.Physics
             executedManeuver.UpdateState();
             Vector3 position = executedManeuver.CalculateWorldPosition();
             Quaternion rotation = executedManeuver.CalculateWorldRotation();
-            if (stage == 0 && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(AttackCoords.x, position.y, AttackCoords.z)) < permissibleAngleErrorDegrees)
+            if (stage == (int) stagesOfAttack.initialAttackCircle && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(AttackCoords.x, position.y, AttackCoords.z)) < permissibleAngleErrorDegrees)
             {
-                stage = 1;
+                stage = (int) stagesOfAttack.straightFlightToTarget;
                 Vector3 planesRight = rotation * Vector3.right;
                 planesRight.y = 0;
                 planesRight.Normalize();
@@ -101,24 +96,24 @@ namespace Assets.Scripts.Physics
                 //the "forward" vector in the LookRotation call is multpiplied by -1 because the forward vector of the Hercules model is towards its tail
                 executedManeuver = new StraightFlightManeuver(position, AttackCoords, flightSpeed, rotation);
             }
-            if(stage == 1 && ((StraightFlightManeuver) executedManeuver).finished)
+            if(stage == (int)stagesOfAttack.straightFlightToTarget && ((StraightFlightManeuver) executedManeuver).finished)
             {
-                stage = 2;
+                stage = (int)stagesOfAttack.circleSegmentAboveTarget;
                 building.GetComponent<BuildingDisplay>().BoomBuilding();
+                MapCommands.Instance.UnlockMap();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
                 //Vector3[] pos = { new Vector3() };
                 //line.SetPositions(pos);
                 line.SetActive(false);
             }
-            if(stage == 2 && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)
+            if(stage == (int)stagesOfAttack.circleSegmentAboveTarget && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)
             {
-                stage = 3;
+                stage = (int)stagesOfAttack.straightFlightBackToCircle;
                 executedManeuver = new StraightFlightManeuver(position, finalCoords, flightSpeed, rotation);
             }
-            if(stage == 3 && ((StraightFlightManeuver) executedManeuver).finished)
+            if(stage == (int)stagesOfAttack.straightFlightBackToCircle && ((StraightFlightManeuver) executedManeuver).finished)
             {
-                stage = 4;
-                MapCommands.Instance.UnlockMap();
+                stage = (int)stagesOfAttack.finalCircle;
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
             }
         }
@@ -133,9 +128,9 @@ namespace Assets.Scripts.Physics
             return executedManeuver.CalculateWorldRotation();
         }
 
-        public override Vector3 GetCenter()
+        public override Vector3 GetFocusPoint()
         {
-            return executedManeuver.GetCenter();
+            return executedManeuver.GetFocusPoint();
         }
 
         public override void UpdateOnMapMoved(Vector3 movementVector)
