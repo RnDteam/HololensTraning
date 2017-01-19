@@ -202,4 +202,6 @@ public partial class BuildingManager : Singleton<BuildingManager>
     {
         SelectBuildingById("183294007");
     }
+
+    
 }
