@@ -1170,7 +1170,6 @@ MonoBehaviour:
   - MethodPurpose: Begin Flight
     Keywords:
     - Begin Flight
-    - Lahtoos
     - Toos
     Response:
       m_PersistentCalls:
@@ -1208,7 +1207,7 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - MethodPurpose: Hide (Info
+  - MethodPurpose: Hide Info
     Keywords:
     - Hide Info
     - Hahsteir Meidah
@@ -1231,7 +1230,6 @@ MonoBehaviour:
   - MethodPurpose: Zoom In
     Keywords:
     - Zoom In
-    - Hitkarev
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1251,7 +1249,6 @@ MonoBehaviour:
   - MethodPurpose: Zoom Out
     Keywords:
     - Zoom Out
-    - Hitrahek
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1434,11 +1431,10 @@ MonoBehaviour:
     Keywords:
     - Zoom to Building
     - Zoom Lebinian
-    - Hitkarev Lebinian
+    - Zoom LeDagon
     - Show Target
     - Show Dagon
-    - Hitkarev Matara
-    - Hitkarev Dagon
+    - Zoom lematara
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1538,7 +1534,7 @@ MonoBehaviour:
   - MethodPurpose: Plane - Circle
     Keywords:
     - Circle
-    - Maagal
+    - Ma'agal
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1724,6 +1720,7 @@ MonoBehaviour:
     - Plane Three
     - Chen
     - Hen
+    - Hercules C
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1744,6 +1741,7 @@ MonoBehaviour:
     Keywords:
     - Plane Six
     - Yariv
+    - Leviatan C
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -2794,7 +2792,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 120
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -2844,7 +2842,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
