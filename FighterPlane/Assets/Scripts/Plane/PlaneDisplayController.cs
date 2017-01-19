@@ -108,7 +108,18 @@ public abstract class PlaneDisplayController : MonoBehaviour
     private void ChangeZoom()
     {
         transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
-
+        Debug.Log("zoom: " + MapMovement.Instance.AbsoluteZoomRatio.ToString());
+        //GetComponentInChildren<EllipsoidParticleEmitter>().emit = MapMovement.Instance.AbsoluteZoomRatio > 0.25;
+        if(MapMovement.Instance.AbsoluteZoomRatio <= 0.25)//number is not arbitrary; this is the level above which the default smoke trail swallows the plane
+        {
+            GetComponentInChildren<EllipsoidParticleEmitter>().minSize = 0.003f;
+            GetComponentInChildren<EllipsoidParticleEmitter>().maxSize = 0.003f;
+        }
+        else
+        {
+            GetComponentInChildren<EllipsoidParticleEmitter>().minSize = 0.03f;
+            GetComponentInChildren<EllipsoidParticleEmitter>().maxSize = 0.03f;
+        }
         //if plane is flying then the manuver changes the zoom
         if (!GetComponent<ManeuverController>().IsFlying)
         {
@@ -244,8 +255,8 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.SetActive(true);
         distanceText.SetActive(false);
 
-        SetLinePosition(((AttackBuildingManeuver)gameObject.GetComponent<ManeuverController>().getManeuver()).GetStartPointOfAttackPath(),
-                        ((AttackBuildingManeuver)gameObject.GetComponent<ManeuverController>().getManeuver()).GetEndpointOfAttackPath());
+        SetLinePosition(gameObject.GetComponent<ManeuverController>().GetAttackStartPoint(),
+                        gameObject.GetComponent<ManeuverController>().GetAttackEndPoint());
         }
     #endregion
 }

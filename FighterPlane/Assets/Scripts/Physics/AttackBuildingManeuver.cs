@@ -8,7 +8,7 @@ namespace Assets.Scripts.Physics
 {
     class AttackBuildingManeuver : Maneuver
     {
-        const float permissibleAngleErrorDegrees = 1f;
+        public const float permissibleAngleErrorDegrees = 1f;
         Vector3 AttackCoords;
         Vector3 finalCoords = new Vector3();
         Maneuver executedManeuver;
@@ -42,6 +42,7 @@ namespace Assets.Scripts.Physics
             MapCommands.Instance.LockMap();
         }
 
+        /*
         public Vector3 GetEndpointOfAttackPath()
         {
             return AttackCoords;
@@ -65,6 +66,7 @@ namespace Assets.Scripts.Physics
             //this can happen if an attempt is made to attack a point inside of the circle
             throw (new ArgumentOutOfRangeException());
         }
+        */
 
         public override void Pause()
         {
@@ -99,7 +101,11 @@ namespace Assets.Scripts.Physics
             if(stage == (int)stagesOfAttack.straightFlightToTarget && ((StraightFlightManeuver) executedManeuver).finished)
             {
                 stage = (int)stagesOfAttack.circleSegmentAboveTarget;
-                building.GetComponent<BuildingDisplay>().BoomBuilding();
+                try
+                {
+                    building.GetComponent<BuildingDisplay>().BoomBuilding();
+                }
+                catch { }
                 MapCommands.Instance.UnlockMap();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
                 //Vector3[] pos = { new Vector3() };
