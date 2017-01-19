@@ -57,5 +57,15 @@ namespace Assets.Scripts.Physics
         {
             return executedManeuver.GetCenter();
         }
+
+        public override void Pause()
+        {
+            executedManeuver.Pause();
+        }
+
+        public override void Resume()
+        {
+            executedManeuver.Resume();
+        }
     }
 }

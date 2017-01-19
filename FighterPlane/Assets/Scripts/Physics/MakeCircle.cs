@@ -40,6 +40,7 @@ namespace Assets.Scripts.Physics
         float omega;
         float r;
         float startTime;
+        float ellapsedTime = 0;
         CorrectPoseManeuver correctPoseManeuver;
 
         public override Vector3 CalculateWorldPosition()
@@ -92,6 +93,16 @@ namespace Assets.Scripts.Physics
         public override Vector3 GetCenter()
         {
             return new Vector3(centerX, height, centerZ);
+        }
+
+        public override void Pause()
+        {
+            ellapsedTime = Time.time - startTime; ;
+        }
+
+        public override void Resume()
+        {
+            startTime = Time.time - ellapsedTime;
         }
     }
 }

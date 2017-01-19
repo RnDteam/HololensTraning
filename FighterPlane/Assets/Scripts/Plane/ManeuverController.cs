@@ -57,6 +57,7 @@ namespace Assets.Scripts.Plane
                 if(newManeuver is LoopThenCircle)
                 {
                     interruptedManeuver = maneuver;
+                    maneuver.Pause();
                 }
                 hasBegunFlight = true;
                 maneuver = newManeuver;
@@ -75,6 +76,7 @@ namespace Assets.Scripts.Plane
                 if(maneuver is LoopThenCircle && maneuver.canInterrupt && !(interruptedManeuver is MakeCircle))
                 {
                     maneuver = interruptedManeuver;
+                    maneuver.Resume();
                 }
             }
         }
