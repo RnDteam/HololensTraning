@@ -28,6 +28,7 @@ namespace Assets.Scripts.Physics
         float startTime;
         float tNormFactor;
         float t;
+        float ellapsedTime = 0;
         CorrectPoseManeuver correctPoseManeuver;
 
         public override void UpdateState()
@@ -77,5 +78,14 @@ namespace Assets.Scripts.Physics
             endPoint.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, endPoint.y);
         }
 
+        public override void Pause()
+        {
+            ellapsedTime = Time.time - startTime; ;
+        }
+
+        public override void Resume()
+        {
+            startTime = Time.time - ellapsedTime;
+        }
     }
 }

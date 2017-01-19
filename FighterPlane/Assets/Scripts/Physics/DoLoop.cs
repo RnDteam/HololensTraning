@@ -30,6 +30,8 @@ namespace Assets.Scripts.Physics
         float omega;
         float r;
         float startTime;
+        float ellapsedTime;
+        bool insideLoop;
         float zComponentOfHorizontal = 1;
         float xComponentOfHorizontal = 0;
         float phase = (float) -Math.PI/2;
@@ -83,6 +85,16 @@ namespace Assets.Scripts.Physics
         public override Vector3 GetCenter()
         {
             return new Vector3(centerX, centerY, centerZ);
+        }
+
+        public override void Pause()
+        {
+            ellapsedTime = Time.time - startTime; ;
+        }
+
+        public override void Resume()
+        {
+            startTime = Time.time - ellapsedTime;
         }
     }
 }

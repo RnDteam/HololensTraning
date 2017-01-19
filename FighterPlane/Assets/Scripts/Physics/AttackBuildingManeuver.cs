@@ -20,6 +20,8 @@ namespace Assets.Scripts.Physics
             this.radius = radius;
             this.omega = omega;
             executedManeuver = new MakeCircle(currentPosition, currentRotation, omega, radius);
+            initialPosition = currentPosition;
+            initialRight = currentRotation * Vector3.right;
             this.building = building;
             MapCommands.Instance.LockMap();
         }
@@ -67,6 +69,16 @@ namespace Assets.Scripts.Physics
             //if we throw this, than it means that there is no point where the plane leaves the initial circle
             //this can happen if an attempt is made to attack a point inside of the circle
             throw (new ArgumentOutOfRangeException());
+        }
+
+        public override void Pause()
+        {
+            executedManeuver.Pause();
+        }
+
+        public override void Resume()
+        {
+            executedManeuver.Resume();
         }
 
         public void SetLine(GameObject line)
