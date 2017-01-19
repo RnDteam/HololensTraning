@@ -18,20 +18,19 @@ public partial class MapCommands : Singleton<MapCommands> {
     public GameObject ExplosionPrefab;
     public GameObject RuinBuildingPrefab;
 
+    private bool mapLocked = false;
 
     private void Start()
     {
         buildings = OnlineMapsBuildings.instance;
         limits = GetComponent<OnlineMapsLimits>();
-
-        //OnlineMaps.instance.OnChangePosition += PositionChanged;
-
+        
         buildings.OnBuildingCreated += InitializeBuilding;
     }
 
     private void Update()
     {
-        if (GestureManager.Instance.IsNavigating)
+        if (!mapLocked && GestureManager.Instance.IsNavigating)
         {
             var motionvector = Camera.main.transform.TransformVector(GestureManager.Instance.NavigationPosition);
             MoveMap(motionvector);
@@ -64,9 +63,10 @@ public partial class MapCommands : Singleton<MapCommands> {
 
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
-        building.gameObject.layer = 31;
+        building.gameObject.layer = LayerMask.NameToLayer("Map");
         building.gameObject.AddComponent<BuildingWeapon>();
-        var interactible = building.gameObject.AddComponent<InteractibleBuilding>();
+        building.gameObject.AddComponent<InteractibleBuilding>();
+
         var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
         buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
         buildingDisplay.ExplosionPrefab = ExplosionPrefab;
@@ -99,7 +99,7 @@ public partial class MapCommands : Singleton<MapCommands> {
 
     public void ZoomIn()
     {
-        ZoomToGaze(1);
+       ZoomToGaze(1);
     }
 
     public void ZoomOut()
@@ -109,7 +109,7 @@ public partial class MapCommands : Singleton<MapCommands> {
 
     private void ZoomToGaze(int zoomDifference)
     {
-        if (OnlineMaps.instance.zoom >= limits.maxZoom)
+        if (mapLocked || OnlineMaps.instance.zoom >= limits.maxZoom)
             return;
 
         var target = GetGazePosition();
@@ -133,7 +133,7 @@ public partial class MapCommands : Singleton<MapCommands> {
 
     public void ZoomToBuilding()
     {
-        if (BuildingManager.Instance.IsBuildingSelected)
+        if (!mapLocked && BuildingManager.Instance.IsBuildingSelected)
         {
             var coords = BuildingManager.Instance.SelectedBuildingCoords;
             OnlineMaps.instance.SetPositionAndZoom(coords.x, coords.y, 18);
@@ -157,4 +157,13 @@ public partial class MapCommands : Singleton<MapCommands> {
             && coord.y >= OnlineMaps.instance.bottomRightPosition.y && coord.y <= OnlineMaps.instance.topLeftPosition.y;
     }
 
+    public void LockMap()
+    {
+        mapLocked = true;
+    }
+
+    public void UnlockMap()
+    {
+        mapLocked = false;
+    }
 }

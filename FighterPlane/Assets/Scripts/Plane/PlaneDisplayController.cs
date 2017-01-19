@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Assets.Scripts.Plane;
+using Assets.Scripts.Physics;
 
 public abstract class PlaneDisplayController : MonoBehaviour
 {
@@ -32,7 +34,6 @@ public abstract class PlaneDisplayController : MonoBehaviour
     public float localHeight;
 
     private Vector3 defaultScale;
-    private GameObject Target;
     private Vector3 targetPosition;
     private bool isDistanceShown = false;
 
@@ -98,7 +99,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
         if (isDistanceShown)
         {
-            SetLinePosition();
+            SetLinePosition(transform.position, targetPosition);
         }
     }
     
@@ -106,16 +107,20 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
     private void ChangeZoom()
     {
-        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
-
         transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
-        transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(GetComponent<PlaneDisplayController>().coords);
-        transform.localPosition = new Vector3(transform.localPosition.x, GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+
+        //if plane is flying then the manuver changes the zoom
+        if (!GetComponent<ManeuverController>().IsFlying)
+        {
+            transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(GetComponent<PlaneDisplayController>().coords);
+            transform.localPosition = new Vector3(transform.localPosition.x, GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+        }
     }
 
     private void ChangePosition()
     {
-        //if (!plane.GetComponent<ManeuverController>().IsFlying) //TODO: Ziv WTF?!
+        //if plane is flying then the manuver changes the zoom
+        if (!GetComponent<ManeuverController>().IsFlying)
         {
             var newPosition = transform.position + MapMovement.Instance.MovementVector;
             transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
@@ -211,29 +216,36 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.SetActive(false);
     }
 
-    private void SetLinePosition()
+    private void SetLinePosition(Vector3 startPoint, Vector3 endPoint)
     {
-        var p1 = transform.position;
-        var p2 = Target.transform.TransformPoint(Target.transform.position);
-        distanceLine.GetComponent<LineRenderer>().SetPosition(0, p1);
-        distanceLine.GetComponent<LineRenderer>().SetPosition(1, p2);
+        distanceLine.GetComponent<LineRenderer>().SetPosition(0, startPoint);
+        distanceLine.GetComponent<LineRenderer>().SetPosition(1, endPoint);
 
-        distanceText.transform.position = Vector3.Lerp(p1, p2, 0.5f);
-        distanceText.GetComponent<TextMesh>().text = Math.Round((p1 - p2).magnitude, 2) + " m";
+        distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
+        distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " m";
     }
 
     public void ShowDistanceLine(GameObject target)
     {
-        Target = target;
+        targetPosition = target.transform.TransformPoint(target.transform.position);
         isDistanceShown = true;
         ShowDistance();
     }
 
     public void HideDistanceLine()
     {
-        Target = null;
         isDistanceShown = false;
         HideDistance();
     }
+
+    public void ShowAttackPath()
+    {
+        isDistanceShown = false;
+        distanceLine.SetActive(true);
+        distanceText.SetActive(false);
+
+        SetLinePosition(((AttackBuildingManeuver)gameObject.GetComponent<ManeuverController>().getManeuver()).GetStartPointOfAttackPath(),
+                        ((AttackBuildingManeuver)gameObject.GetComponent<ManeuverController>().getManeuver()).GetEndpointOfAttackPath());
+        }
     #endregion
 }

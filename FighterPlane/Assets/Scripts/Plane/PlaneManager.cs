@@ -49,9 +49,6 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
         InitializeDistanceLine();
 
-        //MapMovement.Instance.Moved += ChangePosition;
-        //MapMovement.Instance.ZoomChanged += ChangeZoom;
-
         foreach (GameObject plane in planes)
         {
             if (gameObject.GetComponent<Animator>() != null)
@@ -59,35 +56,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
                 gameObject.GetComponent<Animator>().Stop();
             }
         }
-
-        //defaultScale = planes[0].transform.localScale;
     }
-
-    //private void ChangePosition()
-    //{
-    //    foreach (var plane in planes)
-    //    {
-    //        if (!plane.GetComponent<ManeuverController>().IsFlying)
-    //        {
-    //            var newPosition = plane.transform.position + MapMovement.Instance.MovementVector;
-    //            plane.transform.position = new Vector3(newPosition.x, plane.transform.position.y, newPosition.z);
-    //        }
-    //    }
-    //}
-
-    //private void ChangeZoom()
-    //{
-    //    foreach (var plane in planes)
-    //    {
-    //        plane.transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
-
-    //        if (!plane.GetComponent<ManeuverController>().IsFlying)
-    //        {
-    //            plane.transform.position = OnlineMapsTileSetControl.instance.GetWorldPosition(plane.GetComponent<PlaneDisplayController>().coords);
-    //            plane.transform.localPosition = new Vector3(plane.transform.localPosition.x, plane.GetComponent<PlaneDisplayController>().localHeight * MapMovement.Instance.CurrentZoomRatio, plane.transform.localPosition.z);
-    //        }
-    //    }
-    //}
+    
 
     private void InitializeDistanceLine()
     {
@@ -350,13 +320,12 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void AttackBuilding()
     {
-        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
-    }
+        foreach (var plane in planes)
+        {
+            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
+        }
 
-    /*
-    public void DoSplitS()
-    {
-        AddManeuver(new SplitS(selectedPlane.transform.position, selectedPlane.transform.rotation, 1.5f, 0.1f, 1, 1, 1));
+        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
-    */
 }
