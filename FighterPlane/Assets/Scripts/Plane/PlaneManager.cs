@@ -57,6 +57,14 @@ public partial class PlaneManager : Singleton<PlaneManager>
             }
         }
     }
+
+    public void AllPlanesTakeOff()
+    {
+        foreach (GameObject plane in planes)
+        {
+            AddManeuver(new BeginFlightManeuver(plane.transform.position, plane.transform.rotation), plane);
+        }
+    }
     
 
     private void InitializeDistanceLine()
@@ -262,30 +270,30 @@ public partial class PlaneManager : Singleton<PlaneManager>
     }
     #endregion
 
-    private void AddManeuver(Maneuver newManeuver)
+    private void AddManeuver(Maneuver newManeuver, GameObject selectedPlane)
     {
         selectedPlane.GetComponent<ManeuverController>().SetManeuver(newManeuver);
     }
 
     public void DoCircle()
     {
-        AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.rotation));
+        AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
     }
 
     public void DoLoop()
     {
-        AddManeuver(new DoLoop(selectedPlane.transform.position, selectedPlane.transform.rotation));
+        AddManeuver(new DoLoop(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
     }
 
     public void Escape()
     {
-        AddManeuver(new LoopThenCircle(selectedPlane.transform.position, selectedPlane.transform.rotation));
+        AddManeuver(new LoopThenCircle(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
     }
 
     public void BeginFlight()
     {
         PlaySounds();
-        AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation));
+        AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
     }
 
     public Vector3 GetPlaneCenter()
@@ -325,7 +333,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
             plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
         }
 
-        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
+        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding), selectedPlane);
         selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
 }
