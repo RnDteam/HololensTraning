@@ -72,7 +72,6 @@ namespace Academy.HoloToolkit.Unity
         {
             if (myKeywordsAndResponses.Length > 0)
             {
-                Debug.Log("Responses Count : " + responses.Keys.Count);
                 keywordRecognizer = new KeywordRecognizer(responses.Keys.ToArray());
                 keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
 
@@ -85,7 +84,7 @@ namespace Academy.HoloToolkit.Unity
 
         void Restart()
         {
-            InitializeResponsesDictionary();
+            // InitializeResponsesDictionary();
             StartRecognizer();
         }
 
@@ -101,7 +100,6 @@ namespace Academy.HoloToolkit.Unity
 
         private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
         {
-            Debug.Log(args.text);
             UnityEvent keywordResponse;
 
             // Check to make sure the recognized keyword exists in the methods dictionary, then invoke the corresponding method.
@@ -150,7 +148,18 @@ namespace Academy.HoloToolkit.Unity
                 NewKeywordsAndResponses[i] = myKeywordsAndResponses[i];
             }
             NewKeywordsAndResponses[myKeywordsAndResponses.Length] = new MyBetterKeywordAndResponse() { MethodPurpose = methodPurpose, Keywords = lstKeywords, Response = response };
+            
             myKeywordsAndResponses = NewKeywordsAndResponses;
+
+            //responses.Clear();
+
+            //responses = new Dictionary<string, UnityEvent>();
+
+            foreach (string keyword in lstKeywords)
+            {
+                responses.Add(keyword, response);
+            }
+
             Restart();
         }
 
