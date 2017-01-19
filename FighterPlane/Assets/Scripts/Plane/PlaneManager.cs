@@ -59,6 +59,14 @@ public partial class PlaneManager : Singleton<PlaneManager>
             }
         }
     }
+
+    public void AllPlanesTakeOff()
+    {
+        foreach (GameObject plane in planes)
+        {
+            AddManeuver(new BeginFlightManeuver(plane.transform.position, plane.transform.rotation), plane);
+        }
+    }
     
 
     private void InitializeDistanceLine()
@@ -280,9 +288,14 @@ public partial class PlaneManager : Singleton<PlaneManager>
     }
     #endregion
 
-    private void AddManeuver(Maneuver newManeuver)
+    private void AddManeuver(Maneuver newManeuver, GameObject selectedPlane)
     {
         selectedPlane.GetComponent<ManeuverController>().SetManeuver(newManeuver);
+    }
+
+    private void AddManeuver(Maneuver newManeuver)
+    {
+        AddManeuver(newManeuver, selectedPlane);
     }
 
     public void DoCircle()
