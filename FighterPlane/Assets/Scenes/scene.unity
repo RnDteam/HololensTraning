@@ -1100,8 +1100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RecognizerStart: 0
-  KeywordsAndResponses:
-  - Keyword: Plane A
+  myKeywordsAndResponses:
+  - MethodPurpose: Select Hercules A
+    Keywords:
+    - Hercules A
+    - Matos Aleph
+    - Plane A
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1118,7 +1122,11 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Plane B
+  - MethodPurpose: Select Hercules B
+    Keywords:
+    - Hercules B
+    - Matos Bet
+    - Plane B
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1135,41 +1143,10 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Matos aleph
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: SelectHerculesA
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Matos bet
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: SelectHerculesB
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Begin flight
+  - MethodPurpose: Begin Flight
+    Keywords:
+    - Begin Flight
+    - Lahtoos
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1186,24 +1163,10 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: lahtoos
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: AnimatePlane
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Show Info
+  - MethodPurpose: Show Info
+    Keywords:
+    - Show Info
+    - Hatzeg meidah
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1220,7 +1183,10 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Hide Info
+  - MethodPurpose: Hide (Info
+    Keywords:
+    - Hide Info
+    - Hahsteir Meidah
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1237,41 +1203,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: hatzeg meidah
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: ShowInfo
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: hahsteir meidah
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: HideInfo
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: zoom in
+  - MethodPurpose: Zoom In
+    Keywords:
+    - Zoom In
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1288,7 +1222,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: zoom out
+  - MethodPurpose: Zoom Out
+    Keywords:
+    - Zoom Out
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1305,7 +1241,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Show Distance
+  - MethodPurpose: Show DIstance
+    Keywords:
+    - Show Distance
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1322,7 +1260,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Hide Distance
+  - MethodPurpose: Hide Distance
+    Keywords:
+    - Hide Distance
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1339,7 +1279,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Easter Egg
+  - MethodPurpose: Easter Egg
+    Keywords:
+    - Easter Egg
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1356,7 +1298,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Show Alert
+  - MethodPurpose: Show Alert
+    Keywords:
+    - Show Alert
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1373,7 +1317,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Hide Alert
+  - MethodPurpose: Hide Alert
+    Keywords:
+    - Hide Alert
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1390,7 +1336,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Pilot View
+  - MethodPurpose: View Pilot Camera
+    Keywords:
+    - Pilot View
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1407,7 +1355,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Plane View
+  - MethodPurpose: View Plane Camera
+    Keywords:
+    - Plane View
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1424,7 +1374,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Ground View
+  - MethodPurpose: View Ground Camera(default)
+    Keywords:
+    - Ground View
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1441,7 +1393,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: zoom to building
+  - MethodPurpose: Zoom to Building
+    Keywords:
+    - Zoom to Building
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1458,7 +1412,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: show name
+  - MethodPurpose: Show Building Name
+    Keywords:
+    - Show Name
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1475,7 +1431,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: hide name
+  - MethodPurpose: Hide Building Name
+    Keywords:
+    - Hide Name
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1492,7 +1450,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Do Loop
+  - MethodPurpose: Plane - do loop
+    Keywords:
+    - Do Loop
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1509,7 +1469,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Elude
+  - MethodPurpose: Plane - elude
+    Keywords:
+    - Elude
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1526,41 +1488,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: grand canyon
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SelectGrandCanyon
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: select house
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SelectHouse
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Do Circle
+  - MethodPurpose: Plane - do circle
+    Keywords:
+    - Do Circle
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1577,7 +1507,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: move to plane
+  - MethodPurpose: Move to Plane
+    Keywords:
+    - Move to Plane
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1594,24 +1526,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: uninitialized
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 165}
-          m_MethodName: SelectBuildingVoiceCommand
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Reset App
+  - MethodPurpose: Reset App
+    Keywords:
+    - Reset App
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1628,7 +1545,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: bomb
+  - MethodPurpose: Attack Building
+    Keywords:
+    - Bomb
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1645,7 +1564,10 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Leviatan One
+  - MethodPurpose: Select Leviatan A
+    Keywords:
+    - Leviatan A
+    - Plane Three
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1662,24 +1584,10 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Plane Three
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: SelectLeviatanA
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Leviatan Two
+  - MethodPurpose: Select Leviatan B
+    Keywords:
+    - Leviatan B
+    - Plane Four
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1696,24 +1604,9 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Plane Four
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 150}
-          m_MethodName: SelectLeviatanB
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Find planes
+  - MethodPurpose: Get Planes With Matching Ammo
+    Keywords:
+    - Find Planes
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1730,12 +1623,14 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Move to plane
+  - MethodPurpose: Adding Building Names to as Keywords
+    Keywords:
+    - uninitialized
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 163}
-          m_MethodName: MoveToPlane
+        - m_Target: {fileID: 165}
+          m_MethodName: SelectBuildingVoiceCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

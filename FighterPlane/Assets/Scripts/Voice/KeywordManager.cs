@@ -19,13 +19,14 @@ namespace Academy.HoloToolkit.Unity
     /// or in your Visual Studio Package.appxmanifest capabilities.
     /// </summary>
     public partial class KeywordManager : Singleton<KeywordManager>
-    {
+    { 
 
         [System.Serializable]
-        public struct KeywordAndResponse
+        public struct MyBetterKeywordAndResponse
         {
-            [Tooltip("The keyword to recognize.")]
-            public string Keyword;
+            public string MethodPurpose;
+            [Tooltip("The keywords to recognize.")]
+            public List<string> Keywords;
             [Tooltip("The UnityEvent to be invoked when the keyword is recognized.")]
             public UnityEvent Response;
         }
@@ -38,21 +39,40 @@ namespace Academy.HoloToolkit.Unity
         [Tooltip("An enumeration to set whether the recognizer should start on or off.")]
         public RecognizerStartBehavior RecognizerStart;
         [Tooltip("An array of string keywords and UnityEvents, to be set in the Inspector.")]
-        public KeywordAndResponse[] KeywordsAndResponses;
+        public MyBetterKeywordAndResponse[] myKeywordsAndResponses;
 
         private KeywordRecognizer keywordRecognizer;
         private Dictionary<string, UnityEvent> responses;
 
+        // Convert the struct array into a dictionary, with the keywords and the keys and the methods as the values.
+        // This helps easily link the keyword recognized to the UnityEvent to be invoked.
+        private void InitializeResponsesDictionary()
+        {
+            responses = new Dictionary<string, UnityEvent>();
+
+            if (myKeywordsAndResponses.Length > 0)
+            {
+                foreach (MyBetterKeywordAndResponse mykeywordAndResopnse in myKeywordsAndResponses)
+                {
+                    foreach (string keyword in mykeywordAndResopnse.Keywords)
+                    {
+                        responses.Add(keyword, mykeywordAndResopnse.Response);
+                    }
+                }
+            }
+        }
+
         void Start()
         {
-            
-            if (KeywordsAndResponses.Length > 0)
-            {
-                // Convert the struct array into a dictionary, with the keywords and the keys and the methods as the values.
-                // This helps easily link the keyword recognized to the UnityEvent to be invoked.
-                responses = KeywordsAndResponses.ToDictionary(keywordAndResponse => keywordAndResponse.Keyword,
-                                                              keywordAndResponse => keywordAndResponse.Response);
+            InitializeResponsesDictionary();
+            StartRecognizer();
+        }
 
+        private void StartRecognizer()
+        {
+            if (myKeywordsAndResponses.Length > 0)
+            {
+                Debug.Log("Responses Count : " + responses.Keys.Count);
                 keywordRecognizer = new KeywordRecognizer(responses.Keys.ToArray());
                 keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
 
@@ -60,36 +80,13 @@ namespace Academy.HoloToolkit.Unity
                 {
                     keywordRecognizer.Start();
                 }
-            }
-            else
-            {
-                Debug.LogError("Must have at least one keyword specified in the Inspector on " + gameObject.name + ".");
             }
         }
 
         void Restart()
         {
-            if (KeywordsAndResponses.Length > 0)
-            {
-                keywordRecognizer.Dispose();
-
-                // Convert the struct array into a dictionary, with the keywords and the keys and the methods as the values.
-                // This helps easily link the keyword recognized to the UnityEvent to be invoked.
-                responses = KeywordsAndResponses.ToDictionary(keywordAndResponse => keywordAndResponse.Keyword,
-                                                              keywordAndResponse => keywordAndResponse.Response);
-
-                keywordRecognizer = new KeywordRecognizer(responses.Keys.ToArray());
-                keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
-
-                if (RecognizerStart == RecognizerStartBehavior.AutoStart)
-                {
-                    keywordRecognizer.Start();
-                }
-            }
-            else
-            {
-                Debug.LogError("Must have at least one keyword specified in the Inspector on " + gameObject.name + ".");
-            }
+            InitializeResponsesDictionary();
+            StartRecognizer();
         }
 
         void OnDestroy()
@@ -104,11 +101,13 @@ namespace Academy.HoloToolkit.Unity
 
         private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
         {
+            Debug.Log(args.text);
             UnityEvent keywordResponse;
 
             // Check to make sure the recognized keyword exists in the methods dictionary, then invoke the corresponding method.
             if (responses.TryGetValue(args.text, out keywordResponse))
             {
+                Debug.Log(args.text);
                 BuildingManager.Instance.BuildingKeyword = args.text;
                 keywordResponse.Invoke();
             }
@@ -138,35 +137,37 @@ namespace Academy.HoloToolkit.Unity
             }
         }
 
-        public void AddKeywordAndResponse(string keyword, UnityEvent response)
+        public void AddKeywordAndResponse(string methodPurpose, List<string> lstKeywords, UnityEvent response)
         {
-            if (KeywordsAndResponses.Any(kar => kar.Keyword == keyword))
+            if (myKeywordsAndResponses.Any(kar => kar.Keywords == lstKeywords))
             {
                 return;
             }
-            var NewKeywordsAndResponses = new KeywordAndResponse[KeywordsAndResponses.Length + 1];
-            for (int i = 0; i< KeywordsAndResponses.Length; i++)
+
+            var NewKeywordsAndResponses = new MyBetterKeywordAndResponse[myKeywordsAndResponses.Length + 1];
+            for (int i = 0; i < myKeywordsAndResponses.Length; i++)
             {
-                NewKeywordsAndResponses[i] = KeywordsAndResponses[i];
+                NewKeywordsAndResponses[i] = myKeywordsAndResponses[i];
             }
-            NewKeywordsAndResponses[KeywordsAndResponses.Length] = new KeywordAndResponse() { Keyword = keyword, Response = response };
-            KeywordsAndResponses = NewKeywordsAndResponses;
+            NewKeywordsAndResponses[myKeywordsAndResponses.Length] = new MyBetterKeywordAndResponse() { MethodPurpose = methodPurpose, Keywords = lstKeywords, Response = response };
+            myKeywordsAndResponses = NewKeywordsAndResponses;
             Restart();
         }
 
-        public void RemoveKeyword(string keyword)
+        public void RemoveKeyword(List<string> lstKeywords)
         {
-            if (KeywordsAndResponses.All(kar => kar.Keyword != keyword))
+            if (myKeywordsAndResponses.Any(kar => kar.Keywords == lstKeywords))
             {
                 return;
             }
-            var NewKeywordsAndResponses = new KeywordAndResponse[KeywordsAndResponses.Length - 1];
-            for (int i = 0, j = 0; i < KeywordsAndResponses.Length; i++)
+
+            var NewKeywordsAndResponses = new MyBetterKeywordAndResponse[myKeywordsAndResponses.Length - 1];
+            for (int i = 0, j = 0; i < myKeywordsAndResponses.Length; i++)
             {
-                if (KeywordsAndResponses[i].Keyword != keyword)
-                    NewKeywordsAndResponses[j++] = KeywordsAndResponses[i];
+                if (myKeywordsAndResponses[i].Keywords != lstKeywords)
+                    NewKeywordsAndResponses[j++] = myKeywordsAndResponses[i];
             }
-            KeywordsAndResponses = NewKeywordsAndResponses;
+            myKeywordsAndResponses = NewKeywordsAndResponses;
             Restart();
         }
     }
