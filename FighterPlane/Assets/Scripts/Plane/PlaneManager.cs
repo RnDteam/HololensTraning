@@ -275,25 +275,30 @@ public partial class PlaneManager : Singleton<PlaneManager>
         selectedPlane.GetComponent<ManeuverController>().SetManeuver(newManeuver);
     }
 
+    private void AddManeuver(Maneuver newManeuver)
+    {
+        AddManeuver(newManeuver, selectedPlane);
+    }
+
     public void DoCircle()
     {
-        AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
+        AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.rotation));
     }
 
     public void DoLoop()
     {
-        AddManeuver(new DoLoop(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
+        AddManeuver(new DoLoop(selectedPlane.transform.position, selectedPlane.transform.rotation));
     }
 
     public void Escape()
     {
-        AddManeuver(new LoopThenCircle(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
+        AddManeuver(new LoopThenCircle(selectedPlane.transform.position, selectedPlane.transform.rotation));
     }
 
     public void BeginFlight()
     {
         PlaySounds();
-        AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation), selectedPlane);
+        AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation));
     }
 
     public Vector3 GetPlaneCenter()
@@ -333,7 +338,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
             plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
         }
 
-        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding), selectedPlane);
+        AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
         selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
 }

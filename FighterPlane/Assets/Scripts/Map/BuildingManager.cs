@@ -144,7 +144,7 @@ public partial class BuildingManager : Singleton<BuildingManager>
         }
         if (OnlineMapsBuildings.instance.buildings.ContainsKey(id))
         {
-            SelectBuilding(OnlineMapsBuildings.instance.buildings[id].gameObject);
+            SelectBuilding(getBuildingById(id));
         }
         else
         {
