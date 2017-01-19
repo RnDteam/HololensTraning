@@ -7,6 +7,7 @@ public class Scenario : MonoBehaviour
     public string buildingId = "96623741"; //Dagon
     public float flashesTimeDifference = 0.3f;
     public int flashLoop = 15;
+    public AudioSource recieveTarget;
 
     public void ActivateScenario()
     {
@@ -23,7 +24,7 @@ public class Scenario : MonoBehaviour
         if (building != null)
         {
             // Found target sound(sits on map object)
-            GetComponent<AudioSource>().Play();
+            recieveTarget.Play();
 
             for (int i = 0; i < flashLoop; i++)
             {
