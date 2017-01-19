@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class GlobalManager {
+    public static int TimeBetweenTakeOffToFindingTarget = 5;
     public static int GasThreshold = 25;
     public const double gravityMag = 9.8;
-    public const float defaultLoopRadius = 0.5f;
-    public const float defaultCircleRadius = 0.5f;
+    public const float defaultLoopRadius = 0.3f;
+    public const float defaultCircleRadius = 0.3f;
     public const float defaultLoopOmega = 0.33333f;
     public const float defaultCircleOmega = 0.33333f;
     public const float defaultAttackSpeed = 0.16667f;
