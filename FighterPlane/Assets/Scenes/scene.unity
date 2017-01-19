@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingId: 96623741
   flashesTimeDifference: 0.3
-  flashLoop: 15
+  flashLoop: 8
   recieveTarget: {fileID: 1578390986}
 --- !u!1 &40
 GameObject:
@@ -1431,10 +1431,10 @@ MonoBehaviour:
     Keywords:
     - Zoom to Building
     - Zoom Lebinian
-    - Zoom LeDagon
+    - Zoom Ledagon
     - Show Target
     - Show Dagon
-    - Zoom lematara
+    - Zoom Lematara
     Response:
       m_PersistentCalls:
         m_Calls:
