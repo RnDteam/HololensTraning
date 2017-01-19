@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingId: 39383661
+  flashesTimeDifference: 0.3
+  flashLoop: 15
 --- !u!82 &36
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1736,7 +1738,8 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: Play Scenario
+  - MethodPurpose: Play Scenario
+    Keywords: []
     Response:
       m_PersistentCalls:
         m_Calls:
