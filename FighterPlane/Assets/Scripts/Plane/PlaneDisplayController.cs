@@ -231,6 +231,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     {
         distanceLine.GetComponent<LineRenderer>().SetPosition(0, startPoint);
         distanceLine.GetComponent<LineRenderer>().SetPosition(1, endPoint);
+        distanceLine.GetComponent<LineRenderer>().SetColors(Color.green, Color.red);
 
         distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
         distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " m";
