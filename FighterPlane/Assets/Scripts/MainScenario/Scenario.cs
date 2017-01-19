@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scenario : MonoBehaviour
 {
-    public string buildingId = "39383661";
+    public string buildingId = "96623741";
     public float flashesTimeDifference = 0.3f;
     public int flashLoop = 15;
 
