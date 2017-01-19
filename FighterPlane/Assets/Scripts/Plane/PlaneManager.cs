@@ -40,6 +40,9 @@ public partial class PlaneManager : Singleton<PlaneManager>
     private bool easterEnabled = false;
 
     private float rotationFactor;
+    public AudioSource attackRecord;
+    public AudioSource showPathRecord;
+
     //private Vector3 defaultScale;
 
     void Start()
@@ -157,6 +160,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
         // Deselecting previous plane and selecting the new one
         DeselectPlane(previousPlane);
         SelectPlane(this.selectedPlane);
+
+        PlaySounds();
     }
 
     private bool Contains(Array array, object val)
@@ -321,7 +326,6 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void BeginFlight()
     {
-        PlaySounds();
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation));
     }
 
@@ -362,11 +366,13 @@ public partial class PlaneManager : Singleton<PlaneManager>
             plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
         }
 
+        attackRecord.Play();
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
     }
 
     public void ShowAttackPath()
     {
+        showPathRecord.Play();
         selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
 }
