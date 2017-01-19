@@ -341,10 +341,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void GetRelevantPlanes()
     {
-        foreach (var plane in planes)
-        {
-            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
-        }
+        RemoveDistanceLines();
 
         var building = BuildingManager.Instance.SelectedBuilding;
         if (building == null)
@@ -353,19 +350,28 @@ public partial class PlaneManager : Singleton<PlaneManager>
         }
 
         var relevantPlanes = planes.Where(p => p.GetComponent<PlaneWeapon>().Weapon != Weapon.None && p.GetComponent<PlaneWeapon>().Weapon == building.GetComponent<BuildingWeapon>().Weapon);
+        ShowDistanceLines(building, relevantPlanes);
+    }
+
+    private static void ShowDistanceLines(GameObject building, IEnumerable<GameObject> relevantPlanes)
+    {
         foreach (var plane in relevantPlanes)
         {
             plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(building);
         }
     }
 
-    public void AttackBuilding()
+    private void RemoveDistanceLines()
     {
         foreach (var plane in planes)
         {
             plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
         }
+    }
 
+    public void AttackBuilding()
+    {
+        RemoveDistanceLines();
         attackRecord.Play();
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
     }
@@ -373,6 +379,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void ShowAttackPath()
     {
         showPathRecord.Play();
+        RemoveDistanceLines();
         selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
 }
