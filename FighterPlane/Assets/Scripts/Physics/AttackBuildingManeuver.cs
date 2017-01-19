@@ -24,10 +24,12 @@ namespace Assets.Scripts.Physics
             initialAttackCircle, straightFlightToTarget, circleSegmentAboveTarget, straightFlightBackToCircle, finalCircle
         };
         int stage = (int) stagesOfAttack.initialAttackCircle;
+        public AudioSource alphaOnTargetRecord;
 
         //in the future, we can add different radii and omegas for the different stages of the attack; in the meantime, we'll just use one set for simplicity
         public AttackBuildingManeuver(Vector3 currentPosition, Quaternion currentRotation, Vector3 CoordsToAttack, GameObject building, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
         {
+            alphaOnTargetRecord = GameObject.Find("AlphaOnTarget").GetComponent<AudioSource>();
             AttackCoords = CoordsToAttack;
             AttackCoords.y = AttackCoords.y + GlobalManager.heightAboveBuildingToAttack;
             initialPosition = currentPosition;
@@ -119,6 +121,7 @@ namespace Assets.Scripts.Physics
             }
             if(stage == (int)stagesOfAttack.straightFlightBackToCircle && ((StraightFlightManeuver) executedManeuver).finished)
             {
+                alphaOnTargetRecord.Play();
                 stage = (int)stagesOfAttack.finalCircle;
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
             }
