@@ -83,14 +83,17 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
-        lr.SetPosition(0, previousPlane.transform.position);
-        lr.SetPosition(1, selectedPlane.transform.position);
+        if(previousPlane != selectedPlane)
+        {
+            lr.SetPosition(0, previousPlane.transform.position);
+            lr.SetPosition(1, selectedPlane.transform.position);
 
-        Vector3 middlePoint = (previousPlane.transform.position + selectedPlane.transform.position) / 2;
-        distance.transform.position = middlePoint;
+            Vector3 middlePoint = (previousPlane.transform.position + selectedPlane.transform.position) / 2;
+            distance.transform.position = middlePoint;
 
-        TextMesh text = distance.GetComponent<TextMesh>();
-        text.text = Math.Round((previousPlane.transform.position - selectedPlane.transform.position).magnitude, 2) + " km";
+            TextMesh text = distance.GetComponent<TextMesh>();
+            text.text = Math.Round((previousPlane.transform.position - selectedPlane.transform.position).magnitude, 1) + " mi.";
+        }
     }
 
     private IEnumerable<GameObject> GetPlanesWithWeapon(Weapon weapon)
@@ -100,7 +103,10 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     void Update()
     {
-        SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
+        if(distanceLine.active)
+        {
+            SetLinePosition(distanceLine.GetComponent<LineRenderer>(), planesDistance);
+        }
     }
 
     // Selecting planes using voice commands
