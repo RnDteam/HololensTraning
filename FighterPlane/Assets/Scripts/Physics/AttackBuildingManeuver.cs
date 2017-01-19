@@ -63,8 +63,7 @@ namespace Assets.Scripts.Physics
             }
             //if we throw this, than it means that there is no point where the plane leaves the initial circle
             //this can happen if an attempt is made to attack a point inside of the circle
-            //throw (new ArgumentOutOfRangeException());
-            return new Vector3();
+            throw (new ArgumentOutOfRangeException());
         }
 
         public override void Pause()
