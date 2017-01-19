@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scenario : MonoBehaviour
 {
-    public string buildingId = "39383661";
+    public string buildingId = "96623741"; //Dagon
     public float flashesTimeDifference = 0.3f;
     public int flashLoop = 15;
 
@@ -18,10 +18,9 @@ public class Scenario : MonoBehaviour
         PlaneManager.Instance.AllPlanesTakeOff();
         yield return new WaitForSeconds(delayTimeAfterTakeOff);
 
-        // Grand canyon mall id
         GameObject building = BuildingManager.Instance.getBuildingById(buildingId);
 
-        if(building != null)
+        if (building != null)
         {
             // Found target sound(sits on map object)
             GetComponent<AudioSource>().Play();
@@ -34,8 +33,7 @@ public class Scenario : MonoBehaviour
                 yield return new WaitForSeconds(flashSeconds);
             }
 
-            building.GetComponent<BuildingDisplay>().Select();
-            yield return new WaitForSeconds(flashSeconds);
+            BuildingManager.Instance.SelectBuilding(building);
         }
     }
 }

@@ -13,8 +13,10 @@ public partial class PlaneManager : Singleton<PlaneManager>
     {
         HerculesA,
         HerculesB,
+        HerculesC,
         LeviatanA,
-        LeviatanB
+        LeviatanB,
+        LeviatanC
     }
 
     // Indexes of selected and previous planes
@@ -119,6 +121,11 @@ public partial class PlaneManager : Singleton<PlaneManager>
         ChangePlane(planes[(int)PLANES.HerculesB]);
     }
 
+    public void SelectHerculesC()
+    {
+        ChangePlane(planes[(int)PLANES.HerculesC]);
+    }
+
     public void SelectLeviatanA()
     {
         ChangePlane(planes[(int)PLANES.LeviatanA]);
@@ -127,6 +134,17 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void SelectLeviatanB()
     {
         ChangePlane(planes[(int)PLANES.LeviatanB]);
+    }
+
+    public void SelectLeviatanC()
+    {
+        ChangePlane(planes[(int)PLANES.LeviatanC]);
+    }
+
+    public void SelectPlaneByIndex(int index)
+    {
+        if (index>0 && index < Enum.GetNames(typeof(PLANES)).Length)
+        ChangePlane(planes[index]);
     }
 
     private void ChangePlane(GameObject currPlane)
