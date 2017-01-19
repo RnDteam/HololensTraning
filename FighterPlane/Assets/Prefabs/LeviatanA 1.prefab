@@ -202,10 +202,10 @@ GameObject:
   - component: {fileID: 114582698129989902}
   - component: {fileID: 114831407428647754}
   - component: {fileID: 114267049416591956}
-  - component: {fileID: 114860228513847410}
+  - component: {fileID: 54097628264993066}
   m_Layer: 8
   m_Name: LeviatanA 1
-  m_TagString: Untagged
+  m_TagString: Plane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -472,7 +472,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1616262237693320}
   m_LocalRotation: {x: 0, y: 0.98560035, z: -0.16909142, w: 0}
-  m_LocalPosition: {x: 0, y: 4.78, z: 9.72}
+  m_LocalPosition: {x: 0, y: 9.4, z: 19.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4494766027297240}
@@ -1081,6 +1081,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938364142060298}
   m_Mesh: {fileID: 4300008, guid: 04652ccb6f845c440b28eb5dff2431fd, type: 3}
+--- !u!54 &54097628264993066
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663272892162240}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65906438901909068
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1088,7 +1103,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663272892162240}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 8.17, y: 2.73, z: 13.4}
@@ -1413,18 +1428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061ce6344bb300d4692e66691e63ee1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114860228513847410
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1663272892162240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b231be613e092d469219ca84b9f1281, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Weapon: 2
 --- !u!114 &114971795694967778
 MonoBehaviour:
   m_ObjectHideFlags: 1

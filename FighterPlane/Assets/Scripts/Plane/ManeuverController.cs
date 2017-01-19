@@ -13,6 +13,7 @@ namespace Assets.Scripts.Plane
         private bool hasBegunFlight = false;
         private bool canFly = false;
         private Maneuver interruptedManeuver;
+        private GameObject line;
         
         public Vector3 ManeuverCenter
         {
@@ -31,6 +32,7 @@ namespace Assets.Scripts.Plane
         {
             MapMovement.Instance.Moved += SetManeuverOnMapMoved;
             MapMovement.Instance.ZoomChanged += SetManeuverOnZoomChanged;
+            line = GetComponentInChildren<LineRenderer>(true).gameObject;
         }
 
         private void SetManeuverOnMapMoved()
@@ -54,7 +56,11 @@ namespace Assets.Scripts.Plane
             canFly = canFly || newManeuver is BeginFlightManeuver;
             if (canFly && (maneuver == null || maneuver.canInterrupt) && !(hasBegunFlight && newManeuver is BeginFlightManeuver))
             {
-                if(newManeuver is LoopThenCircle)
+                if (newManeuver is AttackBuildingManeuver)
+                {
+                    ((AttackBuildingManeuver)newManeuver).SetLine(line);
+                }
+                if (newManeuver is LoopThenCircle)
                 {
                     interruptedManeuver = maneuver;
                     maneuver.Pause();

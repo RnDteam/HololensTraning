@@ -23,6 +23,7 @@ namespace Assets.Scripts.Physics
         public MakeCircle(Vector3 currentPosition, Quaternion currentRotation, float omega = GlobalManager.defaultCircleOmega, float r = GlobalManager.defaultCircleRadius)
         {
             Vector3 currentRight = currentRotation * Vector3.right;
+            r *= MapMovement.Instance.AbsoluteZoomRatio;
             centerX = currentPosition.x - r * Vector3.Dot(currentRight, Vector3.right);
             height = currentPosition.y;
             centerZ = currentPosition.z + r * Vector3.Dot(currentRight, Vector3.back);//"back" is towards the nose of the hercules
