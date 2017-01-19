@@ -8,6 +8,7 @@ public class AlertDome : MonoBehaviour
     public Material ActiveAlertDome;
     public Material NonActiveAlertDome;
     private bool showDome = false;
+    private bool mapZoomed = false;
 
     private Vector3 defaultScale;
 
@@ -25,23 +26,28 @@ public class AlertDome : MonoBehaviour
 
     private void MapZoomChanged()
     {
+        //TODO: fix dome movement
         transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+        mapZoomed = true;
+        HideAlert();
     }
 
     private void MapMoved()
     {
+        //TODO: fix dome movement
         var newPosition = transform.position + MapMovement.Instance.MovementVector;
         transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
+        HideAlert();
     }
 
     private void OnTriggerEnter(Collider myTrigger)
     {
-        if (myTrigger.gameObject.CompareTag("Plane"))
+        if (!mapZoomed && myTrigger.gameObject.CompareTag("Plane"))
         {
             GetComponent<Renderer>().material = ActiveAlertDome;
             GetComponent<AudioSource>().Play();
-            GetComponent<Renderer>().enabled = true; ;
+            GetComponent<Renderer>().enabled = true;
         }
     }
 
