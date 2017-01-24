@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 114582698129989902}
   - component: {fileID: 114831407428647754}
   - component: {fileID: 114267049416591956}
-  - component: {fileID: 54078848394275024}
+  - component: {fileID: 54080442096801044}
   m_Layer: 8
   m_Name: LeviatanA 1
   m_TagString: Plane
@@ -412,8 +412,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663272892162240}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.9, y: 6.5, z: -2.8}
-  m_LocalScale: {x: 0.20000017, y: 0.20000002, z: 0.20000017}
+  m_LocalPosition: {x: -8.5, y: 6.5, z: -2.8}
+  m_LocalScale: {x: 0.20000008, y: 0.19999999, z: 0.20000008}
   m_Children:
   - {fileID: 4844387060023280}
   - {fileID: 4999763752610394}
@@ -445,8 +445,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661825353895940}
   m_LocalRotation: {x: -0.13754079, y: 0.6093992, z: 0.10839145, w: 0.7732829}
-  m_LocalPosition: {x: -0, y: 6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: 4, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 4494766027297240}
   m_RootOrder: 6
@@ -1081,7 +1081,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938364142060298}
   m_Mesh: {fileID: 4300008, guid: 04652ccb6f845c440b28eb5dff2431fd, type: 3}
---- !u!54 &54078848394275024
+--- !u!54 &54080442096801044
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1339,7 +1339,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4291407000
+    rgba: 4291860796
 --- !u!102 &102975553413040528
 TextMesh:
   serializedVersion: 3
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b231be613e092d469219ca84b9f1281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: 2
+  Weapon: 1
 --- !u!114 &114497566611888266
 MonoBehaviour:
   m_ObjectHideFlags: 1

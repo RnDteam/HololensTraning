@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114271977979094856}
   - component: {fileID: 114808915961465096}
   - component: {fileID: 114349040637289354}
-  - component: {fileID: 54182477180434638}
+  - component: {fileID: 54127855947365756}
   m_Layer: 8
   m_Name: HerculesPrefab
   m_TagString: Plane
@@ -384,7 +384,7 @@ Transform:
   m_GameObject: {fileID: 1431320832541476}
   m_LocalRotation: {x: -0.12309959, y: 0.069357015, z: 0.00862467, w: 0.98993015}
   m_LocalPosition: {x: 0, y: -0.5, z: 1.5000004}
-  m_LocalScale: {x: 0.25000012, y: 0.2500001, z: 0.2500001}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4801973446588612}
   m_RootOrder: 7
@@ -530,8 +530,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
   m_LocalRotation: {x: -0.16447046, y: 0.07455278, z: 0.012467679, w: 0.9834815}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.24999999, z: 0.25000003}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 4801973446588612}
   m_RootOrder: 6
@@ -543,7 +543,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.76, y: 5.5, z: -1.9}
+  m_LocalPosition: {x: 3.11, y: 5.5, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4340762139302194}
@@ -1102,7 +1102,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930483507063556}
   m_Mesh: {fileID: 4300006, guid: dc43f4f68058dd342ba33b313a2a08b6, type: 3}
---- !u!54 &54182477180434638
+--- !u!54 &54127855947365756
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1339,7 +1339,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_Text: HerculesA
+  m_Text: 
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1375,7 +1375,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4291407000
+    rgba: 4291860796
 --- !u!102 &102274340572890944
 TextMesh:
   serializedVersion: 3
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b231be613e092d469219ca84b9f1281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: 1
+  Weapon: 2
 --- !u!114 &114737831307126570
 MonoBehaviour:
   m_ObjectHideFlags: 1
