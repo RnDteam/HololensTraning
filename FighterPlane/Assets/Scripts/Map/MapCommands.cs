@@ -65,10 +65,11 @@ public partial class MapCommands : Singleton<MapCommands> {
     private void InitializeBuilding(OnlineMapsBuildingBase building)
     {
         building.gameObject.layer = LayerMask.NameToLayer("Map");
-        building.gameObject.AddComponent<BuildingWeapon>();
         building.gameObject.AddComponent<InteractibleBuilding>();
+        building.gameObject.AddComponent<BuildingWeapon>();
 
         var buildingDisplay = building.gameObject.AddComponent<BuildingDisplay>();
+        buildingDisplay.SetText();
         buildingDisplay.SelectedBuildingColor = SelectedBuildingColor;
         buildingDisplay.ExplosionPrefab = ExplosionPrefab;
         buildingDisplay.RuinBuildingPrefab = RuinBuildingPrefab;

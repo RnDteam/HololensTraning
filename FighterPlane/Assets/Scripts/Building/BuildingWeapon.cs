@@ -21,6 +21,6 @@ public class BuildingWeapon : MonoBehaviour {
         else
         {
             Weapon = Weapon.None;
-        }
+        }      
     }
 }
