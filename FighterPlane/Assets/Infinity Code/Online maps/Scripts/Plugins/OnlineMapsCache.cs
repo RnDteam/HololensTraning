@@ -351,6 +351,7 @@ public class OnlineMapsCache:MonoBehaviour
 
     private void OnPreloadTiles()
     {
+        Debug.Log("OnPreloadTiles");
         lock (OnlineMapsTile.tiles)
         {
             for (int i = 0; i < OnlineMapsTile.tiles.Count; i++)
@@ -365,6 +366,7 @@ public class OnlineMapsCache:MonoBehaviour
 
     private void OnStartDownloadTileM(OnlineMapsTile tile)
     {
+        Debug.Log("OnStartDownloadTileM");
         if (TryLoadFromCache(tile))
         {
             if (OnLoadedFromCache != null) OnLoadedFromCache(tile);
