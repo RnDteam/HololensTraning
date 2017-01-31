@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+//using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -154,6 +155,9 @@ public class OnlineMapsBuildings : MonoBehaviour
         OnlineMapsBuildingBase building = null;
 
         building = OnlineMapsBuildingBuiltIn.Create(this, data.way, data.nodes);
+        //AssetDatabase.CreateAsset(building.GetComponent<MeshFilter>().mesh, "Assets/Resources/Meshes/mesh" + building.name + ".mat");
+        //AssetDatabase.SaveAssets();
+        //Debug.Log("Saving mesh of " + building.name);
 
         if (building != null)
         {

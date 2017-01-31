@@ -26,7 +26,7 @@ public partial class MapCommands : Singleton<MapCommands> {
         buildings = OnlineMapsBuildings.instance;
         limits = GetComponent<OnlineMapsLimits>();
         
-        buildings.OnBuildingCreated += InitializeBuilding;
+        //buildings.OnBuildingCreated += InitializeBuilding;
     }
 
     private void Update()

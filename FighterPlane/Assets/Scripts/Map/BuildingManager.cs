@@ -132,8 +132,9 @@ public partial class BuildingManager : Singleton<BuildingManager>
 
     public GameObject getBuildingById(string buildingId)
     {
-        return OnlineMapsBuildings.instance.buildings.ContainsKey(buildingId) ? 
-            OnlineMapsBuildings.instance.buildings[buildingId].gameObject : null;
+        return transform.Find("Buildings/" + buildingId).gameObject;
+        //OnlineMapsBuildings.instance.buildings.ContainsKey(buildingId) ? 
+        //    OnlineMapsBuildings.instance.buildings[buildingId].gameObject : null;
     }
 
     public void SelectBuildingById(string id)

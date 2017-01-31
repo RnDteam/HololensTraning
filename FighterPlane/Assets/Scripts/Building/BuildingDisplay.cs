@@ -86,10 +86,17 @@ public class BuildingDisplay : MonoBehaviour {
     #region info
     void SetText()
     {
-        var buildingInfo = GetComponent<OnlineMapsBuildingBase>().metaInfo;
-        if (buildingInfo.Any(p => p.title == "name"))
-            text = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
-        else text = ReverseHebrewName("בניין כללי");
+        if (GetComponent<OnlineMapsBuildingBase>() != null)
+        {
+            var buildingInfo = GetComponent<OnlineMapsBuildingBase>().metaInfo;
+            if (buildingInfo != null)
+            {
+                if (buildingInfo.Any(p => p.title == "name"))
+                    text = ReverseHebrewName(buildingInfo.Single(p => p.title == "name").info);
+                else text = ReverseHebrewName("בניין כללי");
+            }
+        }
+        
     }
 
     public void ShowInfo()
