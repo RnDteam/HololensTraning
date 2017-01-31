@@ -153,7 +153,8 @@ public class OnlineMapsBuildings : MonoBehaviour
 
         OnlineMapsBuildingBase building = null;
 
-        building = OnlineMapsBuildingBuiltIn.Create(this, data.way, data.nodes);
+        if(data.way.id.StartsWith("96"))
+            building = OnlineMapsBuildingBuiltIn.Create(this, data.way, data.nodes);
 
         if (building != null)
         {
