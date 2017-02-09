@@ -103,7 +103,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
             SetLinePosition(transform.position, targetPosition, Color.white, Color.white);
         }
     }
-    
+
 
 
     private void ChangeZoom()
@@ -111,7 +111,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
         transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
         Debug.Log("zoom: " + MapMovement.Instance.AbsoluteZoomRatio.ToString());
         //GetComponentInChildren<EllipsoidParticleEmitter>().emit = MapMovement.Instance.AbsoluteZoomRatio > 0.25;
-        if(MapMovement.Instance.AbsoluteZoomRatio <= 0.25)//number is not arbitrary; this is the level above which the default smoke trail swallows the plane
+        if (MapMovement.Instance.AbsoluteZoomRatio <= 0.25)//number is not arbitrary; this is the level above which the default smoke trail swallows the plane
         {
             GetComponentInChildren<EllipsoidParticleEmitter>().minSize = 0.003f;
             GetComponentInChildren<EllipsoidParticleEmitter>().maxSize = 0.003f;
@@ -193,7 +193,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = "Weapon: " + GetComponent<PlaneWeapon>().Weapon.ToString() + "\n" + pParams.ToString() + "\n" ;
+        planeInfo.GetComponent<TextMesh>().text = "Weapon: " + GetComponent<PlaneWeapon>().Weapon.ToString() + "\n" + pParams.ToString() + "\n";
     }
 
     public void HidePlaneInfo()
@@ -228,7 +228,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.SetActive(false);
     }
 
-    private void SetLinePosition(Vector3 startPoint, Vector3 endPoint, Color startColor ,Color endColor)
+    private void SetLinePosition(Vector3 startPoint, Vector3 endPoint, Color startColor, Color endColor)
     {
         distanceLine.GetComponent<LineRenderer>().SetPosition(0, startPoint);
         distanceLine.GetComponent<LineRenderer>().SetPosition(1, endPoint);
@@ -241,7 +241,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     private void SetLinePositions(List<Vector3> points)
     {
         distanceLine.GetComponent<LineRenderer>().numPositions = points.Count;
-        for (int i=0; i<points.Count; i++)
+        for (int i = 0; i < points.Count; i++)
         {
             distanceLine.GetComponent<LineRenderer>().SetPosition(i, points[i]);
         }
@@ -269,17 +269,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.SetActive(true);
         distanceText.SetActive(false);
 
-        //SetLinePosition(gameObject.GetComponent<ManeuverController>().GetAttackStartPoint(),
-        //                gameObject.GetComponent<ManeuverController>().GetAttackEndPoint(),
-        //                Color.white,
-        //                Color.red);
-        //var startPoint = gameObject.GetComponent<ManeuverController>().GetAttackStartPoint();
-        //var endPoint = gameObject.GetComponent<ManeuverController>().GetAttackEndPoint();
-        //Vector3 center;
-        //float r;
-        
-        
         SetLinePositions(gameObject.GetComponent<ManeuverController>().GetAttackPoints());
-        }
+    }
     #endregion
 }
