@@ -729,7 +729,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!108 &135
 Light:
   m_ObjectHideFlags: 0
@@ -2334,34 +2334,6 @@ Prefab:
       propertyPath: m_Name
       value: Ziv
       objectReference: {fileID: 0}
-    - target: {fileID: 4697678525463334, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697678525463334, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.13754079
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697678525463334, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.6093992
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697678525463334, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.10839145
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697678525463334, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7732829
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697678525463334, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -20.171
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697678525463334, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 76.481
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
   m_IsPrefabParent: 0
@@ -3091,21 +3063,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e,
     type: 2}
   m_PrefabInternal: {fileID: 1920560929}
---- !u!54 &1650179631
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1650179623}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1683994331
 Prefab:
   m_ObjectHideFlags: 0
@@ -3308,25 +3265,6 @@ Prefab:
     - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_Name
       value: Ido
-      objectReference: {fileID: 0}
-    - target: {fileID: 65545922220291450, guid: 109d9782a66984d43830476a9450162e,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
-      propertyPath: m_TagString
-      value: Plane
-      objectReference: {fileID: 0}
-    - target: {fileID: 102116416860708244, guid: 109d9782a66984d43830476a9450162e,
-        type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114349040637289354, guid: 109d9782a66984d43830476a9450162e,
-        type: 2}
-      propertyPath: Weapon
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}

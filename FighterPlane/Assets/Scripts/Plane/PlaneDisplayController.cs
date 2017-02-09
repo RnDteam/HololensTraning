@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using Assets.Scripts.Plane;
 using Assets.Scripts.Physics;
+using System.Collections.Generic;
 
 public abstract class PlaneDisplayController : MonoBehaviour
 {
@@ -237,6 +238,18 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " mi.";
     }
 
+    private void SetLinePositions(List<Vector3> points)
+    {
+        distanceLine.GetComponent<LineRenderer>().numPositions = points.Count;
+        for (int i=0; i<points.Count; i++)
+        {
+            distanceLine.GetComponent<LineRenderer>().SetPosition(i, points[i]);
+        }
+
+        //distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
+        //distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " mi.";
+    }
+
     public void ShowDistanceLine(GameObject target)
     {
         targetPosition = target.transform.TransformPoint(target.transform.position);
@@ -256,10 +269,17 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.SetActive(true);
         distanceText.SetActive(false);
 
-        SetLinePosition(gameObject.GetComponent<ManeuverController>().GetAttackStartPoint(),
-                        gameObject.GetComponent<ManeuverController>().GetAttackEndPoint(),
-                        Color.white,
-                        Color.red);
+        //SetLinePosition(gameObject.GetComponent<ManeuverController>().GetAttackStartPoint(),
+        //                gameObject.GetComponent<ManeuverController>().GetAttackEndPoint(),
+        //                Color.white,
+        //                Color.red);
+        //var startPoint = gameObject.GetComponent<ManeuverController>().GetAttackStartPoint();
+        //var endPoint = gameObject.GetComponent<ManeuverController>().GetAttackEndPoint();
+        //Vector3 center;
+        //float r;
+        
+        
+        SetLinePositions(gameObject.GetComponent<ManeuverController>().GetAttackPoints());
         }
     #endregion
 }

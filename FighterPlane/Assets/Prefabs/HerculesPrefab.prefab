@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114271977979094856}
   - component: {fileID: 114808915961465096}
   - component: {fileID: 114349040637289354}
-  - component: {fileID: 54127855947365756}
+  - component: {fileID: 54273940357097120}
   m_Layer: 8
   m_Name: HerculesPrefab
   m_TagString: Plane
@@ -1102,7 +1102,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930483507063556}
   m_Mesh: {fileID: 4300006, guid: dc43f4f68058dd342ba33b313a2a08b6, type: 3}
---- !u!54 &54127855947365756
+--- !u!54 &54273940357097120
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1490,7 +1490,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fa8ca01dda8f984897eacc418659cbc, type: 2}
+  - {fileID: 2100000, guid: 1647bd2a706e46e4d922f461cb93feb2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
