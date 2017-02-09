@@ -369,6 +369,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void AttackBuilding()
     {
         RemoveDistanceLines();
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
         attackRecord.Play();
         AddManeuver(new AttackBuildingManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation, OnlineMapsTileSetControl.instance.GetWorldPosition(BuildingManager.Instance.SelectedBuildingCoords), BuildingManager.Instance.SelectedBuilding));
     }

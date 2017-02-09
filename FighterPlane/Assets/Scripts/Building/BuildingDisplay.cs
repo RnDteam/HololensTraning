@@ -104,7 +104,7 @@ public class BuildingDisplay : MonoBehaviour {
 
     public void ShowInfo()
     {
-        TextHolder.GetComponent<TextMesh>().text = text;
+        TextHolder.GetComponent<TextMesh>().text = text + "\nWeapon: " + GetComponent<BuildingWeapon>().Weapon;
     }
 
     public void HideInfo()
