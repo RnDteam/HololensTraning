@@ -729,7 +729,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!108 &135
 Light:
   m_ObjectHideFlags: 0
@@ -1411,6 +1411,7 @@ MonoBehaviour:
     - Ground View
     - Ground Mode
     - Matsav karka
+    - Reset View
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1763,7 +1764,7 @@ MonoBehaviour:
     - Show Attack Path
     - Plan Attack
     - Bdok Nativ
-    - Nativ Tkifa
+    - Nahtiv Tkifa
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -2548,7 +2549,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 676117970}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: abe78c03d5a790e409b78325e19fc655, type: 3}
@@ -2609,7 +2610,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

@@ -5,7 +5,7 @@ public class BuildingDisplay : MonoBehaviour {
 
     [Tooltip("Displays the building information.")]
     public GameObject TextHolder;
-    public Color SelectedBuildingColor = Color.cyan;
+    public Color SelectedBuildingColor = Color.red;
     public GameObject ExplosionPrefab;
     public GameObject RuinBuildingPrefab;
 
@@ -23,6 +23,8 @@ public class BuildingDisplay : MonoBehaviour {
         {
             Debug.Log("Couldn't ruin building " + gameObject.GetComponent<OnlineMapsBuildingBase>().id);
         }
+
+        SelectedBuildingColor = Color.red;
     }
 
     #region Selection
