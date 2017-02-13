@@ -76,9 +76,9 @@ public partial class MapCommands : Singleton<MapCommands> {
 
         var textHolder = Instantiate(TextPrefab, Vector3.zero, Quaternion.identity);
         textHolder.transform.parent = building.gameObject.transform;
-        textHolder.transform.localPosition = new Vector3(0, 100, 0);
+        textHolder.transform.localPosition = new Vector3(0, 120, 0);
         textHolder.transform.localRotation = Quaternion.identity;
-        textHolder.transform.localScale = Vector3.one;
+        textHolder.transform.localScale = Vector3.one * 2;
         buildingDisplay.TextHolder = textHolder;
 
         if (BuildingManager.Instance.IsBuildingSelected && building.id == BuildingManager.Instance.SelectedBuildingId)
