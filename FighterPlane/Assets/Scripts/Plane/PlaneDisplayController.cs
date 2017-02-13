@@ -193,7 +193,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = "Weapon: " + GetComponent<PlaneWeapon>().Weapon.ToString() + "\n" + pParams.ToString() + "\n";
+        planeInfo.GetComponent<TextMesh>().text = GlobalManager.Reverse("נשק: " + GetComponent<PlaneWeapon>().Weapon.GetHebrewString()) + "\n" + pParams.ToString() + "\n";
     }
 
     public void HidePlaneInfo()
@@ -235,7 +235,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.GetComponent<LineRenderer>().SetColors(startColor, endColor);
 
         distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
-        distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " mi.";
+        distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + "לימ";
     }
 
     private void SetLinePositions(List<Vector3> points)

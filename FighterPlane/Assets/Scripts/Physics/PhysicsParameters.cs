@@ -33,7 +33,9 @@ public class PhysicsParameters
 
     public override string ToString()
     {
-        return string.Format("Speed: {0:0}", (Speed * 100).ToString("00"));
+        var speed = Math.Round(Speed, 1);
+        speed *= 100;
+        return GlobalManager.Reverse(string.Format("מהירות: {0:0}", GlobalManager.Reverse(speed.ToString("00"))));
     }
 
     internal void UpdatePhysics(Transform transform)

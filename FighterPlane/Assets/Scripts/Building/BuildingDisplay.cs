@@ -104,7 +104,7 @@ public class BuildingDisplay : MonoBehaviour {
 
     public void ShowInfo()
     {
-        TextHolder.GetComponent<TextMesh>().text = text + "\nWeapon: " + GetComponent<BuildingWeapon>().Weapon;
+        TextHolder.GetComponent<TextMesh>().text = text + "\n" + GlobalManager.Reverse("נשק: " + GetComponent<BuildingWeapon>().Weapon.GetHebrewString());
     }
 
     public void HideInfo()
@@ -118,17 +118,11 @@ public class BuildingDisplay : MonoBehaviour {
     {
         if (s.Any(c => IsHebrew(c)))
         {
-            return Reverse(s);
+            return GlobalManager.Reverse(s);
         }
         return s;
     }
-
-    static string Reverse(string s)
-    {
-        char[] charArray = s.ToCharArray();
-        return new string(charArray.Reverse().ToArray());
-    }
-
+    
     static bool IsHebrew(char c)
     {
         return "אבגדהוזחטיכלמנסעפצקרשתךםןףץ".Contains(c);

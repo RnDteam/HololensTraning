@@ -1947,7 +1947,7 @@ MonoBehaviour:
     roof: {fileID: 2100000, guid: 09b8caf8d77a5c044981c7008fba23ba, type: 2}
     scale: {x: 1, y: 1}
   maxActiveBuildings: 500
-  maxBuilding: 0
+  maxBuilding: 500
 --- !u!114 &159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2610,7 +2610,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2734,7 +2734,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3265,6 +3265,11 @@ Prefab:
     - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_Name
       value: Ido
+      objectReference: {fileID: 0}
+    - target: {fileID: 82791530162783764, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
