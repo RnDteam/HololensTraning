@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Lux Aniso Hair
+  m_Shader: {fileID: 4800000, guid: 44f169f79640e461bbd623fd5e142047, type: 3}
+  m_ShaderKeywords: _METALLICGLOSSMAP
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 5b61f4cfa34a942c7b01f19d4dc7d6ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailAlbedoMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailMask
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailNormalMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _EmissionMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 4a47ef980ddc447b98ecf17b089d05e3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 2800000, guid: c1c5961fe9da14aa4a94c735eada0503, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _OcclusionMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecGlossMap
+      second:
+        m_Texture: {fileID: 2800000, guid: f2a55b4c74c374bc0a67d4a32b8bdbbd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _TangentDir
+      second:
+        m_Texture: {fileID: 2800000, guid: 5b7d24de64c0349f5941b017be5eeae9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _BumpScale
+      second: 1
+    - first:
+        name: _Cutoff
+      second: 0.5
+    - first:
+        name: _DetailNormalMapScale
+      second: 1
+    - first:
+        name: _DiffuseScatteringBias
+      second: 0.05
+    - first:
+        name: _DiffuseScatteringContraction
+      second: 8
+    - first:
+        name: _DstBlend
+      second: 0
+    - first:
+        name: _EnableBackfaceSmoothnessExtinction
+      second: 1
+    - first:
+        name: _EnableDitheredOpacity
+      second: 0
+    - first:
+        name: _EnableMetallGlossMap
+      second: 1
+    - first:
+        name: _EnableSpecGlossMap
+      second: 1
+    - first:
+        name: _Glossiness
+      second: 0.975
+    - first:
+        name: _Metallic
+      second: 1
+    - first:
+        name: _Mode
+      second: 0
+    - first:
+        name: _OcclusionStrength
+      second: 1
+    - first:
+        name: _Parallax
+      second: 0.02
+    - first:
+        name: _RoughnessX
+      second: 0.975
+    - first:
+        name: _RoughnessY
+      second: 0
+    - first:
+        name: _SmoothnessExtinction
+      second: 1
+    - first:
+        name: _SmoothnessX
+      second: 0.975
+    - first:
+        name: _SmoothnessY
+      second: 0
+    - first:
+        name: _SrcBlend
+      second: 1
+    - first:
+        name: _TangentDirScale
+      second: 0.23
+    - first:
+        name: _TangentDirStrength
+      second: 0.87
+    - first:
+        name: _Translucency
+      second: 1
+    - first:
+        name: _UVSec
+      second: 0
+    - first:
+        name: _VertexOcclusionStrength
+      second: 0.5
+    - first:
+        name: _ZWrite
+      second: 1
+    m_Colors:
+    - first:
+        name: _BaseTangentDir
+      second: {r: 0, g: 1, b: 0, a: 0}
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _DiffuseScatteringCol
+      second: {r: 0.6838235, g: 0.5332848, b: 0.42236158, a: 1}
+    - first:
+        name: _EmissionColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+    - first:
+        name: _TangentDir
+      second: {r: 1, g: 0, b: 0, a: 0}

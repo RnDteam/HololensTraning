@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DecalShader Parallax
+  m_Shader: {fileID: 4800000, guid: 58cdc99d3877d41b9b22e9c4367874a5, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2450
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 2800000, guid: e6ab41658b1964df3af3b76a5d1b1c6d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: b285a77b5c2894622aad6d624e50f99a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _OcclusionMap
+      second:
+        m_Texture: {fileID: 2800000, guid: e39404d6d8835492eae0fb5bc3974a50, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _PackedMapA
+      second:
+        m_Texture: {fileID: 2800000, guid: af42b950456b540498610f59a85185d9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _PackedMapB
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 7cc02e5d0ba1a40babbb02aeaa9e8ec0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecGlossMap
+      second:
+        m_Texture: {fileID: 2800000, guid: bde1bbe8837e740eaab7f3eaf7bb04f4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _ColorEmissionMultiplier
+      second: 1
+    - first:
+        name: _ContributionCavity
+      second: 1
+    - first:
+        name: _ContributionDiffuseSpecular
+      second: 1
+    - first:
+        name: _ContributionEmission
+      second: 0
+    - first:
+        name: _ContributionEmissionMask
+      second: 0
+    - first:
+        name: _ContributionNormal
+      second: 1
+    - first:
+        name: _ContributionOcclusion
+      second: 1
+    - first:
+        name: _DirtIntensity
+      second: 1
+    - first:
+        name: _DirtMaskAORemappingMax
+      second: 0.8
+    - first:
+        name: _DirtMaskAORemappingMin
+      second: 0.2
+    - first:
+        name: _EnableIndependentPuddleMaskTiling
+      second: 0
+    - first:
+        name: _EnablePOM
+      second: 0
+    - first:
+        name: _Glossiness
+      second: 0.289
+    - first:
+        name: _LinearSteps
+      second: 10
+    - first:
+        name: _Lux_FlowInterval
+      second: 1
+    - first:
+        name: _Lux_FlowNormalStrength
+      second: 1
+    - first:
+        name: _Lux_FlowNormalTiling
+      second: 2
+    - first:
+        name: _Lux_FlowRefraction
+      second: 0.02
+    - first:
+        name: _Lux_FlowSpeed
+      second: 0.05
+    - first:
+        name: _MaskAlphaPower
+      second: 1
+    - first:
+        name: _MaskAlphaShift
+      second: 0
+    - first:
+        name: _MaskAlphaUsingAO
+      second: 0
+    - first:
+        name: _Metalness
+      second: 0
+    - first:
+        name: _Parallax
+      second: 0.0319
+    - first:
+        name: _ParallaxHeight
+      second: 0.02
+    - first:
+        name: _ParallaxTiling
+      second: 1
+    - first:
+        name: _PuddleMaskTiling
+      second: 1
+    - first:
+        name: _SmoothnessHigh
+      second: 0.5
+    - first:
+        name: _SmoothnessLow
+      second: 0.5
+    - first:
+        name: _SnowDetailStrength
+      second: 0.5
+    - first:
+        name: _SnowNormalStrength
+      second: 1
+    - first:
+        name: _SnowOpacity
+      second: 0.5
+    - first:
+        name: _SnowSlopeDamp
+      second: 1
+    - first:
+        name: _WaterSlopeDamp
+      second: 0.5
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _ColorDirt
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - first:
+        name: _ColorEmission
+      second: {r: 0, g: 0, b: 0, a: 0}
+    - first:
+        name: _ColorMain
+      second: {r: 1, g: 0, b: 0, a: 1}
+    - first:
+        name: _SnowAccumulation
+      second: {r: 0, g: 1, b: 0, a: 0}
+    - first:
+        name: _SnowDetailTiling
+      second: {r: 4, g: 4, b: 0, a: 0}
+    - first:
+        name: _SnowMaskTiling
+      second: {r: 0.3, g: 0.3, b: 0, a: 0}
+    - first:
+        name: _SnowTiling
+      second: {r: 2, g: 2, b: 0, a: 0}
+    - first:
+        name: _SpecColor
+      second: {r: 0.19999999, g: 0.2, b: 0.2, a: 1}
+    - first:
+        name: _WaterAccumulationCracksPuddles
+      second: {r: 0.73, g: 1, b: 0, a: 1}
+    - first:
+        name: _WaterColor
+      second: {r: 0, g: 0, b: 0, a: 0}

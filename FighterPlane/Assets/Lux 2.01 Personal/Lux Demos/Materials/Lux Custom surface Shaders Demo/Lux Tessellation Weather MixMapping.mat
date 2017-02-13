@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Lux Tessellation Weather MixMapping
+  m_Shader: {fileID: 4800000, guid: 0f719152a36054a42892f08b05b19e46, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 34dd97e8a79584ac3bb524c198ec3b7f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailAlbedoMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 709ee796a7bd049d99744f5d55859909, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailNormalMap
+      second:
+        m_Texture: {fileID: 2800000, guid: b3472a995dd3046e0924075de4a2eb18, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DispTex
+      second:
+        m_Texture: {fileID: 2800000, guid: fd05cd3bdae2e4a909729af47474deef, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 2d56d51e7342b4daf95ddc044d027b03, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 34dd97e8a79584ac3bb524c198ec3b7f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 2800000, guid: a703ecebfb6704544b9f1327ee5e9d20, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecGlossMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 8c3d5dd5012684a349ad9ec388b6e0bb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecGlossMap2
+      second:
+        m_Texture: {fileID: 2800000, guid: 59533170bcfef4867b081bd8fa4f0884, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _DiffuseScatteringBias
+      second: 0
+    - first:
+        name: _DiffuseScatteringContraction
+      second: 10
+    - first:
+        name: _DispTiling
+      second: 2
+    - first:
+        name: _Displacement
+      second: 0.04
+    - first:
+        name: _EdgeLength
+      second: 8
+    - first:
+        name: _EnableIndependentPuddleMaskTiling
+      second: 0
+    - first:
+        name: _Lux_FlowInterval
+      second: 1
+    - first:
+        name: _Lux_FlowNormalStrength
+      second: 1.13
+    - first:
+        name: _Lux_FlowNormalTiling
+      second: 3
+    - first:
+        name: _Lux_FlowRefraction
+      second: 0.045
+    - first:
+        name: _Lux_FlowSpeed
+      second: 0.48
+    - first:
+        name: _MaxDist
+      second: 10
+    - first:
+        name: _MinDist
+      second: 5
+    - first:
+        name: _Parallax
+      second: 0.063
+    - first:
+        name: _ParallaxTiling
+      second: 1
+    - first:
+        name: _ParallaxToBaseRatio
+      second: 1
+    - first:
+        name: _Phong
+      second: 0
+    - first:
+        name: _PuddleMaskTiling
+      second: 1
+    - first:
+        name: _SnowDetailStrength
+      second: 0.3
+    - first:
+        name: _SnowDetailTiling
+      second: 3
+    - first:
+        name: _SnowMaskTiling
+      second: 0.2
+    - first:
+        name: _SnowNormalStrength
+      second: 0.63
+    - first:
+        name: _SnowOpacity
+      second: 0.5
+    - first:
+        name: _SnowSlopeDamp
+      second: 0.638
+    - first:
+        name: _SnowTiling
+      second: 2
+    - first:
+        name: _Tess
+      second: 1
+    - first:
+        name: _WaterSlopeDamp
+      second: 0.5
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 0}
+    - first:
+        name: _Color2
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _DiffuseScatteringCol
+      second: {r: 0, g: 0, b: 0, a: 0.628}
+    - first:
+        name: _ParallaxToBaseRatio
+      second: {r: 1, g: 1, b: 0, a: 0}
+    - first:
+        name: _SnowAccumulation
+      second: {r: 0.53, g: 0, b: 0, a: 0}
+    - first:
+        name: _SnowDetailTiling
+      second: {r: 4, g: 4, b: 0, a: 0}
+    - first:
+        name: _SnowMaskTiling
+      second: {r: 0.3, g: 0.3, b: 0, a: 0}
+    - first:
+        name: _SnowTiling
+      second: {r: 2, g: 2, b: 0, a: 0}
+    - first:
+        name: _SpecColor
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - first:
+        name: _WaterAccumulationCracksPuddles
+      second: {r: 0, g: 1, b: 0, a: 1}
+    - first:
+        name: _WaterAccumulationCracksPuddles2
+      second: {r: 0, g: 0.03, b: 0, a: 0}
+    - first:
+        name: _WaterColor
+      second: {r: 0, g: 0, b: 0, a: 0.693}
+    - first:
+        name: _WaterColor2
+      second: {r: 0, g: 0, b: 0, a: 0}

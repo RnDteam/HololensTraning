@@ -58,7 +58,7 @@ namespace Assets.Scripts.Plane
                 points.Add(position);
                 if (Vector3.Angle(rotation * Vector3.forward, position - new Vector3(attackEndPoint.x, position.y, attackEndPoint.z)) < AttackBuildingManeuver.permissibleAngleErrorDegrees)
                 {
-                    points.Add(GetAttackEndPoint());
+                    points.Add(GetAttackEndPoint() - GlobalManager.heightAboveBuildingToAttack * Vector3.up);
                     points.Add(position);
                 }
             }
