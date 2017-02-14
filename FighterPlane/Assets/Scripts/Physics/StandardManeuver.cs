@@ -6,7 +6,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Physics
 {
-    class StandardManeuver : Maneuver
+    public delegate void StartStraightFlight();
+    public delegate void FinishedStraightFlight();
+
+    public class StandardManeuver : ATCManeuver
     {
         public const float permissibleAngleErrorDegrees = 1f;
         Vector3 DestinationCoords;
@@ -24,6 +27,29 @@ namespace Assets.Scripts.Physics
             initialCircle, straightFlightToDestination, circleSegmentAboveDestination, straightFlightBackToCircle
         };
         FlightStage stage = FlightStage.initialCircle;
+
+
+        #region events
+        public event StartStraightFlight StartStraightFlight;
+        public event FinishedStraightFlight FinishedStraightFlight;
+
+        protected virtual void OnStartStraightFlight()
+        {
+            if (StartStraightFlight != null)
+            {
+                StartStraightFlight();
+            }
+        }
+
+        protected virtual void OnFinishedStraightFlight()
+        {
+            if (FinishedStraightFlight != null)
+            {
+                FinishedStraightFlight();
+            }
+        }
+        #endregion
+
 
         //in the future, we can add different radii and omegas for the different stages of the attack; in the meantime, we'll just use one set for simplicity
         public StandardManeuver(Vector3 currentPosition, Quaternion currentRotation, Vector3 destCoords, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
@@ -55,6 +81,11 @@ namespace Assets.Scripts.Physics
             this.line = line;
         }
 
+        public override Vector3 GetEndpoint()
+        {
+            return DestinationCoords;
+        }
+
         public override void UpdateState()
         {
             executedManeuver.UpdateState();
@@ -68,12 +99,14 @@ namespace Assets.Scripts.Physics
                 planesRight.Normalize();
                 finalCoords = position - 2 * radius * planesRight;
                 //the "forward" vector in the LookRotation call is multpiplied by -1 because the forward vector of the Hercules model is towards its tail
+                OnStartStraightFlight();
                 executedManeuver = new StraightFlightManeuver(position, DestinationCoords, flightSpeed, rotation);
             }
-            if(stage == FlightStage.straightFlightToDestination && ((StraightFlightManeuver)executedManeuver).finished)
+            if (stage == FlightStage.straightFlightToDestination && ((StraightFlightManeuver)executedManeuver).finished)
             {
                 stage = FlightStage.circleSegmentAboveDestination;
                 MapCommands.Instance.UnlockMap();
+                OnFinishedStraightFlight();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
                 if (line != null)
                     line.SetActive(false);
@@ -81,11 +114,13 @@ namespace Assets.Scripts.Physics
             if(stage == FlightStage.circleSegmentAboveDestination && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)
             {
                 stage = FlightStage.straightFlightBackToCircle;
+                OnStartStraightFlight();
                 executedManeuver = new StraightFlightManeuver(position, finalCoords, flightSpeed, rotation);
             }
-            if(stage == FlightStage.straightFlightBackToCircle && ((StraightFlightManeuver)executedManeuver).finished)
+            if (stage == FlightStage.straightFlightBackToCircle && ((StraightFlightManeuver)executedManeuver).finished)
             {
                 stage = FlightStage.initialCircle;
+                OnFinishedStraightFlight();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
             }
         }
@@ -117,6 +152,21 @@ namespace Assets.Scripts.Physics
             DestinationCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, DestinationCoords.y);
             finalCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, finalCoords.y);
             executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
+        }
+
+        public override float GetFlightSpeed()
+        {
+            return flightSpeed;
+        }
+
+        public override float GetRadius()
+        {
+            return radius;
+        }
+
+        public override float GetOmega()
+        {
+            return omega;
         }
     }
 }
