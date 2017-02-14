@@ -1757,14 +1757,15 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - MethodPurpose: Adding Building Names to as Keywords
+  - MethodPurpose: Disapprove climb
     Keywords:
-    - uninitialized
+    - Disapprove
+    - No
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 165}
-          m_MethodName: SelectBuildingVoiceCommand
+        - m_Target: {fileID: 1580953074}
+          m_MethodName: DisapproveClimb
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1776,15 +1777,15 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - MethodPurpose: Play Scenario
+  - MethodPurpose: Approve climb
     Keywords:
-    - Play Scenario
-    - Nagen
+    - Approve
+    - Yes
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 35}
-          m_MethodName: ActivateScenario
+        - m_Target: {fileID: 1580953074}
+          m_MethodName: ApproveClimb
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2308,6 +2309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartFlying: 0
+  ApproveClimb: 0
+  DisapproveClimb: 0
 --- !u!4 &170016965
 Transform:
   m_ObjectHideFlags: 0
@@ -3338,6 +3341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b22fd05abb0b2d488e4fd9d292f111a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speech: {fileID: 1928809392}
 --- !u!4 &1580953075
 Transform:
   m_ObjectHideFlags: 0
@@ -3594,7 +3598,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928809391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d51bd2a314b574946bb2b06cca5ba280, type: 3}
+  m_Script: {fileID: 11500000, guid: abf8bc8eeae6de644aa780a6c1b33ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 36}
