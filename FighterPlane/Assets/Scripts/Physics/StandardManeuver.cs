@@ -9,7 +9,7 @@ namespace Assets.Scripts.Physics
     public delegate void StartStraightFlight();
     public delegate void FinishedStraightFlight();
 
-    public class StandardManeuver : Maneuver
+    public class StandardManeuver : ATCManeuver
     {
         public const float permissibleAngleErrorDegrees = 1f;
         Vector3 DestinationCoords;
@@ -81,6 +81,11 @@ namespace Assets.Scripts.Physics
             this.line = line;
         }
 
+        public override Vector3 GetEndpoint()
+        {
+            return DestinationCoords;
+        }
+
         public override void UpdateState()
         {
             executedManeuver.UpdateState();
@@ -147,6 +152,21 @@ namespace Assets.Scripts.Physics
             DestinationCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, DestinationCoords.y);
             finalCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, finalCoords.y);
             executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
+        }
+
+        public override float GetFlightSpeed()
+        {
+            return flightSpeed;
+        }
+
+        public override float GetRadius()
+        {
+            return radius;
+        }
+
+        public override float GetOmega()
+        {
+            return omega;
         }
     }
 }

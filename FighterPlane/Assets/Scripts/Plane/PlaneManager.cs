@@ -425,4 +425,9 @@ public partial class PlaneManager : Singleton<PlaneManager>
         RemoveDistanceLines();
         selectedPlane.GetComponent<PlaneDisplayController>().ShowAttackPath();
     }
+
+    public void Climb(float height)
+    {
+        AddManeuver(new ClimbManeuver((ATCManeuver) selectedPlane.GetComponent<ManeuverController>().getManeuver(), height), selectedPlane);
+    }
 }
