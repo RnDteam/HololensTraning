@@ -17,7 +17,7 @@ namespace Assets.Scripts.Physics
         float omega;
         bool isClimbing = true;
         
-        public ClimbManeuver(ATCManeuver currentManeuver, float height, float loopOmega = GlobalManager.defaultLoopOmega)
+        public ClimbManeuver(ATCManeuver currentManeuver, float height, float loopOmega = GlobalManager.defaultClimbOmega)
         {
             flightSpeed = currentManeuver.GetFlightSpeed();
             radius = currentManeuver.GetRadius();

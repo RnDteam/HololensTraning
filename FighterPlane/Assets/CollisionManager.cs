@@ -19,7 +19,7 @@ public partial class CollisionManager : Singleton<CollisionManager> {
     private List<Collision> collisions;
 
     public TextToSpeechManager Speech;
-    public float ClimbHeight = 50;
+    public float ClimbHeight = .25f;
 
     private Collision? collisionWaitingForAnswer = null;
 
@@ -58,6 +58,8 @@ public partial class CollisionManager : Singleton<CollisionManager> {
     private void NotifyCollision(Collision collision)
     {
         Debug.Log("Collision: " + collision.object1 + " and " + collision.object2);
+
+        PlaneManager.Instance.SetCollisionPlanes(collision.object1, collision.object2);
         Speech.SpeakText(string.Format("Collision detected between {0} and {1}. Would you like {2} to climb?", collision.object1, collision.object2, collision.object1));
         collisionWaitingForAnswer = collision;
     }
@@ -67,11 +69,14 @@ public partial class CollisionManager : Singleton<CollisionManager> {
         if (!collisionWaitingForAnswer.HasValue)
             return;
 
+        PlaneManager.Instance.UnsetCollisionPlanes();
+
         var plane = collisionWaitingForAnswer.Value.object1;
         planes.Single(p => p.name == plane).GetComponent<BoxCollider>().enabled = false;
         PlaneManager.Instance.Climb(ClimbHeight, plane);
-
-        Speech.SpeakText(string.Format("Climbing to {0} feet", (int)(ClimbHeight + planes.Single(p => p.name == plane).transform.localPosition.y) * GlobalManager.heightDisplayFactor));
+        Debug.Log(planes.Single(p => p.name == plane).transform.localPosition.y);
+        Debug.Log(ClimbHeight);
+        Speech.SpeakText(string.Format("Climbing to {0} feet", (int)Math.Round(ClimbHeight * 5.859936 + planes.Single(p => p.name == plane).transform.localPosition.y) * GlobalManager.heightDisplayFactor));
 
     }
 

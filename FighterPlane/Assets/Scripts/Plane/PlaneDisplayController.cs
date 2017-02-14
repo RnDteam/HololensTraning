@@ -193,7 +193,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-		int height = (int)localHeight* GlobalManager.heightDisplayFactor;
+		int height = (int)Math.Round(localHeight) * GlobalManager.heightDisplayFactor;
 		planeInfo.GetComponent<TextMesh>().text =height+"ft" + GlobalManager.Reverse("גובה: ") + "\n"+ pParams.ToString() + "\n";
     }
 

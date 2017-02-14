@@ -161,6 +161,28 @@ public partial class PlaneManager : Singleton<PlaneManager>
         PlaySounds();
     }
 
+    public void SetCollisionPlanes(string planeName1, string planeName2)
+    {
+        DeselectPlane(selectedPlane);
+
+        var plane1 = planes.Single(p => p.name == planeName1);
+        var plane2 = planes.Single(p => p.name == planeName2);
+        previousPlane = plane2;
+        selectedPlane = plane1;
+
+        SelectPlane(selectedPlane);
+        ShowDistance();
+
+        ShowInfo(plane1);
+        ShowInfo(plane2);
+    }
+
+    public void UnsetCollisionPlanes()
+    {
+        HideDistance();
+        DeselectPlane(selectedPlane);
+    }
+
     private bool Contains(Array array, object val)
     {
         return Array.IndexOf(array, val) != -1;
@@ -229,6 +251,11 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void HideInfo()
     {
         selectedPlane.GetComponent<PlaneDisplayController>().HidePlaneInfo();
+    }
+
+    public void ShowInfo(GameObject gameObject)
+    {
+        gameObject.GetComponent<PlaneDisplayController>().ShowPlaneInfo();
     }
     #endregion
 

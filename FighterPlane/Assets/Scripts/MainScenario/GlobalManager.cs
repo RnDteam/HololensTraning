@@ -11,6 +11,7 @@ public static class GlobalManager {
     public const float defaultLoopRadius = 0.3f;
     public const float defaultCircleRadius = 0.3f;
     public const float defaultLoopOmega = 0.33333f;
+    public const float defaultClimbOmega = 0.2f;
     public const float defaultCircleOmega = 0.33333f;
     public const float defaultAttackSpeed = 0.16667f;
     public const float unphysicalBankAngle = 20;
