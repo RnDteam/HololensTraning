@@ -2078,7 +2078,7 @@ MonoBehaviour:
   latitude: 32.83
   longitude: 34.99
   _position: {x: 0, y: 0}
-  _zoom: 16
+  _zoom: 15
   _activeTypeSettings: 
 --- !u!114 &161
 MonoBehaviour:
