@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114349040637289354}
   - component: {fileID: 54273940357097120}
   - component: {fileID: 114034347644282076}
+  - component: {fileID: 114648617886806504}
   m_Layer: 8
   m_Name: HerculesPrefab
   m_TagString: Plane
@@ -150,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1384767508925820
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 1101716996615728}
   m_LocalRotation: {x: -0.041842535, y: 0.010969113, z: 0.00045940554, w: 0.9990639}
   m_LocalPosition: {x: -2.032641, y: -2.7202218, z: 2.8599877}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 4508154471378974}
   m_RootOrder: 1
@@ -383,7 +384,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_LocalRotation: {x: -0.19232568, y: -0.77251214, z: -0.1755066, w: 0.5791661}
+  m_LocalRotation: {x: -0.11230354, y: -0.06932384, z: -0.007854259, w: 0.99122167}
   m_LocalPosition: {x: 0, y: -0.5, z: 1.5000004}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
@@ -530,7 +531,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_LocalRotation: {x: -0.19685878, y: -0.7780319, z: -0.18018548, w: 0.5687233}
+  m_LocalRotation: {x: -0.12500449, y: -0.07116765, z: -0.008990137, w: 0.98955965}
   m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
@@ -543,8 +544,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
-  m_LocalRotation: {x: -0, y: 0.66765016, z: -0, w: 0.7444752}
-  m_LocalPosition: {x: 2.75, y: 5.5, z: 7.68}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.79, y: 6.5, z: 6.212983}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4340762139302194}
@@ -557,7 +558,7 @@ Transform:
   - {fileID: 4219846758223140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 83.772, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4869198017064360
 Transform:
   m_ObjectHideFlags: 1
@@ -1141,7 +1142,7 @@ BoxCollider:
   m_GameObject: {fileID: 1085614492183392}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.17, y: 0.5, z: 13.19}
   m_Center: {x: 0, y: 0, z: -5.5}
@@ -1340,7 +1341,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_Text: Ido
+  m_Text: Cohen
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1361,16 +1362,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_Text: '
-
-'
+  m_Text: "6000ft :\u05D4\u05D1\u05D5\u05D2\n10 :\u05EA\u05D5\u05E8\u05D9\u05D4\u05DE\n"
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 37
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1451,8 +1450,8 @@ MonoBehaviour:
   distanceText: {fileID: 1101716996615728}
   distanceLine: {fileID: 1990554041855350}
   gasAmount: 0
-  coords: {x: 34.944202, y: 32.789993}
-  localHeight: 5.500001
+  coords: {x: 34.99528, y: 32.745808}
+  localHeight: 6.5
   IsVisible: 1
   planeModel: {fileID: 1740555580184952}
 --- !u!114 &114349040637289354
@@ -1467,6 +1466,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon: 1
+--- !u!114 &114648617886806504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1085614492183392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454360c7f9da95c49be66260ed3a798c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114737831307126570
 MonoBehaviour:
   m_ObjectHideFlags: 1

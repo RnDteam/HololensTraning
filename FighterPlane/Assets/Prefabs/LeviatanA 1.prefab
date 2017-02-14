@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1663272892162240
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 1630254178252718}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -1.900001, y: -32.5, z: -24.499985}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4441848909212616}
   m_RootOrder: 1
@@ -373,7 +373,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248513847150042}
-  m_LocalRotation: {x: -0.12992802, y: 0.7889145, z: -0.59262705, w: 0.09760093}
+  m_LocalRotation: {x: 0.25559068, y: 0.7458936, z: -0.58186144, w: -0.1993828}
   m_LocalPosition: {x: 113.3333, y: -0.0001335143, z: 20}
   m_LocalScale: {x: 13.33333, y: 13.333334, z: 13.333332}
   m_Children: []
@@ -414,8 +414,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663272892162240}
-  m_LocalRotation: {x: 0, y: 0.9396927, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: 2.52, y: 5.5, z: -4.64}
+  m_LocalRotation: {x: -0, y: 0.9396927, z: -0, w: -0.34202012}
+  m_LocalPosition: {x: -4.7094517, y: 6.5, z: 5.5828857}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4844387060023280}
@@ -447,7 +447,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661825353895940}
-  m_LocalRotation: {x: -0.13754079, y: 0.6093992, z: 0.10839145, w: 0.7732829}
+  m_LocalRotation: {x: 0.056589477, y: -0.8966963, z: -0.12017553, w: -0.4222455}
   m_LocalPosition: {x: -0, y: 6, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
@@ -1107,7 +1107,7 @@ BoxCollider:
   m_GameObject: {fileID: 1663272892162240}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 8.17, y: 2.73, z: 60.1}
   m_Center: {x: 0, y: 0, z: -23.3}
@@ -1306,7 +1306,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248513847150042}
-  m_Text: LeviatanB
+  m_Text: Ziv
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1327,16 +1327,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661825353895940}
-  m_Text: 'Weapon: Rocket
-
-    Speed: 00'
+  m_Text: "6000ft :\u05D4\u05D1\u05D5\u05D2\n10 :\u05EA\u05D5\u05E8\u05D9\u05D4\u05DE\n"
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 20
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1440,8 +1438,8 @@ MonoBehaviour:
   distanceText: {fileID: 1630254178252718}
   distanceLine: {fileID: 1787299770020656}
   gasAmount: 0
-  coords: {x: 35.00452, y: 32.788475}
-  localHeight: 6.5000005
+  coords: {x: 35.011063, y: 32.754906}
+  localHeight: 6.5
   IsVisible: 1
   planeModel: {fileID: 1986374571206962}
 --- !u!114 &114731849020434342
