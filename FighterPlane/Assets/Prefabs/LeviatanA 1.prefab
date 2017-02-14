@@ -359,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 1630254178252718}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -1.900001, y: -32.5, z: -24.499985}
-  m_LocalScale: {x: 39062.242, y: 39062.242, z: 39062.242}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4441848909212616}
   m_RootOrder: 1
@@ -1106,8 +1106,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.17, y: 2.73, z: 13.4}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8.17, y: 2.73, z: 65.7}
+  m_Center: {x: 0, y: 0, z: -25.39}
 --- !u!81 &81166711845923364
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1189,7 +1189,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1213,7 +1213,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 904a8e7acbdc68849afcbafc7519b7e3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b231be613e092d469219ca84b9f1281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: 1
+  Weapon: 2
 --- !u!114 &114497566611888266
 MonoBehaviour:
   m_ObjectHideFlags: 1
