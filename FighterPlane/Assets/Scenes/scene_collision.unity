@@ -3194,6 +3194,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82881930367128098, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271977979094856, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: gasAmount
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
   m_IsPrefabParent: 0
@@ -3370,7 +3380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b22fd05abb0b2d488e4fd9d292f111a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speech: {fileID: 1928809392}
   ClimbHeight: 0.25
 --- !u!4 &1580953075
 Transform:
@@ -3525,6 +3534,11 @@ Prefab:
       propertyPath: Speed
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 114271977979094856, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: gasAmount
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
   m_IsPrefabParent: 0
@@ -3574,6 +3588,11 @@ Prefab:
     - target: {fileID: 1361938491797014, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271977979094856, guid: 109d9782a66984d43830476a9450162e,
+        type: 2}
+      propertyPath: gasAmount
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}

@@ -4,6 +4,7 @@ using System;
 using Assets.Scripts.Plane;
 using Assets.Scripts.Physics;
 using System.Collections.Generic;
+using HoloToolkit.Unity;
 
 public abstract class PlaneDisplayController : MonoBehaviour
 {
@@ -168,6 +169,8 @@ public abstract class PlaneDisplayController : MonoBehaviour
             // todo will be changed if found a better way to avoid boolea parameter
             if (!IsGasAlertActive)
             {
+                TextToSpeechManager.Instance.SpeakText(string.Format("{0} has no gas. Would you like to go home?", gameObject.name));
+
                 IsGasAlertActive = true;
                 lackOfGasAlert.GetComponent<MeshRenderer>().enabled = true;
                 lackOfGasAlert.GetComponent<AudioSource>().Play();

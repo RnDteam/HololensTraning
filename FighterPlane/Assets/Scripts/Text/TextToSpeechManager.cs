@@ -50,7 +50,7 @@ namespace HoloToolkit.Unity
     /// GameObject that is a child of Main Camera and position it approximately 0.6 units above the 
     /// camera. This orientation will sound similar to Cortana's speech in the OS.
     /// </remarks>
-    public class TextToSpeechManager : MonoBehaviour
+    public partial class TextToSpeechManager : Singleton<TextToSpeechManager>
     {
         // Inspector Variables
         [Tooltip("The audio source where speech will be played.")]

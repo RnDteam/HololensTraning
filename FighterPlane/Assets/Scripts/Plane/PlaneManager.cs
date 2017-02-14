@@ -463,4 +463,12 @@ public partial class PlaneManager : Singleton<PlaneManager>
         var plane = planes.Single(p => p.name == planeName);
         AddManeuver(new ClimbManeuver((ATCManeuver)plane.GetComponent<ManeuverController>().getManeuver(), height), plane);
     }
+
+    public void GoHome(GameObject plane, Vector3 coords)
+    {
+        if (plane.GetComponent<ManeuverController>().getManeuver() is StandardManeuver)
+        {
+            (plane.GetComponent<ManeuverController>().getManeuver() as StandardManeuver).SetEndPoint(coords);
+        }
+    }
 }

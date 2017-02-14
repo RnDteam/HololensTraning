@@ -12,7 +12,7 @@ namespace Assets.Scripts.Physics
     public class StandardManeuver : ATCManeuver
     {
         public const float permissibleAngleErrorDegrees = 1f;
-        Vector3 DestinationCoords;
+        Vector3 DestinationCoords, newDestinationCoords;
         Vector3 finalCoords = new Vector3();
         Maneuver executedManeuver;
         float flightSpeed;
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Physics
         //in the future, we can add different radii and omegas for the different stages of the attack; in the meantime, we'll just use one set for simplicity
         public StandardManeuver(Vector3 currentPosition, Quaternion currentRotation, Vector3 destCoords, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
         {
-            DestinationCoords = destCoords;
+            DestinationCoords = newDestinationCoords = destCoords;
             initialPosition = currentPosition;
             initialRight = currentRotation * Vector3.right;
             this.flightSpeed = flightSpeed;
@@ -93,6 +93,10 @@ namespace Assets.Scripts.Physics
             Quaternion rotation = executedManeuver.CalculateWorldRotation();
             if (stage == FlightStage.initialCircle && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(DestinationCoords.x, position.y, DestinationCoords.z)) < permissibleAngleErrorDegrees)
             {
+                if (DestinationCoords != newDestinationCoords)
+                {
+                    DestinationCoords = newDestinationCoords;
+                }
                 stage = FlightStage.straightFlightToDestination;
                 Vector3 planesRight = rotation * Vector3.right;
                 planesRight.y = 0;
@@ -123,6 +127,11 @@ namespace Assets.Scripts.Physics
                 OnFinishedStraightFlight();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
             }
+        }
+
+        public void SetEndPoint(Vector3 newDestination)
+        {
+            newDestinationCoords = newDestination;
         }
 
         public override Vector3 CalculateWorldPosition()
