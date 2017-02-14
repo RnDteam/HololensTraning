@@ -353,8 +353,12 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void StartFlying(GameObject plane)
     {
-        AddManeuver(new StandardManeuver(plane.transform.position, plane.transform.rotation, plane.transform.position - plane.transform.forward), plane);
-        Debug.Log(plane.transform.position - 5 * plane.transform.forward);
+        var standardManeuver = new StandardManeuver(plane.transform.position, plane.transform.rotation, plane.transform.position - plane.transform.forward, plane.GetComponent<ManeuverController>().Speed, GlobalManager.defaultCircleRadius, plane.GetComponent<ManeuverController>().Speed * 2);
+
+        standardManeuver.StartStraightFlight += () => plane.GetComponent<BoxCollider>().enabled = true;;
+        standardManeuver.FinishedStraightFlight += () => plane.GetComponent<BoxCollider>().enabled = false;
+
+        AddManeuver(standardManeuver, plane);
     }
 
     public void BeginFlight(GameObject plane)

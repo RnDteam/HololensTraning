@@ -20,7 +20,7 @@ public partial class CollisionManager : Singleton<CollisionManager> {
     public void ColliderTriggered(string plane1, string plane2)
     {
         
-        Debug.Log(plane1 + "\t" + plane2);
+        Debug.Log("Collision: " + plane1 + " and " + plane2);
         //PlaneManager.Instance.BeginFlight(plane1);
         //PlaneManager.Instance.DoLoop(plane1);
     }
