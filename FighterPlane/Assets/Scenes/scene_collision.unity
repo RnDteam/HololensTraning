@@ -810,7 +810,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!108 &135
 Light:
   m_ObjectHideFlags: 0
@@ -2309,6 +2309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartFlying: 0
+  ShowInfo: 0
   ApproveClimb: 0
   DisapproveClimb: 0
 --- !u!4 &170016965
@@ -2509,7 +2510,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.54
+      value: -8.32
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2517,7 +2518,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.36
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2542,11 +2543,6 @@ Prefab:
     - target: {fileID: 1663272892162240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_Name
       value: Ziv
-      objectReference: {fileID: 0}
-    - target: {fileID: 114831407428647754, guid: 68ce8bd5b26b186468ec9652f3282f87,
-        type: 2}
-      propertyPath: Speed
-      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
@@ -3561,19 +3557,6 @@ Prefab:
     - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_Name
       value: Ido
-      objectReference: {fileID: 0}
-    - target: {fileID: 114808915961465096, guid: 109d9782a66984d43830476a9450162e,
-        type: 2}
-      propertyPath: Speed
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 83.772
-      objectReference: {fileID: 0}
-    - target: {fileID: 1361938491797014, guid: 109d9782a66984d43830476a9450162e, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}
