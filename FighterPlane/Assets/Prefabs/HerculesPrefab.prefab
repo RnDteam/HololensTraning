@@ -150,7 +150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1384767508925820
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 1101716996615728}
   m_LocalRotation: {x: -0.041842535, y: 0.010969113, z: 0.00045940554, w: 0.9990639}
   m_LocalPosition: {x: -2.032641, y: -2.7202218, z: 2.8599877}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4508154471378974}
   m_RootOrder: 1
@@ -383,7 +383,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_LocalRotation: {x: -0.12309959, y: 0.069357015, z: 0.00862467, w: 0.98993015}
+  m_LocalRotation: {x: -0.19232568, y: -0.77251214, z: -0.1755066, w: 0.5791661}
   m_LocalPosition: {x: 0, y: -0.5, z: 1.5000004}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
@@ -530,7 +530,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_LocalRotation: {x: -0.16447046, y: 0.07455278, z: 0.012467679, w: 0.9834815}
+  m_LocalRotation: {x: -0.19685878, y: -0.7780319, z: -0.18018548, w: 0.5687233}
   m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
@@ -543,9 +543,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.97, y: 5.5, z: 11.83}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 2.54, y: 5.5, z: 11.26}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4340762139302194}
   - {fileID: 4509501691266802}
@@ -557,7 +557,7 @@ Transform:
   - {fileID: 4219846758223140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
 --- !u!4 &4869198017064360
 Transform:
   m_ObjectHideFlags: 1
@@ -1340,7 +1340,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_Text: 
+  m_Text: Ido
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1361,16 +1361,16 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_Text: 'Weapon: Missile
+  m_Text: '
 
-    Speed: 00'
+'
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 22
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1451,8 +1451,8 @@ MonoBehaviour:
   distanceText: {fileID: 1101716996615728}
   distanceLine: {fileID: 1990554041855350}
   gasAmount: 0
-  coords: {x: 35.000412, y: 32.789505}
-  localHeight: 5.5
+  coords: {x: 34.944202, y: 32.789993}
+  localHeight: 5.500001
   IsVisible: 1
   planeModel: {fileID: 1740555580184952}
 --- !u!114 &114349040637289354

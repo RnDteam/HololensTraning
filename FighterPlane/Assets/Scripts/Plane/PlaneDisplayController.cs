@@ -193,7 +193,8 @@ public abstract class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-        planeInfo.GetComponent<TextMesh>().text = GlobalManager.Reverse("נשק: " + GetComponent<PlaneWeapon>().Weapon.GetHebrewString()) + "\n" + pParams.ToString() + "\n";
+		int height = (int)localHeight ;
+		planeInfo.GetComponent<TextMesh>().text =height+"ft" + GlobalManager.Reverse("גובה: ") + "\n"+ pParams.ToString() + "\n";
     }
 
     public void HidePlaneInfo()

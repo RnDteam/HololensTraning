@@ -71,6 +71,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: _BumpAmt
+      second: 10
+    - first:
         name: _BumpScale
       second: 1
     - first:

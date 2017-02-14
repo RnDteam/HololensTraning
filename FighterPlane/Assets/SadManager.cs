@@ -7,7 +7,7 @@ using UnityEngine;
 public class SadManager : MonoBehaviour {
 
     public bool StartFlying = false;
-    
+	public bool ShowInfo = false;
 
     private void Update()
     {
@@ -16,5 +16,10 @@ public class SadManager : MonoBehaviour {
             StartFlying = false;
             KeywordManager.Instance.myKeywordsAndResponses.Single(k => k.Keywords.Contains("Start")).Response.Invoke(); ;
         }
+		if (ShowInfo)
+		{
+			ShowInfo = false;
+			KeywordManager.Instance.myKeywordsAndResponses.Single(k => k.Keywords.Contains("Show Info")).Response.Invoke(); ;
+		}
     }
 }
