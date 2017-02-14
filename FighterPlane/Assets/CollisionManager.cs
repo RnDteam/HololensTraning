@@ -71,7 +71,7 @@ public partial class CollisionManager : Singleton<CollisionManager> {
         planes.Single(p => p.name == plane).GetComponent<BoxCollider>().enabled = false;
         PlaneManager.Instance.Climb(ClimbHeight, plane);
 
-        Speech.SpeakText("Climb approved");
+        Speech.SpeakText(string.Format("Climbing to {0} feet", (int)(ClimbHeight + planes.Single(p => p.name == plane).transform.localPosition.y) * GlobalManager.heightDisplayFactor));
 
     }
 

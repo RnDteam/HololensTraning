@@ -20,7 +20,6 @@ public abstract class PlaneDisplayController : MonoBehaviour
         private set;
     }
 
-    private const int HEIGHT_FACTOR = 1000;
     private Color selectedColor;
     public Color defaultColor;
     public GameObject planeInfo;
@@ -194,7 +193,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
     #region Plane Details
     private void DisplayUpdatedInfo()
     {
-		int height = (int)localHeight* HEIGHT_FACTOR;
+		int height = (int)localHeight* GlobalManager.heightDisplayFactor;
 		planeInfo.GetComponent<TextMesh>().text =height+"ft" + GlobalManager.Reverse("גובה: ") + "\n"+ pParams.ToString() + "\n";
     }
 

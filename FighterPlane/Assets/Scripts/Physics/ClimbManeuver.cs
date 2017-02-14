@@ -39,7 +39,6 @@ namespace Assets.Scripts.Physics
 
         public override void UpdateState()
         {
-            Debug.Log(executedManeuver.CalculateWorldPosition() + " " + executedManeuver.CalculateWorldRotation() + " " + endpoint + " " + flightSpeed + " " + radius + " " + omega);
             if (isClimbing && Vector3.Dot(executedManeuver.CalculateWorldRotation() * Vector3.forward, Vector3.down) >= Math.Sqrt(2)/2)
             {
                 isClimbing = false;
