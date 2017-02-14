@@ -3357,6 +3357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speech: {fileID: 1928809392}
+  ClimbHeight: 0.01
 --- !u!4 &1580953075
 Transform:
   m_ObjectHideFlags: 0

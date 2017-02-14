@@ -19,6 +19,7 @@ public partial class CollisionManager : Singleton<CollisionManager> {
     private List<Collision> collisions;
 
     public TextToSpeechManager Speech;
+    public float ClimbHeight = 50;
 
     private Collision? collisionWaitingForAnswer = null;
 
@@ -57,16 +58,21 @@ public partial class CollisionManager : Singleton<CollisionManager> {
     private void NotifyCollision(Collision collision)
     {
         Debug.Log("Collision: " + collision.object1 + " and " + collision.object2);
-        Speech.SpeakText(string.Format("Collision detected between {0} and {1}. Would you like to climb?", collision.object1, collision.object2));
+        Speech.SpeakText(string.Format("Collision detected between {0} and {1}. Would you like {2} to climb?", collision.object1, collision.object2, collision.object1));
         collisionWaitingForAnswer = collision;
     }
 
     public void ApproveClimb()
     {
-        if (collisionWaitingForAnswer == null)
+        if (!collisionWaitingForAnswer.HasValue)
             return;
-         
+
+        var plane = collisionWaitingForAnswer.Value.object1;
+        planes.Single(p => p.name == plane).GetComponent<BoxCollider>().enabled = false;
+        PlaneManager.Instance.Climb(ClimbHeight, plane);
+
         Speech.SpeakText("Climb approved");
+
     }
 
     public void DisapproveClimb()

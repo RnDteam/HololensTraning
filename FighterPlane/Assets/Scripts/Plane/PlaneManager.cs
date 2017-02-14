@@ -430,4 +430,10 @@ public partial class PlaneManager : Singleton<PlaneManager>
     {
         AddManeuver(new ClimbManeuver((ATCManeuver) selectedPlane.GetComponent<ManeuverController>().getManeuver(), height), selectedPlane);
     }
+
+    public void Climb(float height, string planeName)
+    {
+        var plane = planes.Single(p => p.name == planeName);
+        AddManeuver(new ClimbManeuver((ATCManeuver)selectedPlane.GetComponent<ManeuverController>().getManeuver(), height), plane);
+    }
 }
