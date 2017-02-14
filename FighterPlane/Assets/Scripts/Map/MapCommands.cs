@@ -90,18 +90,18 @@ public partial class MapCommands : Singleton<MapCommands> {
             }
         }
 
-        if (building.metaInfo.Any(p => p.title == "name:en"))
-        {
-            UnityEvent ue = KeywordManager.Instance.myKeywordsAndResponses.Single(kar => kar.Keywords.Contains("uninitialized")).Response;
-            var methodPurpost = building.metaInfo.Single(p => p.title == "name:en").info;
-            List<string> lstKeywords = new List<string>();
-            lstKeywords.Add(building.metaInfo.Single(p => p.title == "name:en").info);
+        //if (building.metaInfo.Any(p => p.title == "name:en"))
+        //{
+        //    UnityEvent ue = KeywordManager.Instance.myKeywordsAndResponses.Single(kar => kar.Keywords.Contains("uninitialized")).Response;
+        //    var methodPurpost = building.metaInfo.Single(p => p.title == "name:en").info;
+        //    List<string> lstKeywords = new List<string>();
+        //    lstKeywords.Add(building.metaInfo.Single(p => p.title == "name:en").info);
 
             // Todo - yariv disabled it since were now using a different foramt of keywords and responses, 
             //        which dosen't alloww us to add keywords on the fly without getting a tone of errors.
             // KeywordManager.Instance.AddKeywordAndResponse(methodPurpost, lstKeywords, ue);
             // building.OnDispose += (b) => KeywordManager.Instance.RemoveKeyword(lstKeywords);
-        }
+        //}
     }
 
     public void ZoomIn()

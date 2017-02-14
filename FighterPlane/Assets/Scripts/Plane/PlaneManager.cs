@@ -345,6 +345,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void StartFlying()
     {
+        AllPlanesTakeOff();
         foreach (var plane in planes) {
             StartFlying(plane);
         }
@@ -352,7 +353,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void StartFlying(GameObject plane)
     {
-        AddManeuver(new BeginFlightManeuver(plane.transform.position, plane.transform.rotation), plane);
+        AddManeuver(new StandardManeuver(plane.transform.position, plane.transform.rotation, plane.transform.position - plane.transform.forward), plane);
+        Debug.Log(plane.transform.position - 5 * plane.transform.forward);
     }
 
     public void BeginFlight(GameObject plane)

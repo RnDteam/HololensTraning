@@ -9,7 +9,7 @@ namespace Assets.Scripts.Physics
     class StandardManeuver : Maneuver
     {
         public const float permissibleAngleErrorDegrees = 1f;
-        Vector3 AttackCoords;
+        Vector3 DestinationCoords;
         Vector3 finalCoords = new Vector3();
         Maneuver executedManeuver;
         float flightSpeed;
@@ -19,19 +19,16 @@ namespace Assets.Scripts.Physics
         Vector3 initialRight;
         GameObject building;
         GameObject line;
-        enum stagesOfAttack
+        enum FlightStage
         {
-            initialAttackCircle, straightFlightToTarget, circleSegmentAboveTarget, straightFlightBackToCircle, finalCircle
+            initialCircle, straightFlightToDestination, circleSegmentAboveDestination, straightFlightBackToCircle
         };
-        int stage = (int) stagesOfAttack.initialAttackCircle;
-        public AudioSource alphaOnTargetRecord;
+        FlightStage stage = FlightStage.initialCircle;
 
         //in the future, we can add different radii and omegas for the different stages of the attack; in the meantime, we'll just use one set for simplicity
-        public StandardManeuver(Vector3 currentPosition, Quaternion currentRotation, Vector3 CoordsToAttack, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
+        public StandardManeuver(Vector3 currentPosition, Quaternion currentRotation, Vector3 destCoords, float flightSpeed = GlobalManager.defaultAttackSpeed, float radius = GlobalManager.defaultCircleRadius, float omega = GlobalManager.defaultCircleOmega)
         {
-            alphaOnTargetRecord = GameObject.Find("AlphaOnTarget").GetComponent<AudioSource>();
-            AttackCoords = CoordsToAttack;
-            AttackCoords.y = AttackCoords.y + GlobalManager.heightAboveBuildingToAttack;
+            DestinationCoords = destCoords;
             initialPosition = currentPosition;
             initialRight = currentRotation * Vector3.right;
             this.flightSpeed = flightSpeed;
@@ -63,32 +60,32 @@ namespace Assets.Scripts.Physics
             executedManeuver.UpdateState();
             Vector3 position = executedManeuver.CalculateWorldPosition();
             Quaternion rotation = executedManeuver.CalculateWorldRotation();
-            if (stage == (int) stagesOfAttack.initialAttackCircle && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(AttackCoords.x, position.y, AttackCoords.z)) < permissibleAngleErrorDegrees)
+            if (stage == FlightStage.initialCircle && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(DestinationCoords.x, position.y, DestinationCoords.z)) < permissibleAngleErrorDegrees)
             {
-                stage = (int) stagesOfAttack.straightFlightToTarget;
+                stage = FlightStage.straightFlightToDestination;
                 Vector3 planesRight = rotation * Vector3.right;
                 planesRight.y = 0;
                 planesRight.Normalize();
                 finalCoords = position - 2 * radius * planesRight;
                 //the "forward" vector in the LookRotation call is multpiplied by -1 because the forward vector of the Hercules model is towards its tail
-                executedManeuver = new StraightFlightManeuver(position, AttackCoords, flightSpeed, rotation);
+                executedManeuver = new StraightFlightManeuver(position, DestinationCoords, flightSpeed, rotation);
             }
-            if(stage == (int)stagesOfAttack.straightFlightToTarget && ((StraightFlightManeuver) executedManeuver).finished)
+            if(stage == FlightStage.straightFlightToDestination && ((StraightFlightManeuver)executedManeuver).finished)
             {
-                stage = (int)stagesOfAttack.circleSegmentAboveTarget;
+                stage = FlightStage.circleSegmentAboveDestination;
                 MapCommands.Instance.UnlockMap();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
-                line.SetActive(false);
+                if (line != null)
+                    line.SetActive(false);
             }
-            if(stage == (int)stagesOfAttack.circleSegmentAboveTarget && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)
+            if(stage == FlightStage.circleSegmentAboveDestination && Vector3.Angle(rotation * Vector3.forward, position - new Vector3(finalCoords.x, position.y, finalCoords.z)) < permissibleAngleErrorDegrees)
             {
-                stage = (int)stagesOfAttack.straightFlightBackToCircle;
+                stage = FlightStage.straightFlightBackToCircle;
                 executedManeuver = new StraightFlightManeuver(position, finalCoords, flightSpeed, rotation);
             }
-            if(stage == (int)stagesOfAttack.straightFlightBackToCircle && ((StraightFlightManeuver) executedManeuver).finished)
+            if(stage == FlightStage.straightFlightBackToCircle && ((StraightFlightManeuver)executedManeuver).finished)
             {
-                alphaOnTargetRecord.Play();
-                stage = (int)stagesOfAttack.finalCircle;
+                stage = FlightStage.initialCircle;
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
             }
         }
@@ -110,14 +107,14 @@ namespace Assets.Scripts.Physics
 
         public override void UpdateOnMapMoved(Vector3 movementVector)
         {
-            AttackCoords += movementVector;
+            DestinationCoords += movementVector;
             finalCoords += movementVector;
             executedManeuver.UpdateOnMapMoved(movementVector);
         }
 
         public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
         {
-            AttackCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, AttackCoords.y);
+            DestinationCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, DestinationCoords.y);
             finalCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, finalCoords.y);
             executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
         }

@@ -105,7 +105,7 @@ namespace Assets.Scripts.Physics
                 stage = (int)stagesOfAttack.circleSegmentAboveTarget;
                 try
                 {
-                    building.GetComponent<BuildingDisplay>().BoomBuilding();
+                    //building.GetComponent<BuildingDisplay>().BoomBuilding();
                 }
                 catch { }
                 MapCommands.Instance.UnlockMap();
