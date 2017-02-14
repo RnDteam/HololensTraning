@@ -12,12 +12,12 @@ namespace Assets.Scripts.Physics
         Maneuver finalManeuver;
         Vector3 endpoint;
         float loopOmega;
-        finalManeuver parameters...;
+        finalManeuver parameters;
         bool isClimbing = true;
-        fdbzdfbfdzb
+        
         public ClimbManeuver(StandardManeuver currentManuever, float height, float loopOmega = GlobalManager.DefaultLoopOmega)
         {
-            parameters = currentManeuver.getParameters()...
+            parameters = currentManeuver.getParameters();
             endpoint = currentManeuver.getEndpoint();
             endpoint.y += height;
             executedManeuver = new DoLoop(currentManeuver.CalculateWorldPosition(), currentManeuver.CalculateWorldRotation(), height, loopOmega);
