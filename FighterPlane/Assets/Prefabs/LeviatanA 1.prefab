@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1663272892162240
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 54479255463580158}
   - component: {fileID: 114731849020434342}
   - component: {fileID: 114086939708625842}
+  - component: {fileID: 114574725598363272}
   m_Layer: 8
   m_Name: LeviatanA 1
   m_TagString: Plane
@@ -585,8 +586,8 @@ EllipsoidParticleEmitter:
   serializedVersion: 2
   m_Enabled: 1
   m_Emit: 1
-  minSize: 0.03
-  maxSize: 0.03
+  minSize: 0.01
+  maxSize: 0.01
   minEnergy: 1
   maxEnergy: 1
   minEmission: 200
@@ -1335,7 +1336,7 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 50
+  m_FontSize: 30
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1406,6 +1407,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dee17993f21e2f34c96b90b49da2baf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114574725598363272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663272892162240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454360c7f9da95c49be66260ed3a798c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114582698129989902
