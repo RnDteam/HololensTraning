@@ -204,6 +204,8 @@ GameObject:
   - component: {fileID: 114267049416591956}
   - component: {fileID: 54479255463580158}
   - component: {fileID: 114731849020434342}
+  - component: {fileID: 114148005206104548}
+  - component: {fileID: 114233125725388546}
   m_Layer: 8
   m_Name: LeviatanA 1
   m_TagString: Plane
@@ -360,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 1630254178252718}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -1.900001, y: -32.5, z: -24.499985}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4441848909212616}
   m_RootOrder: 1
@@ -371,7 +373,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248513847150042}
-  m_LocalRotation: {x: -0.12992802, y: 0.7889145, z: -0.59262705, w: 0.09760093}
+  m_LocalRotation: {x: 0.1253756, y: 0.7930246, z: -0.588835, w: -0.093093604}
   m_LocalPosition: {x: 113.3333, y: -0.0001335143, z: 20}
   m_LocalScale: {x: 13.33333, y: 13.333334, z: 13.333332}
   m_Children: []
@@ -412,9 +414,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663272892162240}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.97, y: 5.5, z: -2.8}
-  m_LocalScale: {x: 0.20000008, y: 0.19999999, z: 0.20000008}
+  m_LocalRotation: {x: 0, y: 0.9396927, z: -0, w: -0.3420201}
+  m_LocalPosition: {x: -10.54, y: 6.5, z: -1.36}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4844387060023280}
   - {fileID: 4999763752610394}
@@ -425,7 +427,7 @@ Transform:
   - {fileID: 4697678525463334}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
 --- !u!4 &4535720085482906
 Transform:
   m_ObjectHideFlags: 1
@@ -1105,10 +1107,10 @@ BoxCollider:
   m_GameObject: {fileID: 1663272892162240}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 8.17, y: 2.73, z: 21.05}
-  m_Center: {x: 0, y: 0, z: -3.9}
+  m_Size: {x: 8.17, y: 2.73, z: 109}
+  m_Center: {x: 0, y: 0, z: -44.4}
 --- !u!81 &81166711845923364
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1304,7 +1306,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248513847150042}
-  m_Text: LeviatanB
+  m_Text: Ziv
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1373,6 +1375,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee17993f21e2f34c96b90b49da2baf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114148005206104548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663272892162240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454360c7f9da95c49be66260ed3a798c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114233125725388546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663272892162240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454360c7f9da95c49be66260ed3a798c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114267049416591956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1416,8 +1440,8 @@ MonoBehaviour:
   distanceText: {fileID: 1630254178252718}
   distanceLine: {fileID: 1787299770020656}
   gasAmount: 0
-  coords: {x: 35.00452, y: 32.788475}
-  localHeight: 6.5000005
+  coords: {x: 35.025578, y: 32.86752}
+  localHeight: 6.5
   IsVisible: 1
   planeModel: {fileID: 1986374571206962}
 --- !u!114 &114731849020434342

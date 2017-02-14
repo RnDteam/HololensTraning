@@ -72,6 +72,7 @@ namespace Assets.Scripts.Physics
             }
             if(stage == FlightStage.straightFlightToDestination && ((StraightFlightManeuver)executedManeuver).finished)
             {
+                
                 stage = FlightStage.circleSegmentAboveDestination;
                 MapCommands.Instance.UnlockMap();
                 executedManeuver = new MakeCircle(position, rotation, omega, radius);
