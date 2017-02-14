@@ -6,26 +6,25 @@ using UnityEngine;
 
 namespace Assets.Scripts.Physics
 {
-    class ClimbManeuver : StandardManeuver
+    class ClimbManeuver : ATCManeuver
     {
         Maneuver executedManeuver;
         Maneuver finalManeuver;
         Vector3 endpoint;
         float loopOmega;
-        finalManeuver parameters;
+        float flightSpeed;
+        float radius;
+        float omega;
         bool isClimbing = true;
         
-        public ClimbManeuver(StandardManeuver currentManuever, float height, float loopOmega = GlobalManager.DefaultLoopOmega)
+        public ClimbManeuver(ATCManeuver currentManeuver, float height, float loopOmega = GlobalManager.defaultLoopOmega)
         {
-            parameters = currentManeuver.getParameters();
-            endpoint = currentManeuver.getEndpoint();
+            flightSpeed = currentManeuver.GetFlightSpeed();
+            radius = currentManeuver.GetRadius();
+            omega = currentManeuver.GetOmega();
+            endpoint = currentManeuver.GetEndpoint();
             endpoint.y += height;
-            executedManeuver = new DoLoop(currentManeuver.CalculateWorldPosition(), currentManeuver.CalculateWorldRotation(), height, loopOmega);
-        }
-
-        public Vector3 getEndpoint()
-        {
-            return endpoint;
+            executedManeuver = new DoLoop(currentManeuver.CalculateWorldPosition(), currentManeuver.CalculateWorldRotation(), loopOmega, 2 * height);
         }
 
         public override void Pause()
@@ -40,10 +39,10 @@ namespace Assets.Scripts.Physics
 
         public override void UpdateState()
         {
-            if (isClimbing && Vector3.Dot(Vector3.forward * executedManeuver.CalculateWorldRotation(), Vector3.up) > 0.99)
+            if (isClimbing && Vector3.Dot(executedManeuver.CalculateWorldRotation() * Vector3.forward, Vector3.down) >= Math.Sqrt(2)/2)
             {
                 isClimbing = false;
-                executedManeuver = new StandardManeuver(executedManeuver.CalculateWorldPosition, executedManeuver.CalculateWorldRotation(), endpoint, otherParams...);
+                executedManeuver = new StandardManeuver(executedManeuver.CalculateWorldPosition(), executedManeuver.CalculateWorldRotation(), endpoint, flightSpeed, radius, omega);
             }
         }
 
@@ -70,8 +69,27 @@ namespace Assets.Scripts.Physics
 
         public override void UpdateOnZoomChanged(Transform relativeTransform, float currentZoomRatio, float absoluteZoomRatio)
         {
-            AttackCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, AttackCoords.y);
+            endpoint.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, endpoint.y);
             executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
+        }
+
+        public override Vector3 GetEndpoint()
+        {
+            return endpoint;
+        }
+        public override float GetFlightSpeed()
+        {
+            return flightSpeed;
+        }
+
+        public override float GetRadius()
+        {
+            return radius;
+        }
+
+        public override float GetOmega()
+        {
+            return omega;
         }
     }
 }

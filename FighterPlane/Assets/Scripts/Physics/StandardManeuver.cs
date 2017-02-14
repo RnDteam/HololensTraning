@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Physics
 {
-    class StandardManeuver : Maneuver
+    class StandardManeuver : ATCManeuver
     {
         public const float permissibleAngleErrorDegrees = 1f;
         Vector3 DestinationCoords;
@@ -53,6 +53,11 @@ namespace Assets.Scripts.Physics
         public void SetLine(GameObject line)
         {
             this.line = line;
+        }
+
+        public override Vector3 GetEndpoint()
+        {
+            return DestinationCoords;
         }
 
         public override void UpdateState()
@@ -117,6 +122,21 @@ namespace Assets.Scripts.Physics
             DestinationCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, DestinationCoords.y);
             finalCoords.y = CalculateYOnZoomChanged(relativeTransform, currentZoomRatio, finalCoords.y);
             executedManeuver.UpdateOnZoomChanged(relativeTransform, currentZoomRatio, absoluteZoomRatio);
+        }
+
+        public override float GetFlightSpeed()
+        {
+            return flightSpeed;
+        }
+
+        public override float GetRadius()
+        {
+            return radius;
+        }
+
+        public override float GetOmega()
+        {
+            return omega;
         }
     }
 }
