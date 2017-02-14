@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowRedraw: 1
-  control: {fileID: 0}
+  control: {fileID: 159}
   customProviderURL: http://localhost/{zoom}/{y}/{x}
   customTrafficProviderURL: http://localhost/{zoom}/{y}/{x}
   defaultMarkerAlign: 7
@@ -2031,12 +2031,12 @@ MonoBehaviour:
   defaultTileTexture: {fileID: 0}
   dispatchEvents: 1
   emptyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  height: 0
+  height: 1024
   labels: 0
   language: en
   lockRedraw: 0
   markers: []
-  needRedraw: 1
+  needRedraw: 0
   notInteractUnderGUI: 1
   provider: 2
   mapType: google.satellite
@@ -2074,9 +2074,9 @@ MonoBehaviour:
   useSmartTexture: 1
   useWebplayerProxy: 1
   webplayerProxyURL: http://service.infinity-code.com/redirect.php?
-  width: 0
-  latitude: 32.83
-  longitude: 34.99
+  width: 1024
+  latitude: 32.82
+  longitude: 34.98
   _position: {x: 0, y: 0}
   _zoom: 15
   _activeTypeSettings: 
