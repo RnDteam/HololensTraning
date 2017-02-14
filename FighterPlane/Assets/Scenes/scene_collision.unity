@@ -2055,7 +2055,7 @@ MonoBehaviour:
   language: en
   lockRedraw: 0
   markers: []
-  needRedraw: 0
+  needRedraw: 1
   notInteractUnderGUI: 1
   provider: 2
   mapType: google.satellite
@@ -2097,7 +2097,7 @@ MonoBehaviour:
   latitude: 32.82
   longitude: 34.98
   _position: {x: 0, y: 0}
-  _zoom: 15
+  _zoom: 13
   _activeTypeSettings: 
 --- !u!114 &161
 MonoBehaviour:
