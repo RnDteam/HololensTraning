@@ -306,14 +306,31 @@ public partial class PlaneManager : Singleton<PlaneManager>
         AddManeuver(newManeuver, selectedPlane);
     }
 
+    private void AddManeuver(Maneuver newManeuver, string plane)
+    {
+        AddManeuver(newManeuver, planes.Single(p => p.name == plane));
+    }
+
     public void DoCircle()
     {
         AddManeuver(new MakeCircle(selectedPlane.transform.position, selectedPlane.transform.rotation));
     }
 
+    public void DoCircle(string planeName)
+    {
+        var plane = planes.Single(p => p.name == planeName);
+        AddManeuver(new MakeCircle(plane.transform.position, plane.transform.rotation), planeName);
+    }
+
     public void DoLoop()
     {
         AddManeuver(new DoLoop(selectedPlane.transform.position, selectedPlane.transform.rotation));
+    }
+
+    public void DoLoop(string planeName)
+    {
+        var plane = planes.Single(p => p.name == planeName);
+        AddManeuver(new DoLoop(plane.transform.position, plane.transform.rotation), plane);
     }
 
     public void Escape()
@@ -324,6 +341,29 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void BeginFlight()
     {
         AddManeuver(new BeginFlightManeuver(selectedPlane.transform.position, selectedPlane.transform.rotation));
+    }
+
+    public void StartFlying()
+    {
+        foreach (var plane in planes) {
+            StartFlying(plane);
+        }
+    }
+
+    public void StartFlying(GameObject plane)
+    {
+        AddManeuver(new BeginFlightManeuver(plane.transform.position, plane.transform.rotation), plane);
+    }
+
+    public void BeginFlight(GameObject plane)
+    {
+        AddManeuver(new BeginFlightManeuver(plane.transform.position, plane.transform.rotation), plane);
+    }
+
+    public void BeginFlight(string planeName)
+    {
+        var plane = planes.Single(p => p.name == planeName);
+        AddManeuver(new BeginFlightManeuver(plane.transform.position, plane.transform.rotation), plane);
     }
 
     public Vector3 GetPlaneCenter()

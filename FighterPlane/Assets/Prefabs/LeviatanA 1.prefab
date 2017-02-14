@@ -202,7 +202,8 @@ GameObject:
   - component: {fileID: 114582698129989902}
   - component: {fileID: 114831407428647754}
   - component: {fileID: 114267049416591956}
-  - component: {fileID: 54080442096801044}
+  - component: {fileID: 54479255463580158}
+  - component: {fileID: 114731849020434342}
   m_Layer: 8
   m_Name: LeviatanA 1
   m_TagString: Plane
@@ -411,8 +412,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663272892162240}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.5, y: 6.5, z: -2.8}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.97, y: 5.5, z: -2.8}
   m_LocalScale: {x: 0.20000008, y: 0.19999999, z: 0.20000008}
   m_Children:
   - {fileID: 4844387060023280}
@@ -424,7 +425,7 @@ Transform:
   - {fileID: 4697678525463334}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4535720085482906
 Transform:
   m_ObjectHideFlags: 1
@@ -1081,7 +1082,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938364142060298}
   m_Mesh: {fileID: 4300008, guid: 04652ccb6f845c440b28eb5dff2431fd, type: 3}
---- !u!54 &54080442096801044
+--- !u!54 &54479255463580158
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1106,8 +1107,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.17, y: 2.73, z: 65.7}
-  m_Center: {x: 0, y: 0, z: -25.39}
+  m_Size: {x: 8.17, y: 2.73, z: 21.05}
+  m_Center: {x: 0, y: 0, z: -3.9}
 --- !u!81 &81166711845923364
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1419,6 +1420,17 @@ MonoBehaviour:
   localHeight: 6.5000005
   IsVisible: 1
   planeModel: {fileID: 1986374571206962}
+--- !u!114 &114731849020434342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663272892162240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454360c7f9da95c49be66260ed3a798c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114831407428647754
 MonoBehaviour:
   m_ObjectHideFlags: 1
