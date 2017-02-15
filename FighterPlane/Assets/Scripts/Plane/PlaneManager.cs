@@ -70,7 +70,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
             AddManeuver(new BeginFlightManeuver(plane.transform.position, plane.transform.rotation), plane);
         }
     }
-    
+
 
     private void InitializeDistanceLine()
     {
@@ -86,7 +86,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     private void SetLinePosition(LineRenderer lr, GameObject distance)
     {
-        if(previousPlane != selectedPlane)
+        if (previousPlane != selectedPlane)
         {
             lr.SetPosition(0, previousPlane.transform.position);
             lr.SetPosition(1, selectedPlane.transform.position);
@@ -95,7 +95,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
             distance.transform.position = middlePoint;
 
             TextMesh text = distance.GetComponent<TextMesh>();
-            text.text = Math.Round((previousPlane.transform.position - selectedPlane.transform.position).magnitude, 1) + " mi.";
+            text.text = GlobalManager.Reverse(GlobalManager.Reverse(Math.Round((previousPlane.transform.position - selectedPlane.transform.position).magnitude, 1).ToString()) + " מייל");
         }
     }
 
@@ -143,8 +143,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void SelectPlaneByIndex(int index)
     {
-        if (index>0 && index < Enum.GetNames(typeof(PLANES)).Length)
-        ChangePlane(planes[index]);
+        if (index > 0 && index < Enum.GetNames(typeof(PLANES)).Length)
+            ChangePlane(planes[index]);
     }
 
     private void ChangePlane(GameObject currPlane)
@@ -245,7 +245,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     #region Plane Information
     public void ShowInfo()
     {
-        selectedPlane.GetComponent<PlaneDisplayController>(). ShowPlaneInfo();
+        selectedPlane.GetComponent<PlaneDisplayController>().ShowPlaneInfo();
     }
 
     public void HideInfo()
@@ -373,7 +373,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public void StartFlying()
     {
         AllPlanesTakeOff();
-        foreach (var plane in planes) {
+        foreach (var plane in planes)
+        {
             StartFlying(plane);
         }
     }
@@ -382,7 +383,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
     {
         var standardManeuver = new StandardManeuver(plane.transform.position, plane.transform.rotation, plane.transform.position - plane.transform.forward, plane.GetComponent<ManeuverController>().Speed, GlobalManager.defaultCircleRadius, plane.GetComponent<ManeuverController>().Speed * 2);
 
-        standardManeuver.StartStraightFlight += () => plane.GetComponent<BoxCollider>().enabled = true;;
+        standardManeuver.StartStraightFlight += () => plane.GetComponent<BoxCollider>().enabled = true; ;
         standardManeuver.FinishedStraightFlight += () => plane.GetComponent<BoxCollider>().enabled = false;
 
         AddManeuver(standardManeuver, plane);
@@ -455,7 +456,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void Climb(float height)
     {
-        AddManeuver(new ClimbManeuver((ATCManeuver) selectedPlane.GetComponent<ManeuverController>().getManeuver(), height), selectedPlane);
+        AddManeuver(new ClimbManeuver((ATCManeuver)selectedPlane.GetComponent<ManeuverController>().getManeuver(), height), selectedPlane);
     }
 
     public void Climb(float height, string planeName)
@@ -476,7 +477,20 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
     public void GoHome(GameObject plane, Vector3 coords)
     {
-        plane.GetComponent<ManeuverController>().goingHome = true;
-        AddManeuver(new StandardManeuver(plane.transform.position, plane.transform.rotation, coords + Vector3.up * GlobalManager.heightAboveBuildingToAttack), plane);
+        plane.GetComponent<PlaneDisplayController>().GoingHome = true;
+        var maneuver = new StandardManeuver(plane.transform.position, plane.transform.rotation, coords + Vector3.up * GlobalManager.heightAboveBuildingToAttack);
+        maneuver.StartStraightFlight += () =>
+        {
+            plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(coords);
+            plane.GetComponent<BoxCollider>().enabled = true;
+        };
+        maneuver.FinishedStraightFlight += () =>
+        {
+            plane.GetComponent<PlaneDisplayController>().HideDistanceLine();
+            plane.GetComponent<PlaneDisplayController>().GoingHome = false;
+            plane.GetComponent<BoxCollider>().enabled = false;
+            plane.GetComponent<PlaneDisplayController>().gasAmount = GlobalManager.InitialGas;
+        };
+        AddManeuver(maneuver, plane);
     }
 }

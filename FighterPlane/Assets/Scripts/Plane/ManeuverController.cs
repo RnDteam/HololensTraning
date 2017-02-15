@@ -17,7 +17,6 @@ namespace Assets.Scripts.Plane
         private Vector3 attackCircleCenter;
         private float attackCircleRadius;
 
-        public bool goingHome = false;
         public float Speed = 0.16667f;
 
         public Vector3 ManeuverCenter

@@ -7,6 +7,7 @@ using UnityEngine;
 public static class GlobalManager {
     public static int TimeBetweenTakeOffToFindingTarget = 5;
     public static int GasThreshold = 25;
+    public static int InitialGas = 300;
     public const double gravityMag = 9.8;
     public const float defaultLoopRadius = 0.3f;
     public const float defaultCircleRadius = 0.3f;

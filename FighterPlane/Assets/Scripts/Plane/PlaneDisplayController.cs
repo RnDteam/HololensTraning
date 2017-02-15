@@ -23,15 +23,9 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
     private Color selectedColor;
     public Color defaultColor;
-    public GameObject planeInfo;
-    public GameObject planeName;
-    public GameObject lackOfGasAlert;
-    public GameObject planeCamera;
-    public GameObject pilotCamera;
-    public GameObject distanceText;
-    public GameObject distanceLine;
-    public float gasAmount = 100;
-
+    public GameObject planeInfo, planeName, lackOfGasAlert, planeCamera, pilotCamera, distanceText, distanceLine;
+    public float gasAmount = GlobalManager.InitialGas;
+    public bool GoingHome = false;
     public Vector2 coords;
     public float localHeight;
 
@@ -239,7 +233,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.GetComponent<LineRenderer>().SetColors(startColor, endColor);
 
         distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
-        distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + "לימ";
+        distanceText.GetComponent<TextMesh>().text = GlobalManager.Reverse(GlobalManager.Reverse(Math.Round((startPoint - endPoint).magnitude, 2).ToString()) + " מייל");
     }
 
     private void SetLinePositions(List<Vector3> points)
@@ -252,14 +246,16 @@ public abstract class PlaneDisplayController : MonoBehaviour
 
         distanceLine.GetComponent<LineRenderer>().startColor = Color.white;
         distanceLine.GetComponent<LineRenderer>().endColor = Color.white;
-
-        //distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
-        //distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " mi.";
     }
 
     public void ShowDistanceLine(GameObject target)
     {
-        targetPosition = target.transform.TransformPoint(target.transform.position);
+        ShowDistanceLine(target.transform.TransformPoint(target.transform.position));
+    }
+
+    public void ShowDistanceLine(Vector3 target)
+    {
+        targetPosition = target;
         isDistanceShown = true;
         ShowDistance();
     }

@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114349040637289354}
   - component: {fileID: 54273940357097120}
   - component: {fileID: 114034347644282076}
+  - component: {fileID: 114632457536582240}
   m_Layer: 8
   m_Name: HerculesPrefab
   m_TagString: Plane
@@ -543,8 +544,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
-  m_LocalRotation: {x: -0, y: 0.66765016, z: -0, w: 0.7444752}
-  m_LocalPosition: {x: 2.75, y: 5.5, z: 7.68}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: -8.83, y: 7.5, z: 11.83}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4340762139302194}
@@ -557,7 +558,7 @@ Transform:
   - {fileID: 4219846758223140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 83.772, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!4 &4869198017064360
 Transform:
   m_ObjectHideFlags: 1
@@ -936,7 +937,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1564992813933612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -1450,7 +1451,7 @@ MonoBehaviour:
   pilotCamera: {fileID: 1716896504390062}
   distanceText: {fileID: 1101716996615728}
   distanceLine: {fileID: 1990554041855350}
-  gasAmount: 0
+  gasAmount: 60
   coords: {x: 34.944202, y: 32.789993}
   localHeight: 5.500001
   IsVisible: 1
@@ -1467,6 +1468,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon: 1
+--- !u!114 &114632457536582240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1085614492183392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454360c7f9da95c49be66260ed3a798c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114737831307126570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1489,6 +1501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061ce6344bb300d4692e66691e63ee1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goingHome: 0
   Speed: 0.05
 --- !u!120 &120113014441491812
 LineRenderer:
