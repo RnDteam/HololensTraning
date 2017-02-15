@@ -493,6 +493,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
             plane.GetComponent<PlaneDisplayController>().GoingHome = false;
             plane.GetComponent<BoxCollider>().enabled = false;
             plane.GetComponent<PlaneDisplayController>().gasAmount = GlobalManager.InitialGas;
+            plane.GetComponent<PlaneDisplayController>().lackOfGasAlert.GetComponent<MeshRenderer>().enabled = false;
         };
         AddManeuver(maneuver, plane);
     }
