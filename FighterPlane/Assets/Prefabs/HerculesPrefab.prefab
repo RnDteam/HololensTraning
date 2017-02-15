@@ -1371,7 +1371,7 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 32
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1452,6 +1452,7 @@ MonoBehaviour:
   distanceText: {fileID: 1101716996615728}
   distanceLine: {fileID: 1990554041855350}
   gasAmount: 60
+  GoingHome: 0
   coords: {x: 34.944202, y: 32.789993}
   localHeight: 5.500001
   IsVisible: 1
@@ -1501,7 +1502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061ce6344bb300d4692e66691e63ee1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goingHome: 0
   Speed: 0.05
 --- !u!120 &120113014441491812
 LineRenderer:
