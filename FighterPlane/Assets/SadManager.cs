@@ -54,7 +54,7 @@ public class SadManager : MonoBehaviour {
         if (GoHome)
         {
             GoHome = false;
-            KeywordManager.Instance.myKeywordsAndResponses.Single(k => k.Keywords.Contains("Go home")).Response.Invoke(); ;
+            KeywordManager.Instance.myKeywordsAndResponses.Single(k => k.Keywords.Contains("home")).Response.Invoke(); ;
         }
     }
 }

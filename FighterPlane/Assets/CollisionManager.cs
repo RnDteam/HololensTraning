@@ -50,7 +50,7 @@ public partial class CollisionManager : Singleton<CollisionManager> {
     
     public void ColliderTriggered(GameObject plane1, GameObject plane2)
     {
-        if (!plane1.GetComponent<PlaneDisplayController>().GoingHome && !plane1.GetComponent<PlaneDisplayController>().GoingHome || plane1.GetComponent<PlaneDisplayController>().GoingHome)
+        if (plane1.GetComponent<PlaneDisplayController>().GoingHome)
         {
             if (string.Compare(plane1.name, plane2.name) < 0)
             {

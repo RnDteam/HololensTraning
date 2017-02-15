@@ -481,7 +481,10 @@ public partial class PlaneManager : Singleton<PlaneManager>
         var maneuver = new StandardManeuver(plane.transform.position, plane.transform.rotation, coords + Vector3.up * GlobalManager.heightAboveBuildingToAttack);
         maneuver.StartStraightFlight += () =>
         {
-            plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(coords);
+            if (plane.GetComponent<PlaneDisplayController>().GoingHome)
+            {
+                plane.GetComponent<PlaneDisplayController>().ShowDistanceLine(coords);
+            }
             plane.GetComponent<BoxCollider>().enabled = true;
         };
         maneuver.FinishedStraightFlight += () =>
