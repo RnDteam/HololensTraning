@@ -156,7 +156,7 @@ public partial class PlaneManager : Singleton<PlaneManager>
 
         // Deselecting previous plane and selecting the new one
         DeselectPlane(previousPlane);
-        SelectPlane(this.selectedPlane);
+        SelectPlane(selectedPlane);
 
         PlaySounds();
     }
@@ -464,11 +464,19 @@ public partial class PlaneManager : Singleton<PlaneManager>
         AddManeuver(new ClimbManeuver((ATCManeuver)plane.GetComponent<ManeuverController>().getManeuver(), height), plane);
     }
 
+    public void GoHome()
+    {
+        var planesWithoutGas = planes.Where(p => p.GetComponent<PlaneDisplayController>().gasAmount <= GlobalManager.GasThreshold);
+        var coords = OnlineMapsTileSetControl.instance.GetWorldPosition(35.040493, 32.807149);
+        foreach (var plane in planesWithoutGas)
+        {
+            GoHome(plane, coords);
+        }
+    }
+
     public void GoHome(GameObject plane, Vector3 coords)
     {
-        if (plane.GetComponent<ManeuverController>().getManeuver() is StandardManeuver)
-        {
-            (plane.GetComponent<ManeuverController>().getManeuver() as StandardManeuver).SetEndPoint(coords);
-        }
+        plane.GetComponent<ManeuverController>().goingHome = true;
+        AddManeuver(new StandardManeuver(plane.transform.position, plane.transform.rotation, coords + Vector3.up * GlobalManager.heightAboveBuildingToAttack), plane);
     }
 }

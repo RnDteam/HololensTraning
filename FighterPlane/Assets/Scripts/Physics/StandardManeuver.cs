@@ -95,6 +95,7 @@ namespace Assets.Scripts.Physics
             {
                 if (DestinationCoords != newDestinationCoords)
                 {
+                    Debug.Log(newDestinationCoords);
                     DestinationCoords = newDestinationCoords;
                 }
                 stage = FlightStage.straightFlightToDestination;

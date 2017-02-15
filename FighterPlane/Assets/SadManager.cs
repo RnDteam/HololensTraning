@@ -10,6 +10,7 @@ public class SadManager : MonoBehaviour {
     public bool ShowInfo = false;
     public bool ApproveClimb = false;
     public bool DisapproveClimb = false;
+    public bool GoHome = false;
 
     private void InvokeMethod(string keyword)
     {
@@ -50,5 +51,10 @@ public class SadManager : MonoBehaviour {
 			ShowInfo = false;
 			KeywordManager.Instance.myKeywordsAndResponses.Single(k => k.Keywords.Contains("Show Info")).Response.Invoke(); ;
 		}
+        if (GoHome)
+        {
+            GoHome = false;
+            KeywordManager.Instance.myKeywordsAndResponses.Single(k => k.Keywords.Contains("Go home")).Response.Invoke(); ;
+        }
     }
 }

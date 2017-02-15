@@ -1,4 +1,5 @@
-﻿using HoloToolkit;
+﻿using Assets.Scripts.Plane;
+using HoloToolkit;
 using HoloToolkit.Unity;
 using System;
 using System.Collections.Generic;
@@ -47,15 +48,18 @@ public partial class CollisionManager : Singleton<CollisionManager> {
         }
     }
     
-    public void ColliderTriggered(string plane1, string plane2)
+    public void ColliderTriggered(GameObject plane1, GameObject plane2)
     {
-        if (string.Compare(plane1, plane2) < 0)
+        if (!plane1.GetComponent<ManeuverController>().goingHome && !plane1.GetComponent<ManeuverController>().goingHome || plane1.GetComponent<ManeuverController>().goingHome)
         {
-            var temp = plane2;
-            plane2 = plane1;
-            plane1 = temp;
+            if (string.Compare(plane1.name, plane2.name) < 0)
+            {
+                var temp = plane2;
+                plane2 = plane1;
+                plane1 = temp;
+            }
         }
-        var collision = new Collision { object1 = plane1, object2 = plane2 };
+        var collision = new Collision { object1 = plane1.name, object2 = plane2.name };
         if (!collisions.Any(c => c.object1 == collision.object1 && c.object2 == collision.object2))
         {
             collisions.Add(collision);

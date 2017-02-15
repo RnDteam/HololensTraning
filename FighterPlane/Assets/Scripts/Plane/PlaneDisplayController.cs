@@ -170,7 +170,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
             if (!IsGasAlertActive)
             {
                 TextToSpeechManager.Instance.SpeakText(string.Format("{0} has no gas. Would you like to go home?", gameObject.name));
-
+                
                 IsGasAlertActive = true;
                 lackOfGasAlert.GetComponent<MeshRenderer>().enabled = true;
                 lackOfGasAlert.GetComponent<AudioSource>().Play();

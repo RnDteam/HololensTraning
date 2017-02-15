@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlaneCollider : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        CollisionManager.Instance.ColliderTriggered(gameObject.name, other.gameObject.name);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interactible"))
+            CollisionManager.Instance.ColliderTriggered(gameObject, other.gameObject);
     }
 
 }
