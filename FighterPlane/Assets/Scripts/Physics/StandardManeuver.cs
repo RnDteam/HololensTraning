@@ -98,7 +98,7 @@ namespace Assets.Scripts.Physics
                 planesRight.y = 0;
                 planesRight.Normalize();
                 finalCoords = position - 2 * radius * planesRight;
-                //the "forward" vector in the LookRotation call is multpiplied by -1 because the forward vector of the Hercules model is towards its tail
+                //the "forward" vector in the LookRotation call is multiplied by -1 because the forward vector of the Hercules model is towards its tail
                 OnStartStraightFlight();
                 executedManeuver = new StraightFlightManeuver(position, DestinationCoords, flightSpeed, rotation);
             }
