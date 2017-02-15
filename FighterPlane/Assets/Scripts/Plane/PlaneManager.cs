@@ -44,6 +44,8 @@ public partial class PlaneManager : Singleton<PlaneManager>
     public AudioSource showPathRecord;
 
     //private Vector3 defaultScale;
+    public GameObject planeWithoutFuel;
+    public bool isGoingHome;
 
     void Start()
     {
@@ -435,5 +437,17 @@ public partial class PlaneManager : Singleton<PlaneManager>
     {
         var plane = planes.Single(p => p.name == planeName);
         AddManeuver(new ClimbManeuver((ATCManeuver)plane.GetComponent<ManeuverController>().getManeuver(), height), plane);
+    }
+
+    public void RTB()
+    {
+        Debug.Log("trying to go home");
+        if (!isGoingHome)
+        {
+            Debug.Log("Going Home");
+            isGoingHome = true;
+            //todo change this to ziv's maneuver
+            planeWithoutFuel.GetComponent<ManeuverController>().SetManeuver(new DoLoop(planeWithoutFuel.transform.position, planeWithoutFuel.transform.rotation));
+        }
     }
 }

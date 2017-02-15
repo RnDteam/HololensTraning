@@ -4,6 +4,7 @@ using System;
 using Assets.Scripts.Plane;
 using Assets.Scripts.Physics;
 using System.Collections.Generic;
+using HoloToolkit.Unity;
 
 public abstract class PlaneDisplayController : MonoBehaviour
 {
@@ -37,10 +38,12 @@ public abstract class PlaneDisplayController : MonoBehaviour
     private Vector3 defaultScale;
     private Vector3 targetPosition;
     private bool isDistanceShown = false;
+    private bool isGoingHome = false;
 
     private PhysicsParameters pParams;
 
     public bool IsVisible;
+    private TextToSpeechManager speech;
 
     public void Start()
     {
@@ -66,6 +69,7 @@ public abstract class PlaneDisplayController : MonoBehaviour
         setPlaneName();
 
         distanceText.transform.localScale /= transform.localScale.x;
+        speech = FindObjectOfType<CollisionManager>().Speech;
     }
 
 
@@ -171,6 +175,11 @@ public abstract class PlaneDisplayController : MonoBehaviour
                 IsGasAlertActive = true;
                 lackOfGasAlert.GetComponent<MeshRenderer>().enabled = true;
                 lackOfGasAlert.GetComponent<AudioSource>().Play();
+
+                Debug.Log(gameObject.transform.name + " is out of fuel");
+                speech.SpeakText(gameObject.transform.name + " is out of fuel. Say Home to make " + gameObject.transform.name + " to RTB?");
+                FindObjectOfType<PlaneManager>().isGoingHome = false;
+                FindObjectOfType<PlaneManager>().planeWithoutFuel = gameObject;
             }
         }
     }

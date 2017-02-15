@@ -41,7 +41,7 @@ public partial class CollisionManager : Singleton<CollisionManager> {
 
     public void ColliderTriggered(string plane1, string plane2)
     {
-        if (string.Compare(plane1, plane2) < 0)
+        if (planes.Single(p => p.name == plane1).GetComponent<PlaneDisplayController>().gasAmount > planes.Single(p => p.name == plane2).GetComponent<PlaneDisplayController>().gasAmount)
         {
             var temp = plane2;
             plane2 = plane1;
