@@ -163,8 +163,10 @@ public abstract class PlaneDisplayController : MonoBehaviour
             // todo will be changed if found a better way to avoid boolea parameter
             if (!IsGasAlertActive)
             {
-                TextToSpeechManager.Instance.SpeakText(string.Format("{0} has no gas. Would you like to go home?", gameObject.name));
-                
+                if (TextToSpeechManager.Instance != null)
+                    TextToSpeechManager.Instance.SpeakText(string.Format("{0} has no gas. Would you like to go home?", gameObject.name));
+
+                PlaneManager.Instance.SelectPlaneByName(gameObject.name);  
                 IsGasAlertActive = true;
                 lackOfGasAlert.GetComponent<MeshRenderer>().enabled = true;
                 lackOfGasAlert.GetComponent<AudioSource>().Play();

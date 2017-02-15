@@ -729,7 +729,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!108 &135
 Light:
   m_ObjectHideFlags: 0
@@ -1793,7 +1793,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -3206,15 +3206,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.20000008
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.19999999
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4494766027297240, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.20000008
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 82403996621943294, guid: 68ce8bd5b26b186468ec9652f3282f87,
         type: 2}
@@ -3312,15 +3312,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.99999994
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.99999994
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.99999994
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4801973446588612, guid: 109d9782a66984d43830476a9450162e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y

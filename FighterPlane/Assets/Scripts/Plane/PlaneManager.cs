@@ -147,6 +147,12 @@ public partial class PlaneManager : Singleton<PlaneManager>
             ChangePlane(planes[index]);
     }
 
+    public void SelectPlaneByName(string name)
+    {
+        if (planes.Count(p => p.name == name) == 1)
+            ChangePlane(planes.Single(p => p.name == name));
+    }
+
     private void ChangePlane(GameObject currPlane)
     {
         previousPlane = this.selectedPlane;
