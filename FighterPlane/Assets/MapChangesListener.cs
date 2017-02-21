@@ -8,8 +8,6 @@ public class MapChangesListener : MonoBehaviour {
 
     private void Awake()
     {
-        transform.localScale = new Vector3(1f, 1f, 1f);
-
         defaultScale = transform.localScale;
 
         MapMovement.Instance.Moved += MapMoved;
