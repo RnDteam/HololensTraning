@@ -1887,11 +1887,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 950ee17c19f816a49bd815a7b0b2be7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnline: 0
   zoomRange:
     max: 20
     min: 16
@@ -1911,6 +1912,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
   maxActiveBuildings: 500
   maxBuilding: 0
+  buildingParent: {fileID: 0}
 --- !u!114 &159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2572,7 +2574,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2653,7 +2655,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1067686298895856, guid: 0dcc8d9051a300a41a411c394813c372, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dcc8d9051a300a41a411c394813c372, type: 2}
@@ -2783,7 +2785,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 937036785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7981d8ce7112f474eb51c3dbeb511e7c, type: 3}
   m_Name: 

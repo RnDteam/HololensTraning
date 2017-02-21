@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UploadMeshInRuntime : MonoBehaviour
+public class UploadBuildingsInRuntime : MonoBehaviour
 {
     
     void Start()
@@ -17,17 +17,16 @@ public class UploadMeshInRuntime : MonoBehaviour
             {
                 Destroy(building);
             }
-            building.GetComponent<MeshFilter>().mesh = (Mesh)Resources.Load("Meshes/mesh" + building.name, typeof(Mesh)); ;
-
-            for (var i=0; i < building.GetComponent<MeshRenderer>().materials.Length; i++)
+            else
             {
-                building.GetComponent<MeshRenderer>().materials[i] = roofMaterial;
+                building.AddComponent<MapChangesListener>();
+                building.GetComponent<MeshFilter>().mesh = (Mesh)Resources.Load("Meshes/mesh" + building.name, typeof(Mesh)); ;
+
+                for (var i = 0; i < building.GetComponent<MeshRenderer>().materials.Length; i++)
+                {
+                    building.GetComponent<MeshRenderer>().materials[i] = roofMaterial;
+                }
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

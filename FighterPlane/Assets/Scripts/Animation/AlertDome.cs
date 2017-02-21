@@ -16,28 +16,29 @@ public class AlertDome : MonoBehaviour
     private void Awake()
     {
         GetComponent<Renderer>().material = NonActiveAlertDome;
-        HideAlert();
+        // HideAlert();
 
         defaultScale = transform.localScale;
 
-        MapMovement.Instance.Moved += MapMoved;
-        MapMovement.Instance.ZoomChanged += MapZoomChanged;
+        //MapMovement.Instance.Moved += MapMoved;
+        //MapMovement.Instance.ZoomChanged += MapZoomChanged;
     }
 
-    private void MapZoomChanged()
-    {
-        transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
-        mapZoomed = true; //TODO: fix zoom movemaped
-        HideAlert();
-    }
+    //private void MapZoomChanged()
+    //{
+    //    transform.localScale = MapMovement.Instance.AbsoluteZoomRatio * defaultScale;
+    //    Debug.Log(transform.localScale);
+    //    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y * MapMovement.Instance.CurrentZoomRatio, transform.localPosition.z);
+    //    mapZoomed = true; //TODO: fix zoom movemaped
+    //    HideAlert();
+    //}
 
-    private void MapMoved()
-    {
-        var newPosition = transform.position + MapMovement.Instance.MovementVector;
-        transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
-        HideAlert();
-    }
+    //private void MapMoved()
+    //{
+    //    var newPosition = transform.position + MapMovement.Instance.MovementVector;
+    //    transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
+    //    HideAlert();
+    //}
 
     private void OnTriggerEnter(Collider myTrigger)
     {
@@ -67,7 +68,7 @@ public class AlertDome : MonoBehaviour
 
     public void HideAlert()
     {
-        GetComponent<Renderer>().enabled = false;
-        showDome = false;
+        //GetComponent<Renderer>().enabled = false;
+        //showDome = false;
     }
 }
