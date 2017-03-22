@@ -1887,12 +1887,11 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 950ee17c19f816a49bd815a7b0b2be7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnline: 0
   zoomRange:
     max: 20
     min: 16
@@ -1912,7 +1911,6 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
   maxActiveBuildings: 500
   maxBuilding: 0
-  buildingParent: {fileID: 0}
 --- !u!114 &159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2212,6 +2210,14 @@ Prefab:
       propertyPath: Weapon
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1938364142060298, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455335024717930, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
@@ -2297,6 +2303,14 @@ Prefab:
     - target: {fileID: 4707371856245672, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
       propertyPath: m_LocalPosition.z
       value: 20.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455335024717930, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1938364142060298, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
@@ -2424,6 +2438,7 @@ GameObject:
   - component: {fileID: 676117972}
   - component: {fileID: 676117976}
   - component: {fileID: 676117977}
+  - component: {fileID: 676117978}
   m_Layer: 8
   m_Name: AlertDome
   m_TagString: Untagged
@@ -2602,6 +2617,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &676117978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 676117970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24299e52eeccdd74c850892ca615633d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &697858415
 Prefab:
   m_ObjectHideFlags: 0
@@ -2785,7 +2811,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 937036785}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7981d8ce7112f474eb51c3dbeb511e7c, type: 3}
   m_Name: 
@@ -3195,6 +3221,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.20000008
       objectReference: {fileID: 0}
+    - target: {fileID: 1455335024717930, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1938364142060298, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 68ce8bd5b26b186468ec9652f3282f87, type: 2}
@@ -3287,6 +3321,10 @@ Prefab:
         type: 2}
       propertyPath: gasAmount
       value: 269.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085614492183392, guid: 109d9782a66984d43830476a9450162e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 109d9782a66984d43830476a9450162e, type: 2}

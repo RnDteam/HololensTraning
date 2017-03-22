@@ -65,9 +65,10 @@ public abstract class PlaneDisplayController : MonoBehaviour
         setPlaneName();
 
         distanceText.transform.localScale /= transform.localScale.x;
+
+        HidePlaneInfo();
     }
-
-
+    
     void Update()
     {
         // Update Gas Amount

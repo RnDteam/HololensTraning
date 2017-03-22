@@ -20,8 +20,13 @@ public class UploadBuildingsInRuntime : MonoBehaviour
             else
             {
                 building.AddComponent<MapChangesListener>();
-                building.GetComponent<MeshFilter>().mesh = (Mesh)Resources.Load("Meshes/mesh" + building.name, typeof(Mesh)); ;
-
+                building.GetComponent<MeshFilter>().mesh = (Mesh)Resources.Load("Meshes/mesh" + building.name, typeof(Mesh));
+                building.GetComponent<MeshCollider>().sharedMesh = building.GetComponent<MeshFilter>().mesh;
+                if (building.transform.FindChild("BuildingInfo(Clone)"))
+                {
+                    Debug.Log("Found");
+                    building.transform.FindChild("BuildingInfo(Clone)").gameObject.SetActive(false);
+                }
                 for (var i = 0; i < building.GetComponent<MeshRenderer>().materials.Length; i++)
                 {
                     building.GetComponent<MeshRenderer>().materials[i] = roofMaterial;
