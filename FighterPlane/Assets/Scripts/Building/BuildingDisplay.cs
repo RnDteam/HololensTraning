@@ -101,7 +101,7 @@ public class BuildingDisplay : MonoBehaviour {
 
     public void ShowInfo()
     {
-        TextHolder.GetComponent<TextMesh>().text = text;
+        //TextHolder.GetComponent<TextMesh>().text = text;
     }
 
     public void HideInfo()

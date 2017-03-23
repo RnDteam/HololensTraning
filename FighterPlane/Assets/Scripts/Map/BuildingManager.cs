@@ -117,7 +117,8 @@ public partial class BuildingManager : Singleton<BuildingManager>
         infoVisiblity = true;
         if (IsBuildingSelected)
         {
-            selectedBuilding.GetComponent<BuildingDisplay>().ShowInfo();
+            selectedBuilding.transform.FindChild("BuildingInfo(Clone)").gameObject.SetActive(true);
+            //selectedBuilding.GetComponent<BuildingDisplay>().ShowInfo();
         }
     }
 
@@ -126,7 +127,8 @@ public partial class BuildingManager : Singleton<BuildingManager>
         infoVisiblity = false;
         if (IsBuildingSelected)
         {
-            selectedBuilding.GetComponent<BuildingDisplay>().HideInfo();
+            selectedBuilding.transform.FindChild("BuildingInfo(Clone)").gameObject.SetActive(false);
+            //selectedBuilding.GetComponent<BuildingDisplay>().HideInfo();
         }
     }
 

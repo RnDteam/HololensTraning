@@ -365,7 +365,6 @@ public class OnlineMapsCache:MonoBehaviour
 
     private void OnStartDownloadTileM(OnlineMapsTile tile)
     {
-        Debug.Log("OnStartDownloadTileM");
         if (TryLoadFromCache(tile))
         {
             if (OnLoadedFromCache != null) OnLoadedFromCache(tile);
