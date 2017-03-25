@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114271977979094856}
   - component: {fileID: 114808915961465096}
   - component: {fileID: 114349040637289354}
-  - component: {fileID: 54074237910669464}
+  - component: {fileID: 54273940357097120}
   m_Layer: 8
   m_Name: HerculesPrefab
   m_TagString: Plane
@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1384767508925820
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ Transform:
   m_LocalScale: {x: 0.050000064, y: 0.05, z: 0.05000006}
   m_Children: []
   m_Father: {fileID: 4801973446588612}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 3.0000002, y: 180, z: 0}
 --- !u!4 &4140946059233126
 Transform:
@@ -382,13 +382,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431320832541476}
-  m_LocalRotation: {x: -0.105067275, y: 0.045211308, z: 0.004781666, w: 0.99342537}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalRotation: {x: -0.12309959, y: 0.069357015, z: 0.00862467, w: 0.98993015}
+  m_LocalPosition: {x: 0, y: -0.5, z: 1.5000004}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4801973446588612}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 7.7700005, y: 464.311, z: -88.025}
 --- !u!4 &4233337706300792
 Transform:
   m_ObjectHideFlags: 1
@@ -400,7 +400,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4801973446588612}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 19.47, y: 180, z: 0}
 --- !u!4 &4334444523633352
 Transform:
@@ -467,7 +467,7 @@ Transform:
   - {fileID: 4920170244408950}
   - {fileID: 4140946059233126}
   m_Father: {fileID: 4801973446588612}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4509501691266802
 Transform:
@@ -529,31 +529,31 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_LocalRotation: {x: -0.13582036, y: 0.045041297, z: 0.006181255, w: 0.9896898}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.25, z: 0.25}
+  m_LocalRotation: {x: -0.16447046, y: 0.07455278, z: 0.012467679, w: 0.9834815}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 4801973446588612}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -18.988, y: 8.67, z: 0}
 --- !u!4 &4801973446588612
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085614492183392}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 5.5, z: -1.9}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.11, y: 5.5, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4340762139302194}
   - {fileID: 4509501691266802}
-  - {fileID: 4707833508964072}
-  - {fileID: 4219846758223140}
   - {fileID: 4116694021660062}
   - {fileID: 4233337706300792}
   - {fileID: 224624193068978708}
   - {fileID: 4508154471378974}
+  - {fileID: 4707833508964072}
+  - {fileID: 4219846758223140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1102,7 +1102,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930483507063556}
   m_Mesh: {fileID: 4300006, guid: dc43f4f68058dd342ba33b313a2a08b6, type: 3}
---- !u!54 &54074237910669464
+--- !u!54 &54273940357097120
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1352,7 +1352,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4280189183
+    rgba: 4288266437
 --- !u!102 &102263534063816674
 TextMesh:
   serializedVersion: 3
@@ -1360,7 +1360,9 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361938491797014}
-  m_Text: 
+  m_Text: 'Weapon: Missile
+
+    Speed: 00'
   m_OffsetZ: -0.3
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1373,7 +1375,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4280942366
+    rgba: 4291860796
 --- !u!102 &102274340572890944
 TextMesh:
   serializedVersion: 3
@@ -1437,7 +1439,7 @@ MonoBehaviour:
   distanceText: {fileID: 1101716996615728}
   distanceLine: {fileID: 1990554041855350}
   gasAmount: 0
-  coords: {x: 34.981426, y: 32.83843}
+  coords: {x: 35.000412, y: 32.789505}
   localHeight: 5.5
   IsVisible: 1
   planeModel: {fileID: 1740555580184952}
@@ -1452,7 +1454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b231be613e092d469219ca84b9f1281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: 1
+  Weapon: 2
 --- !u!114 &114737831307126570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1488,7 +1490,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fa8ca01dda8f984897eacc418659cbc, type: 2}
+  - {fileID: 2100000, guid: d46b99ad8d23dbb4f86502082c9f2156, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1610,7 +1612,7 @@ RectTransform:
   - {fileID: 4589869874912744}
   - {fileID: 4385206865708564}
   m_Father: {fileID: 4801973446588612}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -11,11 +11,11 @@ public class BuildingWeapon : MonoBehaviour {
         {
             if (id % 2 == 0)
             {
-                Weapon = Weapon.Missile;
+                Weapon = Weapon.Rocket;
             }
             else
             {
-                Weapon = Weapon.Rocket;
+                Weapon = Weapon.Missile;
             }
         }
         else

@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using Assets.Scripts.Plane;
 using Assets.Scripts.Physics;
+using System.Collections.Generic;
 
 public abstract class PlaneDisplayController : MonoBehaviour
 {
@@ -157,6 +158,21 @@ public abstract class PlaneDisplayController : MonoBehaviour
         IsVisible = value;
     }
 
+    private void SetLinePositions(List<Vector3> points)
+    {
+        distanceLine.GetComponent<LineRenderer>().numPositions = points.Count;
+        for (int i = 0; i < points.Count; i++)
+        {
+            distanceLine.GetComponent<LineRenderer>().SetPosition(i, points[i]);
+        }
+
+        distanceLine.GetComponent<LineRenderer>().startColor = Color.white;
+        distanceLine.GetComponent<LineRenderer>().endColor = Color.white;
+
+        //distanceText.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
+        //distanceText.GetComponent<TextMesh>().text = Math.Round((startPoint - endPoint).magnitude, 2) + " mi.";
+    }
+
     #region Plane's Gas
     public void HandleGasAmount()
     {
@@ -257,10 +273,12 @@ public abstract class PlaneDisplayController : MonoBehaviour
         distanceLine.SetActive(true);
         distanceText.SetActive(false);
 
-        SetLinePosition(gameObject.GetComponent<ManeuverController>().GetAttackStartPoint(),
-                        gameObject.GetComponent<ManeuverController>().GetAttackEndPoint(),
-                        Color.white,
-                        Color.red);
-        }
+        //SetLinePosition(gameObject.GetComponent<ManeuverController>().GetAttackStartPoint(),
+        //                gameObject.GetComponent<ManeuverController>().GetAttackEndPoint(),
+        //                Color.white,
+        //                Color.red);
+
+        SetLinePositions(gameObject.GetComponent<ManeuverController>().GetAttackPoints());
+    }
     #endregion
 }
