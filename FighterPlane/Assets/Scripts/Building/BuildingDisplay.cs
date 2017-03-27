@@ -15,7 +15,7 @@ public class BuildingDisplay : MonoBehaviour {
     private void Awake()
     {
         buildingRenderer = GetComponent<Renderer>();
-        SetText();
+        //SetText();
         try
         {
             RuinBuildingIfBomed();
@@ -101,12 +101,13 @@ public class BuildingDisplay : MonoBehaviour {
 
     public void ShowInfo()
     {
-        //TextHolder.GetComponent<TextMesh>().text = text;
+        //Debug.Log("Showing the info");
+        TextHolder.SetActive(true);
     }
 
     public void HideInfo()
     {
-        TextHolder.GetComponent<TextMesh>().text = string.Empty;
+        TextHolder.SetActive(false);
     }
     #endregion
     

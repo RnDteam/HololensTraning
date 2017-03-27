@@ -1129,6 +1129,7 @@ MonoBehaviour:
     - Eedo
     - Adu
     - do
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1152,6 +1153,7 @@ MonoBehaviour:
     - Plane B
     - Cohen
     - Co'en
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1172,6 +1174,7 @@ MonoBehaviour:
     Keywords:
     - Begin Flight
     - Toos
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1192,6 +1195,7 @@ MonoBehaviour:
     Keywords:
     - Show Info
     - Hatzeg meidah
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1212,6 +1216,7 @@ MonoBehaviour:
     Keywords:
     - Hide Info
     - Hahsteir Meidah
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1232,6 +1237,7 @@ MonoBehaviour:
     Keywords:
     - Show DIstance
     - Hatzeg Merhak
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1252,6 +1258,7 @@ MonoBehaviour:
     Keywords:
     - Hide Distance
     - Hahsteir Merhack
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1271,6 +1278,7 @@ MonoBehaviour:
   - MethodPurpose: Easter Egg
     Keywords:
     - Easter Egg
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1291,6 +1299,7 @@ MonoBehaviour:
     Keywords:
     - Show Alert
     - Hatzeg Kipa
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1311,6 +1320,7 @@ MonoBehaviour:
     Keywords:
     - Hide Alert
     - Hahsteir Kipa
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1332,6 +1342,7 @@ MonoBehaviour:
     - Pilot View
     - Pilot Mode
     - Matsav Taias
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1353,6 +1364,7 @@ MonoBehaviour:
     - Plane View
     - Plane Mode
     - Matsav Matos
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1374,6 +1386,7 @@ MonoBehaviour:
     - Ground View
     - Ground Mode
     - Matsav karka
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1398,6 +1411,7 @@ MonoBehaviour:
     - Show Target
     - Show Dagon
     - Zoom Lematara
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1418,6 +1432,8 @@ MonoBehaviour:
     Keywords:
     - Show Name
     - Hatzeg Pratim
+    - Hatzeg Shem
+    Key: 115
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1438,6 +1454,8 @@ MonoBehaviour:
     Keywords:
     - Hide Name
     - Hahsteir Pratim
+    - Hahsteir Shem
+    Key: 104
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1457,6 +1475,7 @@ MonoBehaviour:
   - MethodPurpose: Plane - Loop
     Keywords:
     - Loop
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1478,6 +1497,7 @@ MonoBehaviour:
     - Elude
     - Hithamek
     - Zuz
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1498,6 +1518,7 @@ MonoBehaviour:
     Keywords:
     - Circle
     - Ma'agal
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1518,6 +1539,7 @@ MonoBehaviour:
     Keywords:
     - Move to Plane
     - Zuz Lematos
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1537,6 +1559,7 @@ MonoBehaviour:
   - MethodPurpose: Reset App
     Keywords:
     - Reset App
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1560,6 +1583,7 @@ MonoBehaviour:
     - Rashai Tkifa
     - Tkifa
     - Tkof
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1581,6 +1605,7 @@ MonoBehaviour:
     - Leviatan A
     - Plane Four
     - Ziv
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1602,6 +1627,7 @@ MonoBehaviour:
     - Leviatan B
     - Plane Five
     - Calev
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1623,6 +1649,7 @@ MonoBehaviour:
     - Find Planes
     - Hatzeg Metosim
     - Hatzeg Letkifa
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1642,6 +1669,7 @@ MonoBehaviour:
   - MethodPurpose: Adding Building Names to as Keywords
     Keywords:
     - uninitialized
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1662,6 +1690,7 @@ MonoBehaviour:
     Keywords:
     - Play Scenario
     - Nagen
+    Key: 112
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1684,6 +1713,7 @@ MonoBehaviour:
     - Chen
     - Hen
     - Hercules C
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1705,6 +1735,7 @@ MonoBehaviour:
     - Plane Six
     - Yariv
     - Leviatan C
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1727,6 +1758,7 @@ MonoBehaviour:
     - Plan Attack
     - Bdok Nativ
     - Nativ Tkifa
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1746,6 +1778,7 @@ MonoBehaviour:
   - MethodPurpose: Zoom In
     Keywords:
     - Zoom In
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -1765,6 +1798,7 @@ MonoBehaviour:
   - MethodPurpose: Zoom Out
     Keywords:
     - Zoom Out
+    Key: 0
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -2719,6 +2753,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1067686298895856, guid: 0dcc8d9051a300a41a411c394813c372, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4591096024166350, guid: 0dcc8d9051a300a41a411c394813c372, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4591096024166350, guid: 0dcc8d9051a300a41a411c394813c372, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949739210710748, guid: 0dcc8d9051a300a41a411c394813c372, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949739210710748, guid: 0dcc8d9051a300a41a411c394813c372, type: 2}
+      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

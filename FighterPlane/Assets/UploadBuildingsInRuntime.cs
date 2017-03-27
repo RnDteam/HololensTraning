@@ -33,7 +33,6 @@ public class UploadBuildingsInRuntime : MonoBehaviour
                         
                 else
                 {
-                    Debug.Log(building.name);
                     building.transform.FindChild("BuildingInfo(Clone)")
                             .gameObject.GetComponent<TextMesh>().text = "ןוגד" + "\n\n" + "Rocket" + ":שומיח גוס" ;
                     building.transform.FindChild("BuildingInfo(Clone)")
