@@ -20,9 +20,11 @@ public class UploadBuildingsInRuntime : MonoBehaviour
             }
             else
             {
+                Color textColor = new Color(60, 153, 208);
                 building.AddComponent<MapChangesListener>();
                 building.GetComponent<MeshFilter>().mesh = (Mesh)Resources.Load("Meshes/mesh" + building.name, typeof(Mesh));
                 building.GetComponent<MeshCollider>().sharedMesh = building.GetComponent<MeshFilter>().mesh;
+                building.transform.FindChild("BuildingInfo(Clone)").GetComponent<TextMesh>().color = new Color(textColor.r / 255, textColor.g / 255, textColor.b / 255);
                 if (!building.name.Equals("96623741"))
                 {
                     if (building.transform.FindChild("BuildingInfo(Clone)"))
